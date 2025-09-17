@@ -18,7 +18,7 @@ Quem dominar suas páginas poderá remodelar o mundo — mas cada feitiço lanç
 O jogador pode recuperar fragmentos de alma ao fazer craft a poções. Para além dessa poção o jogador pode fazer poções de vida, ataque e defesa.
 
 O jogador progride por **diversos mundos interligados** (à la *Mario*), desbloqueando feitiços que permitem acesso a novas áreas.  
-Cada mundo terá uma afinidade especifica. Cada afinidade tem uma fraqueza e um imunidade.
+Cada mundo terá um boss com uma afinidade especifica. Cada afinidade tem uma fraqueza e um imunidade.
 
 Fogo -> Vento -> Água -> Fogo
 
