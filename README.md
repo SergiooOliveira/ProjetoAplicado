@@ -1,33 +1,69 @@
-# ProjetoAplicado
+# 🌌 Projeto Aplicado — Jogo de Magia  
 
-- Jogo com magia.
-- Haver uma skill tree onde podemos evoluir poderes e outra para atributos do jogador.
-- Vários tipos de varinha com várias afinidades.
-- Inimigos com resistencias a certas afinidades.
-- Equipamentos com atributos para o player (Seja atributos base como bonus em certos spells)
+Um **2D Platformer** onde o jogador assume o papel de um aprendiz de mago, explorando mundos misteriosos, enfrentando inimigos e desbloqueando feitiços poderosos.  
+O objetivo? Subir de **Rank** até alcançar o topo e dominar o **grimório proibido**, escrito pelo primeiro mago que ousou roubar o fogo das estrelas.  
 
-- Plataforma: PC
-- Público alvo: 14-30	
+---
 
-- 3D ou 2D? 3D dá mais liberdade a niveis de hud e animações. 2D platformer
+## 🎮 Plataforma & Público-Alvo
+- **Plataforma:** PC  
+- **Público-alvo:** 14–30 anos  
 
+---
 
-- Qual a história?
-	. Pode haver texto tipo Pokemon ou apenas legendas no ecrã.
-	. E se for através de um sistema de ranks? O objectivo do jogador é chegar ao rank 1 e vai subindo ou descendo consoante ganha ou perde uma batalha
+## 📖 História
+Um grimório proibido foi descoberto em ruínas ancestrais.  
+Diz-se que foi escrito pelo **primeiro mago**, aquele que ousou roubar o fogo das estrelas.  
+Quem dominar suas páginas poderá remodelar o mundo — mas cada feitiço lançado consome um fragmento da própria alma.  
 
-. Um grimório proibido foi encontrado numa ruína antiga. Diz-se que foi escrito pelo primeiro mago, aquele que ousou roubar o fogo das estrelas. Quem conseguir dominar as magias desse tomo poderá remodelar o mundo — mas cada feitiço lançado rouba um fragmento da alma do utilizador.
+O jogador progride por **diversos mundos interligados** (à la *Mario*), desbloqueando feitiços que permitem acesso a novas áreas.  
+O avanço é medido por um **sistema de ranks**, onde vitórias e derrotas determinam a ascensão ou queda na hierarquia mágica.  
 
-Vários mundos como mario, o player vai progredindo pelo mundo para desbloquear feitiços novos e com eles arir novas áreas de outros mundos para desbloquear. 
-Sendo um 2D platformer de movimentação horizontal e vertical.
+---
 
-Exemplos de feitiços:
-- Ataque
-  - Fireball
-  - Raio
-- Defesa
-  - Shield
-- Ultrapassar obstaculos
-  - Levitação (Voar sobre obstaculos)
-	- Boulder (Para partir obstaculos)
-	- Respiração aquática (Nadar)
+## 🧙‍♂️ Mecânicas Principais
+- **Skill Trees:**  
+  - 🌟 Evolução de **feitiços** (ataque, defesa, utilidade)  
+  - 💪 Progressão de **atributos do jogador**  
+
+- **Varinhas:**  
+  - Diferentes tipos, cada uma com **afinidades mágicas**  
+  - Influenciam o estilo de combate e estratégia  
+
+- **Inimigos:**  
+  - Resistências específicas a certos elementos  
+  - Desafiam o jogador a variar magias e táticas  
+
+- **Equipamentos:**  
+  - Itens que adicionam **atributos base**  
+  - Bônus em magias específicas ou resistências  
+
+---
+
+## ✨ Exemplos de Feitiços
+
+### 🔥 Ataque
+- **Fireball**  
+- **Raio**  
+
+### 🛡 Defesa
+- **Shield**  
+
+### 🌀 Exploração
+- **Levitação** (atravessar obstáculos)  
+- **Boulder** (quebrar barreiras)  
+- **Respiração Aquática** (explorar áreas submersas)  
+
+---
+
+## 🖼 Estilo & Visual
+- **2D Platformer** com movimentação horizontal e vertical  
+- Animações fluidas, foco em HUD clara e responsiva  
+- Ambientes variados e mágicos, inspirados em mundos fantásticos  
+
+---
+
+## 🚀 Objetivo Final
+Subir no **sistema de ranks** até se tornar o **Mago Supremo**, dominando o grimório proibido e decidindo o destino do mundo.  
+
+---
