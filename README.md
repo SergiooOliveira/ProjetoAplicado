@@ -22,12 +22,12 @@ Vários mundos como mario, o player vai progredindo pelo mundo para desbloquear 
 Sendo um 2D platformer de movimentação horizontal e vertical.
 
 Exemplos de feitiços:
-	- Ataque
-	  - Fireball
-	  - Raio
-	- Defesa
-	  - Shield
-	- Ultrapassar obstaculos
-	  - Levitação (Voar sobre obstaculos)
-		- Boulder (Para partir obstaculos)
-		- Respiração aquática (Nadar)
+- Ataque
+  - Fireball
+  - Raio
+- Defesa
+  - Shield
+- Ultrapassar obstaculos
+  - Levitação (Voar sobre obstaculos)
+	- Boulder (Para partir obstaculos)
+	- Respiração aquática (Nadar)
