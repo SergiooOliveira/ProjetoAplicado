@@ -1,7 +1,7 @@
 # 🌌 Projeto Aplicado — Jogo de Magia  
 
 Um **2D Platformer** onde o jogador assume o papel de um aprendiz de mago, explorando mundos misteriosos, enfrentando inimigos e desbloqueando feitiços poderosos.  
-O objetivo? Subir de **Rank** até alcançar o topo e dominar o **grimório proibido**, escrito pelo primeiro mago que ousou roubar o fogo das estrelas.  
+O objetivo? Aprender a dominar o **grimório proibido**, escrito pelo primeiro mago que ousou roubar o fogo das estrelas.  
 
 ---
 
@@ -15,9 +15,15 @@ O objetivo? Subir de **Rank** até alcançar o topo e dominar o **grimório proi
 Um grimório proibido foi descoberto em ruínas ancestrais.  
 Diz-se que foi escrito pelo **primeiro mago**, aquele que ousou roubar o fogo das estrelas.  
 Quem dominar suas páginas poderá remodelar o mundo — mas cada feitiço lançado consome um fragmento da própria alma.  
+O jogador pode recuperar fragmentos de alma ao fazer craft a poções. Para além dessa poção o jogador pode fazer poções de vida, ataque e defesa.
 
 O jogador progride por **diversos mundos interligados** (à la *Mario*), desbloqueando feitiços que permitem acesso a novas áreas.  
-O avanço é medido por um **sistema de ranks**, onde vitórias e derrotas determinam a ascensão ou queda na hierarquia mágica.  
+Cada mundo terá uma afinidade especifica. Cada afinidade tem uma fraqueza e um imunidade.
+
+Fogo -> Vento -> Água -> Fogo
+
+Fogo é imune a vento e leva mais dano de água. (Podemos também ver outras afinidades como Light and Dark que não têm imunidade uma com a outra mas dão dano neutro)
+<img width="1152" height="648" alt="Imunidades" src="https://github.com/user-attachments/assets/07f9c0f5-7d87-4828-ad24-8f7d63b23a8a" />
 
 ---
 
