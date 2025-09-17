@@ -23,11 +23,11 @@ Sendo um 2D platformer de movimentação horizontal e vertical.
 
 Exemplos de feitiços:
 	- Ataque
-		* Fireball
-		* Raio
+	  - Fireball
+	  - Raio
 	- Defesa
-		* Shield
+	  - Shield
 	- Ultrapassar obstaculos
-		* Levitação (Voar sobre obstaculos)
-		* Boulder (Para partir obstaculos)
-		* Respiração aquática (Nadar)
+	  - Levitação (Voar sobre obstaculos)
+		- Boulder (Para partir obstaculos)
+		- Respiração aquática (Nadar)
