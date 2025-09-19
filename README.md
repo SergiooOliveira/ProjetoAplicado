@@ -12,9 +12,9 @@ O objetivo? Aprender a dominar o **grimório proibido**, escrito pelo primeiro m
 ---
 
 ## 📖 História
-Um grimório proibido foi descoberto em ruínas ancestrais.  
-Diz-se que foi escrito pelo **primeiro mago**, aquele que ousou roubar o fogo das estrelas.  
-Quem dominar suas páginas poderá remodelar o mundo — mas cada feitiço lançado consome um fragmento da própria alma.  
+o grimório sagrado, escrito pelo primeiro mago, foi roubado  por um **mago mal intencionado** e está a espalhar o terror por todo o mundo. O objetivo do nosso herói? Derrotar esse mago e recuperar o grimório para o devolver onde deveria estar.
+
+O nosso herói leva debuffs com o passar do tempo que vão acumulando. Existe maneira de limpar tais debuffs?
 O jogador pode recuperar fragmentos de alma ao fazer craft a poções. Para além dessa poção o jogador pode fazer poções de vida, ataque e defesa.
 
 O jogador progride por **diversos mundos interligados** (à la *Mario*), desbloqueando feitiços que permitem acesso a novas áreas.  
