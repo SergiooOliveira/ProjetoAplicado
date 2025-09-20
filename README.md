@@ -12,7 +12,7 @@ O objetivo? Aprender a dominar o **grimório proibido**, escrito pelo primeiro m
 ---
 
 ## 📖 História
-o grimório sagrado, escrito pelo primeiro mago, foi roubado  por um **mago mal intencionado** e está a espalhar o terror por todo o mundo. O objetivo do nosso herói? Derrotar esse mago e recuperar o grimório para o devolver onde deveria estar.
+O grimório sagrado, escrito pelo primeiro mago, foi roubado  por um **mago mal intencionado** e está a espalhar o terror por todo o mundo. O objetivo do nosso herói? Derrotar esse mago e recuperar o grimório para o devolver onde deveria estar.
 
 O nosso herói leva debuffs com o passar do tempo que vão acumulando. Existe maneira de limpar tais debuffs?
 O jogador pode recuperar fragmentos de alma ao fazer craft a poções. Para além dessa poção o jogador pode fazer poções de vida, ataque e defesa.
