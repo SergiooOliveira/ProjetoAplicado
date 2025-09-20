@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     
     private float horizontal;
     private float movementSpeed = 4f;
-    public float jumpingPower = 16f;
+    private float jumpingPower = 7f;
     private bool isFacingRight = true;
 
     #region Unity Methods
@@ -65,4 +65,5 @@ public class Player : MonoBehaviour
         }
     }
     #endregion
+
 }
