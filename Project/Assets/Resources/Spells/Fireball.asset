@@ -11,20 +11,23 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f43ff49d62b57614e9ca7d326c2a7ad5, type: 3}
   m_Name: Fireball
-  m_EditorClassIdentifier: Assembly-CSharp::Spell
+  m_EditorClassIdentifier: 
   spellName: Fireball
   spellDescription: The power of the flames in your hand
   spellTag: 0
   spellIcon: {fileID: -6607481912129624618, guid: 8a0f2517c928eed41a9717616331775c, type: 3}
   spellAfinity: 0
-  SpellDamage: 10
-  SpellRange: 4
-  SpellTravelSpeed: 2
-  SpellRadious: 0
-  SpellCooldown: 1
-  SpellCastSpeed: 1
-  SpellCost: 10
-  SpellDuration: 0
-  SpellHasCC: 0
-  SpellHasBuff: 0
-  SpellHasDebuff: 0
+  spellDamage: 0
+  spellRange: 0
+  spellTravelSpeed: 0
+  spellRadious: 0
+  spellCooldown: 0
+  spellCastSpeed: 0
+  spellCost: 0
+  spellDuration: 0
+  isSpellUnlocked: 1
+  isSpellEquiped: 1
+  isSpellSelected: 1
+  spellHasCC: 0
+  spellHasBuff: 0
+  spellHasDebuff: 0

@@ -16,19 +16,21 @@ public class Spell : ScriptableObject
     public SpellAfinity spellAfinity;
 
     // *----- Mechanics -----*
-
-    public int SpellDamage;
-    public int SpellRange;
-    public float SpellTravelSpeed;
-    public float SpellRadious;
-    public float SpellCooldown;
-    public float SpellCastSpeed;
-    public int SpellCost;
-    public float SpellDuration;
+    public int spellDamage;
+    public int spellRange;
+    public float spellTravelSpeed;
+    public float spellRadious;
+    public float spellCooldown;
+    public float spellCastSpeed;
+    public int spellCost;
+    public float spellDuration;
+    public bool isSpellUnlocked;
+    public bool isSpellEquiped;
+    public bool isSpellSelected;
 
     // *----- Status Effects -----*
     //public bool SpellHasAoe; 
-    public bool SpellHasCC;
-    public bool SpellHasBuff;
-    public bool SpellHasDebuff;
+    public bool spellHasCC;
+    public bool spellHasBuff;
+    public bool spellHasDebuff;
 }

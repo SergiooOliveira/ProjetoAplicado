@@ -1,3 +1,4 @@
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -8,9 +9,10 @@ public class Player : Character
     public Rigidbody2D rb;
     public Transform groundCheck;
     public LayerMask groundLayer;
-    
-    private float horizontal;
-    
+
+    private readonly string grimoireTag = "Grimoire";
+
+    private float horizontal;    
     private float jumpingPower = 7f;
     private bool isFacingRight = true;
 
@@ -19,7 +21,6 @@ public class Player : Character
     {
         if (Instance != null) Destroy(gameObject);
         else Instance = this;
-        this.MovementSpeed = 4f;
     }
 
     private void FixedUpdate ()
@@ -81,14 +82,46 @@ public class Player : Character
     {
         // Each spell has different interactions
         // Check what is the selected spell first
-        // At the moment we only have fireball
-        Debug.Log("Attacking");
+        // At the moment we only have fireball       
 
         if (callbackContext.performed)
-        {           
-            //Instantiate(fireball, new Vector2(rb.position.x, rb.position.y), Quaternion.identity);
+        {
+            //Instantiate(fireball, new Vector2(rb.position.x, rb.position.y), Quaternion.identity);            
+            SpellManager.Instance.ShowEquippedSpells();
+        }
+    }
+
+    public void OnInteract (InputAction.CallbackContext callbackContext)
+    {
+        // For now it only adds Fireball to the Equipped Spells
+        
+    }
+
+    public void SwapSpell (InputAction.CallbackContext callbackContext)
+    {
+        for (int i = 0; i < EquipedSpells.Count; i++)
+        {
+            if (EquipedSpells[i].isSpellSelected)
+            {
+                EquipedSpells[i].isSpellSelected = false;
+
+                int nextIndex = (i + 1) % EquipedSpells.Count;
+                EquipedSpells[nextIndex].isSpellSelected = true;
+
+                break;
+            }
         }
     }
     #endregion
 
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == grimoireTag)
+        {
+            Debug.Log("Triggered with " + collision.name);
+            Player.Instance.AddSpell(SpellManager.Instance.GetSpell(collision.name));
+            Destroy(collision.gameObject);
+        }
+    }
 }
