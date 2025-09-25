@@ -12,6 +12,7 @@ public class SpellManager : MonoBehaviour
         if (Instance != null) Destroy(gameObject);
         else Instance = this;
 
+        // TODO: Turn into scriptable object
         spells["Fireball"] = new Spell
         {
             SpellName = "Fireball",

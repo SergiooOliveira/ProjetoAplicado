@@ -16,10 +16,7 @@ public class Stat
     /// Call this method to set a new Max value to a Stat
     /// </summary>
     /// <param name="amount">New max amount</param>
-    public void SetNewMax (int amount)
-    {
-        Max = amount;
-    }
+    public void SetNewMax (int amount) => Max = amount;
 
     /// <summary>
     /// Call this method to increase the player hp
@@ -35,19 +32,14 @@ public class Stat
     /// Call this method to heal the player
     /// </summary>
     /// <param name="amount">Amount to heal</param>
-    public void Heal (int amount)
-    {
-        Current = Mathf.Max(Max, Current + amount);
-    }
+    public void Heal (int amount) => Current = Mathf.Max(Max, Current + amount);
 
     /// <summary>
     /// Call this method to set the max xp to level up
     /// </summary>
     /// <param name="level">Current player level</param>
     /// <returns>New Max Xp</returns>
-    public void NewXpMax (int level)
-    {
-        Max = (int)(100 * Mathf.Pow((float)1.2, level - 1));
-    }
+    public void NewXpMax(int level) => Max = (int)(100 * Mathf.Pow((float)1.2, level - 1));
+
     #endregion
 }

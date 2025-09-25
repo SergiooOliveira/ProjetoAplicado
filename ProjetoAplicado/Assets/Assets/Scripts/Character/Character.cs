@@ -18,7 +18,7 @@ public class Character : MonoBehaviour
 
     public string Name { get; set; }
 
-    public float MovementSpeed { get; set; }
+    public float MovementSpeed { get; set; } = 0.4f;
 
     public int Resistances { get; set; }
 
@@ -43,7 +43,7 @@ public class Character : MonoBehaviour
 
     public Spell[] EquipedSpells { get; set; }
 
-    public void Initialize(string name, int movementSpeed, int resistances, float attackSpeed, int attack, int defense, int level, Spell[] equipedSpells)
+    public void Initialize(string name, float movementSpeed, int resistances, float attackSpeed, int attack, int defense, int level, Spell[] equipedSpells)
     {
         this.Name = name;
         this.MovementSpeed = movementSpeed;
