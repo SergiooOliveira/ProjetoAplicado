@@ -97,7 +97,11 @@ public class Player : Character
         
     }
 
-    public void SwapSpell (InputAction.CallbackContext callbackContext)
+    /// <summary>
+    /// Call this method to select the next spell in the spell book
+    /// </summary>
+    /// <param name="callbackContext"></param>
+    public void NextSpell (InputAction.CallbackContext callbackContext)
     {
         for (int i = 0; i < EquipedSpells.Count; i++)
         {
