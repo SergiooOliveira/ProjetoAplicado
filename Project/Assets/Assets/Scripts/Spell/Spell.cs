@@ -1,6 +1,5 @@
 using UnityEngine;
 
-//[CreateAssetMenu(fileName = "new Spell", menuName = "Spells")]
 public abstract class Spell : ScriptableObject, ISpell
 {
     [Header("Identity")]
@@ -9,12 +8,12 @@ public abstract class Spell : ScriptableObject, ISpell
     [SerializeField] private SpellTag spellTag;
     [SerializeField] private GameObject spellPrefab;
     [SerializeField] private SpellAfinity spellAfinity;
+    [SerializeField] private SpellProjectileType spellProjectileType;
 
     [Header("Mechanics")]
     [SerializeField] private int spellDamage;
     [SerializeField] private int spellRange;
     [SerializeField] private float spellTravelSpeed;
-    [SerializeField] private float spellRadious;
     [SerializeField] private float spellCooldown;
     [SerializeField] private float spellCastSpeed;
     [SerializeField] private int spellCost;
@@ -37,10 +36,11 @@ public abstract class Spell : ScriptableObject, ISpell
     public GameObject SpellPrefab => spellPrefab;
     public SpellAfinity SpellAfinity => spellAfinity;
 
+    public SpellProjectileType SpellProjectileType => spellProjectileType;
+
     public int SpellDamage => spellDamage;
     public int SpellRange => spellRange;
     public float SpellTravelSpeed => spellTravelSpeed;
-    public float SpellRadious => spellRadious;
     public float SpellCooldown => spellCooldown;
     public float SpellCastSpeed => spellCastSpeed;
     public int SpellCost => spellCost;

@@ -1,5 +1,6 @@
 using UnityEngine;
 
+
 public class SpellProjectile : MonoBehaviour
 {
     private ISpell spellData;
@@ -22,6 +23,23 @@ public class SpellProjectile : MonoBehaviour
         if (collision.tag == "Player") return;
 
         Debug.Log($"{spellData.SpellName} hit {collision.name} for {spellData.SpellDamage} damage!");
+
+        switch(spellData.SpellProjectileType)
+        {
+            case SpellProjectileType.Normal:
+                break;
+            case SpellProjectileType.Pierce:
+                break;
+            case SpellProjectileType.Explosive:
+                break;
+            case SpellProjectileType.Chain:
+                break;
+
+            default:
+                Debug.Log("No Spell projectile type selected");
+                break;
+        }
+
         Destroy(gameObject);
     }
 }
