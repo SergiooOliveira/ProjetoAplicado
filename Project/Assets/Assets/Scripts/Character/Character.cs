@@ -59,7 +59,13 @@ public class Character : MonoBehaviour
         // TODO: Check if the limit is already passed, limit it to 3, and keep the order even if it's deleted. Maybe needs to change to array
         
         this.EquipedSpells.Add(newSpell);
-        if (EquipedSpells.Count == 1) EquipedSpells[0].isSpellSelected = true;
+        
+        // If it's the first spell set as selected and save it as an object
+        if (EquipedSpells.Count == 1)
+        {
+            EquipedSpells[0].Select();
+            SpellManager.Instance.selectedSpell = newSpell;
+        }
         Debug.Log("Added: "+ newSpell.name);
     }
 

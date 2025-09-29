@@ -30,6 +30,16 @@ public class Player : Character
         if (!isFacingRight && horizontal > 0f) Flip();
         else if (isFacingRight && horizontal < 0f) Flip();
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == grimoireTag)
+        {
+            Debug.Log("Triggered with " + collision.name);
+            Player.Instance.AddSpell(SpellManager.Instance.GetSpell(collision.name));
+            Destroy(collision.gameObject);
+        }
+    }
     #endregion
 
     #region Player Checks
@@ -87,45 +97,22 @@ public class Player : Character
         if (callbackContext.performed)
         {
             //Instantiate(fireball, new Vector2(rb.position.x, rb.position.y), Quaternion.identity);            
-            SpellManager.Instance.ShowEquippedSpells();
+            //SpellManager.Instance.ShowEquippedSpells();
+            if (SpellManager.Instance.selectedSpell == null) return;
+
+            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 castDirection = (mousePos - Player.Instance.rb.position).normalized;
+
+            SpellManager.Instance.selectedSpell.Cast(Player.Instance.rb.position, castDirection);
         }
     }
+
 
     public void OnInteract (InputAction.CallbackContext callbackContext)
     {
-        // For now it only adds Fireball to the Equipped Spells
         
     }
 
-    /// <summary>
-    /// Call this method to select the next spell in the spell book
-    /// </summary>
-    /// <param name="callbackContext"></param>
-    public void NextSpell (InputAction.CallbackContext callbackContext)
-    {
-        for (int i = 0; i < EquipedSpells.Count; i++)
-        {
-            if (EquipedSpells[i].isSpellSelected)
-            {
-                EquipedSpells[i].isSpellSelected = false;
-
-                int nextIndex = (i + 1) % EquipedSpells.Count;
-                EquipedSpells[nextIndex].isSpellSelected = true;
-
-                break;
-            }
-        }
-    }
+    
     #endregion
-
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag == grimoireTag)
-        {
-            Debug.Log("Triggered with " + collision.name);
-            Player.Instance.AddSpell(SpellManager.Instance.GetSpell(collision.name));
-            Destroy(collision.gameObject);
-        }
-    }
 }

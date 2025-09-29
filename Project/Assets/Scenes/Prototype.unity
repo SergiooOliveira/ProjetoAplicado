@@ -253,11 +253,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &234072897 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1262297832921891090, guid: df68d57ed8f82924aa9409dd2b0ab306, type: 3}
+--- !u!114 &234072898 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1294396001767081245, guid: df68d57ed8f82924aa9409dd2b0ab306, type: 3}
   m_PrefabInstance: {fileID: 242210532}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9545fbd610e48594ba6b5809296d8ece, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Player
 --- !u!1001 &242210532
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -268,6 +274,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1262297832921891090, guid: df68d57ed8f82924aa9409dd2b0ab306, type: 3}
       propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1262297832921891090, guid: df68d57ed8f82924aa9409dd2b0ab306, type: 3}
+      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 1432964784051924791, guid: df68d57ed8f82924aa9409dd2b0ab306, type: 3}
@@ -324,15 +334,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6221095115306154901, guid: df68d57ed8f82924aa9409dd2b0ab306, type: 3}
       propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6221095115306154901, guid: df68d57ed8f82924aa9409dd2b0ab306, type: 3}
       propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 234072897}
+      objectReference: {fileID: 234072898}
     - target: {fileID: 6221095115306154901, guid: df68d57ed8f82924aa9409dd2b0ab306, type: 3}
       propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6221095115306154901, guid: df68d57ed8f82924aa9409dd2b0ab306, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnInteract
+      objectReference: {fileID: 0}
+    - target: {fileID: 6221095115306154901, guid: df68d57ed8f82924aa9409dd2b0ab306, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Player, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6221095115306154901, guid: df68d57ed8f82924aa9409dd2b0ab306, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -444,6 +466,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87fd93abfe74cc64794f1ce745b144be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpellManager
+  spellDisplayCanvas: {fileID: 0}
+  selectedSpell: {fileID: 0}
 --- !u!4 &610686997
 Transform:
   m_ObjectHideFlags: 0
