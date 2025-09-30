@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using UnityEngine;
 
 /*
@@ -5,11 +6,15 @@ using UnityEngine;
  * NPC -> Responsable for dialogue
  * Shop -> Same as an NPC but with a shop menu after
  */
-
 public enum InteractableType { Chest, NPC, Shop }
 
 
 public interface IInteractableObject
 {
-    string Name { get; }
+    string IOName { get; }
+    Sprite IOIcon { get; }
+    InteractableType IOType { get; }
+    string[] IODialogue { get; }
+    //List<Item> IOShop { get; }
+
 }
