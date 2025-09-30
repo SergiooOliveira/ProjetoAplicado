@@ -57,10 +57,10 @@ public abstract class Spell : ScriptableObject, ISpell
     #region Methods
     public virtual void Cast(Vector3 position, Vector2 direction)
     {
-        GameObject instance = Instantiate(spellPrefab, position, Quaternion.identity);
+        //GameObject instance = Instantiate(spellPrefab, position, Quaternion.identity);
 
-        if (instance.TryGetComponent<SpellProjectile>(out SpellProjectile projectile))
-            projectile.Initialize(this, direction);
+        //if (instance.TryGetComponent<SpellProjectile>(out SpellProjectile projectile))
+        //    projectile.Initialize(this, direction);
         //else if (instance.TryGetComponent<SpellAoE>(out SpellAoE aoe))
         //    aoe.Initialize(this);
         //else if (instance.TryGetComponent<SpellBuff>(out SpellBuff buff))

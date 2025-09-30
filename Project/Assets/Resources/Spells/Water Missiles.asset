@@ -9,15 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42b727d22c9fa1e429c88a4e42463787, type: 3}
-  m_Name: Fireball
+  m_Script: {fileID: 11500000, guid: 7cf659c5966fd5d44963a786b110e626, type: 3}
+  m_Name: Water Missiles
   m_EditorClassIdentifier: 
-  spellName: Fireball
-  spellDescription: Fireball
+  spellName: Water Missiles
+  spellDescription: Water Missiles
   spellTag: 0
-  spellPrefab: {fileID: 6022871407546440100, guid: 93f57672454b57840b5f0e1d0638ea91, type: 3}
-  spellAfinity: 0
-  spellProjectileType: 1
+  spellPrefab: {fileID: 244863705734144963, guid: 3668d21d8ded15f4d9242d9dd61400e8, type: 3}
+  spellAfinity: 2
+  spellProjectileType: 0
   spellDamage: 10
   spellRange: 20
   spellTravelSpeed: 20
@@ -27,7 +27,7 @@ MonoBehaviour:
   spellDuration: 0
   isSpellUnlocked: 0
   isSpellEquiped: 0
-  isSpellSelected: 0
+  isSpellSelected: 1
   spellHasCC: 0
   spellHasBuff: 0
   spellHasDebuff: 0
