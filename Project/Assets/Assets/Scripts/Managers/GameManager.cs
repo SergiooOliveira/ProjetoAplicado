@@ -4,6 +4,11 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
+    // Tags
+    public readonly string playerTag = "Player";
+    public readonly string grimoireTag = "Grimoire";
+    public readonly string interactableTag = "Interactable";
+
     public GameObject player;
 
     public void Awake()

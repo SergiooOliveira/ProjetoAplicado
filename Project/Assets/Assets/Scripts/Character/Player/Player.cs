@@ -9,10 +9,9 @@ public class Player : Character
     public Rigidbody2D rb;
     public Transform groundCheck;
     public LayerMask groundLayer;
-
-    private readonly string grimoireTag = "Grimoire";
-
-    private float horizontal;    
+    public bool canPlayerInteract = false;
+    
+    private float horizontal;
     private float jumpingPower = 7f;
     private bool isFacingRight = true;
 
@@ -33,12 +32,23 @@ public class Player : Character
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == grimoireTag)
+        if (collision.tag == GameManager.Instance.grimoireTag)
         {
-            Debug.Log("Triggered with " + collision.name);
+            //Debug.Log("Triggered with " + collision.name);
             Player.Instance.AddSpell(SpellManager.Instance.GetSpell(collision.name));
             Destroy(collision.gameObject);
         }
+
+        if (collision.tag == GameManager.Instance.interactableTag)
+        {
+            Debug.Log($"Player can interact with {collision.name}");
+            
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == GameManager.Instance.interactableTag) canPlayerInteract = false;   
     }
     #endregion
 
@@ -74,12 +84,12 @@ public class Player : Character
     /// <param name="callbackContext"></param>
     public void OnJump (InputAction.CallbackContext callbackContext)
     {
-        if (callbackContext.performed) Debug.Log($"Space Pressed");
-        if (IsGrounded()) Debug.Log($"Space Pressed");
+        //if (callbackContext.performed) Debug.Log($"Space Pressed");
+        //if (IsGrounded()) Debug.Log($"Space Pressed");
 
         if (callbackContext.performed && IsGrounded())
         {
-            Debug.Log("Jumping");
+            //Debug.Log("Jumping");
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpingPower);
         }
     }
@@ -110,9 +120,12 @@ public class Player : Character
 
     public void OnInteract (InputAction.CallbackContext callbackContext)
     {
-        
-    }
+        if (callbackContext.performed)
+        {
+            if (!canPlayerInteract) return;
 
-    
+            
+        }
+    }
     #endregion
 }
