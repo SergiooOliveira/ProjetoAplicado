@@ -9,24 +9,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f43ff49d62b57614e9ca7d326c2a7ad5, type: 3}
+  m_Script: {fileID: 11500000, guid: 42b727d22c9fa1e429c88a4e42463787, type: 3}
   m_Name: Fireball
   m_EditorClassIdentifier: 
   spellName: Fireball
-  spellDescription: The power of the flames in your hand
+  spellDescription: Fireball
   spellTag: 0
-  spellIcon: {fileID: -6607481912129624618, guid: 8a0f2517c928eed41a9717616331775c, type: 3}
+  spellPrefab: {fileID: 6022871407546440100, guid: 93f57672454b57840b5f0e1d0638ea91, type: 3}
   spellAfinity: 0
-  spellDamage: 0
-  spellRange: 0
-  spellTravelSpeed: 0
-  spellRadious: 0
+  spellProjectileType: 1
+  spellDamage: 10
+  spellRange: 20
+  spellTravelSpeed: 20
   spellCooldown: 0
   spellCastSpeed: 0
   spellCost: 0
   spellDuration: 0
-  isSpellUnlocked: 1
-  isSpellEquiped: 1
+  isSpellUnlocked: 0
+  isSpellEquiped: 0
   isSpellSelected: 1
   spellHasCC: 0
   spellHasBuff: 0
