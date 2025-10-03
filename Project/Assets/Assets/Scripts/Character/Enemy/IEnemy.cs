@@ -22,10 +22,4 @@ public interface IEnemy
     int EnemyDefense { get; }
     int EnemyLevel { get; }
     #endregion
-
-    #region Methods
-    void Move();
-    void Attack();
-    void UseSpell();
-    #endregion
 }

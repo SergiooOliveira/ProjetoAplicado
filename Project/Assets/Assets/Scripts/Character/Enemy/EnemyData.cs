@@ -30,32 +30,6 @@ public class EnemyData : ScriptableObject, IEnemy
     public int EnemyLevel => enemyLevel;
     #endregion
 
-    #region Methods
-    /// <summary>
-    /// This method should handle the move factor of the enemy
-    /// </summary>
-    public void Move()
-    {
-
-    }
-
-    /// <summary>
-    /// Call this method to attack
-    /// </summary>
-    public void Attack()
-    {
-
-    }
-
-    /// <summary>
-    /// Call this method for Enemy to use the spell
-    /// </summary>
-    public void UseSpell()
-    {
-
-    }
-    #endregion
-
     public override string ToString()
     {
         string info = $"{EnemyName}: has {EnemyHp.Max} HP and {EnemyAttack} Damage";
