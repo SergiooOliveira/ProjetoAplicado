@@ -21,5 +21,10 @@ public class GameManager : MonoBehaviour
     {
         Player.Instance.Initialize("Player", 6f, 0, 0.5f, 0, 0, 1);
     }
-
 }
+
+/*
+ * TODO: Define Items
+ * TODO: Continue Interface (Maybe change it for 3 Scriptble Object)
+ * TODO: Make an enemy interface (Scriptble Object as well)
+ */

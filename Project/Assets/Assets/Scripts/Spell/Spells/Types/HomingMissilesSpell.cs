@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Spells/Water Missiles")]
+[CreateAssetMenu(menuName = "Spells/Homing Missiles")]
 public class HomingMissilesSpell : ProjectileSpell
 {
     public override void Cast(Vector3 position, Vector2 direction)
@@ -9,7 +9,7 @@ public class HomingMissilesSpell : ProjectileSpell
 
         //Debug.Log($"[WaterMissilesSpell] Casting {SpellName} at {position}");
 
-        // TODO: Change this to be dynamic and we can choose the amount of spells we want to send
+        // TODO: Change this to be dynamic and we can choose the amount of missiles we want to send
         Vector2[] compassDir = new Vector2[]{
             Vector2.right,
             new Vector2(1, 1).normalized,

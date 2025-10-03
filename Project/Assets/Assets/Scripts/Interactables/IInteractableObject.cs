@@ -8,7 +8,6 @@ using UnityEngine;
  */
 public enum InteractableType { Chest, NPC, Shop }
 
-
 public interface IInteractableObject
 {
     string IOName { get; }
@@ -17,4 +16,5 @@ public interface IInteractableObject
     string[] IODialogue { get; }
     //List<Item> IOShop { get; }
 
+    void Interact(GameObject interactable);
 }

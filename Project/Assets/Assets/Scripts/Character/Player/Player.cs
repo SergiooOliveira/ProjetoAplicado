@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.Events;
@@ -9,7 +10,9 @@ public class Player : Character
     public Rigidbody2D rb;
     public Transform groundCheck;
     public LayerMask groundLayer;
-    public bool canPlayerInteract = false;
+
+    private bool canPlayerInteract = false;
+    private Chest interactedChest = null;
     
     private float horizontal;
     private float jumpingPower = 7f;
@@ -39,17 +42,24 @@ public class Player : Character
             Destroy(collision.gameObject);
         }
 
+        // Cares about all the interactables
         if (collision.tag == GameManager.Instance.interactableTag)
         {
-            Debug.Log($"Player can interact with {collision.name}");
-            
+            canPlayerInteract = true;
+            if (collision.TryGetComponent<Chest>(out Chest chest))
+                interactedChest = chest;
+            // Can Add more collisions components as needed
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == GameManager.Instance.interactableTag) canPlayerInteract = false;   
-    }
+        // Turns the flag false so the player can't interact
+        if (collision.tag == GameManager.Instance.interactableTag)
+        {
+            canPlayerInteract = false;
+        }
+    }    
     #endregion
 
     #region Player Checks
@@ -117,15 +127,15 @@ public class Player : Character
         }
     }
 
-
+    /// <summary>
+    /// This event is called when the player interacts
+    /// </summary>
+    /// <param name="callbackContext"></param>
     public void OnInteract (InputAction.CallbackContext callbackContext)
     {
-        if (callbackContext.performed)
-        {
-            if (!canPlayerInteract) return;
-
-            
-        }
+        // TODO: .started helped but I should be able to do even better
+        if (callbackContext.started && canPlayerInteract)
+            interactedChest.Interact();
     }
     #endregion
 }

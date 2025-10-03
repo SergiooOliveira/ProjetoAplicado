@@ -55,7 +55,7 @@ public class HomingMissile : SpellProjectile
             {
                 minDist = dist;
                 nearest = enemy.transform;
-                Debug.Log($"Found an enemy at {nearest.position}");
+                //Debug.Log($"Found an enemy at {nearest.position}");
             }
         }
 
