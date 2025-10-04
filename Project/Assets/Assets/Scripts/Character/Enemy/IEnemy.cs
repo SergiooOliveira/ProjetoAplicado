@@ -1,3 +1,5 @@
+using NUnit.Framework;
+using System.Collections.Generic;
 using UnityEngine;
 
 public enum EnemyType { Ground, Flying }
@@ -21,5 +23,8 @@ public interface IEnemy
     int EnemyAttack { get; }
     int EnemyDefense { get; }
     int EnemyLevel { get; }
+
+    // *----- Drops -----*
+    List<Item> EnemyDrops { get; }
     #endregion
 }
