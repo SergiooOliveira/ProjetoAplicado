@@ -18,13 +18,15 @@ public class Enemy : MonoBehaviour
     {
 
     }
-    
+
     /// <summary>
     /// Call this method for Enemy to use the spell
     /// </summary>
-    public void UseSpell()
+    /// <param name="position">Player position</param>
+    /// <param name="direction">Player direction</param>
+    public void UseSpell(Vector3 position, Vector2 direction)
     {
-
+        enemyData.EnemySpell.Cast(position, direction);
     }
 
     /// <summary>
