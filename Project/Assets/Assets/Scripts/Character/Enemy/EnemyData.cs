@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Enemy / New Enemy")]
@@ -15,7 +15,6 @@ public class EnemyData : ScriptableObject, IEnemy
     [SerializeField] private int enemyAttack;
     [SerializeField] private int enemyDefense;
     [SerializeField] private int enemyLevel;
-    [SerializeField] private List<Item> enemyDrops;
     #endregion
 
     #region Property implementation
@@ -29,14 +28,7 @@ public class EnemyData : ScriptableObject, IEnemy
     public int EnemyAttack => enemyAttack;
     public int EnemyDefense => enemyDefense;
     public int EnemyLevel => enemyLevel;
-    public List<Item> EnemyDrops => enemyDrops;
     #endregion
-
-    // TODO: Need to create an Element Class
-    public float GetResistance()
-    {
-        return 0;
-    }
 
     public override string ToString()
     {

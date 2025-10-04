@@ -35,9 +35,7 @@ public abstract class Spell : ScriptableObject, ISpell
     public SpellTag SpellTag => spellTag;
     public GameObject SpellPrefab => spellPrefab;
     public SpellAfinity SpellAfinity => spellAfinity;
-
     public SpellProjectileType SpellProjectileType => spellProjectileType;
-
     public int SpellDamage => spellDamage;
     public int SpellRange => spellRange;
     public float SpellTravelSpeed => spellTravelSpeed;
