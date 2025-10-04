@@ -22,13 +22,12 @@ public class SpellProjectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.CompareTag("Enemy")) return;
-
-        Debug.Log($"{spellData.SpellName} hit {collision.name} for {spellData.SpellDamage} damage!");
-
-        switch(spellData.SpellProjectileType)
+        if (collision.CompareTag("Player")) return;
+        
+        switch (spellData.SpellProjectileType)
         {
             case SpellProjectileType.Normal:
+                NormalSpellProjectile(collision);
                 break;
             case SpellProjectileType.Pierce:
                 break;
@@ -43,5 +42,12 @@ public class SpellProjectile : MonoBehaviour
         }
 
         Destroy(gameObject);
+    }
+
+    private void NormalSpellProjectile(Collider2D collision)
+    {
+        if (collision.TryGetComponent<Enemy>(out Enemy enemy))
+            Debug.Log(enemy.enemyData.ToString());
+
     }
 }
