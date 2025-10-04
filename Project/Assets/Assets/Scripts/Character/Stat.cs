@@ -41,5 +41,10 @@ public class Stat
     /// <returns>New Max Xp</returns>
     public void NewXpMax(int level) => Max = (int)(100 * Mathf.Pow((float)1.2, level - 1));
 
+    /// <summary>
+    /// Call this method to make the enemy take damage
+    /// </summary>
+    /// <param name="damage">Amount of damage</param>
+    public void TakeDamage(int damage) => Current = Mathf.Max(0, Current -= damage);
     #endregion
 }
