@@ -80,5 +80,32 @@ public abstract class Spell : ScriptableObject, ISpell
     {
         isSpellSelected = false;
     }
+
+    /// <summary>
+    /// Call this method to check what the resistance percentile is
+    /// </summary>
+    /// <param name="attacker">Attacker Spell</param>
+    /// <param name="defender">Defender Spell</param>
+    public float ResistanceCheck(Spell attacker, Spell defender)
+    {
+        float resistance = 1f;
+
+        switch (attacker.SpellAfinity)
+        {
+            case SpellAfinity.Fire:
+                if (defender.SpellAfinity == SpellAfinity.Ice) resistance = 2f;
+                break;
+            case SpellAfinity.Ice:
+                break;
+            case SpellAfinity.Wind:
+                break;
+            case SpellAfinity.Light:
+                break;
+            case SpellAfinity.Dark:
+                break;
+        }
+
+        return resistance;
+    }
     #endregion
 }
