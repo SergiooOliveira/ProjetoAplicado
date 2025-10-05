@@ -72,7 +72,7 @@ public class SpellManager : MonoBehaviour
         }
     }
 
-    // TODO: Change this to another manager, either gameManager or UiManager
+    // TODO: Change this to another manager, either GameManager or UiManager
     #region UI
 
     //public void UpdateSpellDisplayCanvas()

@@ -68,14 +68,14 @@ public class Enemy : MonoBehaviour
     /// Call this method to give damage to the enemy
     /// </summary>
     /// <param name="damageReceived">Damage Received</param>
-    public void CalculateDamage(int damageReceived)
+    public void CalculateDamage(Spell spell)
     {
         // Step 1: Percentile defense reduction
         float defenseMultiplier = 100f / (100f + enemyData.EnemyDefense);
-        float baseDamage = damageReceived * defenseMultiplier;
+        float baseDamage = spell.SpellDamage * defenseMultiplier;
 
         // Step 2: Resistance Multiplier
-        float resistanteMultiplier = 1f - (enemyData.GetResistance() / 100f);
+        float resistanteMultiplier = 1f - (GetResistance() / 100f);
         baseDamage *= resistanteMultiplier;
 
         // Step 3: Level disadvantage penalties
@@ -88,6 +88,15 @@ public class Enemy : MonoBehaviour
 
         enemyData.EnemyHp.TakeDamage(finalDamage);
         if (enemyData.EnemyHp.Current == 0) Die();
+    }
+
+    private float GetResistance ()
+    {
+        float resistance = 1f;
+
+
+
+        return resistance;
     }
 
     private void Die()

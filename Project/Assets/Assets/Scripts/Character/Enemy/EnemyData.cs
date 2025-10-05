@@ -5,25 +5,32 @@ using UnityEngine;
 public class EnemyData : ScriptableObject, IEnemy
 {
     #region Serizalized Fields
+    [Header("Identity")]
     [SerializeField] private string enemyName;
     [SerializeField] private string enemyDescription;
     [SerializeField] private EnemyType enemyType;
     [SerializeField] private EnemySpawnLevel enemySpawnLevel;
     [SerializeField] private Spell enemySpell;
+    [SerializeField] private List<SpellAfinity> enemyResistances;
     [SerializeField] private GameObject enemyPrefab;
+
+    [Header("Stats")]
     [SerializeField] private Stat enemyHp = new Stat(100);
     [SerializeField] private int enemyAttack;
     [SerializeField] private int enemyDefense;
     [SerializeField] private int enemyLevel;
+
+    [Header("Drops")]
     [SerializeField] private List<Item> enemyDrops;
     #endregion
 
-    #region Property implementation
+    #region Property implementation    
     public string EnemyName => enemyName;
     public string EnemyDescription => enemyDescription;
     public EnemyType EnemyType => enemyType;
     public EnemySpawnLevel EnemySpawnLevel => enemySpawnLevel;
     public Spell EnemySpell => enemySpell;
+    public List<SpellAfinity> EnemyResistances => enemyResistances;
     public GameObject EnemyPrefab => enemyPrefab;
     public Stat EnemyHp => enemyHp;
     public int EnemyAttack => enemyAttack;

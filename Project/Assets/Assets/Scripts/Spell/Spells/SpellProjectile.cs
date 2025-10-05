@@ -44,4 +44,11 @@ public class SpellProjectile : MonoBehaviour
 
         Destroy(gameObject);
     }
+
+    private void NormalSpellProjectile(Collider2D collision)
+    {
+        if (collision.TryGetComponent<Enemy>(out Enemy enemy))
+            enemy.CalculateDamage(spellData);
+
+    }
 }
