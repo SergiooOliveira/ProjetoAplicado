@@ -12,7 +12,6 @@ public interface ISpell
     SpellTag SpellTag { get; }
     GameObject SpellPrefab { get; }
     SpellAfinity SpellAfinity { get; }
-
     SpellProjectileType SpellProjectileType { get; }
 
     // *----- Mechanics -----*

@@ -7,7 +7,7 @@ public class ProjectileSpell : Spell
     {
         if (SpellPrefab == null) return;
 
-        Debug.Log($"[ProjectileSpell] Casting {SpellName} single projectile");
+        //Debug.Log($"[ProjectileSpell] Casting {SpellName} single projectile");
         GameObject instance = Instantiate(SpellPrefab, position, Quaternion.identity);
 
         if (instance.TryGetComponent<SpellProjectile>(out SpellProjectile projectile))

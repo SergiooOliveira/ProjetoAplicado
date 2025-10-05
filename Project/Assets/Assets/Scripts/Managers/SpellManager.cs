@@ -1,8 +1,6 @@
 using System.Collections.Generic;
-using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
 
 public class SpellManager : MonoBehaviour
 {
@@ -22,11 +20,6 @@ public class SpellManager : MonoBehaviour
 
         // Load all the Spells from Resource file
         Spells = new List<Spell>(Resources.LoadAll<Spell>("Spells"));
-    }
-
-    public void Start()
-    {
-
     }
 
     /// <summary>
