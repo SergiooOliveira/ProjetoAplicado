@@ -1,14 +1,26 @@
 using UnityEngine;
 
+[System.Serializable]
 public class Stat
 {
-    public int Current { get; private set; }
-    public int Max { get; private set; }
+    [SerializeField] private int current;
+    [SerializeField] private int max;
 
-    public Stat (int max)
+    public int Current => current;
+    public int Max => max;
+
+    public Stat (int maxValue)
     {
-        Max = max;
-        Current = max;
+        max = maxValue;
+        current = max;
+    }
+
+    /// <summary>
+    /// This method is called in the Awake so Current can be set
+    /// </summary>
+    public void Initialize ()
+    {        
+        current = max;
     }
 
     #region Methods
@@ -16,7 +28,7 @@ public class Stat
     /// Call this method to set a new Max value to a Stat
     /// </summary>
     /// <param name="amount">New max amount</param>
-    public void SetNewMax (int amount) => Max = amount;
+    public void SetNewMax(int amount) => max = amount;
 
     /// <summary>
     /// Call this method to increase the player hp
@@ -24,24 +36,24 @@ public class Stat
     /// <param name="amount">Amount to increase</param>
     public void IncreaseMaxHP (int amount)
     {
-        Max += amount;
-        Current += amount;
+        max += amount;
+        current += amount;
     }
 
     /// <summary>
     /// Call this method to heal the player
     /// </summary>
     /// <param name="amount">Amount to heal</param>
-    public void Heal (int amount) => Current = Mathf.Max(Max, Current + amount);
+    public void Heal (int amount) => current = Mathf.Max(Max, Current + amount);
 
     /// <summary>
     /// Call this method to set the max xp to level up
     /// </summary>
     /// <param name="level">Current player level</param>
     /// <returns>New Max Xp</returns>
-    public void NewXpMax(int level) => Max = (int)(100 * Mathf.Pow((float)1.2, level - 1));
+    public void NewXpMax(int level) => max = (int)(100 * Mathf.Pow((float)1.2, level - 1));
 
-    public void TakeDamage(int damage) => Current = Mathf.Max(0, Current -= damage);
+    public void TakeDamage(int damage) => current = Mathf.Max(0, current -= damage);
 
     #endregion
 }

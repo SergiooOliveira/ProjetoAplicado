@@ -17,7 +17,7 @@ public interface IEnemy
     EnemyType EnemyType { get; }
     EnemySpawnLevel EnemySpawnLevel { get; }
     Spell EnemySpell { get; }
-    List<SpellAfinity> EnemyResistances { get; }
+    List<Resistance> EnemyResistances { get; }
     GameObject EnemyPrefab { get; }
 
     // *----- Stats -----*

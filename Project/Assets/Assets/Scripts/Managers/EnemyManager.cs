@@ -1,12 +1,13 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyManager: MonoBehaviour
 {
     public static EnemyManager Instance;
 
-    public List<EnemyData> allEnemies;
-    public List<EnemyData> activeEnemies;
+    [HideInInspector] public List<EnemyData> allEnemies;
+    [HideInInspector] public List<EnemyData> activeEnemies;
 
     private void Awake()
     {
@@ -15,6 +16,8 @@ public class EnemyManager: MonoBehaviour
 
         // Get all the Scriptable Objects of Enemies
         allEnemies = new List<EnemyData>(Resources.LoadAll<EnemyData>("Enemies"));
+
+        GetAllLevelEnemies(1);
     }
 
     /// <summary>
@@ -42,9 +45,9 @@ public class EnemyManager: MonoBehaviour
     /// Call this method to remove and destroy an Enemy
     /// </summary>
     /// <param name="enemy">Enemy object</param>
-    public void RemoveEnemy(EnemyData enemy)
+    public void RemoveEnemy(Enemy enemy)
     {
-        activeEnemies.Remove(enemy);
-        Destroy(enemy);
+        activeEnemies.Remove(enemy.enemyData);
+        Destroy(enemy.gameObject);
     }
 }

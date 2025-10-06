@@ -13,11 +13,19 @@ MonoBehaviour:
   m_Name: Triangle
   m_EditorClassIdentifier: 
   enemyName: Triangle
-  enemyDescription: Traingle
+  enemyDescription: Triangle
   enemyType: 0
   enemySpawnLevel: 0
   enemySpell: {fileID: 11400000, guid: 466dc667aa1bc594ca8096091bd53972, type: 2}
+  enemyResistances:
+  - spellAfinity: 0
+    amount: 30
   enemyPrefab: {fileID: 8985559003228744641, guid: d5eca7fdb628fb94d8e6fd2b40e6c661, type: 3}
+  enemyHp:
+    current: 100
+    max: 100
   enemyAttack: 10
   enemyDefense: 10
   enemyLevel: 10
+  enemyDrops:
+  - {fileID: 11400000, guid: 4f2a5bc899e04b84aa6d4aa64595bcac, type: 2}

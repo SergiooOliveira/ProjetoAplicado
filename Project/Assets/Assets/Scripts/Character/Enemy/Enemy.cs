@@ -5,10 +5,17 @@ public class Enemy : MonoBehaviour
     // Info and stats of enemy
     // TODO: Shouldn't be a MonoBehaviour. EnemyManager should be the Monobehaviour
     public EnemyData enemyData;
-    
+    private EnemyData runtimeData;
+
+    private void Awake()
+    {
+        enemyData.EnemyHp.Initialize();
+        runtimeData = Instantiate(enemyData);
+    }
+
     public void Interact()
     {
-        Debug.Log(enemyData.ToString());
+        Debug.Log(runtimeData.ToString());
     }
 
     /// <summary>
@@ -26,7 +33,7 @@ public class Enemy : MonoBehaviour
     /// <param name="direction">Player direction</param>
     public void UseSpell(Vector3 position, Vector2 direction)
     {
-        enemyData.EnemySpell.Cast(position, direction);
+        runtimeData.EnemySpell.Cast(position, direction);
     }
 
     /// <summary>
@@ -34,7 +41,7 @@ public class Enemy : MonoBehaviour
     /// </summary>
     public void Attack()
     {
-        switch (enemyData.EnemyType)
+        switch (runtimeData.EnemyType)
         {
             case EnemyType.Ground:
                 GroundAttack();
@@ -70,44 +77,78 @@ public class Enemy : MonoBehaviour
     /// <param name="damageReceived">Damage Received</param>
     public void CalculateDamage(Spell spell)
     {
+        if (enemyData == null)
+        {
+            Debug.Log("Enemy Data is null");
+            return;
+        }
+
+        if (spell == null)
+        {
+            Debug.Log("Spell is null");
+            return;
+        }
+
         // Step 1: Percentile defense reduction
-        float defenseMultiplier = 100f / (100f + enemyData.EnemyDefense);
+        float defenseMultiplier = 100f / (100f + runtimeData.EnemyDefense);
         float baseDamage = spell.SpellDamage * defenseMultiplier;
 
         // Step 2: Resistance Multiplier
-        float resistanteMultiplier = 1f - (GetResistance() / 100f);
+        float resistanteMultiplier = 1f - (GetResistance(spell.SpellAfinity) / 100f);
         baseDamage *= resistanteMultiplier;
 
         // Step 3: Level disadvantage penalties
-        int levelDifference = enemyData.EnemyLevel - Player.Instance.Level;
+        int levelDifference = runtimeData.EnemyLevel - Player.Instance.Level;
         if (levelDifference >= 5) baseDamage *= 0.75f;          // -25%
         else if (levelDifference >= 3) baseDamage *= 0.90f;     // -10%
 
         // Step 4: Clamp damage and apply
-        int finalDamage = Mathf.Max(1, Mathf.RoundToInt(baseDamage));
+        int finalDamage = Mathf.Max(1, Mathf.RoundToInt(baseDamage));        
 
-        enemyData.EnemyHp.TakeDamage(finalDamage);
-        if (enemyData.EnemyHp.Current == 0) Die();
+        runtimeData.EnemyHp.TakeDamage(finalDamage);
+        if (runtimeData.EnemyHp.Current == 0) Die();        
     }
 
-    private float GetResistance ()
-    {
-        float resistance = 1f;
+    /// <summary>
+    /// Call this method to retrieve the resistance value if aplicable
+    /// </summary>
+    /// <param name="spellAfinity">Attack spell</param>
+    /// <returns></returns>
+    private float GetResistance (SpellAfinity spellAfinity)
+    {        
+        SpellAfinity resistanceAfinity = Resistance.weaknessChart.ContainsKey(spellAfinity) ? Resistance.weaknessChart[spellAfinity] : spellAfinity;
 
+        foreach (Resistance r in runtimeData.EnemyResistances)
+        {
+            if (r.SpellAfinity == resistanceAfinity)
+            {
+                Debug.Log($"{r.SpellAfinity} is {r.Amount}% resistant to {spellAfinity}");
+                return r.Amount;
+            }
+        }
 
-
-        return resistance;
+        return 0f;
     }
 
+    /// <summary>
+    /// Call this method to destroy an Enemy and get it's drops 
+    /// </summary>
     private void Die()
     {
-        EnemyManager.Instance.RemoveEnemy(enemyData);
-
-        foreach (Item item in enemyData.EnemyDrops)
+        if (enemyData == null)
         {
-            int dropNumber = Random.Range(0, enemyData.EnemyLevel * 2);
+            Debug.Log("Enemy Data is null");
+            return;
+        }
+
+        EnemyManager.Instance.RemoveEnemy(this);
+
+        foreach (Item item in runtimeData.EnemyDrops)
+        {
+            int dropNumber = Random.Range(0, runtimeData.EnemyLevel * 2);
 
             // Add to Player Inventory
+            Debug.Log($"Dropped {dropNumber} {item.ItemName} to Player");
         }
     }    
 }

@@ -11,11 +11,11 @@ public class EnemyData : ScriptableObject, IEnemy
     [SerializeField] private EnemyType enemyType;
     [SerializeField] private EnemySpawnLevel enemySpawnLevel;
     [SerializeField] private Spell enemySpell;
-    [SerializeField] private List<SpellAfinity> enemyResistances;
+    [SerializeField] private List<Resistance> enemyResistances;
     [SerializeField] private GameObject enemyPrefab;
 
     [Header("Stats")]
-    [SerializeField] private Stat enemyHp = new Stat(100);
+    [SerializeField] private Stat enemyHp;
     [SerializeField] private int enemyAttack;
     [SerializeField] private int enemyDefense;
     [SerializeField] private int enemyLevel;
@@ -30,7 +30,7 @@ public class EnemyData : ScriptableObject, IEnemy
     public EnemyType EnemyType => enemyType;
     public EnemySpawnLevel EnemySpawnLevel => enemySpawnLevel;
     public Spell EnemySpell => enemySpell;
-    public List<SpellAfinity> EnemyResistances => enemyResistances;
+    public List<Resistance> EnemyResistances => enemyResistances;
     public GameObject EnemyPrefab => enemyPrefab;
     public Stat EnemyHp => enemyHp;
     public int EnemyAttack => enemyAttack;
@@ -45,6 +45,10 @@ public class EnemyData : ScriptableObject, IEnemy
         return 0;
     }
 
+    /// <summary>
+    /// Small override of ToString()
+    /// </summary>
+    /// <returns></returns>
     public override string ToString()
     {
         string info = $"{EnemyName}: has {EnemyHp.Max} HP and {EnemyAttack} Damage";
