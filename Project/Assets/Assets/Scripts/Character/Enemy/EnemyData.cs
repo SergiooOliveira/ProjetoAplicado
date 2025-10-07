@@ -39,12 +39,6 @@ public class EnemyData : ScriptableObject, IEnemy
     public List<Item> EnemyDrops => enemyDrops;
     #endregion
 
-    // TODO: Need to create an Element Class
-    public float GetResistance()
-    {
-        return 0;
-    }
-
     /// <summary>
     /// Small override of ToString()
     /// </summary>
