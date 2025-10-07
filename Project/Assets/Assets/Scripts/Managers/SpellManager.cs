@@ -34,7 +34,7 @@ public class SpellManager : MonoBehaviour
     /// </summary>
     public void ShowEquippedSpells()
     {
-        foreach (Spell spell in Player.Instance.EquipedSpells)
+        foreach (Spell spell in Player.Instance.Character.EquipedSpells)
         {
             Debug.Log("Equipped: " + spell.name);
         }
@@ -58,14 +58,14 @@ public class SpellManager : MonoBehaviour
     /// <param name="callbackContext"></param>
     public void NextSpell(InputAction.CallbackContext callbackContext)
     {
-        for (int i = 0; i < Player.Instance.EquipedSpells.Count; i++)
+        for (int i = 0; i < Player.Instance.Character.EquipedSpells.Count; i++)
         {
-            if (Player.Instance.EquipedSpells[i].IsSpellSelected)
+            if (Player.Instance.Character.EquipedSpells[i].IsSpellSelected)
             {
-                Player.Instance.EquipedSpells[i].Deselect();
+                Player.Instance.Character.EquipedSpells[i].Deselect();
 
-                int nextIndex = (i + 1) % Player.Instance.EquipedSpells.Count;
-                Player.Instance.EquipedSpells[nextIndex].Select();
+                int nextIndex = (i + 1) % Player.Instance.Character.EquipedSpells.Count;
+                Player.Instance.Character.EquipedSpells[nextIndex].Select();
 
                 break;
             }

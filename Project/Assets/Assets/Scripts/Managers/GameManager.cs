@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
 
     public void Start()
     {
-        Player.Instance.Initialize("Player", 6f, 0, 0.5f, 0, 0, 1);
+        //Player.Instance.Initialize("Player", 6f, 0, 0.5f, 0, 0, 1);
     }
 
 }

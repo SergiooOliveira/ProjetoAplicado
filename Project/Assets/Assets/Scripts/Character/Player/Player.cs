@@ -1,11 +1,18 @@
+using FishNet.Object;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-public class Player : Character
+[RequireComponent(typeof(Character))]
+public class Player : NetworkBehaviour
 {
     public static Player Instance;
+    private Character character;
+    
+    // por causa de spellManager
+    // ou fica Player.Instance.Character.EquipedSpells ou Player.Instance.GetComponent<Character>().EquipedSpells
+    public Character Character => character;  
     public Rigidbody2D rb;
     public Transform groundCheck;
     public LayerMask groundLayer;
@@ -17,15 +24,31 @@ public class Player : Character
     private bool isFacingRight = true;
 
     #region Unity Methods
-    public void Awake ()
+    public void Awake()
     {
-        if (Instance != null) Destroy(gameObject);
-        else Instance = this;
+        character = GetComponent<Character>();
+
+        // if (Instance != null) Destroy(gameObject);
+        // else Instance = this;
+        if (Instance == null)
+            Instance = this;
+    }
+    
+    public override void OnStartClient()
+    {
+        base.OnStartClient();
+
+        // Only initialize for the local player
+        if (IsOwner)
+        {
+            character.Initialize("Player", 6f, 0, 0.5f, 0, 0, 1);
+            GameManager.Instance.player = this.gameObject;
+        }
     }
 
-    private void FixedUpdate ()
+    private void FixedUpdate()
     {
-        rb.linearVelocity = new Vector2(horizontal * MovementSpeed, rb.linearVelocity.y);
+        rb.linearVelocity = new Vector2(horizontal * character.MovementSpeed, rb.linearVelocity.y);
 
         if (!isFacingRight && horizontal > 0f) Flip();
         else if (isFacingRight && horizontal < 0f) Flip();
@@ -36,7 +59,7 @@ public class Player : Character
         if (collision.tag == grimoireTag)
         {
             Debug.Log("Triggered with " + collision.name);
-            Player.Instance.AddSpell(SpellManager.Instance.GetSpell(collision.name));
+            Player.Instance.character.AddSpell(SpellManager.Instance.GetSpell(collision.name));
             Destroy(collision.gameObject);
         }
     }
