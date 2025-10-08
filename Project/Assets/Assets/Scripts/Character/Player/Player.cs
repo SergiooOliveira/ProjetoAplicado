@@ -13,7 +13,7 @@ public class Player : Character
     private readonly string grimoireTag = "Grimoire";
 
     private float horizontal;    
-    private float jumpingPower = 7f;
+    private float jumpingPower = 8f;
     private bool isFacingRight = true;
 
     #region Unity Methods
