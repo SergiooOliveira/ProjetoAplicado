@@ -5,10 +5,12 @@ using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Character))]
+[RequireComponent(typeof(PlayerInput))]
 public class Player : NetworkBehaviour
 {
     public static Player Instance;
     private Character character;
+    private PlayerInput playerInput;
     
     // por causa de spellManager
     // ou fica Player.Instance.Character.EquipedSpells ou Player.Instance.GetComponent<Character>().EquipedSpells
@@ -27,13 +29,14 @@ public class Player : NetworkBehaviour
     public void Awake()
     {
         character = GetComponent<Character>();
+        playerInput = GetComponent<PlayerInput>();
 
         // if (Instance != null) Destroy(gameObject);
         // else Instance = this;
         if (Instance == null)
             Instance = this;
     }
-    
+
     public override void OnStartClient()
     {
         base.OnStartClient();
@@ -41,13 +44,19 @@ public class Player : NetworkBehaviour
         // Only initialize for the local player
         if (IsOwner)
         {
+            playerInput.enabled = true;
             character.Initialize("Player", 6f, 0, 0.5f, 0, 0, 1);
             GameManager.Instance.player = this.gameObject;
+        }
+        else
+        {
+            playerInput.enabled = false;
         }
     }
 
     private void FixedUpdate()
     {
+        if (!IsOwner) return;
         rb.linearVelocity = new Vector2(horizontal * character.MovementSpeed, rb.linearVelocity.y);
 
         if (!isFacingRight && horizontal > 0f) Flip();
