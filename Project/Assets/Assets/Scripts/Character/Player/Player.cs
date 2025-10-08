@@ -4,10 +4,12 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-public class Player : Character
+public class Player : MonoBehaviour
 {
-    public static Player Instance;
-    public Rigidbody2D rb;
+    public PlayerData playerData;
+    private PlayerData runTimePlayerData;
+
+    private Rigidbody2D rb;
     public Transform groundCheck;
     public LayerMask groundLayer;
 
@@ -21,13 +23,17 @@ public class Player : Character
     #region Unity Methods
     public void Awake ()
     {
-        if (Instance != null) Destroy(gameObject);
-        else Instance = this;
+        runTimePlayerData = Instantiate(playerData);
+    }
+
+    public void Initialize()
+    {
+
     }
 
     private void FixedUpdate ()
     {
-        rb.linearVelocity = new Vector2(horizontal * MovementSpeed, rb.linearVelocity.y);
+        rb.linearVelocity = new Vector2(horizontal * playerData.CharacterMovementSpeed, rb.linearVelocity.y);
 
         if (!isFacingRight && horizontal > 0f) Flip();
         else if (isFacingRight && horizontal < 0f) Flip();
@@ -38,7 +44,7 @@ public class Player : Character
         if (collision.tag == GameManager.Instance.grimoireTag)
         {
             //Debug.Log("Triggered with " + collision.name);
-            Player.Instance.AddSpell(SpellManager.Instance.GetSpell(collision.name));
+            playerData.AddSpell(SpellManager.Instance.GetSpell(collision.name));
             Destroy(collision.gameObject);
         }
 
@@ -121,9 +127,9 @@ public class Player : Character
             if (SpellManager.Instance.selectedSpell == null) return;
 
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 castDirection = (mousePos - Player.Instance.rb.position).normalized;
+            Vector2 castDirection = (mousePos - rb.position).normalized;
 
-            SpellManager.Instance.selectedSpell.Cast(Player.Instance.rb.position, castDirection);
+            SpellManager.Instance.selectedSpell.Cast(rb.position, castDirection);
         }
     }
 

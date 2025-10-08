@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
 
     private void Awake()
     {
-        enemyData.EnemyHp.Initialize();
+        enemyData.CharacterHp.Initialize();
         runtimeData = Instantiate(enemyData);
     }
 
@@ -143,7 +143,7 @@ public class Enemy : MonoBehaviour
 
         EnemyManager.Instance.RemoveEnemy(this);
 
-        foreach (Item item in runtimeData.EnemyDrops)
+        foreach (Item item in runtimeData.CharacterDrops)
         {
             int dropNumber = Random.Range(0, runtimeData.EnemyLevel * 2);
 
