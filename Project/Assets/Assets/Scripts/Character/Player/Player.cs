@@ -15,7 +15,7 @@ public class Player : Character
     private Chest interactedChest = null;
     
     private float horizontal;
-    private float jumpingPower = 7f;
+    private float jumpingPower = 8f;
     private bool isFacingRight = true;
 
     #region Unity Methods
