@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.Events;
@@ -10,9 +11,10 @@ public class Player : Character
     public Transform groundCheck;
     public LayerMask groundLayer;
 
-    private readonly string grimoireTag = "Grimoire";
-
-    private float horizontal;    
+    private bool canPlayerInteract = false;
+    private Chest interactedChest = null;
+    
+    private float horizontal;
     private float jumpingPower = 8f;
     private bool isFacingRight = true;
 
@@ -33,13 +35,31 @@ public class Player : Character
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == grimoireTag)
+        if (collision.tag == GameManager.Instance.grimoireTag)
         {
-            Debug.Log("Triggered with " + collision.name);
+            //Debug.Log("Triggered with " + collision.name);
             Player.Instance.AddSpell(SpellManager.Instance.GetSpell(collision.name));
             Destroy(collision.gameObject);
         }
+
+        // Cares about all the interactables
+        if (collision.tag == GameManager.Instance.interactableTag)
+        {
+            canPlayerInteract = true;
+            if (collision.TryGetComponent<Chest>(out Chest chest))
+                interactedChest = chest;
+            // Can Add more collisions components as needed
+        }
     }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        // Turns the flag false so the player can't interact
+        if (collision.tag == GameManager.Instance.interactableTag)
+        {
+            canPlayerInteract = false;
+        }
+    }    
     #endregion
 
     #region Player Checks
@@ -74,12 +94,12 @@ public class Player : Character
     /// <param name="callbackContext"></param>
     public void OnJump (InputAction.CallbackContext callbackContext)
     {
-        if (callbackContext.performed) Debug.Log($"Space Pressed");
-        if (IsGrounded()) Debug.Log($"Space Pressed");
+        //if (callbackContext.performed) Debug.Log($"Space Pressed");
+        //if (IsGrounded()) Debug.Log($"Space Pressed");
 
         if (callbackContext.performed && IsGrounded())
         {
-            Debug.Log("Jumping");
+            //Debug.Log("Jumping");
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpingPower);
         }
     }
@@ -107,12 +127,15 @@ public class Player : Character
         }
     }
 
-
+    /// <summary>
+    /// This event is called when the player interacts
+    /// </summary>
+    /// <param name="callbackContext"></param>
     public void OnInteract (InputAction.CallbackContext callbackContext)
     {
-        
+        // TODO: .started helped but I should be able to do even better
+        if (callbackContext.started && canPlayerInteract)
+            interactedChest.Interact();
     }
-
-    
     #endregion
 }

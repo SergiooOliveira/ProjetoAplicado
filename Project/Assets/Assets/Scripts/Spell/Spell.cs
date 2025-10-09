@@ -35,9 +35,7 @@ public abstract class Spell : ScriptableObject, ISpell
     public SpellTag SpellTag => spellTag;
     public GameObject SpellPrefab => spellPrefab;
     public SpellAfinity SpellAfinity => spellAfinity;
-
     public SpellProjectileType SpellProjectileType => spellProjectileType;
-
     public int SpellDamage => spellDamage;
     public int SpellRange => spellRange;
     public float SpellTravelSpeed => spellTravelSpeed;
@@ -57,10 +55,10 @@ public abstract class Spell : ScriptableObject, ISpell
     #region Methods
     public virtual void Cast(Vector3 position, Vector2 direction)
     {
-        GameObject instance = Instantiate(spellPrefab, position, Quaternion.identity);
+        //GameObject instance = Instantiate(spellPrefab, position, Quaternion.identity);
 
-        if (instance.TryGetComponent<SpellProjectile>(out SpellProjectile projectile))
-            projectile.Initialize(this, direction);
+        //if (instance.TryGetComponent<SpellProjectile>(out SpellProjectile projectile))
+        //    projectile.Initialize(this, direction);
         //else if (instance.TryGetComponent<SpellAoE>(out SpellAoE aoe))
         //    aoe.Initialize(this);
         //else if (instance.TryGetComponent<SpellBuff>(out SpellBuff buff))
@@ -81,6 +79,33 @@ public abstract class Spell : ScriptableObject, ISpell
     public void Deselect()
     {
         isSpellSelected = false;
+    }
+
+    /// <summary>
+    /// Call this method to check what the resistance percentile is
+    /// </summary>
+    /// <param name="attacker">Attacker Spell</param>
+    /// <param name="defender">Defender Spell</param>
+    public float ResistanceCheck(Spell attacker, Spell defender)
+    {
+        float resistance = 1f;
+
+        switch (attacker.SpellAfinity)
+        {
+            case SpellAfinity.Fire:
+                if (defender.SpellAfinity == SpellAfinity.Ice) resistance = 2f;
+                break;
+            case SpellAfinity.Ice:
+                break;
+            case SpellAfinity.Wind:
+                break;
+            case SpellAfinity.Light:
+                break;
+            case SpellAfinity.Dark:
+                break;
+        }
+
+        return resistance;
     }
     #endregion
 }

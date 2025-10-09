@@ -3,30 +3,31 @@ using UnityEngine;
 
 public class SpellProjectile : MonoBehaviour
 {
-    private ISpell spellData;
-    private Vector2 direction;
-    private Rigidbody2D rb;
+    protected ProjectileSpell spellData;
+    protected Rigidbody2D rb;
 
-    public void Initialize(ISpell spell, Vector2 castDirection)
+    public virtual void Initialize(ProjectileSpell spell, Vector2 direction)
     {
         spellData = spell;
-        direction = castDirection.normalized;
-
         rb = GetComponent<Rigidbody2D>();
-        rb.linearVelocity = direction * spellData.SpellTravelSpeed;
 
-        Destroy(gameObject, spellData.SpellRange / spellData.SpellTravelSpeed);
+        if (rb != null)
+            rb.linearVelocity = direction.normalized * spellData.SpellTravelSpeed;
+
+        if (spellData.SpellTravelSpeed > 0f && spellData.SpellRange > 0f )
+            Destroy(gameObject, spellData.SpellRange / spellData.SpellTravelSpeed);
+        else
+            Destroy(gameObject, spellData.SpellRange);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player") return;
-
-        Debug.Log($"{spellData.SpellName} hit {collision.name} for {spellData.SpellDamage} damage!");
-
-        switch(spellData.SpellProjectileType)
+        if (collision.CompareTag("Player")) return;
+        
+        switch (spellData.SpellProjectileType)
         {
             case SpellProjectileType.Normal:
+                NormalSpellProjectile(collision);
                 break;
             case SpellProjectileType.Pierce:
                 break;
@@ -41,5 +42,12 @@ public class SpellProjectile : MonoBehaviour
         }
 
         Destroy(gameObject);
+    }
+
+    private void NormalSpellProjectile(Collider2D collision)
+    {
+        if (collision.TryGetComponent<Enemy>(out Enemy enemy))
+            enemy.CalculateDamage(spellData);
+
     }
 }
