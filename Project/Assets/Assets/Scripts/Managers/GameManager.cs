@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -9,17 +10,26 @@ public class GameManager : MonoBehaviour
     public readonly string grimoireTag = "Grimoire";
     public readonly string interactableTag = "Interactable";
 
-    public GameObject player;
+    [SerializeField] private List<Player> players = new();
 
     public void Awake()
     {
         if (Instance != null) Destroy(gameObject);
         else Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
     public void Start()
     {
-        player.Initialize("Player", 6f, 0, 0.5f, 0, 0, 1);
+        //player.Initialize("Player", 6f, 0, 0.5f, 0, 0, 1);
+    }
+
+    public List<Player> Players => players;
+
+    public void RegisterPlayer(Player player)
+    {
+        if (!players.Contains(player))
+            players.Add(player);
     }
 }
 

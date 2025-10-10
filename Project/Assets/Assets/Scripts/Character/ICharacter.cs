@@ -29,7 +29,6 @@ public interface ICharacter
     #endregion
 
     #region Methods
-
     void AddSpell(Spell spell);
     void RemoveSpell(int slot, Spell spell);
     void SwapSpell(int slot, Spell spellToRemove, Spell spellToAdd);

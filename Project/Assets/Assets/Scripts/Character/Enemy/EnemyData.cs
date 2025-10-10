@@ -24,7 +24,7 @@ public class EnemyData : ScriptableObject, IEnemy
     [SerializeField] private float characterAttackSpeed;
     [SerializeField] private int characterAttackPower;
     [SerializeField] private int characterDefense;
-    [SerializeField] private List<Resistance> enemyResistances;
+    [SerializeField] private List<Resistance> characterResistances;
 
     [Header("Equipables and Inventory")]
     [SerializeField] private List<Spell> characterEquipedSpells;
@@ -51,7 +51,7 @@ public class EnemyData : ScriptableObject, IEnemy
     public float CharacterAttackSpeed => characterAttackSpeed;
     public int CharacterAttackPower => characterAttackPower;
     public int CharacterDefense => characterDefense;
-    public List<Resistance> CharacterResistances => CharacterResistances;
+    public List<Resistance> CharacterResistances => characterResistances;
 
     // *----- Equipables and Inventory -----*
     public List<Spell> CharacterEquipedSpells => characterEquipedSpells;

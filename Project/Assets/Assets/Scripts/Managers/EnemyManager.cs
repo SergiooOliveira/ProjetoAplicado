@@ -17,13 +17,13 @@ public class EnemyManager: MonoBehaviour
         // Get all the Scriptable Objects of Enemies
         allEnemies = new List<EnemyData>(Resources.LoadAll<EnemyData>("Enemies"));
 
-        GetAllLevelEnemies(1);
+        GetAllLevelEnemies(EnemySpawnLevel.Level1);
     }
 
     /// <summary>
     /// Call this method when the player triggers the next level
     /// </summary>
-    public void SpawnEnemies(int level)
+    public void SpawnEnemies(EnemySpawnLevel level)
     {
         GetAllLevelEnemies(level);
     }
@@ -33,9 +33,9 @@ public class EnemyManager: MonoBehaviour
     /// </summary>
     /// <param name="level">Level of an enemy</param>
     /// <returns>List of all enemies</returns>
-    private void GetAllLevelEnemies(int level)
+    private void GetAllLevelEnemies(EnemySpawnLevel enemySpawnLevel)
     {
-        List<EnemyData> allLevelEnemies = allEnemies.FindAll(enemy => enemy.EnemyLevel == level);
+        List<EnemyData> allLevelEnemies = allEnemies.FindAll(enemy => enemy.CharacterSpawnLevel == enemySpawnLevel);
 
         foreach (EnemyData enemy in allLevelEnemies)
             activeEnemies.Add(enemy);

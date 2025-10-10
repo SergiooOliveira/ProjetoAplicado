@@ -34,6 +34,6 @@ public interface ISpell
     bool SpellHasDebuff { get; }
 
     #region Methods
-    void Cast(Vector3 position, Vector2 direction);
+    void Cast(Vector3 position, Vector2 direction, Player player);
     #endregion
 }

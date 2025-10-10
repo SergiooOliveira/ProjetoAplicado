@@ -31,9 +31,10 @@ public class Enemy : MonoBehaviour
     /// </summary>
     /// <param name="position">Player position</param>
     /// <param name="direction">Player direction</param>
-    public void UseSpell(Vector3 position, Vector2 direction)
+    public void UseSpell(Vector3 position, Vector2 direction, Player player)
     {
-        runtimeData.EnemySpell.Cast(position, direction);
+        // TODO: Should be an override cause it's not the same logic
+        runtimeData.CharacterEquipedSpells[0].Cast(position, direction, player);
     }
 
     /// <summary>
@@ -41,7 +42,7 @@ public class Enemy : MonoBehaviour
     /// </summary>
     public void Attack()
     {
-        switch (runtimeData.EnemyType)
+        switch (runtimeData.CharacterType)
         {
             case EnemyType.Ground:
                 GroundAttack();
@@ -75,7 +76,7 @@ public class Enemy : MonoBehaviour
     /// Call this method to give damage to the enemy
     /// </summary>
     /// <param name="damageReceived">Damage Received</param>
-    public void CalculateDamage(Spell spell)
+    public void CalculateDamage(Player player, Spell spell)
     {
         if (enemyData == null)
         {
@@ -90,7 +91,7 @@ public class Enemy : MonoBehaviour
         }
 
         // Step 1: Percentile defense reduction
-        float defenseMultiplier = 100f / (100f + runtimeData.EnemyDefense);
+        float defenseMultiplier = 100f / (100f + runtimeData.CharacterDefense);
         float baseDamage = spell.SpellDamage * defenseMultiplier;
 
         // Step 2: Resistance Multiplier
@@ -98,15 +99,15 @@ public class Enemy : MonoBehaviour
         baseDamage *= resistanteMultiplier;
 
         // Step 3: Level disadvantage penalties
-        int levelDifference = runtimeData.EnemyLevel - Player.Instance.Level;
+        int levelDifference = runtimeData.CharacterLevel - player.GetPlayerLevel();
         if (levelDifference >= 5) baseDamage *= 0.75f;          // -25%
         else if (levelDifference >= 3) baseDamage *= 0.90f;     // -10%
 
         // Step 4: Clamp damage and apply
         int finalDamage = Mathf.Max(1, Mathf.RoundToInt(baseDamage));        
 
-        runtimeData.EnemyHp.TakeDamage(finalDamage);
-        if (runtimeData.EnemyHp.Current == 0) Die();        
+        runtimeData.CharacterHp.TakeDamage(finalDamage);
+        if (runtimeData.CharacterHp.Current == 0) Die();        
     }
 
     /// <summary>
@@ -118,7 +119,7 @@ public class Enemy : MonoBehaviour
     {        
         SpellAfinity resistanceAfinity = Resistance.weaknessChart.ContainsKey(spellAfinity) ? Resistance.weaknessChart[spellAfinity] : spellAfinity;
 
-        foreach (Resistance r in runtimeData.EnemyResistances)
+        foreach (Resistance r in runtimeData.CharacterResistances)
         {
             if (r.SpellAfinity == resistanceAfinity)
             {
@@ -143,9 +144,9 @@ public class Enemy : MonoBehaviour
 
         EnemyManager.Instance.RemoveEnemy(this);
 
-        foreach (Item item in runtimeData.CharacterDrops)
+        foreach (Item item in runtimeData.CharacterInventory)
         {
-            int dropNumber = Random.Range(0, runtimeData.EnemyLevel * 2);
+            int dropNumber = Random.Range(0, runtimeData.CharacterLevel * 2);
 
             // Add to Player Inventory
             Debug.Log($"Dropped {dropNumber} {item.ItemName} to Player");

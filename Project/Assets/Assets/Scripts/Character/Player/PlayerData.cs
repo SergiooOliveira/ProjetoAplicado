@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu (menuName = "Player/Starter Player")]
 public class PlayerData : ScriptableObject, ICharacter
 {
     #region Serialized Fields
@@ -95,6 +96,11 @@ public class PlayerData : ScriptableObject, ICharacter
     {
         RemoveSpell(slot, spellToRemove);
         AddSpell(spellToAdd);
+    }
+
+    public void ClearSpellList()
+    {
+        characterEquipedSpells = new List<Spell>();
     }
     #endregion
 }

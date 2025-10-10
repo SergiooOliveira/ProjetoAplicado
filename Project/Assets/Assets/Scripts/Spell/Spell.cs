@@ -53,8 +53,11 @@ public abstract class Spell : ScriptableObject, ISpell
     public bool SpellHasDebuff => spellHasDebuff;
 
     #region Methods
-    public virtual void Cast(Vector3 position, Vector2 direction)
+    public virtual void Cast(Vector3 position, Vector2 direction, Player player)
     {
+        if (player == null)
+            Debug.Log("Player is null inside Cast in Spell.cs");
+
         //GameObject instance = Instantiate(spellPrefab, position, Quaternion.identity);
 
         //if (instance.TryGetComponent<SpellProjectile>(out SpellProjectile projectile))
