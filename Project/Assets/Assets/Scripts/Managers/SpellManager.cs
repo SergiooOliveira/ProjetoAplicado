@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -27,9 +28,10 @@ public class SpellManager : MonoBehaviour
     /// </summary>
     public void ShowEquippedSpells()
     {
-        foreach (Spell spell in Player.Instance.EquipedSpells)
+        foreach (Player player in GameManager.Instance.Players)
         {
-            Debug.Log("Equipped: " + spell.name);
+            foreach (Spell spell in player.RunTimePlayerData.CharacterEquipedSpells)
+                Debug.Log("Equipped: " + spell.name);
         }
     }
 
@@ -41,28 +43,6 @@ public class SpellManager : MonoBehaviour
     public Spell GetSpell(string name)
     {
         return Spells.Find(spell => spell.name == name);
-    }
-
-
-
-    /// <summary>
-    /// Call this method to select the next spell in the spell book
-    /// </summary>
-    /// <param name="callbackContext"></param>
-    public void NextSpell(InputAction.CallbackContext callbackContext)
-    {
-        for (int i = 0; i < Player.Instance.EquipedSpells.Count; i++)
-        {
-            if (Player.Instance.EquipedSpells[i].IsSpellSelected)
-            {
-                Player.Instance.EquipedSpells[i].Deselect();
-
-                int nextIndex = (i + 1) % Player.Instance.EquipedSpells.Count;
-                Player.Instance.EquipedSpells[nextIndex].Select();
-
-                break;
-            }
-        }
     }
 
     // TODO: Change this to another manager, either GameManager or UiManager

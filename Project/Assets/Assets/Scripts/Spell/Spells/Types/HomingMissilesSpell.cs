@@ -3,11 +3,21 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Spells/Homing Missiles")]
 public class HomingMissilesSpell : ProjectileSpell
 {
-    public override void Cast(Vector3 position, Vector2 direction)
+    public override void Cast(Vector3 position, Vector2 direction, Player player)
     {
-        if (SpellPrefab == null) return;
+        if (SpellPrefab == null)
+        {
+            Debug.Log("Spell prefab is null in HomingMissilesSpell");
+            return;
+        }
 
-        //Debug.Log($"[WaterMissilesSpell] Casting {SpellName} at {position}");
+        if (player == null)
+        {
+            Debug.Log("Player is null in HomingMissilesSpell");
+            return;
+        }
+
+        // Debug.Log($"[WaterMissilesSpell] Casting {SpellName} at {position} in HomingMissilesSpell");
 
         // TODO: Change this to be dynamic and we can choose the amount of missiles we want to send
         Vector2[] compassDir = new Vector2[]{
@@ -25,7 +35,7 @@ public class HomingMissilesSpell : ProjectileSpell
             GameObject instance = Instantiate(SpellPrefab, spawnPos, Quaternion.identity);
 
             if (instance.TryGetComponent<SpellProjectile>(out SpellProjectile projectile))
-                projectile.Initialize(this, dir);
+                projectile.Initialize(this, dir, player);
             else
                 Debug.LogWarning($"{name}: prefab {SpellPrefab.name} is missing SpellProjectile component");
         }

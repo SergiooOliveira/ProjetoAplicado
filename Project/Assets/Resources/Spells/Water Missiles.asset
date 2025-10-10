@@ -26,7 +26,7 @@ MonoBehaviour:
   spellCost: 0
   spellDuration: 0
   isSpellUnlocked: 0
-  isSpellEquiped: 0
+  isSpellEquiped: 1
   isSpellSelected: 1
   spellHasCC: 0
   spellHasBuff: 0

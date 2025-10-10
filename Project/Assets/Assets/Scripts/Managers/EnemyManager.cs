@@ -1,12 +1,13 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyManager: MonoBehaviour
 {
     public static EnemyManager Instance;
 
-    public List<EnemyData> allEnemies;
-    public List<EnemyData> activeEnemies;
+    [HideInInspector] public List<EnemyData> allEnemies;
+    [HideInInspector] public List<EnemyData> activeEnemies;
 
     private void Awake()
     {
@@ -15,12 +16,14 @@ public class EnemyManager: MonoBehaviour
 
         // Get all the Scriptable Objects of Enemies
         allEnemies = new List<EnemyData>(Resources.LoadAll<EnemyData>("Enemies"));
+
+        GetAllLevelEnemies(EnemySpawnLevel.Level1);
     }
 
     /// <summary>
     /// Call this method when the player triggers the next level
     /// </summary>
-    public void SpawnEnemies(int level)
+    public void SpawnEnemies(EnemySpawnLevel level)
     {
         GetAllLevelEnemies(level);
     }
@@ -30,9 +33,9 @@ public class EnemyManager: MonoBehaviour
     /// </summary>
     /// <param name="level">Level of an enemy</param>
     /// <returns>List of all enemies</returns>
-    private void GetAllLevelEnemies(int level)
+    private void GetAllLevelEnemies(EnemySpawnLevel enemySpawnLevel)
     {
-        List<EnemyData> allLevelEnemies = allEnemies.FindAll(enemy => enemy.EnemyLevel == level);
+        List<EnemyData> allLevelEnemies = allEnemies.FindAll(enemy => enemy.CharacterSpawnLevel == enemySpawnLevel);
 
         foreach (EnemyData enemy in allLevelEnemies)
             activeEnemies.Add(enemy);
@@ -42,9 +45,9 @@ public class EnemyManager: MonoBehaviour
     /// Call this method to remove and destroy an Enemy
     /// </summary>
     /// <param name="enemy">Enemy object</param>
-    public void RemoveEnemy(EnemyData enemy)
+    public void RemoveEnemy(Enemy enemy)
     {
-        activeEnemies.Remove(enemy);
-        Destroy(enemy);
+        activeEnemies.Remove(enemy.enemyData);
+        Destroy(enemy.gameObject);
     }
 }

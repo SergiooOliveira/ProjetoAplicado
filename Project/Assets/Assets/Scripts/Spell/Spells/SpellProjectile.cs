@@ -6,8 +6,12 @@ public class SpellProjectile : MonoBehaviour
     protected ProjectileSpell spellData;
     protected Rigidbody2D rb;
 
-    public virtual void Initialize(ProjectileSpell spell, Vector2 direction)
+    public Player playerData;
+
+    public virtual void Initialize(ProjectileSpell spell, Vector2 direction, Player player)
     {
+        this.playerData = player;
+
         spellData = spell;
         rb = GetComponent<Rigidbody2D>();
 
@@ -47,7 +51,6 @@ public class SpellProjectile : MonoBehaviour
     private void NormalSpellProjectile(Collider2D collision)
     {
         if (collision.TryGetComponent<Enemy>(out Enemy enemy))
-            enemy.CalculateDamage(spellData);
-
+            enemy.CalculateDamage(playerData, spellData);
     }
 }

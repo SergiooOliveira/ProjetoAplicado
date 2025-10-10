@@ -11,9 +11,9 @@ public class HomingMissile : SpellProjectile
     // Max distance to find enemies
     [SerializeField] private float targetSearchRadious = 10f;
 
-    public override void Initialize(ProjectileSpell spell, Vector2 initialDir)
+    public override void Initialize(ProjectileSpell spell, Vector2 initialDir, Player player)
     {
-        base.Initialize(spell, initialDir);
+        base.Initialize(spell, initialDir, player);
         // Pick nearest enemy
         target = FindNearestEnemy();
     }

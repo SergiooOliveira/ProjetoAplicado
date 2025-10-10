@@ -7,26 +7,12 @@ public enum EnemyType { Ground, Flying }
 public enum EnemySpawnLevel { Level1, Level2, Level3, Level4 }
 
 // TODO: Maybe do an interface for all Characters
-public interface IEnemy
+public interface IEnemy : ICharacter
 {
     #region Properties
     // *----- Identity -----*
-    
-    string EnemyName { get; }
-    string EnemyDescription { get; }
-    EnemyType EnemyType { get; }
-    EnemySpawnLevel EnemySpawnLevel { get; }
-    Spell EnemySpell { get; }
-    List<SpellAfinity> EnemyResistances { get; }
-    GameObject EnemyPrefab { get; }
-
-    // *----- Stats -----*
-    Stat EnemyHp { get; }
-    int EnemyAttack { get; }
-    int EnemyDefense { get; }
-    int EnemyLevel { get; }
-
-    // *----- Drops -----*
-    List<Item> EnemyDrops { get; }
+    string CharacterDescription { get; }
+    EnemyType CharacterType { get; }
+    EnemySpawnLevel CharacterSpawnLevel { get; }
     #endregion
 }

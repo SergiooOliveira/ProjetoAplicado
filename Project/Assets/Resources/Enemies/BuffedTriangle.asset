@@ -12,12 +12,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd632307590d5c54a966560ca3cc38c7, type: 3}
   m_Name: BuffedTriangle
   m_EditorClassIdentifier: 
-  enemyName: BuffedTriangle
-  enemyDescription: BuffedTriangle
-  enemyType: 0
-  enemySpawnLevel: 0
-  enemySpell: {fileID: 11400000, guid: 1bf4a273ae8da7b4987fc678f911c4b6, type: 2}
-  enemyPrefab: {fileID: 8985559003228744641, guid: d5eca7fdb628fb94d8e6fd2b40e6c661, type: 3}
-  enemyAttack: 20
-  enemyDefense: 20
-  enemyLevel: 20
+  characterName: Enemy
+  characterLevel: 10
+  characterPrefab: {fileID: 8985559003228744641, guid: d5eca7fdb628fb94d8e6fd2b40e6c661, type: 3}
+  characterDescription: asd
+  characterType: 0
+  characterSpawnLevel: 0
+  characterHp:
+    current: 0
+    max: 100
+  characterXp:
+    current: 0
+    max: 0
+  characterMana:
+    current: 0
+    max: 100
+  characterMovementSpeed: 6
+  characterAttackSpeed: 6
+  characterAttackPower: 6
+  characterDefense: 6
+  characterResistances:
+  - spellAfinity: 2
+    amount: 20
+  characterEquipedSpells: []
+  characterInventory: []
+  characterEquipedItems: []

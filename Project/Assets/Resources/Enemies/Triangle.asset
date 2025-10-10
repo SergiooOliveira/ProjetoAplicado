@@ -12,12 +12,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd632307590d5c54a966560ca3cc38c7, type: 3}
   m_Name: Triangle
   m_EditorClassIdentifier: 
-  enemyName: Triangle
-  enemyDescription: Traingle
-  enemyType: 0
-  enemySpawnLevel: 0
-  enemySpell: {fileID: 11400000, guid: 466dc667aa1bc594ca8096091bd53972, type: 2}
-  enemyPrefab: {fileID: 8985559003228744641, guid: d5eca7fdb628fb94d8e6fd2b40e6c661, type: 3}
-  enemyAttack: 10
-  enemyDefense: 10
-  enemyLevel: 10
+  characterName: asd
+  characterLevel: 0
+  characterPrefab: {fileID: 8985559003228744641, guid: d5eca7fdb628fb94d8e6fd2b40e6c661, type: 3}
+  characterDescription: sad
+  characterType: 0
+  characterSpawnLevel: 0
+  characterHp:
+    current: 200
+    max: 200
+  characterXp:
+    current: 0
+    max: 0
+  characterMana:
+    current: 0
+    max: 0
+  characterMovementSpeed: 1
+  characterAttackSpeed: 1
+  characterAttackPower: 1
+  characterDefense: 1
+  characterResistances:
+  - spellAfinity: 2
+    amount: 100
+  characterEquipedSpells: []
+  characterInventory: []
+  characterEquipedItems: []
