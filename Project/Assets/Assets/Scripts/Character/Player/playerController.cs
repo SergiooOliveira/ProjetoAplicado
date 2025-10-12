@@ -10,12 +10,13 @@ public class playerController : NetworkBehaviour
     private Rigidbody2D rb;
     public Transform groundCheck;
     public LayerMask groundLayer;
+    private Animator animator;
 
     private bool canPlayerInteract = false;
     private Chest interactedChest = null;
 
     private float horizontal;
-    private float jumpingPower = 7f;
+    private float jumpingPower = 8f;
     private bool isFacingRight = true;
 
     #region Unity Methods
@@ -38,8 +39,18 @@ public class playerController : NetworkBehaviour
 
     private void Start()
     {
+        animator = GetComponent<Animator>();
         player = GetComponent<Player>();
         playerData = player.RunTimePlayerData;
+    }
+
+    private void Update()
+    {
+        // Collect input every frame
+        horizontal = Input.GetAxisRaw("Horizontal");
+
+        // Sets the parameter value in the Animator
+        animator.SetFloat("Speed", Mathf.Abs(horizontal));
     }
 
     private void FixedUpdate()
