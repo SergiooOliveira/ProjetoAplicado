@@ -15,7 +15,7 @@ public class PlayerInput : MonoBehaviour
     private Chest interactedChest = null;
 
     private float horizontal;
-    private float jumpingPower = 7f;
+    private float jumpingPower = 8f;
     private bool isFacingRight = true;
 
     #region Unity Methods
@@ -29,6 +29,15 @@ public class PlayerInput : MonoBehaviour
         player = GetComponent<Player>();
         playerData = player.RunTimePlayerData;
         animator = GetComponent<Animator>();
+    }
+
+    private void Update()
+    {
+        // Collect input every frame
+        horizontal = Input.GetAxisRaw("Horizontal");
+
+        // Sets the parameter value in the Animator
+        animator.SetFloat("Speed", Mathf.Abs(horizontal));
     }
 
     private void FixedUpdate()
