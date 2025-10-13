@@ -2,13 +2,13 @@
 - Project name: Project
 - Unity version: Unity 6000.0.58f1
 - Active scene:
-  - Name: Prototype
+  - Name: Map1_Part1
   - Tags:
     - Untagged, Respawn, Finish, EditorOnly, MainCamera, Player, GameController, Grimoire, Enemy, Interactable
   - Layers:
     - Default, TransparentFX, Ignore Raycast, Water, UI, Ground
 - Active game object:
-  - Name: Player(Clone)
-  - Tag: Player
-  - Layer: 3
+  - Name: Enemy
+  - Tag: Enemy
+  - Layer: Default
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->
