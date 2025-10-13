@@ -9,6 +9,6 @@
     - Default, TransparentFX, Ignore Raycast, Water, UI, Ground
 - Active game object:
   - Name: Player(Clone)
-  - Tag: Untagged
+  - Tag: Player
   - Layer: 3
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->

@@ -166,7 +166,7 @@ public class playerController : NetworkBehaviour
     {
         // TODO: .started helped but I should be able to do even better
         if (callbackContext.started && canPlayerInteract)
-            interactedChest.Interact();
+            interactedChest.Interact(playerData);
     }
 
     /// <summary>

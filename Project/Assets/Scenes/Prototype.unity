@@ -136,7 +136,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &11162179
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1373,7 +1373,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &1825959859
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1504,6 +1504,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chestData: {fileID: 11400000, guid: 221c10e3a988d3241b149efd5c63aea3, type: 2}
+  spellReward: {fileID: 11400000, guid: 1bf4a273ae8da7b4987fc678f911c4b6, type: 2}
 --- !u!1 &2071127447
 GameObject:
   m_ObjectHideFlags: 0
