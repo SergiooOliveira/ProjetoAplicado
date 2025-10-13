@@ -2,7 +2,7 @@ using FishNet.Object;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class playerController : NetworkBehaviour
+public class PlayerController : NetworkBehaviour
 {
     private Player player;
     private PlayerData playerData;
@@ -44,21 +44,20 @@ public class playerController : NetworkBehaviour
         playerData = player.RunTimePlayerData;
     }
 
-    private void Update()
-    {
-        // Collect input every frame
-        horizontal = Input.GetAxisRaw("Horizontal");
-
-        // Sets the parameter value in the Animator
-        animator.SetFloat("Speed", Mathf.Abs(horizontal));
-    }
-
     private void FixedUpdate()
     {
         rb.linearVelocity = new Vector2(horizontal * playerData.CharacterMovementSpeed, rb.linearVelocity.y);
 
         if (!isFacingRight && horizontal > 0f) Flip();
         else if (isFacingRight && horizontal < 0f) Flip();
+
+        if (!IsOwner)
+            return;
+        // Collect input every frame
+        horizontal = Input.GetAxisRaw("Horizontal");
+
+        // Sets the parameter value in the Animator
+        animator.SetFloat("Speed", Mathf.Abs(horizontal));
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -166,7 +165,7 @@ public class playerController : NetworkBehaviour
     {
         // TODO: .started helped but I should be able to do even better
         if (callbackContext.started && canPlayerInteract)
-            interactedChest.Interact();
+            interactedChest.Interact(playerData);
     }
 
     /// <summary>

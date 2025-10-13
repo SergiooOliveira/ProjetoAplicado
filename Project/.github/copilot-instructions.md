@@ -8,7 +8,7 @@
   - Layers:
     - Default, TransparentFX, Ignore Raycast, Water, UI, Ground
 - Active game object:
-  - Name: Player(Clone)
+  - Name: NetworkHudCanvas
   - Tag: Untagged
-  - Layer: 3
+  - Layer: UI
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->

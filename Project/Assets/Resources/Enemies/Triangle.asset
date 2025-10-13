@@ -19,14 +19,14 @@ MonoBehaviour:
   characterType: 0
   characterSpawnLevel: 0
   characterHp:
-    current: 200
+    current: 0
     max: 200
   characterXp:
     current: 0
-    max: 0
+    max: 10
   characterMana:
     current: 0
-    max: 0
+    max: 10
   characterMovementSpeed: 1
   characterAttackSpeed: 1
   characterAttackPower: 1

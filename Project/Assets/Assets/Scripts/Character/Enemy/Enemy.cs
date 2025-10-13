@@ -7,6 +7,8 @@ public class Enemy : MonoBehaviour
     public EnemyData enemyData;
     private EnemyData runtimeData;
 
+    public EnemyData RunTimeData => runtimeData;
+
     private void Awake()
     {
         enemyData.CharacterHp.Initialize();
@@ -107,7 +109,8 @@ public class Enemy : MonoBehaviour
         int finalDamage = Mathf.Max(1, Mathf.RoundToInt(baseDamage));        
 
         runtimeData.CharacterHp.TakeDamage(finalDamage);
-        if (runtimeData.CharacterHp.Current == 0) Die();        
+        Debug.Log($"RuntimeData.CharacterHp: {runtimeData.CharacterHp.Current}");
+        if (runtimeData.CharacterHp.Current <= 0) Die();
     }
 
     /// <summary>
@@ -136,11 +139,20 @@ public class Enemy : MonoBehaviour
     /// </summary>
     private void Die()
     {
-        if (enemyData == null)
+        if (runtimeData == null)
         {
             Debug.Log("Enemy Data is null");
             return;
         }
+
+        if (this == null)
+        {
+            Debug.Log("Enemy is null");
+            return;
+        }
+
+        Debug.Log($"EnemyManager.Instance is {(EnemyManager.Instance == null ? "NULL" : "OK")}");
+        Debug.Log($"Enemy reference (this) is {(this == null ? "NULL" : "OK")}");
 
         EnemyManager.Instance.RemoveEnemy(this);
 
