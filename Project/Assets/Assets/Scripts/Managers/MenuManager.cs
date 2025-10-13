@@ -6,7 +6,7 @@ public class MenuManager: MonoBehaviour
     public void PlayButton()
     {
         Debug.Log("Swapping scene");
-        SceneManager.LoadScene("Map1_Part1");
+        SceneManager.LoadScene("Tutorial");
     }
 
     public void QuitGame()
@@ -17,5 +17,10 @@ public class MenuManager: MonoBehaviour
     public void BackButton()
     {
         SceneManager.LoadScene("StartMenu");
+    }
+    
+    public void Skip()
+    {
+        SceneManager.LoadScene("Map1_Part1");
     }
 }
