@@ -2,7 +2,7 @@ using FishNet.Object;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class playerController : NetworkBehaviour
+public class PlayerController : NetworkBehaviour
 {
     private Player player;
     private PlayerData playerData;

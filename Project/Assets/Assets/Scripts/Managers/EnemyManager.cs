@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyManager: MonoBehaviour
 {
@@ -8,6 +10,8 @@ public class EnemyManager: MonoBehaviour
 
     [HideInInspector] public List<EnemyData> allEnemies;
     [HideInInspector] public List<EnemyData> activeEnemies;
+
+    [HideInInspector] public int enemyCounter = 0;
 
     private void Awake()
     {
@@ -47,7 +51,25 @@ public class EnemyManager: MonoBehaviour
     /// <param name="enemy">Enemy object</param>
     public void RemoveEnemy(Enemy enemy)
     {
+        Debug.Log($"Removing {enemy.RunTimeData.CharacterName}");
+
+        if (enemy == null)
+        {
+            Debug.Log($"Enemy is null in EnemyManager (RemoveEnemy)");
+            return;
+        }
+
         activeEnemies.Remove(enemy.enemyData);
         Destroy(enemy.gameObject);
+
+        enemyCounter++;
+
+        if (enemyCounter == 5) CallEndScreen();
+    }
+
+    private async void CallEndScreen()
+    {
+        await Task.Delay(2000);
+        SceneManager.LoadScene("EndScreen");
     }
 }
