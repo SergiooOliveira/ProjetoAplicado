@@ -6,11 +6,16 @@ public class MenuManager: MonoBehaviour
     public void PlayButton()
     {
         Debug.Log("Swapping scene");
-        SceneManager.LoadScene("Map1_Part1");
+        SceneManager.LoadScene("Tutorial");
     }
 
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void Skip()
+    {
+        SceneManager.LoadScene("Map1_Part1");
     }
 }
