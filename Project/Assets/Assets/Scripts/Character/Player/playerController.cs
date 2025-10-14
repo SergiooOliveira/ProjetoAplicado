@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : NetworkBehaviour
 {
+    #region Global Variables
     private Player player;
     private PlayerData playerData;
 
@@ -18,6 +19,13 @@ public class PlayerController : NetworkBehaviour
     private float horizontal;
     private float jumpingPower = 8f;
     private bool isFacingRight = true;
+
+    // Inventory
+    [Header("Inventory")]
+    private bool isInventoryOpen = false;
+    public Canvas inventoryPanel;
+    #endregion
+
 
     #region Unity Methods
 
@@ -90,11 +98,18 @@ public class PlayerController : NetworkBehaviour
     #endregion
 
     #region Player Checks
+    /// <summary>
+    /// Call this method to verify if the Player is on the Ground Layer
+    /// </summary>
+    /// <returns>True or False</returns>
     private bool IsGrounded()
     {
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
     }
 
+    /// <summary>
+    /// This method is used to Flip the Player orientation
+    /// </summary>
     private void Flip()
     {
         isFacingRight = !isFacingRight;
@@ -186,6 +201,27 @@ public class PlayerController : NetworkBehaviour
                 break;
             }
         }
+    }
+
+    /// <summary>
+    /// Call this method to Open and Close the inventory
+    /// </summary>
+    /// <param name="callbackContext"></param>
+    public void ToggleInventory(InputAction.CallbackContext callbackContext)
+    {
+        isInventoryOpen = !isInventoryOpen;
+        inventoryPanel.enabled = isInventoryOpen;
+
+        // if inventory disabled turn it off
+        if (!isInventoryOpen)
+        {
+            Debug.Log("Turning inventory invisible");
+            return;
+        }
+
+        Debug.Log("Turning inventory visible");
+
+
     }
     #endregion
 }

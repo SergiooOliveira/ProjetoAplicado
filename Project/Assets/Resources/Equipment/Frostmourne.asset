@@ -28,3 +28,4 @@ MonoBehaviour:
   itemResistanceBonus:
     spellAfinity: 0
     amount: 0
+  isItemEquiped: 0

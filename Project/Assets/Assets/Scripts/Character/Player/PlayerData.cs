@@ -25,7 +25,7 @@ public class PlayerData : ScriptableObject, ICharacter
     [Header("Equipables and Inventory")]
     [SerializeField] private List<Spell> characterEquipedSpells;    // Character Equiped Spells
     [SerializeField] private List<Item> characterInventory;         // Character Inventory (Also, drop table for enemies)
-    [SerializeField] private List<Item> characterEquipedItems;      // Character EquipedItems (Also, drop table for enemies)
+    [SerializeField] private List<Equipment> characterEquipedItems; // Character EquipedItems (Also, drop table for enemies)
     #endregion
 
     #region Property implementation
@@ -49,7 +49,7 @@ public class PlayerData : ScriptableObject, ICharacter
     // *----- Equipables and Inventory -----*
     public List<Spell> CharacterEquipedSpells => characterEquipedSpells;
     public List<Item> CharacterInventory => characterInventory;
-    public List<Item> CharacterEquipedItems => characterEquipedItems;
+    public List<Equipment> CharacterEquipedItems => characterEquipedItems;
     #endregion
 
     #region Methods

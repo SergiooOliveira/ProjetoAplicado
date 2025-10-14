@@ -14,6 +14,9 @@ public class Equipment : Item
     [SerializeField] private float itemManaBonus;               // Item Mana Bonus
     [SerializeField] private float itemMovementSpeedBonus;      // Item Movement Speed Bonus in percentage
     [SerializeField] private Resistance itemResistanceBonus;    // Item Resistance Bonus in percentage
+
+    [Header("Equiped Flag")]
+    [SerializeField] private bool isItemEquiped;
     #endregion
 
     #region Property implementation
@@ -25,5 +28,8 @@ public class Equipment : Item
     public float ItemManaBonus => itemManaBonus;
     public float ItemMovementSpeedBonus => itemMovementSpeedBonus;
     public Resistance ItemResistanceBonus => itemResistanceBonus;
+
+    // *----- Equiped Flag -----*
+    public bool IsItemEquiped => isItemEquiped;
     #endregion
 }

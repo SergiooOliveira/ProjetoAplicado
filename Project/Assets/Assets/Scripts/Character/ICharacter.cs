@@ -25,7 +25,7 @@ public interface ICharacter
     // *----- Equipables and Inventory -----*
     List<Spell> CharacterEquipedSpells { get; }
     List<Item> CharacterInventory { get; }
-    List<Item> CharacterEquipedItems { get; }
+    List<Equipment> CharacterEquipedItems { get; }
     #endregion
 
     #region Methods
