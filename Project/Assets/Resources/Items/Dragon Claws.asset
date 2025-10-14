@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Dragon Claws
   m_EditorClassIdentifier: 
   itemName: Dragon Claws
-  itemDescription: A Fallen Dragon weapon
+  itemDescription: A fallen dragon weapon
   itemPrefeb: {fileID: 681572975424605454, guid: 5370bea0216ae494c9a334486a90260a, type: 3}
   itemType: 0
+  itemRarity: 3
   isItemSellable: 1
-  itemSellValue: 10
+  itemSellValue: 200

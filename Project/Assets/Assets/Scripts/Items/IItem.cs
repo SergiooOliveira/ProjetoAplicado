@@ -1,6 +1,7 @@
 using UnityEngine;
 
 public enum ItemType { Ingredient, Trash, KeyItem }
+public enum ItemRarity { Common, Rare, Epic, Legendary }
 
 public interface IItem
 {
@@ -9,7 +10,7 @@ public interface IItem
     string ItemName { get; }
     string ItemDescription { get; }
     GameObject ItemPrefab { get; }
-    ItemType ItemType { get; }
+    ItemRarity ItemRarity { get; }
 
     [Header("Value")]
     bool IsItemSellable { get; }

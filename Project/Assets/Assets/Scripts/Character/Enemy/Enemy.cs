@@ -151,13 +151,19 @@ public class Enemy : MonoBehaviour
             return;
         }
 
-        Debug.Log($"EnemyManager.Instance is {(EnemyManager.Instance == null ? "NULL" : "OK")}");
-        Debug.Log($"Enemy reference (this) is {(this == null ? "NULL" : "OK")}");
+        //Debug.Log($"EnemyManager.Instance is {(EnemyManager.Instance == null ? "NULL" : "OK")}");
+        //Debug.Log($"Enemy reference (this) is {(this == null ? "NULL" : "OK")}");
 
         EnemyManager.Instance.RemoveEnemy(this);
 
         foreach (Item item in runtimeData.CharacterInventory)
         {
+            /* TODO: Item drop logic
+            * Using runtimeData.CharacterInventory and runtimeData.CharacterEquipedItems
+            * Both have a chance to drop those items, slightly less chance for the equiped items
+            * Utilize the rarity of an item to determine the drop rate and drop quantity
+            */ 
+
             int dropNumber = Random.Range(0, runtimeData.CharacterLevel * 2);
 
             // Add to Player Inventory
