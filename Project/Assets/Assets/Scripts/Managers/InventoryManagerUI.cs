@@ -19,6 +19,7 @@ public class InventoryManagerUI : MonoBehaviour
     {
         foreach (Item item in player.CharacterInventory)
         {
+            GameObject tempSlot = Instantiate(slot);
             
         }
     }
