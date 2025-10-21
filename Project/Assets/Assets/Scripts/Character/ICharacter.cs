@@ -28,9 +28,15 @@ public interface ICharacter
     List<Equipment> CharacterEquipedItems { get; }
     #endregion
 
-    #region Methods
+    #region Spell Methods
     void AddSpell(Spell spell);
     void RemoveSpell(int slot, Spell spell);
     void SwapSpell(int slot, Spell spellToRemove, Spell spellToAdd);
+    #endregion
+
+    #region Item Methods
+    void AddItem(Item item, int amount);
+    void RemoveItem(int slot, Item item);
+    void SellItem(int slot, Item item);
     #endregion
 }

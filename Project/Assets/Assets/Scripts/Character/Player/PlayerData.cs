@@ -52,7 +52,7 @@ public class PlayerData : ScriptableObject, ICharacter
     public List<Equipment> CharacterEquipedItems => characterEquipedItems;
     #endregion
 
-    #region Methods
+    #region Spell Methods
     /// <summary>
     /// Call this method to add a Spell to the player spell book
     /// TODO: Change this to add an int with the slot to place said spell
@@ -101,6 +101,48 @@ public class PlayerData : ScriptableObject, ICharacter
     public void ClearSpellList()
     {
         characterEquipedSpells = new List<Spell>();
+    }
+    #endregion
+
+    #region Inventory Methods
+    /// <summary>
+    /// Call this method to add an item to the player inventory
+    /// </summary>
+    /// <param name="item">Item to add</param>
+    /// <param name="amount">Amount</param>
+    public void AddItem(Item item, int amount)
+    {        
+        Item existingItem = characterInventory.Find(item => item.ItemName == item.ItemName);
+
+        if (existingItem == null)
+        {
+            item.AddQuantity(amount);
+            characterInventory.Add(item);
+        }
+        else
+        {
+            existingItem.AddQuantity(amount);
+        }
+    }
+
+    /// <summary>
+    /// Call this method to sell an item from the player inventory
+    /// </summary>
+    /// <param name="slot">Slot in the inventory</param>
+    /// <param name="item">Item to sell</param>
+    public void SellItem(int slot, Item item)
+    {
+
+    }
+
+    /// <summary>
+    /// Call this method to remove an item from the player inventory
+    /// </summary>
+    /// <param name="slot">Slot in the inventory</param>
+    /// <param name="item">Item to remove</param>
+    public void RemoveItem(int slot, Item item)
+    {
+
     }
     #endregion
 }

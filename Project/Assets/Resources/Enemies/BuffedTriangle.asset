@@ -19,7 +19,7 @@ MonoBehaviour:
   characterType: 0
   characterSpawnLevel: 0
   characterHp:
-    current: 0
+    current: 100
     max: 100
   characterXp:
     current: 0
@@ -35,5 +35,6 @@ MonoBehaviour:
   - spellAfinity: 2
     amount: 20
   characterEquipedSpells: []
-  characterInventory: []
+  characterInventory:
+  - {fileID: 11400000, guid: 4f2a5bc899e04b84aa6d4aa64595bcac, type: 2}
   characterEquipedItems: []

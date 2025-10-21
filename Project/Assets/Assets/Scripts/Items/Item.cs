@@ -10,7 +10,7 @@ public class Item : ScriptableObject, IItem
     [SerializeField] private GameObject itemPrefeb;     // Item Prefab
     [SerializeField] private ItemType itemType;         // Item Type
     [SerializeField] private ItemRarity itemRarity;     // Item Rarity
-    [SerializeField] private int itemQuantity;
+    [SerializeField] private int itemQuantity;          // Item Quantity
 
     [Header("Value")]
     [SerializeField] private bool isItemSellable;       // Is item Sellable
@@ -29,5 +29,27 @@ public class Item : ScriptableObject, IItem
     // *----- Value -----*
     public bool IsItemSellable => isItemSellable;
     public int ItemSellValue => itemSellValue;
+    #endregion
+
+    #region Methods
+    // TODO: It's not on the runTimeSide
+
+    /// <summary>
+    /// Call this method to add items
+    /// </summary>
+    /// <param name="quantity">Quantity to add</param>
+    public void AddQuantity(int quantity)
+    {
+        itemQuantity += quantity;
+    }
+
+    /// <summary>
+    /// Call this method to remove items
+    /// </summary>
+    /// <param name="quantity">Quantity to remove</param>
+    public void RemoveQuantity(int quantity)
+    {
+        itemQuantity = Mathf.Max(0, itemQuantity - quantity);
+    }
     #endregion
 }

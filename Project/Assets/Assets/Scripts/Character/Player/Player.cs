@@ -4,7 +4,7 @@ public class Player : MonoBehaviour
 {
     public PlayerData playerData;
     
-    private PlayerData runTimePlayerData;    
+    private PlayerData runTimePlayerData;
 
     #region Unity Methods
     public void Awake ()
@@ -18,6 +18,9 @@ public class Player : MonoBehaviour
         GameManager.Instance.RegisterPlayer(this);
     }
 
+    /// <summary>
+    /// Call this method to initialize the player data
+    /// </summary>
     public void Initialize()
     {
         runTimePlayerData.CharacterHp.Initialize();
@@ -31,5 +34,5 @@ public class Player : MonoBehaviour
     public PlayerData RunTimePlayerData => runTimePlayerData;
 
     public int GetPlayerLevel() => runTimePlayerData.CharacterLevel;
-    #endregion 
+    #endregion
 }

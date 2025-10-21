@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3a920a6ad81dfeb4ea643c54abb19c6f, type: 3}
-  m_Name: Dragon Claws
+  m_Name: Dragon Claws 1
   m_EditorClassIdentifier: 
-  itemName: Dragon Claws
+  itemName: Dragon Claws Rare
   itemDescription: A fallen dragon weapon
   itemPrefeb: {fileID: 681572975424605454, guid: 5370bea0216ae494c9a334486a90260a, type: 3}
   itemType: 0
   itemRarity: 3
-  itemQuantity: 42
+  itemQuantity: 0
   isItemSellable: 1
   itemSellValue: 200

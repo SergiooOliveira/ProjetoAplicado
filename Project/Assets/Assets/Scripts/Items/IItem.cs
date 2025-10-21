@@ -17,4 +17,8 @@ public interface IItem
     bool IsItemSellable { get; }
     int ItemSellValue { get; }
     #endregion
+
+    #region Methods
+    void AddQuantity(int quantity);
+    #endregion
 }

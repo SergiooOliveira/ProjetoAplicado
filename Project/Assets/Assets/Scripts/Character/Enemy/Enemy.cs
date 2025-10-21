@@ -80,6 +80,7 @@ public class Enemy : MonoBehaviour
     /// <param name="damageReceived">Damage Received</param>
     public void CalculateDamage(Player player, Spell spell)
     {
+        #region Null check
         if (enemyData == null)
         {
             Debug.Log("Enemy Data is null");
@@ -91,6 +92,13 @@ public class Enemy : MonoBehaviour
             Debug.Log("Spell is null");
             return;
         }
+
+        if (player == null)
+        {
+            Debug.Log("Player is null");
+            return;
+        }
+        #endregion
 
         // Step 1: Percentile defense reduction
         float defenseMultiplier = 100f / (100f + runtimeData.CharacterDefense);
@@ -109,8 +117,8 @@ public class Enemy : MonoBehaviour
         int finalDamage = Mathf.Max(1, Mathf.RoundToInt(baseDamage));        
 
         runtimeData.CharacterHp.TakeDamage(finalDamage);
-        Debug.Log($"RuntimeData.CharacterHp: {runtimeData.CharacterHp.Current}");
-        if (runtimeData.CharacterHp.Current <= 0) Die();
+        Debug.Log($"{player.RunTimePlayerData.CharacterName} - RuntimeData.CharacterHp: {runtimeData.CharacterHp.Current}");
+        if (runtimeData.CharacterHp.Current <= 0) Die(player);
     }
 
     /// <summary>
@@ -137,8 +145,9 @@ public class Enemy : MonoBehaviour
     /// <summary>
     /// Call this method to destroy an Enemy and get it's drops 
     /// </summary>
-    private void Die()
+    private void Die(Player player)
     {
+        #region Null check
         if (runtimeData == null)
         {
             Debug.Log("Enemy Data is null");
@@ -150,6 +159,7 @@ public class Enemy : MonoBehaviour
             Debug.Log("Enemy is null");
             return;
         }
+        #endregion
 
         //Debug.Log($"EnemyManager.Instance is {(EnemyManager.Instance == null ? "NULL" : "OK")}");
         //Debug.Log($"Enemy reference (this) is {(this == null ? "NULL" : "OK")}");
@@ -166,8 +176,10 @@ public class Enemy : MonoBehaviour
 
             int dropNumber = Random.Range(0, runtimeData.CharacterLevel * 2);
 
+            Debug.Log($"Adding {dropNumber} {item} to player inventory");
+
             // Add to Player Inventory
-            Debug.Log($"Dropped {dropNumber} {item.ItemName} to Player");
+            player.RunTimePlayerData.AddItem(item, dropNumber);
         }
     }    
 }

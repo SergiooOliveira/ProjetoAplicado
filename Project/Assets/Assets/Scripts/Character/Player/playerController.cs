@@ -24,10 +24,10 @@ public class PlayerController : NetworkBehaviour
     [Header("Inventory")]
     private bool isInventoryOpen = false;
     public GameObject inventoryPanel;
+    private InventoryManagerUI inventoryManagerUI;
     #endregion
 
     #region Unity Methods
-
     public override void OnStartClient()
     {
         //Debug.Log("test owner");
@@ -42,13 +42,18 @@ public class PlayerController : NetworkBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        player = GetComponent<Player>();
+        playerData = player.RunTimePlayerData;
+
+        // TODO: Not sure if we need this
+        inventoryManagerUI = inventoryPanel.GetComponent<InventoryManagerUI>();
+
     }
 
     private void Start()
     {
-        animator = GetComponent<Animator>();
-        player = GetComponent<Player>();
-        playerData = player.RunTimePlayerData;
+        //playerData.CharacterInventory.Add();
     }
 
     private void FixedUpdate()
@@ -214,7 +219,7 @@ public class PlayerController : NetworkBehaviour
 
             inventoryPanel.SetActive(!isInventoryOpen);
 
-
+            // inventoryManagerUI.SetAllSlots();
         }
     }
     #endregion
