@@ -3,10 +3,8 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public PlayerData playerData;
-    public GameObject inventoryPrefab;
-
-    private PlayerData runTimePlayerData;
-    private InventoryManagerUI inventoryManagerUI;
+    
+    private PlayerData runTimePlayerData;    
 
     #region Unity Methods
     public void Awake ()
@@ -25,11 +23,6 @@ public class Player : MonoBehaviour
         runTimePlayerData.CharacterHp.Initialize();
         runTimePlayerData.CharacterMana.Initialize();
         runTimePlayerData.ClearSpellList();
-
-        GameObject tempInventory = Instantiate(inventoryPrefab, GameObject.Find("UIRoot").transform);
-        inventoryManagerUI = tempInventory.GetComponent<InventoryManagerUI>();
-
-        inventoryManagerUI.Bind(runTimePlayerData);
     }
 
     /// <summary>

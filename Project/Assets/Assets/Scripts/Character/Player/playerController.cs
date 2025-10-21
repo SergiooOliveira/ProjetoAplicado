@@ -23,9 +23,8 @@ public class PlayerController : NetworkBehaviour
     // Inventory
     [Header("Inventory")]
     private bool isInventoryOpen = false;
-    public Canvas inventoryPanel;
+    public GameObject inventoryPanel;
     #endregion
-
 
     #region Unity Methods
 
@@ -209,19 +208,14 @@ public class PlayerController : NetworkBehaviour
     /// <param name="callbackContext"></param>
     public void ToggleInventory(InputAction.CallbackContext callbackContext)
     {
-        isInventoryOpen = !isInventoryOpen;
-        inventoryPanel.enabled = isInventoryOpen;
-
-        // if inventory disabled turn it off
-        if (!isInventoryOpen)
+        if (callbackContext.performed)
         {
-            Debug.Log("Turning inventory invisible");
-            return;
+            isInventoryOpen = inventoryPanel.activeSelf;
+
+            inventoryPanel.SetActive(!isInventoryOpen);
+
+
         }
-
-        Debug.Log("Turning inventory visible");
-
-
     }
     #endregion
 }
