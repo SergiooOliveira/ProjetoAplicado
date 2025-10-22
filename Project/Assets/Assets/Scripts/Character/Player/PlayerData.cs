@@ -73,7 +73,7 @@ public class PlayerData : ScriptableObject, ICharacter
             CharacterEquipedSpells[0].Select();
             SpellManager.Instance.selectedSpell = spell;
         }
-        Debug.Log("Added: " + spell.name);
+        // Debug.Log("Added: " + spell.name);
     }
 
     /// <summary>
@@ -112,7 +112,7 @@ public class PlayerData : ScriptableObject, ICharacter
     /// <param name="amount">Amount</param>
     public void AddItem(Item item, int amount)
     {        
-        Item existingItem = characterInventory.Find(item => item.RunTimeItemData.ItemName == item.RunTimeItemData.ItemName);
+        Item existingItem = characterInventory.Find(i => i.RunTimeItemData.ItemName == item.RunTimeItemData.ItemName);
 
         if (existingItem == null)
         {

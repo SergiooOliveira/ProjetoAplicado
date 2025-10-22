@@ -143,7 +143,7 @@ public class PlayerController : NetworkBehaviour
         //if (callbackContext.performed) Debug.Log($"Space Pressed");
         //if (IsGrounded()) Debug.Log($"Space Pressed");
 
-        Debug.Log("jump press");
+        // Debug.Log("jump press");
         if (callbackContext.performed && IsGrounded())
         {
             //Debug.Log("Jumping");

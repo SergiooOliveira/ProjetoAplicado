@@ -29,7 +29,7 @@ public class SpellProjectile : MonoBehaviour
         if (collision.CompareTag("Player")) return;
         if (collision.CompareTag("Grid")) return;
 
-        Debug.Log($"Triggered with {collision.name}");
+        // Debug.Log($"Triggered with {collision.name}");
 
         switch (spellData.SpellProjectileType)
         {

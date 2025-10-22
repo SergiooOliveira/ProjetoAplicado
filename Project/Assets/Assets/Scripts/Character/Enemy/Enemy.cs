@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    // Info and stats of enemy
-    // TODO: Shouldn't be a MonoBehaviour. EnemyManager should be the Monobehaviour
     public EnemyData enemyData;
     private EnemyData runtimeData;
 
@@ -132,7 +130,7 @@ public class Enemy : MonoBehaviour
         int finalDamage = Mathf.Max(1, Mathf.RoundToInt(baseDamage));        
 
         runtimeData.CharacterHp.TakeDamage(finalDamage);
-        Debug.Log($"{player.RunTimePlayerData.CharacterName} - RuntimeData.CharacterHp: {runtimeData.CharacterHp.Current}");
+        //Debug.Log($"{player.RunTimePlayerData.CharacterName} - RuntimeData.CharacterHp: {runtimeData.CharacterHp.Current}");
         if (runtimeData.CharacterHp.Current <= 0) Die(player);
     }
 
@@ -149,7 +147,7 @@ public class Enemy : MonoBehaviour
         {
             if (r.SpellAfinity == resistanceAfinity)
             {
-                Debug.Log($"{r.SpellAfinity} is {r.Amount}% resistant to {spellAfinity}");
+                // Debug.Log($"{r.SpellAfinity} is {r.Amount}% resistant to {spellAfinity}");
                 return r.Amount;
             }
         }

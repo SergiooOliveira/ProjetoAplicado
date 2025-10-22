@@ -6,9 +6,9 @@ public class Item : MonoBehaviour
     private ItemData runTimeItemData;
 
     public void Initialize()
-    {
-        Debug.Log($"Initializing {runTimeItemData.ItemName}");
-        runTimeItemData = itemData;
+    {        
+        runTimeItemData = ScriptableObject.Instantiate(itemData);
+        // Debug.Log($"Initializing {runTimeItemData.ItemName}");
     }
 
     public ItemData RunTimeItemData => runTimeItemData;

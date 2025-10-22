@@ -19,12 +19,12 @@ public class Chest : MonoBehaviour
     {
         if (isOpened) return;
 
-        Debug.Log($"Giving Player {chestData}");
+        // Debug.Log($"Giving Player {chestData}");
 
         if (spellReward != null && playerData != null)
         {
             playerData.AddSpell(spellReward);
-            Debug.Log($"Added spell {spellReward.name} to player!");
+            // Debug.Log($"Added spell {spellReward.name} to player!");
         }
         else
         {
