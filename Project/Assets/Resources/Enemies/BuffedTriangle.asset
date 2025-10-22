@@ -36,5 +36,6 @@ MonoBehaviour:
     amount: 20
   characterEquipedSpells: []
   characterInventory:
-  - {fileID: 11400000, guid: 4f2a5bc899e04b84aa6d4aa64595bcac, type: 2}
-  characterEquipedItems: []
+  - {fileID: 791059958512238194, guid: 5370bea0216ae494c9a334486a90260a, type: 3}
+  characterEquipedItems:
+  - {fileID: -6673210822022468371, guid: 43d8d4ef6d98f4d469f653da5213643e, type: 3}

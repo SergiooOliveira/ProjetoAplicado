@@ -20,8 +20,8 @@ public class InventorySlotUI : MonoBehaviour, IPointerEnterHandler
 
         if (itemData == null) return;
 
-        tb_Name.text = itemData.ItemName;
-        tb_Amount.text = itemData.ItemQuantity.ToString();
+        tb_Name.text = itemData.RunTimeItemData.ItemName;
+        tb_Amount.text = itemData.RunTimeItemData.ItemQuantity.ToString();
     }
 
     public void OnPointerEnter(PointerEventData eventData)

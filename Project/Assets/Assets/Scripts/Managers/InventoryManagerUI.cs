@@ -31,8 +31,8 @@ public class InventoryManagerUI : MonoBehaviour
             TMP_Text tb_name = name.GetComponent<TMP_Text>();
             TMP_Text tb_quantity = quantity.GetComponent<TMP_Text>();
 
-            tb_name.text = item.ItemName;
-            tb_quantity.text = item.ItemQuantity.ToString();
+            tb_name.text = item.RunTimeItemData.ItemName;
+            tb_quantity.text = item.RunTimeItemData.ItemQuantity.ToString();
         }
     }
 

@@ -112,16 +112,16 @@ public class PlayerData : ScriptableObject, ICharacter
     /// <param name="amount">Amount</param>
     public void AddItem(Item item, int amount)
     {        
-        Item existingItem = characterInventory.Find(item => item.ItemName == item.ItemName);
+        Item existingItem = characterInventory.Find(item => item.RunTimeItemData.ItemName == item.RunTimeItemData.ItemName);
 
         if (existingItem == null)
         {
-            item.AddQuantity(amount);
+            item.RunTimeItemData.AddQuantity(amount);
             characterInventory.Add(item);
         }
         else
         {
-            existingItem.AddQuantity(amount);
+            existingItem.RunTimeItemData.AddQuantity(amount);
         }
     }
 

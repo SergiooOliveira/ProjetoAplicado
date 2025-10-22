@@ -11,8 +11,23 @@ public class Enemy : MonoBehaviour
 
     private void Awake()
     {
-        enemyData.CharacterHp.Initialize();
+        Initialize();
         runtimeData = Instantiate(enemyData);
+    }
+
+    private void Initialize()
+    {
+        enemyData.CharacterHp.Initialize();
+
+        foreach (Item item in enemyData.CharacterInventory)
+        {
+            item.Initialize();
+        }
+
+        foreach (Equipment equipment in enemyData.CharacterEquipedItems)
+        {
+            equipment.Initialize();
+        }
     }
 
     public void Interact()

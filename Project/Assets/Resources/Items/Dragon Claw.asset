@@ -9,14 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a920a6ad81dfeb4ea643c54abb19c6f, type: 3}
-  m_Name: Dragon Claws
+  m_Script: {fileID: 11500000, guid: 4e33eca162b44dd4e8fa41e8ab3d4f8d, type: 3}
+  m_Name: Dragon Claw
   m_EditorClassIdentifier: 
-  itemName: Dragon Claws
-  itemDescription: A fallen dragon weapon
+  itemName: Dragon Claw
+  itemDescription: The weapons of a fallen dragon
   itemPrefeb: {fileID: 681572975424605454, guid: 5370bea0216ae494c9a334486a90260a, type: 3}
   itemType: 0
   itemRarity: 3
-  itemQuantity: 42
+  itemQuantity: 0
   isItemSellable: 1
-  itemSellValue: 200
+  itemSellValue: 2000

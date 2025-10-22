@@ -20,7 +20,7 @@ public class ItemManager : MonoBehaviour
     {
         foreach (Item item in items)
         {
-            Debug.Log($"{item.ItemName} Loaded");
+            Debug.Log($"{item.RunTimeItemData.ItemName} Loaded");
         }
     }
 

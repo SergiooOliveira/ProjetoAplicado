@@ -7,6 +7,11 @@ public class Chest : MonoBehaviour
     //public PlayerData playerData;
     private bool isOpened = false;
 
+    private void Awake()
+    {
+        chestData.Initialize();
+    }
+
     /// <summary>
     /// Call this method to Interact with a chest
     /// </summary>  
