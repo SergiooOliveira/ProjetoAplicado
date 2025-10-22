@@ -4,7 +4,16 @@ using UnityEngine;
 public class ChestData : ScriptableObject
 {
     public string chestName;
-    public Item fixedDrop;
+    public GameObject dropObject;
+    private ItemData itemDrop;
+
+    public void Initialize()
+    {
+        Item item = dropObject.GetComponent<Item>();
+
+        item.Initialize();
+        itemDrop = item.RunTimeItemData;
+    }
 
     /// <summary>
     /// Call this method to get the info of an item
@@ -12,7 +21,7 @@ public class ChestData : ScriptableObject
     /// <returns>Returns the name and the type of the item</returns>
     public override string ToString()
     {
-        string info = $"Name: {fixedDrop.name}\nItem Type: {fixedDrop.ItemType}";
+        string info = $"Name: {itemDrop.ItemName}\nItem Type: {itemDrop.ItemType}";
 
         return info;
     }

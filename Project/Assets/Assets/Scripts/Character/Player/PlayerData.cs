@@ -25,7 +25,7 @@ public class PlayerData : ScriptableObject, ICharacter
     [Header("Equipables and Inventory")]
     [SerializeField] private List<Spell> characterEquipedSpells;    // Character Equiped Spells
     [SerializeField] private List<Item> characterInventory;         // Character Inventory (Also, drop table for enemies)
-    [SerializeField] private List<Item> characterEquipedItems;      // Character EquipedItems (Also, drop table for enemies)
+    [SerializeField] private List<Equipment> characterEquipedItems; // Character EquipedItems (Also, drop table for enemies)    
     #endregion
 
     #region Property implementation
@@ -49,10 +49,10 @@ public class PlayerData : ScriptableObject, ICharacter
     // *----- Equipables and Inventory -----*
     public List<Spell> CharacterEquipedSpells => characterEquipedSpells;
     public List<Item> CharacterInventory => characterInventory;
-    public List<Item> CharacterEquipedItems => characterEquipedItems;
+    public List<Equipment> CharacterEquipedItems => characterEquipedItems;
     #endregion
 
-    #region Methods
+    #region Spell Methods
     /// <summary>
     /// Call this method to add a Spell to the player spell book
     /// TODO: Change this to add an int with the slot to place said spell
@@ -101,6 +101,48 @@ public class PlayerData : ScriptableObject, ICharacter
     public void ClearSpellList()
     {
         characterEquipedSpells = new List<Spell>();
+    }
+    #endregion
+
+    #region Inventory Methods
+    /// <summary>
+    /// Call this method to add an item to the player inventory
+    /// </summary>
+    /// <param name="item">Item to add</param>
+    /// <param name="amount">Amount</param>
+    public void AddItem(Item item, int amount)
+    {        
+        Item existingItem = characterInventory.Find(item => item.RunTimeItemData.ItemName == item.RunTimeItemData.ItemName);
+
+        if (existingItem == null)
+        {
+            item.RunTimeItemData.AddQuantity(amount);
+            characterInventory.Add(item);
+        }
+        else
+        {
+            existingItem.RunTimeItemData.AddQuantity(amount);
+        }
+    }
+
+    /// <summary>
+    /// Call this method to sell an item from the player inventory
+    /// </summary>
+    /// <param name="slot">Slot in the inventory</param>
+    /// <param name="item">Item to sell</param>
+    public void SellItem(int slot, Item item)
+    {
+
+    }
+
+    /// <summary>
+    /// Call this method to remove an item from the player inventory
+    /// </summary>
+    /// <param name="slot">Slot in the inventory</param>
+    /// <param name="item">Item to remove</param>
+    public void RemoveItem(int slot, Item item)
+    {
+
     }
     #endregion
 }

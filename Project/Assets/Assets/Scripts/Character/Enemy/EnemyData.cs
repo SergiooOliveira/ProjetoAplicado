@@ -29,7 +29,7 @@ public class EnemyData : ScriptableObject, IEnemy
     [Header("Equipables and Inventory")]
     [SerializeField] private List<Spell> characterEquipedSpells;
     [SerializeField] private List<Item> characterInventory;
-    [SerializeField] private List<Item> characterEquipedItems;
+    [SerializeField] private List<Equipment> characterEquipedItems;
     #endregion
 
     #region Property implementation
@@ -56,7 +56,7 @@ public class EnemyData : ScriptableObject, IEnemy
     // *----- Equipables and Inventory -----*
     public List<Spell> CharacterEquipedSpells => characterEquipedSpells;
     public List<Item> CharacterInventory => characterInventory;
-    public List<Item> CharacterEquipedItems => characterEquipedItems;
+    public List<Equipment> CharacterEquipedItems => characterEquipedItems;
     #endregion
 
     #region Methods (not supported)
@@ -85,6 +85,21 @@ public class EnemyData : ScriptableObject, IEnemy
     public void SwapSpell(int slot, Spell spellToRemove, Spell spellToAdd)
     {
         throw new NotSupportedException("This class does not support swapping spells");
+    }
+
+    public void AddItem(Item item, int quantity)
+    {
+        throw new NotSupportedException("This class does not support adding items");
+    }
+
+    public void RemoveItem(int slot, Item item)
+    {
+        throw new NotSupportedException("This class does not support removing items");
+    }
+
+    public void SellItem(int slot, Item item)
+    {
+        throw new NotSupportedException("This class does not support selling items");
     }
     #endregion
 

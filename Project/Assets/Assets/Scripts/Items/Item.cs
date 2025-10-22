@@ -1,19 +1,15 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Items/New Item")]
-public class Item : ScriptableObject, IItem
+public class Item : MonoBehaviour
 {
-    [SerializeField] private string itemName;
-    [SerializeField] private string itemDescription;
-    [SerializeField] private GameObject itemPrefeb;
-    [SerializeField] private ItemType itemType;
-    [SerializeField] private bool isItemSellable;
-    [SerializeField] private int itemSellValue;
+    public ItemData itemData;
+    private ItemData runTimeItemData;
 
-    public string ItemName => itemName;
-    public string ItemDescription => itemDescription;
-    public GameObject ItemPrefab => itemPrefeb;
-    public ItemType ItemType => itemType;
-    public bool IsItemSellable => isItemSellable;
-    public int ItemSellValue => itemSellValue;
+    public void Initialize()
+    {
+        Debug.Log($"Initializing {runTimeItemData.ItemName}");
+        runTimeItemData = itemData;
+    }
+
+    public ItemData RunTimeItemData => runTimeItemData;
 }
