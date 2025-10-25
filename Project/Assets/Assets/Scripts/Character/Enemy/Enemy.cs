@@ -24,6 +24,7 @@ public class Enemy : MonoBehaviour
 
     Seeker seeker;
     Rigidbody2D rb;
+    bool grounded = true;
 
     private void Awake()
     {
@@ -129,6 +130,7 @@ public class Enemy : MonoBehaviour
     {
         if (path == null) return;
 
+        grounded = Physics2D.OverlapCircle(feetPoint.position, groundedRadius, groundLayer);
         TryJumpAlongPath();
 
         if (currentWaypoint >= path.vectorPath.Count)
@@ -153,11 +155,6 @@ public class Enemy : MonoBehaviour
         }
 
         rb.linearVelocity = Vector2.ClampMagnitude(rb.linearVelocity, runtimeData.CharacterMovementSpeed);
-
-        /* Verificar com um rayCast se o inimigo está perto de uma parede
-         * Caso esteja verificar em um circulo se há espaço para ele saltar
-         * Se houver saltar, caso contrário volta para trás
-         */ 
     }
 
     #region Movement
@@ -172,7 +169,14 @@ public class Enemy : MonoBehaviour
     private void ChasePlayer()
     {   
         Debug.LogWarning("Enemy is chasing, path starting");
-        seeker.StartPath(rb.position, player.position, OnPathComplete);
+
+        Debug.LogWarning("Grounded? " + grounded);
+
+        if (grounded)
+        {
+            Debug.LogWarning("Looking for a path");
+            seeker.StartPath(rb.position, player.position, OnPathComplete);
+        }
     }
 
     // Delete if fails
@@ -186,6 +190,9 @@ public class Enemy : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;            // what counts as ground/obstacle
     [SerializeField] private Transform feetPoint;              // where we test grounded (small circle at bottom)
     [SerializeField] private float groundedRadius = 0.12f;
+    [SerializeField] private float jumpCooldown = 0.5f; // seconds between allowed jumps
+    private float lastJumpTime = -999f;
+
     [SerializeField] private bool debugGizmos = true;
 
     // Call this each FixedUpdate before applying horizontal movement
@@ -196,10 +203,7 @@ public class Enemy : MonoBehaviour
         if (currentWaypoint >= path.vectorPath.Count) return;
 
         // 2) must be grounded (so we don't multi-jump)
-        bool grounded = Physics2D.OverlapCircle(feetPoint.position, groundedRadius, groundLayer);
         if (!grounded) return;
-
-        Debug.LogWarning("Grounded? " + grounded);
 
         // 3) look ahead a bit to the next waypoint (and possibly the one after if needed)
         // Use the next waypoint we are moving towards; if it's essentially same Y then maybe check the next non-equal Y waypoint.
@@ -231,7 +235,7 @@ public class Enemy : MonoBehaviour
         // 4) If the target is higher than a minimal step and less than or equal to max jump height -> consider jump
         if (heightDiff >= minStepHeight && heightDiff <= maxJumpHeight)
         {
-            Debug.Log($"HeightDiff = {heightDiff} for nextWP.y={nextWP.y}");
+            //Debug.LogWarning($"HeightDiff = {heightDiff} for nextWP.y={nextWP.y}");
 
             // 5) Check if there is space above the obstacle (so we don't jump into a ceiling)
             // We'll check an area at the landing position (slightly above nextWP) for obstacles.
@@ -253,23 +257,29 @@ public class Enemy : MonoBehaviour
                 Debug.DrawLine(bl, tl, Color.green);
             }
 
+            //if (debugGizmos)
+            //    Debug.LogWarning($"Jump cooldown remaining: {Mathf.Max(0, jumpCooldown - (Time.time - lastJumpTime))}");
+
             // if nothing overlaps, we have space and can jump
             if (overlap == null)
             {
-                // 6) Apply jump - set vertical velocity directly for consistent behavior
-                Vector2 v = rb.linearVelocity;
-                v.y = jumpVelocity;
-                rb.linearVelocity = v;
+                if (Time.time - lastJumpTime >= jumpCooldown)
+                {
+                    // 6) Apply jump - set vertical velocity directly for consistent behavior
+                    Vector2 v = rb.linearVelocity;
+                    v.y = jumpVelocity;
+                    rb.linearVelocity = v;
 
-                // optional: slightly push toward the waypoint horizontally so the arc moves forward
-                float dirX = Mathf.Sign(nextWP.x - rb.position.x);
-                Debug.Log("Jumping! heightDiff=" + heightDiff);
-                rb.linearVelocity = new Vector2(dirX * Mathf.Abs(rb.linearVelocity.x), jumpVelocity);
-                //rb.linearVelocity = new Vector2(dirX * Mathf.Abs(rb.linearVelocity.x), rb.linearVelocity.y);
+                    // optional: slightly push toward the waypoint horizontally so the arc moves forward
+                    float dirX = Mathf.Sign(nextWP.x - rb.position.x);
+                    //Debug.LogWarning("Jumping! heightDiff=" + heightDiff);
+                    rb.linearVelocity = new Vector2(dirX * Mathf.Abs(rb.linearVelocity.x), jumpVelocity);
+                    //rb.linearVelocity = new Vector2(dirX * Mathf.Abs(rb.linearVelocity.x), rb.linearVelocity.y);
 
-                // you may optionally increment currentWaypoint if this jump should skip small nodes:
-                // currentWaypoint = lookIndex;
-                
+                    // you may optionally increment currentWaypoint if this jump should skip small nodes:
+                    lastJumpTime = Time.time;
+                    currentWaypoint = lookIndex;
+                }
             }
             else
             {
