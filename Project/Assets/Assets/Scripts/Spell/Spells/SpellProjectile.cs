@@ -5,8 +5,7 @@ public class SpellProjectile : MonoBehaviour
 {
     protected ProjectileSpell spellData;
     protected Rigidbody2D rb;
-
-    public Player playerData;
+    private Player playerData;
 
     public virtual void Initialize(ProjectileSpell spell, Vector2 direction, Player player)
     {

@@ -7,7 +7,7 @@ public class Equipment : MonoBehaviour
 
     public void Initialize()
     {
-        runTimeEquipmentData = equipmentData;
+        runTimeEquipmentData = ScriptableObject.Instantiate(equipmentData);
     }
 
     public EquipmentData RunTimeEquipmentData => runTimeEquipmentData;

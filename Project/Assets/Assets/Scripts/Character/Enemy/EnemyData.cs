@@ -87,16 +87,28 @@ public class EnemyData : ScriptableObject, IEnemy
         throw new NotSupportedException("This class does not support swapping spells");
     }
 
+    /// <summary>
+    /// Do not use this method
+    /// </summary>
+    /// <exception cref="NotSupportedException">Not supported</exception>
     public void AddItem(Item item, int quantity)
     {
         throw new NotSupportedException("This class does not support adding items");
     }
 
+    /// <summary>
+    /// Do not use this method
+    /// </summary>
+    /// <exception cref="NotSupportedException">Not supported</exception>
     public void RemoveItem(int slot, Item item)
     {
         throw new NotSupportedException("This class does not support removing items");
     }
 
+    /// <summary>
+    /// Do not use this method
+    /// </summary>
+    /// <exception cref="NotSupportedException">Not supported</exception>
     public void SellItem(int slot, Item item)
     {
         throw new NotSupportedException("This class does not support selling items");
