@@ -98,3 +98,26 @@ InitTestScene*.unity*
 # Auto-generated scenes by play mode tests
 /[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
 /Project_clone_0
+
+# ======================================
+# A* Pathfinding Project specific
+# ======================================
+
+# Ignore cache and auto-generated graph data
+# (these are rebuilt when scanning)
+Assets/AstarPathfindingProject/GraphCaches/
+Assets/AstarPathfindingProject/GraphCaches.meta
+Assets/AstarPathfindingProject/graphs.cache
+Assets/AstarPathfindingProject/graphs.zip
+Assets/AstarPathfindingProject/astarData.asset
+Assets/AstarPathfindingProject/astarData_backup.asset
+
+# Keep scripts, settings, and prefabs!
+!Assets/AstarPathfindingProject/**/*.cs
+!Assets/AstarPathfindingProject/**/*.asset
+!Assets/AstarPathfindingProject/**/*.prefab
+!Assets/AstarPathfindingProject/**/*.mat
+!Assets/AstarPathfindingProject/**/*.shader
+
+# Ignore old demo content if unused
+Assets/AstarPathfindingProject/Demo*/**
