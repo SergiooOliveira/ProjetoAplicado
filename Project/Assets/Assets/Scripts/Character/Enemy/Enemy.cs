@@ -179,7 +179,6 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    // Delete if fails
     // Put these fields in your enemy MonoBehaviour
     [Header("Jump / Step Settings")]
     [SerializeField] private float maxJumpHeight = 2.0f;       // maximum vertical difference we will try to jump
@@ -190,7 +189,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;            // what counts as ground/obstacle
     [SerializeField] private Transform feetPoint;              // where we test grounded (small circle at bottom)
     [SerializeField] private float groundedRadius = 0.12f;
-    [SerializeField] private float jumpCooldown = 0.5f; // seconds between allowed jumps
+    [SerializeField] private float jumpCooldown = 1.5f;        // seconds between allowed jumps
     private float lastJumpTime = -999f;
 
     [SerializeField] private bool debugGizmos = true;
@@ -259,6 +258,7 @@ public class Enemy : MonoBehaviour
 
             //if (debugGizmos)
             //    Debug.LogWarning($"Jump cooldown remaining: {Mathf.Max(0, jumpCooldown - (Time.time - lastJumpTime))}");
+            Debug.LogWarning($"FeetY={feetPoint.position.y:F3}, PathNodeY={nextWP.y:F3}");
 
             // if nothing overlaps, we have space and can jump
             if (overlap == null)
