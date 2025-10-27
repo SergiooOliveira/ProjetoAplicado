@@ -26,6 +26,20 @@ public class Enemy : MonoBehaviour
     Rigidbody2D rb;
     bool grounded = true;
 
+    [Header("Jump / Step Settings")]
+    [SerializeField] private float maxJumpHeight = 2.0f;       // maximum vertical difference we will try to jump
+    [SerializeField] private float minStepHeight = 0.15f;      // minimum vertical difference treated as a step/jump
+    [SerializeField] private float jumpVelocity = 10f;         // vertical velocity applied when jumping
+    [SerializeField] private float spaceCheckHeight = 0.2f;    // how much vertical clearance we need above the obstacle
+    [SerializeField] private float spaceCheckWidth = 0.3f;     // width for the overhead box check
+    [SerializeField] private LayerMask groundLayer;            // what counts as ground/obstacle
+    [SerializeField] private Transform feetPoint;              // where we test grounded (small circle at bottom)
+    [SerializeField] private float groundedRadius = 0.12f;
+    [SerializeField] private float jumpCooldown = 1.5f;        // seconds between allowed jumps
+    private float lastJumpTime = -999f;
+
+    [SerializeField] private bool debugGizmos = true;
+
     private void Awake()
     {
         Initialize();
@@ -131,7 +145,10 @@ public class Enemy : MonoBehaviour
         if (path == null) return;
 
         grounded = Physics2D.OverlapCircle(feetPoint.position, groundedRadius, groundLayer);
+        
+        // Tries to jump if needed
         TryJumpAlongPath();
+
 
         if (currentWaypoint >= path.vectorPath.Count)
         {
@@ -178,23 +195,7 @@ public class Enemy : MonoBehaviour
             seeker.StartPath(rb.position, player.position, OnPathComplete);
         }
     }
-
-    // Put these fields in your enemy MonoBehaviour
-    [Header("Jump / Step Settings")]
-    [SerializeField] private float maxJumpHeight = 2.0f;       // maximum vertical difference we will try to jump
-    [SerializeField] private float minStepHeight = 0.15f;      // minimum vertical difference treated as a step/jump
-    [SerializeField] private float jumpVelocity = 10f;         // vertical velocity applied when jumping
-    [SerializeField] private float spaceCheckHeight = 0.2f;    // how much vertical clearance we need above the obstacle
-    [SerializeField] private float spaceCheckWidth = 0.3f;     // width for the overhead box check
-    [SerializeField] private LayerMask groundLayer;            // what counts as ground/obstacle
-    [SerializeField] private Transform feetPoint;              // where we test grounded (small circle at bottom)
-    [SerializeField] private float groundedRadius = 0.12f;
-    [SerializeField] private float jumpCooldown = 1.5f;        // seconds between allowed jumps
-    private float lastJumpTime = -999f;
-
-    [SerializeField] private bool debugGizmos = true;
-
-    // Call this each FixedUpdate before applying horizontal movement
+        
     private void TryJumpAlongPath()
     {
         // 1) must have a path and still have waypoints left
@@ -287,8 +288,6 @@ public class Enemy : MonoBehaviour
             }
         }
     }
-
-
     #endregion
 
     #region Attack
