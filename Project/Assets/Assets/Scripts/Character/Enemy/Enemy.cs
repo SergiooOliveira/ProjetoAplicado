@@ -23,8 +23,11 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float stepSmooth = 5f;
 
     Seeker seeker;
+    [SerializeField] private Animator animator;
     Rigidbody2D rb;
+    [SerializeField] private SpriteRenderer spriteRenderer;
     bool grounded = true;
+    bool isFacingRight = true;
 
     private void Awake()
     {
@@ -32,7 +35,14 @@ public class Enemy : MonoBehaviour
         runtimeData = Instantiate(enemyData);
 
         seeker = GetComponent<Seeker>();
+        animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+
+        if (animator == null)
+            animator = GetComponentInChildren<Animator>();
+
+        if (spriteRenderer == null)
+            spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     private void Start()
@@ -136,6 +146,7 @@ public class Enemy : MonoBehaviour
         if (currentWaypoint >= path.vectorPath.Count)
         {
             reachedEndOfPath = true;
+            UpdateAnimatorAndFlip();
             return;
         } else
         {
@@ -155,7 +166,33 @@ public class Enemy : MonoBehaviour
         }
 
         rb.linearVelocity = Vector2.ClampMagnitude(rb.linearVelocity, runtimeData.CharacterMovementSpeed);
+        UpdateAnimatorAndFlip();
     }
+
+    #region Animation
+    private void UpdateAnimatorAndFlip()
+    {
+        float speed = Mathf.Abs(rb.linearVelocity.x);
+        float verticalVelocity = rb.linearVelocity.y;
+
+        // Atualiza parâmetros do Animator
+        animator.SetFloat("Speed", speed);
+        animator.SetFloat("VerticalVelocity", verticalVelocity);
+        animator.SetBool("IsGrounded", grounded);
+
+        // Faz flip automático conforme direção do movimento
+        if (rb.linearVelocity.x > 0.05f && !isFacingRight)
+            Flip();
+        else if (rb.linearVelocity.x < -0.05f && isFacingRight)
+            Flip();
+    }
+
+    private void Flip()
+    {
+        isFacingRight = !isFacingRight;
+        spriteRenderer.flipX = !spriteRenderer.flipX;
+    }
+    #endregion
 
     #region Movement
     /// <summary>
@@ -287,8 +324,6 @@ public class Enemy : MonoBehaviour
             }
         }
     }
-
-
     #endregion
 
     #region Attack

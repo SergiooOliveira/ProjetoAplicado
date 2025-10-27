@@ -1,0 +1,656 @@
+fileFormatVersion: 2
+guid: 2853703c7a0ad464aba67873d3ad4832
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6451348108809758877
+    second: Atk2_Full_Skeleton_144_96_0
+  - first:
+      213: -1564306872568292879
+    second: Atk2_Full_Skeleton_144_96_1
+  - first:
+      213: -6016599214817425091
+    second: Atk2_Full_Skeleton_144_96_2
+  - first:
+      213: 265618258293601080
+    second: Atk2_Full_Skeleton_144_96_3
+  - first:
+      213: 8766844703846305203
+    second: Atk2_Full_Skeleton_144_96_4
+  - first:
+      213: 5669424620891926225
+    second: Atk2_Full_Skeleton_144_96_5
+  - first:
+      213: 3247768746077025110
+    second: Atk2_Full_Skeleton_144_96_6
+  - first:
+      213: 9052061472761821836
+    second: Atk2_Full_Skeleton_144_96_7
+  - first:
+      213: -8921970341474150833
+    second: Atk2_Full_Skeleton_144_96_8
+  - first:
+      213: 4349609608776256475
+    second: Atk2_Full_Skeleton_144_96_9
+  - first:
+      213: 690898058562922222
+    second: Atk2_Full_Skeleton_144_96_10
+  - first:
+      213: -7275965318190980046
+    second: Atk2_Full_Skeleton_144_96_11
+  - first:
+      213: -1547741555627116983
+    second: Atk2_Full_Skeleton_144_96_12
+  - first:
+      213: -816917762879323436
+    second: Atk2_Full_Skeleton_144_96_13
+  - first:
+      213: 4395567941078007410
+    second: Atk2_Full_Skeleton_144_96_14
+  - first:
+      213: -8308805498126611444
+    second: Atk2_Full_Skeleton_144_96_15
+  - first:
+      213: -916039712927072885
+    second: Atk2_Full_Skeleton_144_96_16
+  - first:
+      213: -3334314687908073355
+    second: Atk2_Full_Skeleton_144_96_17
+  - first:
+      213: 8000408438332399458
+    second: Atk2_Full_Skeleton_144_96_18
+  - first:
+      213: 7146780417438751469
+    second: Atk2_Full_Skeleton_144_96_19
+  - first:
+      213: -5310137850885950730
+    second: Atk2_Full_Skeleton_144_96_20
+  - first:
+      213: -9121806464437678400
+    second: Atk2_Full_Skeleton_144_96_21
+  - first:
+      213: -4248769044422578434
+    second: Atk2_Full_Skeleton_144_96_22
+  - first:
+      213: 4548483151313243885
+    second: Atk2_Full_Skeleton_144_96_23
+  - first:
+      213: -6118550707584107341
+    second: Atk2_Full_Skeleton_144_96_24
+  - first:
+      213: 1398829980789671402
+    second: Atk2_Full_Skeleton_144_96_25
+  - first:
+      213: -7667814186217899300
+    second: Atk2_Full_Skeleton_144_96_26
+  - first:
+      213: -3139117741007508164
+    second: Atk2_Full_Skeleton_144_96_27
+  - first:
+      213: 6379582117450096233
+    second: Atk2_Full_Skeleton_144_96_28
+  - first:
+      213: 2884638106437980726
+    second: Atk2_Full_Skeleton_144_96_29
+  - first:
+      213: 3438992783832026309
+    second: Atk2_Full_Skeleton_144_96_30
+  - first:
+      213: 4872219847797111798
+    second: Atk2_Full_Skeleton_144_96_31
+  - first:
+      213: -5035373740342589177
+    second: Atk2_Full_Skeleton_144_96_32
+  - first:
+      213: 7298198763924777083
+    second: Atk2_Full_Skeleton_144_96_33
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Atk2_Full_Skeleton_144_96_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 384
+        width: 144
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 367910463153876a0800000000000000
+      internalID: -6451348108809758877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk2_Full_Skeleton_144_96_1
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 384
+        width: 144
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f95ddcff277a4ae0800000000000000
+      internalID: -1564306872568292879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk2_Full_Skeleton_144_96_2
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 384
+        width: 144
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d39c9e434eeb08ca0800000000000000
+      internalID: -6016599214817425091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk2_Full_Skeleton_144_96_3
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 384
+        width: 144
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 833b27b066aafa300800000000000000
+      internalID: 265618258293601080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk2_Full_Skeleton_144_96_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 288
+        width: 144
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3bd06c53fc61aa970800000000000000
+      internalID: 8766844703846305203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk2_Full_Skeleton_144_96_5
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 288
+        width: 144
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1deed11a7a7ddae40800000000000000
+      internalID: 5669424620891926225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk2_Full_Skeleton_144_96_6
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 288
+        width: 144
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65379869774621d20800000000000000
+      internalID: 3247768746077025110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk2_Full_Skeleton_144_96_7
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 288
+        width: 144
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8ab7f813f16f9d70800000000000000
+      internalID: 9052061472761821836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk2_Full_Skeleton_144_96_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 144
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f46dcdbbe3bce2480800000000000000
+      internalID: -8921970341474150833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk2_Full_Skeleton_144_96_9
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 192
+        width: 144
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bdb0cbad4eaec5c30800000000000000
+      internalID: 4349609608776256475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk2_Full_Skeleton_144_96_10
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 192
+        width: 144
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee666acaf10969900800000000000000
+      internalID: 690898058562922222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk2_Full_Skeleton_144_96_11
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 192
+        width: 144
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2342a23c714960b90800000000000000
+      internalID: -7275965318190980046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk2_Full_Skeleton_144_96_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 144
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9463cb46141558ae0800000000000000
+      internalID: -1547741555627116983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk2_Full_Skeleton_144_96_13
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 96
+        width: 144
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d20fd47f99b9a4f0800000000000000
+      internalID: -816917762879323436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk2_Full_Skeleton_144_96_14
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 96
+        width: 144
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27ebc02f0c1300d30800000000000000
+      internalID: 4395567941078007410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk2_Full_Skeleton_144_96_15
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 96
+        width: 144
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0cc950eb6131bc80800000000000000
+      internalID: -8308805498126611444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk2_Full_Skeleton_144_96_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 144
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8db4d60cb29943f0800000000000000
+      internalID: -916039712927072885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk2_Full_Skeleton_144_96_17
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 0
+        width: 144
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5703fd115722ab1d0800000000000000
+      internalID: -3334314687908073355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk2_Full_Skeleton_144_96_18
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 144
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26f17d03619270f60800000000000000
+      internalID: 8000408438332399458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: d66dba8c2220de54c8f48f315dbd1f45
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Atk2_Full_Skeleton_144_96_0: -6451348108809758877
+      Atk2_Full_Skeleton_144_96_1: -1564306872568292879
+      Atk2_Full_Skeleton_144_96_10: 690898058562922222
+      Atk2_Full_Skeleton_144_96_11: -7275965318190980046
+      Atk2_Full_Skeleton_144_96_12: -1547741555627116983
+      Atk2_Full_Skeleton_144_96_13: -816917762879323436
+      Atk2_Full_Skeleton_144_96_14: 4395567941078007410
+      Atk2_Full_Skeleton_144_96_15: -8308805498126611444
+      Atk2_Full_Skeleton_144_96_16: -916039712927072885
+      Atk2_Full_Skeleton_144_96_17: -3334314687908073355
+      Atk2_Full_Skeleton_144_96_18: 8000408438332399458
+      Atk2_Full_Skeleton_144_96_2: -6016599214817425091
+      Atk2_Full_Skeleton_144_96_3: 265618258293601080
+      Atk2_Full_Skeleton_144_96_4: 8766844703846305203
+      Atk2_Full_Skeleton_144_96_5: 5669424620891926225
+      Atk2_Full_Skeleton_144_96_6: 3247768746077025110
+      Atk2_Full_Skeleton_144_96_7: 9052061472761821836
+      Atk2_Full_Skeleton_144_96_8: -8921970341474150833
+      Atk2_Full_Skeleton_144_96_9: 4349609608776256475
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
