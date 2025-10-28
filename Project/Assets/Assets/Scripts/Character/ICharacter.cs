@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -38,5 +39,14 @@ public interface ICharacter
     void AddItem(Item item, int amount);
     void RemoveItem(int slot, Item item);
     void SellItem(int slot, Item item);
+    #endregion
+
+    #region Equipment Methods
+    void AddBonusHp(int amount);
+    void AddBonusAttack(int amount);
+    void AddBonusAttackSpeed(float amount);
+    void AddBonusDefense(int amount);
+    void AddBonusMana(int amount);
+    void AddBonusMovementSpeed(float amount);
     #endregion
 }
