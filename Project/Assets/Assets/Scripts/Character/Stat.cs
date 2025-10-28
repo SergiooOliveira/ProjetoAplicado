@@ -18,7 +18,7 @@ public class Stat
     /// <summary>
     /// This method is called in the Awake so Current can be set
     /// </summary>
-    public void Initialize ()
+    public void Initialize()
     {        
         current = max;
     }
@@ -28,14 +28,15 @@ public class Stat
     /// Call this method to set a new Max value to a Stat
     /// </summary>
     /// <param name="amount">New max amount</param>
-    public void SetNewMax(int amount) => max = amount;
+    public void SetNewMax(int amount) => max += amount;
 
     /// <summary>
-    /// Call this method to increase the player hp
+    /// Call this method to increase both the current and the max
     /// </summary>
     /// <param name="amount">Amount to increase</param>
-    public void IncreaseMaxHP (int amount)
+    public void IncreaseMaxCurrent(int amount)
     {
+        Debug.LogWarning("Inside IncreaseMaxCurrent");
         max += amount;
         current += amount;
     }
@@ -44,7 +45,7 @@ public class Stat
     /// Call this method to heal the player
     /// </summary>
     /// <param name="amount">Amount to heal</param>
-    public void Heal (int amount) => current = Mathf.Max(Max, Current + amount);
+    public void IncreaseCurrent(int amount) => current = Mathf.Max(Max, Current + amount);
 
     /// <summary>
     /// Call this method to set the max xp to level up

@@ -165,7 +165,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   data:
-    dataString: UEsDBBQAAAgIAAAAIewbU0v3hAIAAD4FAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFlVE1z2jAQ/SuMzoWxHT7s3lpCSA8kTGgnF1+EtcYaZMkjyQGS4b93JdvYpVwQb3ef3r5d8UW4NBVkVum15myjGJDvI+LO5NuoDz7DmR6U3PFP6HLeObOFS6I+541arhAPXZlRJVjNsx/yIFxygGAtea50uWIHWCpjDcI5FQYwpJV11RKhrxE549c4cSUXPEULd/rEUxKMrnjMQFrQfepsEkazaBq3+eNoNgnCOJ7G07ZuOgmihyiJw8VqHCw8Ry0zQcsKmGuopwoX88m05Ulmk4cEPw+Jr5DYdZscTBInQwnBTSua2EvlTdlVBWhwrjBO0QMvtCkogB8K6zoaVr/muQHbWqTp5ZFrNLOhJT9V43BJzbFR+UFF7S4Ko9jLakg3/8XHoQ/nWpXP3b1h4O6wBc+Ob/SSUWMHIxjCj7300Jt1ouJI9wLeC5Avaq1VLRkGra5daW0geux/3lpbFpAde7yRegfWVe9+N/Fu3q6Hq+/+vBS83Hsnpw2wE8ob7tcENA7nFwr2S2RaCkSdij8GftPDcNvawBPXxmKoTZdO3l7V2qWSlffMdVPbpdISPNyKrkBSYS9bpLH3I7yLDa69izxR965ai9tY91zuSjzc5wfBXWirTrdhmUKdNmCK19oKLqEX7QIv6NNSSdls2NCTrmxX65xmg7JDzdm/q0UoxfeWzfHVQQ5xkIyjPWT7cL7PQxbnbAbE7x6X2CcV20Zoaw9OTfbkEves+7sZrTWt/LYzTU9r/lmqgeVc5mqXaQD52jDchIPGS/BhshXjaNAOrOXSz5t8pUSo7AgsvRGlvtPV2Wqa9iwpqfiHsg5JydL/v6TEwbdd3mr44HByl3dkV3L9C1BLAwQUAAAICAAAACHsdtoYn20AAAB4AAAACQAkAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAatWKkstKs7Mz1OyUjDRM9IzNNdRUEovSizIKAaKGII4pZkpIHa0UmKikalRspmhkWlqWqqFgaWuUVJqcpKhWVKaYYpFWoppqlIsUH1JZUGqX2JuKkRPQGJJRlpmXkpmXrqee1FmijvIaKXYWgBQSwECLQAUAAAICAAAACHsG1NL94QCAAA+BQAACwAkAAAAAAAAAAAAAAAAAAAAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwECLQAUAAAICAAAACHsdtoYn20AAAB4AAAACQAkAAAAAAAAAAAAAADRAgAAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsFBgAAAAACAAIAuAAAAIkDAAAAAA==
+    dataString: UEsDBBQAAAgIAAAAIey7BtPxcAIAACYFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFlVE1z2jAQ/SuMziVju0Cht5YQ0kMSprSTiy9CWmMNsuTRR4Bk+O9dyTZ26Anx3r7V2w/5gwhla2BOm7UR/ElzIN9HJJzJl1FPPsKJ7rXainfoYl4Fd2UIojHmN3VCI54GmdUVOCPYD7WXIThB0CtRaFOt+B6W2jqLcEGlBaSMdkGtEPoYkRP+jBdBcsZT9i2c3vG0SEYXPDJQDkwfOr1Ls2k2mU++topxNr1L0vl8Mpu2ykboFZO0qoGHKnp9upi1wjSZxUCFFbYxoRqmpRS2tUfcuY7lb+sSDIT6uaBYbbQUwksQ+9IF50PtS1FYcG0rDD3fC4NNa5KSn7rpZEXtoTH2RqWP92fzaKlJ+vQfP04jXRhdPXb3pkm4w5WCHX7TM6PWDVo9hO8/G/fqSOWB7iS8lqCe9dporziSzvgg9Ray+/7vtbRlCezQ443VG9DXfcO7yXZzDTVcYvWnpRTVLlB3kwbYSh3bHdcBDA7mFxqOy2LbFIgGF38t/KH74Va1xIMw1iGFTBi0CvZ22psQSlaxZ6Ea75baKIhwa7oGRaU7bzCNux3hDTe49oZ5oOH9tC1uue5Z3Egi3McnyQ210cfrsGypj09gyxfvpFDQmw7EM/ZpqZVqNmzYk0629aagbCDbe8E/rxahFN8Vm+HrggLmyWKc7YDt0tmuSPm84FMgcfeEwjqp3DRG2/bg1FSfXOGedZ+V0drQOm47N/S4Fu+VHrRcqEJvmQFQL02Gq3EweAk+Sr7iAhu0BeeEivMmHzmRmh2A59dEeax0dXKG5n2WnNTiTbuA5GQZvyM5CfB1lzcG3gQcw+Vdsgu5/ANQSwMEFAAACAgAAAAh7HbaGJ9tAAAAeAAAAAkAJABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGrVipLLSrOzM9TslIw0TPSMzTXUVBKL0osyCgGihiCOKWZKSB2tFJiopGpUbKZoZFpalqqhYGlrlFSanKSoVlSmmGKRVqKaapSLFB9SWVBql9ibipET0BiSUZaZl5KZl66nntRZoo7yGil2FoAUEsBAi0AFAAACAgAAAAh7LsG0/FwAgAAJgUAAAsAJAAAAAAAAAAAAAAAAAAAAGdyYXBoMC5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsBAi0AFAAACAgAAAAh7HbaGJ9tAAAAeAAAAAkAJAAAAAAAAAAAAAAAvQIAAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLBQYAAAAAAgACALgAAAB1AwAAAAA=
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
@@ -99309,6 +99309,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1148640954166823008, guid: d5eca7fdb628fb94d8e6fd2b40e6c661, type: 3}
+      propertyPath: jumpCooldown
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7425746158755909058, guid: d5eca7fdb628fb94d8e6fd2b40e6c661, type: 3}
       propertyPath: m_LocalPosition.x
       value: 20.44
@@ -102300,7 +102304,7 @@ TilemapCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_CompositeOperation: 1
+  m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
@@ -102344,59 +102348,9 @@ CompositeCollider2D:
   m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths:
-  - m_Collider: {fileID: 895953474}
-    m_ColliderPaths:
-    - - X: -150000000
-        Y: 60000000
-      - X: -200000000
-        Y: 60000000
-      - X: -200000000
-        Y: 50000000
-      - X: -150000000
-        Y: 50000000
-    - - X: 30000000
-        Y: 30000000
-      - X: -10000000
-        Y: 30000000
-      - X: -10000000
-        Y: 20000000
-      - X: 30000000
-        Y: 20000000
-    - - X: -40000000
-        Y: -220000000
-      - X: -230000000
-        Y: -220000000
-      - X: -230000000
-        Y: -230000000
-      - X: -40000000
-        Y: -230000000
-    - - X: 290000000
-        Y: -300000000
-      - X: 240000000
-        Y: -300000000
-      - X: 240000000
-        Y: -310000000
-      - X: 290000000
-        Y: -310000000
+  m_ColliderPaths: []
   m_CompositePaths:
-    m_Paths:
-    - - {x: -15.000029, y: 5}
-      - {x: -15.000029, y: 6}
-      - {x: -20, y: 5.999971}
-      - {x: -19.999971, y: 5}
-    - - {x: 2.999971, y: 2}
-      - {x: 2.999971, y: 3}
-      - {x: -1, y: 2.999971}
-      - {x: -0.99997073, y: 2}
-    - - {x: -4.000029, y: -23}
-      - {x: -4.000029, y: -22}
-      - {x: -23, y: -22.000029}
-      - {x: -22.999971, y: -23}
-    - - {x: 28.999971, y: -31}
-      - {x: 28.999971, y: -30}
-      - {x: 24, y: -30.000029}
-      - {x: 24.000029, y: -31}
+    m_Paths: []
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
@@ -105848,7 +105802,7 @@ Transform:
   m_GameObject: {fileID: 2062458685}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.081, y: -0.378, z: 0}
+  m_LocalPosition: {x: -0.42, y: -0.33, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

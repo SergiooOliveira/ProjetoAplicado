@@ -142,11 +142,13 @@ public class Enemy : MonoBehaviour
         foreach (Item item in enemyData.CharacterInventory)
         {
             item.Initialize();
+            
         }
 
         foreach (Equipment equipment in enemyData.CharacterEquipedItems)
         {
             equipment.Initialize();
+            GiveStat(equipment);
         }
     }
 
@@ -484,6 +486,35 @@ public class Enemy : MonoBehaviour
 
             // Add to Player Inventory
             player.RunTimePlayerData.AddItem(item, dropNumber);
+        }
+    }
+    #endregion
+
+    #region Stat
+    private void GiveStat(Equipment equipment)
+    {
+        if (equipment == null)
+        {
+            Debug.LogWarning("Equipment is null");
+            return;
+        }
+
+        // TOOD: Turn this into an override
+        Debug.LogWarning($"Enemy has {equipment.RunTimeEquipmentData.ItemName} with + " +
+            $"{equipment.RunTimeEquipmentData.ItemHpBonus} HP");
+
+        // Int and floats
+        runtimeData.AddBonusHp(equipment.RunTimeEquipmentData.ItemHpBonus);
+        runtimeData.AddBonusAttack(equipment.RunTimeEquipmentData.ItemAttackBonus);
+        runtimeData.AddBonusAttackSpeed(equipment.RunTimeEquipmentData.ItemAttackSpeedBonus);
+        runtimeData.AddBonusDefense(equipment.RunTimeEquipmentData.ItemDefenseBonus);
+        runtimeData.AddBonusMana(equipment.RunTimeEquipmentData.ItemManaBonus);
+        runtimeData.AddBonusMovementSpeed(equipment.RunTimeEquipmentData.ItemMovementSpeedBonus);
+
+        // Resistances
+        foreach (Resistance resistance in equipment.RunTimeEquipmentData.ItemResistanceBonus)
+        {
+            runtimeData.AddResistance(resistance);
         }
     }
     #endregion
