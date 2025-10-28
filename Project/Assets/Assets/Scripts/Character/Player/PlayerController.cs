@@ -63,8 +63,22 @@ public class PlayerController : NetworkBehaviour
         if (!isFacingRight && horizontal > 0f) Flip();
         else if (isFacingRight && horizontal < 0f) Flip();
 
-        if (!IsOwner)
-            return;
+        if (IsOwner) // só o jogador local
+        {
+            // Usa o novo método (Unity 2023+)
+            ParallaxController parallax = FindFirstObjectByType<ParallaxController>();
+
+            if (parallax != null)
+            {
+                Transform camTransform = transform.Find("CameraHolder/MainCamera");
+                if (camTransform != null)
+                {
+                    // Inicializa o parallax com a câmera deste jogador local
+                    parallax.InitializeCamera(camTransform);
+                }
+            }
+        }
+
         // Collect input every frame
         horizontal = Input.GetAxisRaw("Horizontal");
 
