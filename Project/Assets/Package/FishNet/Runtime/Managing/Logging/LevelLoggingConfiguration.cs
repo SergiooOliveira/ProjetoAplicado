@@ -126,8 +126,8 @@ namespace FishNet.Managing.Logging
         /// </summary>
         public override void Log(string value)
         {
-            if (CanLog(LoggingType.Common))
-                Debug.Log(AddSettingsToLog(value));
+            //if (CanLog(LoggingType.Common))
+            //    Debug.Log(AddSettingsToLog(value));
         }
 
         /// <summary>

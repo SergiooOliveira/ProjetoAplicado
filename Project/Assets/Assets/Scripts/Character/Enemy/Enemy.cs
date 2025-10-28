@@ -47,6 +47,9 @@ public class Enemy : MonoBehaviour
     {
         Initialize();
         runtimeData = Instantiate(enemyData);
+        GiveStat();
+
+        Debug.Log($"Initialized {runtimeData.ToString()}");
 
         seeker = GetComponent<Seeker>();
         animator = GetComponent<Animator>();
@@ -148,7 +151,6 @@ public class Enemy : MonoBehaviour
         foreach (Equipment equipment in enemyData.CharacterEquipedItems)
         {
             equipment.Initialize();
-            GiveStat(equipment);
         }
     }
 
@@ -160,7 +162,6 @@ public class Enemy : MonoBehaviour
         
         // Tries to jump if needed
         TryJumpAlongPath();
-
 
         if (currentWaypoint >= path.vectorPath.Count)
         {
@@ -224,13 +225,13 @@ public class Enemy : MonoBehaviour
 
     private void ChasePlayer()
     {   
-        Debug.LogWarning("Enemy is chasing, path starting");
+        //Debug.LogWarning("Enemy is chasing, path starting");
 
-        Debug.LogWarning("Grounded? " + grounded);
+        //Debug.LogWarning("Grounded? " + grounded);
 
         if (grounded)
         {
-            Debug.LogWarning("Looking for a path");
+            //Debug.LogWarning("Looking for a path");
             seeker.StartPath(rb.position, player.position, OnPathComplete);
         }
     }
@@ -298,7 +299,7 @@ public class Enemy : MonoBehaviour
 
             //if (debugGizmos)
             //    Debug.LogWarning($"Jump cooldown remaining: {Mathf.Max(0, jumpCooldown - (Time.time - lastJumpTime))}");
-            Debug.LogWarning($"FeetY={feetPoint.position.y:F3}, PathNodeY={nextWP.y:F3}");
+            // Debug.LogWarning($"FeetY={feetPoint.position.y:F3}, PathNodeY={nextWP.y:F3}");
 
             // if nothing overlaps, we have space and can jump
             if (overlap == null)
@@ -335,7 +336,7 @@ public class Enemy : MonoBehaviour
     /// </summary>
     public void AttackPlayer()
     {
-        Debug.LogWarning("Enemy is attacking");
+        // Debug.LogWarning("Enemy is attacking");
 
         switch (runtimeData.CharacterType)
         {
@@ -491,30 +492,27 @@ public class Enemy : MonoBehaviour
     #endregion
 
     #region Stat
-    private void GiveStat(Equipment equipment)
+
+    /// <summary>
+    /// Call this method to apply the equipment bonus
+    /// </summary>
+    private void GiveStat()
     {
-        if (equipment == null)
+        foreach (Equipment equipment in enemyData.CharacterEquipedItems)
         {
-            Debug.LogWarning("Equipment is null");
-            return;
-        }
+            // Int and floats
+            runtimeData.AddBonusHp(equipment.RunTimeEquipmentData.ItemHpBonus);
+            runtimeData.AddBonusAttack(equipment.RunTimeEquipmentData.ItemAttackBonus);
+            runtimeData.AddBonusAttackSpeed(equipment.RunTimeEquipmentData.ItemAttackSpeedBonus);
+            runtimeData.AddBonusDefense(equipment.RunTimeEquipmentData.ItemDefenseBonus);
+            runtimeData.AddBonusMana(equipment.RunTimeEquipmentData.ItemManaBonus);
+            runtimeData.AddBonusMovementSpeed(equipment.RunTimeEquipmentData.ItemMovementSpeedBonus);
 
-        // TOOD: Turn this into an override
-        Debug.LogWarning($"Enemy has {equipment.RunTimeEquipmentData.ItemName} with + " +
-            $"{equipment.RunTimeEquipmentData.ItemHpBonus} HP");
-
-        // Int and floats
-        runtimeData.AddBonusHp(equipment.RunTimeEquipmentData.ItemHpBonus);
-        runtimeData.AddBonusAttack(equipment.RunTimeEquipmentData.ItemAttackBonus);
-        runtimeData.AddBonusAttackSpeed(equipment.RunTimeEquipmentData.ItemAttackSpeedBonus);
-        runtimeData.AddBonusDefense(equipment.RunTimeEquipmentData.ItemDefenseBonus);
-        runtimeData.AddBonusMana(equipment.RunTimeEquipmentData.ItemManaBonus);
-        runtimeData.AddBonusMovementSpeed(equipment.RunTimeEquipmentData.ItemMovementSpeedBonus);
-
-        // Resistances
-        foreach (Resistance resistance in equipment.RunTimeEquipmentData.ItemResistanceBonus)
-        {
-            runtimeData.AddResistance(resistance);
+            // Resistances
+            foreach (Resistance resistance in equipment.RunTimeEquipmentData.ItemResistanceBonus)
+            {
+                runtimeData.AddResistance(resistance);
+            }
         }
     }
     #endregion

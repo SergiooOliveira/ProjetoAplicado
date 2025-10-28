@@ -121,11 +121,9 @@ public class EnemyData : ScriptableObject, IEnemy
     /// </summary>
     /// <param name="amount">Quantity to add</param>
     public void AddBonusHp(int amount)
-    {
-        // TODO: The error is here!!!!!!!!!!
-
-        //if (amount <= 0) return;
-        Debug.LogWarning("Inside AddBonusHp");
+    {        
+        if (amount <= 0) return;
+        
         characterHp.IncreaseMaxCurrent(amount);
     }
 
@@ -218,7 +216,7 @@ public class EnemyData : ScriptableObject, IEnemy
     /// <returns></returns>
     public override string ToString()
     {
-        string info = $"{CharacterName}: has {CharacterHp.Max} HP and {CharacterAttackSpeed} Damage";
+        string info = $"{CharacterName}: has {CharacterHp.Max} HP, {CharacterAttackPower} Attack, {CharacterDefense} Defense and {CharacterAttackSpeed:F2} Damage";
 
         return info;
     }
