@@ -17,6 +17,6 @@ MonoBehaviour:
   itemPrefeb: {fileID: 681572975424605454, guid: 5370bea0216ae494c9a334486a90260a, type: 3}
   itemType: 0
   itemRarity: 3
-  itemQuantity: 0
+  itemQuantity: 3
   isItemSellable: 1
   itemSellValue: 2000

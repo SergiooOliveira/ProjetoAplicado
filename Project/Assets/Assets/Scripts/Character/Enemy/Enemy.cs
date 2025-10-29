@@ -481,12 +481,37 @@ public class Enemy : MonoBehaviour
             * Utilize the rarity of an item to determine the drop rate and drop quantity
             */
 
-            int dropNumber = Random.Range(0, runtimeData.CharacterLevel * 2);
+            /* Calculate the dropNumber by rarity
+             * No drop - 40%
+             * Common - 25%
+             * Rare - 20%
+             * Epic - 10%
+             * Legendary - 5%
+             */
+            
+            // Flag for no drop chance defined
+            if (!Item.rarityDropRates.TryGetValue(item.RunTimeItemData.ItemRarity, out float dropChance))
+            {
+                Debug.LogWarning($"No drop chance defined for rarity {item.RunTimeItemData.ItemRarity}, defaulting to 0.");
+                dropChance = 0f;
+            }
 
-            Debug.Log($"Adding {dropNumber} {item} to player inventory");
+            // Roll between 0 and 1
+            float roll = UnityEngine.Random.value;
+            bool dropped = roll <= dropChance;
+
+            Debug.Log($"Item: {item.RunTimeItemData.ItemName}: Rarity: {item.RunTimeItemData.ItemRarity}, Roll: {roll:F2}, Drop chance: {dropChance * 100:F0}%, Result: {(dropped ? "Dropped" : "No Drop")}");
 
             // Add to Player Inventory
-            player.RunTimePlayerData.AddItem(item, dropNumber);
+            if (dropped)
+            {
+                // Calculate the amount of items to give to the player
+
+                int amount = Random.Range(0, item.RunTimeItemData.ItemQuantity);
+                Debug.Log($"Amount dropped {amount}");
+
+                player.RunTimePlayerData.AddItem(item, amount);
+            }
         }
     }
     #endregion

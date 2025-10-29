@@ -1,8 +1,18 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    public ItemData itemData;
+    public static readonly Dictionary<ItemRarity, float> rarityDropRates = new()
+    {
+        { ItemRarity.Common, 0.60f },
+        { ItemRarity.Rare, 0.40f },
+        { ItemRarity.Epic, 0.25f },
+        { ItemRarity.Legendary, 0.1f }
+    };
+
+
+    [SerializeField] private ItemData itemData;
     private ItemData runTimeItemData;
 
     public void Initialize()

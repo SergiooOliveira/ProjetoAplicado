@@ -185,8 +185,22 @@ public class PlayerData : ScriptableObject, ICharacter
 
         if (existingItem == null)
         {
-            item.RunTimeItemData.AddQuantity(amount);
-            characterInventory.Add(item);
+            // Instantiate a new Item to avoid conflicts
+            Item newItem = ScriptableObject.Instantiate(item);
+
+            newItem.Initialize();
+
+            // Null check
+            if (newItem == null) Debug.LogWarning("New instantiated item is null");
+
+            // Reset quantity of item to 0
+            newItem.RunTimeItemData.ResetQuantity();
+
+            // Add the dropped amount to it
+            newItem.RunTimeItemData.AddQuantity(amount);
+
+            // Add that item to characterInventory
+            characterInventory.Add(newItem);
         }
         else
         {

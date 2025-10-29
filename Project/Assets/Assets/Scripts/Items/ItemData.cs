@@ -51,5 +51,10 @@ public class ItemData : ScriptableObject, IItem
     {
         itemQuantity = Mathf.Max(0, itemQuantity - quantity);
     }
+
+    public void ResetQuantity()
+    {
+        itemQuantity = 0;
+    }
     #endregion
 }
