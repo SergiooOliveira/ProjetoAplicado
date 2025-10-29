@@ -7,30 +7,30 @@ public class EnemyData : ScriptableObject, IEnemy
 {
     #region Serialized Fields
     [Header("Identity")]
-    [SerializeField] private string characterName;
-    [SerializeField] private int characterLevel;
-    [SerializeField] private GameObject characterPrefab;
-    [SerializeField] private string characterDescription;
-    [SerializeField] private EnemyType characterType;
-    [SerializeField] private EnemySpawnLevel characterSpawnLevel;
+    [Tooltip("Name of the Enemy")]                              [SerializeField] private string characterName;
+    [Tooltip("Level of the Enemy")]                             [SerializeField] private int characterLevel;
+    [Tooltip("Enemy Prefab")]                                   [SerializeField] private GameObject characterPrefab;
+    [Tooltip("Description of the Enemy")]                       [SerializeField] private string characterDescription;
+    [Tooltip("Type of the Enemy")]                              [SerializeField] private EnemyType characterType;
+    [Tooltip("Where does the Enemy spawn")]                     [SerializeField] private EnemySpawnLevel characterSpawnLevel;
 
     [Header("Stats")]
-    [SerializeField] private Stat characterHp;
-    [SerializeField] private Stat characterXp;
-    [SerializeField] private Stat characterMana;
+    [Tooltip("Enemy HP")]                                       [SerializeField] private Stat characterHp;
+    [Tooltip("Amount of XP the enemy will drop")]               [SerializeField] private Stat characterXp;
+    [Tooltip("Amount of mana the enemy has to use spells")]     [SerializeField] private Stat characterMana;
 
     [Header("Attributes")]
-    [SerializeField] private float characterMovementSpeed;
-    [SerializeField] private float characterAttackSpeed;
-    [SerializeField] private int characterAttackPower;
-    [SerializeField] private int characterDefense;
-    [SerializeField] private List<Resistance> characterResistances;
+    [Tooltip("What speed does the enemy move")]                 [SerializeField] private float characterMovementSpeed;
+    [Tooltip("What speed does the enemy attack")]               [SerializeField] private float characterAttackSpeed;
+    [Tooltip("What is the enemy damage")]                       [SerializeField] private int characterAttackPower;
+    [Tooltip("What is the enemy defense")]                      [SerializeField] private int characterDefense;
+    [Tooltip("Which resistances does the enemy has")]           [SerializeField] private List<Resistance> characterResistances;
 
     [Header("Equipables and Inventory")]
-    [SerializeField] private List<Spell> characterEquipedSpells;
-    [SerializeField] private List<Item> characterInventory;
-    [SerializeField] private List<Equipment> characterEquipedItems;
-    [SerializeField] private int characterGold;
+    [Tooltip("What spells does the Enemy know")]                [SerializeField] private List<Spell> characterEquipedSpells;
+    [Tooltip("What items does the Enemy drops")]                [SerializeField] private List<Item> characterInventory;
+    [Tooltip("What equipments does the Enemy drops")]           [SerializeField] private List<Equipment> characterEquipedItems;
+    [Tooltip("Amount of gold the enemy will drop")]             [SerializeField] private int characterGold;
     #endregion
 
     #region Property implementation
