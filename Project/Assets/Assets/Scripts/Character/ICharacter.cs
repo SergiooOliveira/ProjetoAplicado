@@ -5,7 +5,6 @@ using UnityEngine;
 public interface ICharacter
 {
     #region Properties
-
     // *----- Identity -----*    
     string CharacterName { get; }
     int CharacterLevel { get; }
@@ -25,7 +24,7 @@ public interface ICharacter
 
     // *----- Equipables and Inventory -----*
     List<Spell> CharacterEquipedSpells { get; }
-    List<Item> CharacterInventory { get; }
+    List<InventoryEntry> CharacterInventory { get; }
     List<Equipment> CharacterEquipItems { get; }
     int CharacterGold { get; }
     #endregion
@@ -37,7 +36,7 @@ public interface ICharacter
     #endregion
 
     #region Inventory Methods
-    void AddItem(Item item, int amount);
+    void AddItem(InventoryEntry entry, int amount);
     void RemoveItem(int slot, Item item);
     void SellItem(int slot, Item item);
     void AddEquip(Equipment equipment);

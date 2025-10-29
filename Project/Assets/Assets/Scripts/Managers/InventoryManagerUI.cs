@@ -21,7 +21,7 @@ public class InventoryManagerUI : MonoBehaviour
 
     public void SetAllSlots()
     {
-        foreach (Item item in player.RunTimePlayerData.CharacterInventory)
+        foreach (InventoryEntry entry in player.RunTimePlayerData.CharacterInventory)
         {
             GameObject newSLot = Instantiate(slot, itemListPanel);
 
@@ -31,8 +31,8 @@ public class InventoryManagerUI : MonoBehaviour
             TMP_Text tb_name = name.GetComponent<TMP_Text>();
             TMP_Text tb_quantity = quantity.GetComponent<TMP_Text>();
 
-            tb_name.text = item.RunTimeItemData.ItemName;
-            tb_quantity.text = item.ItemQuantity.ToString();
+            tb_name.text = entry.item.RunTimeItemData.ItemName;
+            tb_quantity.text = entry.quantity.ToString();
         }
     }
 

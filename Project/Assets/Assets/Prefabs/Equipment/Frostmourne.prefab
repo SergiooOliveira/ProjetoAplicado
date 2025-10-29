@@ -101,3 +101,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   equipmentData: {fileID: 11400000, guid: 0ce794331206709488380a16b5bd05bf, type: 2}
+  equipmentQuantity: 1
