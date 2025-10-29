@@ -19,7 +19,7 @@ public class Stat
     /// This method is called in the Awake so Current can be set
     /// </summary>
     public void Initialize()
-    {        
+    {
         current = max;
     }
 

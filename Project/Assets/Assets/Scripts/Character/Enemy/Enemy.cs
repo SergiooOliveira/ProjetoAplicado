@@ -45,12 +45,13 @@ public class Enemy : MonoBehaviour
     [SerializeField] private bool debugGizmos = true;
 
     private void Awake()
-    {
-        Initialize();
+    {        
         runtimeData = Instantiate(enemyData);
+        Initialize();
         GiveStat();
 
-        Debug.Log($"Initialized {runtimeData.ToString()}");
+        Debug.Log($"Initialized enemyData: {enemyData.ToString()}");
+        Debug.Log($"Initialized runtimeData: {runtimeData.ToString()}");
 
         seeker = GetComponent<Seeker>();
         animator = GetComponent<Animator>();
@@ -141,14 +142,14 @@ public class Enemy : MonoBehaviour
 
     private void Initialize()
     {
-        enemyData.CharacterHp.Initialize();
+        runtimeData.CharacterHp.Initialize();
 
-        foreach (InventoryEntry entry in enemyData.CharacterInventory)
+        foreach (InventoryEntry entry in runtimeData.CharacterInventory)
         {
             entry.item.Initialize();
         }
 
-        foreach (Equipment equipment in enemyData.CharacterEquipItems)
+        foreach (Equipment equipment in runtimeData.CharacterEquipItems)
         {
             equipment.Initialize();
         }

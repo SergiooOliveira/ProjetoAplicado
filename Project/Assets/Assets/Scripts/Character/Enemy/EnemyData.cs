@@ -257,7 +257,7 @@ public class EnemyData : ScriptableObject, IEnemy
     /// <returns></returns>
     public override string ToString()
     {
-        string info = $"{CharacterName}: has {CharacterHp.Max} HP, {CharacterAttackPower} Attack, {CharacterDefense} Defense and {CharacterAttackSpeed:F2} Damage";
+        string info = $"{CharacterName}: has {CharacterHp.Current} HP, {CharacterAttackPower} Attack, {CharacterDefense} Defense and {CharacterAttackSpeed:F2} Damage";
 
         return info;
     }
