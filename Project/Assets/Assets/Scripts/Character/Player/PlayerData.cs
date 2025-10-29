@@ -25,7 +25,8 @@ public class PlayerData : ScriptableObject, ICharacter
     [Header("Equipables and Inventory")]
     [SerializeField] private List<Spell> characterEquipedSpells;    // Character Equiped Spells
     [SerializeField] private List<Item> characterInventory;         // Character Inventory (Also, drop table for enemies)
-    [SerializeField] private List<Equipment> characterEquipedItems; // Character EquipedItems (Also, drop table for enemies)    
+    [SerializeField] private List<Equipment> characterEquipItems; // Character EquipedItems (Also, drop table for enemies)
+    [SerializeField] private int characterGold;                     // Character Gold
     #endregion
 
     #region Property implementation
@@ -49,7 +50,8 @@ public class PlayerData : ScriptableObject, ICharacter
     // *----- Equipables and Inventory -----*
     public List<Spell> CharacterEquipedSpells => characterEquipedSpells;
     public List<Item> CharacterInventory => characterInventory;
-    public List<Equipment> CharacterEquipedItems => characterEquipedItems;
+    public List<Equipment> CharacterEquipItems => characterEquipItems;
+    public int CharacterGold => characterGold;
     #endregion
 
     #region Spell Methods
@@ -101,6 +103,109 @@ public class PlayerData : ScriptableObject, ICharacter
     public void ClearSpellList()
     {
         characterEquipedSpells = new List<Spell>();
+    }
+    #endregion
+
+    #region Inventory Methods
+    /// <summary>
+    /// Call this method to add an item to the player inventory
+    /// </summary>
+    /// <param name="item">Item to add</param>
+    /// <param name="amount">Amount</param>
+    public void AddItem(Item item, int amount)
+    {        
+        Item existingItem = characterInventory.Find(i => i.RunTimeItemData.ItemName == item.RunTimeItemData.ItemName);
+
+        if (existingItem == null)
+        {
+            // Instantiate a new Item to avoid conflicts
+            Item newItem = ScriptableObject.Instantiate(item);
+
+            newItem.Initialize();
+
+            // Null check
+            if (newItem == null) Debug.LogWarning("New instantiated item is null");
+
+            // Reset quantity of item to 0
+            newItem.ResetQuantity();
+
+            // Add the dropped amount to it
+            newItem.AddQuantity(amount);
+
+            // Add that item to characterInventory
+            characterInventory.Add(newItem);
+        }
+        else
+        {
+            existingItem.AddQuantity(amount);
+        }
+    }
+
+    /// <summary>
+    /// Call this method to sell an item from the player inventory
+    /// </summary>
+    /// <param name="slot">Slot in the inventory</param>
+    /// <param name="item">Item to sell</param>
+    public void SellItem(int slot, Item item)
+    {
+
+    }
+
+    /// <summary>
+    /// Call this method to remove an item from the player inventory
+    /// </summary>
+    /// <param name="slot">Slot in the inventory</param>
+    /// <param name="item">Item to remove</param>
+    public void RemoveItem(int slot, Item item)
+    {
+
+    }
+
+    public void AddEquip(Equipment equipment)
+    {
+        Equipment existingEquipment = characterEquipItems.Find(e => e.RunTimeEquipmentData.ItemName == equipment.RunTimeEquipmentData.ItemName);
+
+        if (existingEquipment == null)
+        {
+            // Instantiate and Initialize
+            Equipment newEquipment = ScriptableObject.Instantiate(equipment);
+            newEquipment.Initialize();
+
+            // Null check
+            if (newEquipment == null) Debug.LogWarning("New instantiated equipment is null");
+
+            // Reset quantity
+            newEquipment.ResetQuantity();
+
+            // Unequp equipment to avoid giving stats
+            newEquipment.RunTimeEquipmentData.Unequip();
+
+            // Add the dropped equipment
+            newEquipment.AddQuantity();
+
+            // Add the equipment to list
+            characterEquipItems.Add(newEquipment);
+        }
+        else
+        {
+            existingEquipment.AddQuantity();
+        }
+    }
+
+    public void RemoveEquip(int slot, Equipment equipment)
+    {
+
+    }
+
+    public void SellEquip(int slot, Equipment equipment)
+    {
+
+    }
+
+    public void AddGold(int amount)
+    {
+        Debug.Log($"Adding {amount} gold to player");
+        characterGold += amount;
     }
     #endregion
 
@@ -170,48 +275,6 @@ public class PlayerData : ScriptableObject, ICharacter
         if (amount <= 0) return;
 
         characterMovementSpeed *= 1 + (amount / 100f);
-    }
-    #endregion
-
-    #region Inventory Methods
-    /// <summary>
-    /// Call this method to add an item to the player inventory
-    /// </summary>
-    /// <param name="item">Item to add</param>
-    /// <param name="amount">Amount</param>
-    public void AddItem(Item item, int amount)
-    {        
-        Item existingItem = characterInventory.Find(i => i.RunTimeItemData.ItemName == item.RunTimeItemData.ItemName);
-
-        if (existingItem == null)
-        {
-            item.RunTimeItemData.AddQuantity(amount);
-            characterInventory.Add(item);
-        }
-        else
-        {
-            existingItem.RunTimeItemData.AddQuantity(amount);
-        }
-    }
-
-    /// <summary>
-    /// Call this method to sell an item from the player inventory
-    /// </summary>
-    /// <param name="slot">Slot in the inventory</param>
-    /// <param name="item">Item to sell</param>
-    public void SellItem(int slot, Item item)
-    {
-
-    }
-
-    /// <summary>
-    /// Call this method to remove an item from the player inventory
-    /// </summary>
-    /// <param name="slot">Slot in the inventory</param>
-    /// <param name="item">Item to remove</param>
-    public void RemoveItem(int slot, Item item)
-    {
-
     }
     #endregion
 }

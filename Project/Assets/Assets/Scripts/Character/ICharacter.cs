@@ -26,7 +26,8 @@ public interface ICharacter
     // *----- Equipables and Inventory -----*
     List<Spell> CharacterEquipedSpells { get; }
     List<Item> CharacterInventory { get; }
-    List<Equipment> CharacterEquipedItems { get; }
+    List<Equipment> CharacterEquipItems { get; }
+    int CharacterGold { get; }
     #endregion
 
     #region Spell Methods
@@ -35,10 +36,14 @@ public interface ICharacter
     void SwapSpell(int slot, Spell spellToRemove, Spell spellToAdd);
     #endregion
 
-    #region Item Methods
+    #region Inventory Methods
     void AddItem(Item item, int amount);
     void RemoveItem(int slot, Item item);
     void SellItem(int slot, Item item);
+    void AddEquip(Equipment equipment);
+    void RemoveEquip(int slot, Equipment equipment);
+    void SellEquip(int slot, Equipment equipment);
+    void AddGold(int amount);
     #endregion
 
     #region Equipment Methods

@@ -1,4 +1,5 @@
 using FishNet.Object;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -48,7 +49,6 @@ public class PlayerController : NetworkBehaviour
 
         // TODO: Not sure if we need this
         inventoryManagerUI = inventoryPanel.GetComponent<InventoryManagerUI>();
-
     }
 
     private void Start()

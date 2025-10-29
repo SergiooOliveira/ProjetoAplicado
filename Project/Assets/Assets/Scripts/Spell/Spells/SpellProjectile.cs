@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class SpellProjectile : MonoBehaviour
 {
+    // TODO: Explore Spell Fusion
     protected ProjectileSpell spellData;
     protected Rigidbody2D rb;
     private Player playerData;
