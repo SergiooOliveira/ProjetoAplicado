@@ -12,14 +12,9 @@ public interface IItem
     string ItemDescription { get; }
     GameObject ItemPrefab { get; }
     ItemRarity ItemRarity { get; }
-    int ItemQuantity { get; }
 
     [Header("Value")]
     bool IsItemSellable { get; }
     int ItemSellValue { get; }
-    #endregion
-
-    #region Methods
-    void AddQuantity(int quantity);
     #endregion
 }

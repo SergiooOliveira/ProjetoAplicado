@@ -8,20 +8,20 @@ public class InventorySlotUI : MonoBehaviour, IPointerEnterHandler
     [SerializeField] private TMP_Text tb_Name;
     [SerializeField] private TMP_Text tb_Amount;
 
-    private Item itemData;
+    private Item item;
     
     /// <summary>
     /// Call this method to set the text values in each slot
     /// </summary>
-    /// <param name="item"></param>
-    public void SetSlot(Item item)
+    /// <param name="i"></param>
+    public void SetSlot(Item i)
     {
-        itemData = item;
+        item = i;
 
-        if (itemData == null) return;
+        if (item == null) return;
 
-        tb_Name.text = itemData.RunTimeItemData.ItemName;
-        tb_Amount.text = itemData.RunTimeItemData.ItemQuantity.ToString();
+        tb_Name.text = item.RunTimeItemData.ItemName;
+        tb_Amount.text = item.ItemQuantity.ToString();
     }
 
     public void OnPointerEnter(PointerEventData eventData)

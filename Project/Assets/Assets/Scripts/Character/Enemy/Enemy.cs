@@ -471,8 +471,6 @@ public class Enemy : MonoBehaviour
         //Debug.Log($"EnemyManager.Instance is {(EnemyManager.Instance == null ? "NULL" : "OK")}");
         //Debug.Log($"Enemy reference (this) is {(this == null ? "NULL" : "OK")}");
 
-        EnemyManager.Instance.RemoveEnemy(this);
-
         foreach (Item item in runtimeData.CharacterInventory)
         {
             /* TODO: Item drop logic
@@ -480,14 +478,6 @@ public class Enemy : MonoBehaviour
             * Both have a chance to drop those items, slightly less chance for the equiped items
             * Utilize the rarity of an item to determine the drop rate and drop quantity
             */
-
-            /* Calculate the dropNumber by rarity
-             * No drop - 40%
-             * Common - 25%
-             * Rare - 20%
-             * Epic - 10%
-             * Legendary - 5%
-             */
             
             // Flag for no drop chance defined
             if (!Item.rarityDropRates.TryGetValue(item.RunTimeItemData.ItemRarity, out float dropChance))
@@ -500,19 +490,25 @@ public class Enemy : MonoBehaviour
             float roll = UnityEngine.Random.value;
             bool dropped = roll <= dropChance;
 
-            Debug.Log($"Item: {item.RunTimeItemData.ItemName}: Rarity: {item.RunTimeItemData.ItemRarity}, Roll: {roll:F2}, Drop chance: {dropChance * 100:F0}%, Result: {(dropped ? "Dropped" : "No Drop")}");
+            Debug.Log($"Item: {item.RunTimeItemData.ItemName}: Rarity: {item.RunTimeItemData.ItemRarity}," +
+                $" Roll: {roll:F2}, Drop chance: {dropChance * 100:F0}%," +
+                $" Result: {(dropped ? "Dropped" : "No Drop")}");
 
             // Add to Player Inventory
             if (dropped)
             {
                 // Calculate the amount of items to give to the player
 
-                int amount = Random.Range(0, item.RunTimeItemData.ItemQuantity);
+                int amount = Random.Range(item.ItemQuantity / 2, item.ItemQuantity);
                 Debug.Log($"Amount dropped {amount}");
 
-                player.RunTimePlayerData.AddItem(item, amount);
+                player.RunTimePlayerData.AddItem(item, amount);                
             }
         }
+
+        player.RunTimePlayerData.AddGold(RunTimeData.CharacterGold);
+
+        EnemyManager.Instance.RemoveEnemy(this);
     }
     #endregion
 

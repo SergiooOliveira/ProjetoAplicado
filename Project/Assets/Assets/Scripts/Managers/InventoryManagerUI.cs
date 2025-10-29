@@ -5,6 +5,7 @@ public class InventoryManagerUI : MonoBehaviour
 {
     [SerializeField] private Transform itemListPanel;
     [SerializeField] private GameObject slot;
+    [SerializeField] private TMP_Text tb_gold;
 
     private Player player;
 
@@ -32,8 +33,10 @@ public class InventoryManagerUI : MonoBehaviour
             TMP_Text tb_quantity = quantity.GetComponent<TMP_Text>();
 
             tb_name.text = item.RunTimeItemData.ItemName;
-            tb_quantity.text = item.RunTimeItemData.ItemQuantity.ToString();
+            tb_quantity.text = item.ItemQuantity.ToString();
         }
+
+        tb_gold.text = player.RunTimePlayerData.CharacterGold.ToString();
     }
 
     /// <summary>

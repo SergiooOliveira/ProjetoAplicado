@@ -101,3 +101,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemData: {fileID: 11400000, guid: b769d137bc164834295f05f5baf381ff, type: 2}
+  itemQuantity: 10

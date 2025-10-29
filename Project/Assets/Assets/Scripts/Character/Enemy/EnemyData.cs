@@ -30,6 +30,7 @@ public class EnemyData : ScriptableObject, IEnemy
     [SerializeField] private List<Spell> characterEquipedSpells;
     [SerializeField] private List<Item> characterInventory;
     [SerializeField] private List<Equipment> characterEquipedItems;
+    [SerializeField] private int characterGold;
     #endregion
 
     #region Property implementation
@@ -57,9 +58,10 @@ public class EnemyData : ScriptableObject, IEnemy
     public List<Spell> CharacterEquipedSpells => characterEquipedSpells;
     public List<Item> CharacterInventory => characterInventory;
     public List<Equipment> CharacterEquipedItems => characterEquipedItems;
+    public int CharacterGold => characterGold;
     #endregion
 
-    #region Methods (not supported)
+    #region Spell Methods (not supported)
     /// <summary>
     /// Do not use this method
     /// </summary>
@@ -86,7 +88,9 @@ public class EnemyData : ScriptableObject, IEnemy
     {
         throw new NotSupportedException("This class does not support swapping spells");
     }
+    #endregion
 
+    #region Inventory Methods (not supported)
     /// <summary>
     /// Do not use this method
     /// </summary>
@@ -112,6 +116,11 @@ public class EnemyData : ScriptableObject, IEnemy
     public void SellItem(int slot, Item item)
     {
         throw new NotSupportedException("This class does not support selling items");
+    }
+
+    public void AddGold(int amount)
+    {
+        throw new NotSupportedException("This class does not support adding gold");
     }
     #endregion
 
