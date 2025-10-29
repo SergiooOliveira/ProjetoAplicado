@@ -11,11 +11,8 @@ public class Item : MonoBehaviour
         { ItemRarity.Legendary, 0.1f }      // 10%
     };
 
-
     [SerializeField] private ItemData itemData;
     private ItemData runTimeItemData;
-
-    [SerializeField] private int itemQuantity;
 
     public void Initialize()
     {        
@@ -23,34 +20,5 @@ public class Item : MonoBehaviour
         // Debug.Log($"Initializing {runTimeItemData.ItemName}");
     }
 
-    public ItemData RunTimeItemData => runTimeItemData;
-    public int ItemQuantity => itemQuantity;
-
-    #region Methods    
-    /// <summary>
-    /// Call this method to add items
-    /// </summary>
-    /// <param name="quantity">Quantity to add</param>
-    public void AddQuantity(int quantity)
-    {
-        itemQuantity += quantity;
-    }
-
-    /// <summary>
-    /// Call this method to remove items
-    /// </summary>
-    /// <param name="quantity">Quantity to remove</param>
-    public void RemoveQuantity(int quantity)
-    {
-        itemQuantity = Mathf.Max(0, itemQuantity - quantity);
-    }
-
-    /// <summary>
-    /// Call this method to reset the amount of items
-    /// </summary>
-    public void ResetQuantity()
-    {
-        itemQuantity = 0;
-    }
-    #endregion
+    public ItemData RunTimeItemData => runTimeItemData;    
 }

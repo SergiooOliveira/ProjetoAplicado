@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using static ICharacter;
 
 [CreateAssetMenu (menuName = "Player/Starter Player")]
 public class PlayerData : ScriptableObject, ICharacter
@@ -24,7 +26,7 @@ public class PlayerData : ScriptableObject, ICharacter
 
     [Header("Equipables and Inventory")]
     [SerializeField] private List<Spell> characterEquipedSpells;    // Character Equiped Spells
-    [SerializeField] private List<Item> characterInventory;         // Character Inventory (Also, drop table for enemies)
+    [SerializeField] private List<InventoryEntry> characterInventory;         // Character Inventory (Also, drop table for enemies)
     [SerializeField] private List<Equipment> characterEquipItems; // Character EquipedItems (Also, drop table for enemies)
     [SerializeField] private int characterGold;                     // Character Gold
     #endregion
@@ -49,7 +51,7 @@ public class PlayerData : ScriptableObject, ICharacter
 
     // *----- Equipables and Inventory -----*
     public List<Spell> CharacterEquipedSpells => characterEquipedSpells;
-    public List<Item> CharacterInventory => characterInventory;
+    public List<InventoryEntry> CharacterInventory => characterInventory;
     public List<Equipment> CharacterEquipItems => characterEquipItems;
     public int CharacterGold => characterGold;
     #endregion
@@ -110,34 +112,37 @@ public class PlayerData : ScriptableObject, ICharacter
     /// <summary>
     /// Call this method to add an item to the player inventory
     /// </summary>
-    /// <param name="item">Item to add</param>
+    /// <param name="entry">Item to add</param>
     /// <param name="amount">Amount</param>
-    public void AddItem(Item item, int amount)
-    {        
-        Item existingItem = characterInventory.Find(i => i.RunTimeItemData.ItemName == item.RunTimeItemData.ItemName);
+    public void AddItem(InventoryEntry entry, int amount)
+    {
+        // Try to find the item in the List
+        int index = characterInventory.FindIndex(i => i.item.RunTimeItemData.ItemName == entry.item.RunTimeItemData.ItemName);
 
-        if (existingItem == null)
+        if (index >= 0)
         {
-            // Instantiate a new Item to avoid conflicts
-            Item newItem = ScriptableObject.Instantiate(item);
+            // Item alreaddy exists
+            InventoryEntry existing = characterInventory[index];
 
-            newItem.Initialize();
+            existing.quantity += amount;
 
-            // Null check
-            if (newItem == null) Debug.LogWarning("New instantiated item is null");
-
-            // Reset quantity of item to 0
-            newItem.ResetQuantity();
-
-            // Add the dropped amount to it
-            newItem.AddQuantity(amount);
-
-            // Add that item to characterInventory
-            characterInventory.Add(newItem);
+            characterInventory[index] = existing;
         }
         else
         {
-            existingItem.AddQuantity(amount);
+            // Item not in inventory
+            // Instantiate a new Item to avoid conflicts
+            Item newItem = ScriptableObject.Instantiate(entry.item);
+
+            newItem.Initialize();
+
+            InventoryEntry newEntry = new InventoryEntry
+            {
+                item = newItem,
+                quantity = amount
+            };
+
+            characterInventory.Add(newEntry);
         }
     }
 

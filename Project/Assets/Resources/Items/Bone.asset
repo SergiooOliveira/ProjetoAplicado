@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e33eca162b44dd4e8fa41e8ab3d4f8d, type: 3}
+  m_Name: Bone
+  m_EditorClassIdentifier: 
+  itemName: Bones
+  itemDescription: Brittle and yellowed with age. Worth little, but unsettling to
+    hold.
+  itemPrefeb: {fileID: 4571283792198667029, guid: 0c58a3701768c7147a2732ac37b4d9e8, type: 3}
+  itemType: 0
+  itemRarity: 0
+  isItemSellable: 1
+  itemSellValue: 5

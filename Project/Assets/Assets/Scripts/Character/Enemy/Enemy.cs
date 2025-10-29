@@ -45,12 +45,13 @@ public class Enemy : MonoBehaviour
     [SerializeField] private bool debugGizmos = true;
 
     private void Awake()
-    {
-        Initialize();
+    {        
         runtimeData = Instantiate(enemyData);
+        Initialize();
         GiveStat();
 
-        Debug.Log($"Initialized {runtimeData.ToString()}");
+        Debug.Log($"Initialized enemyData: {enemyData.ToString()}");
+        Debug.Log($"Initialized runtimeData: {runtimeData.ToString()}");
 
         seeker = GetComponent<Seeker>();
         animator = GetComponent<Animator>();
@@ -141,15 +142,14 @@ public class Enemy : MonoBehaviour
 
     private void Initialize()
     {
-        enemyData.CharacterHp.Initialize();
+        runtimeData.CharacterHp.Initialize();
 
-        foreach (Item item in enemyData.CharacterInventory)
+        foreach (InventoryEntry entry in runtimeData.CharacterInventory)
         {
-            item.Initialize();
-            
+            entry.item.Initialize();
         }
 
-        foreach (Equipment equipment in enemyData.CharacterEquipItems)
+        foreach (Equipment equipment in runtimeData.CharacterEquipItems)
         {
             equipment.Initialize();
         }
@@ -425,7 +425,9 @@ public class Enemy : MonoBehaviour
         int finalDamage = Mathf.Max(1, Mathf.RoundToInt(baseDamage));
 
         runtimeData.CharacterHp.TakeDamage(finalDamage);
-        //Debug.Log($"{player.RunTimePlayerData.CharacterName} - RuntimeData.CharacterHp: {runtimeData.CharacterHp.Current}");
+        
+        Debug.Log($"{player.RunTimePlayerData.CharacterName} did {finalDamage} damage - Enemy hp: {runtimeData.CharacterHp.Current}");
+        
         if (runtimeData.CharacterHp.Current <= 0) Die(player);
     }
 
@@ -470,7 +472,7 @@ public class Enemy : MonoBehaviour
         #endregion
 
         #region Item Drop
-        foreach (Item item in RunTimeData.CharacterInventory)
+        foreach (InventoryEntry entry in RunTimeData.CharacterInventory)
         {
             /* TODO: Item drop logic
             * Using runtimeData.CharacterInventory and runtimeData.CharacterEquipedItems
@@ -479,9 +481,9 @@ public class Enemy : MonoBehaviour
             */
             
             // Flag for no drop chance defined
-            if (!Item.rarityDropRates.TryGetValue(item.RunTimeItemData.ItemRarity, out float dropChance))
+            if (!Item.rarityDropRates.TryGetValue(entry.item.RunTimeItemData.ItemRarity, out float dropChance))
             {
-                Debug.LogWarning($"No drop chance defined for rarity {item.RunTimeItemData.ItemRarity}, defaulting to 0.");
+                Debug.LogWarning($"No drop chance defined for rarity {entry.item.RunTimeItemData.ItemRarity}, defaulting to 0.");
                 dropChance = 0f;
             }
 
@@ -489,7 +491,7 @@ public class Enemy : MonoBehaviour
             float roll = UnityEngine.Random.value;
             bool dropped = roll <= dropChance;
 
-            Debug.Log($"Item: {item.RunTimeItemData.ItemName}: Rarity: {item.RunTimeItemData.ItemRarity}," +
+            Debug.Log($"Item: {entry.item.RunTimeItemData.ItemName}: Rarity: {entry.item.RunTimeItemData.ItemRarity}," +
                 $" Roll: {roll:F2}, Drop chance: {dropChance * 100:F0}%," +
                 $" Result: {(dropped ? "Dropped" : "No Drop")}");
 
@@ -498,10 +500,10 @@ public class Enemy : MonoBehaviour
             {
                 // Calculate the amount of items to give to the player
                 // Amount varies between half the quantity and the full quantity
-                int amount = Random.Range(item.ItemQuantity / 2, item.ItemQuantity);
+                int amount = Random.Range(entry.quantity / 2, entry.quantity);
                 Debug.Log($"Amount dropped {amount}");
 
-                player.RunTimePlayerData.AddItem(item, amount);                
+                player.RunTimePlayerData.AddItem(entry, amount);
             }
         }
         #endregion

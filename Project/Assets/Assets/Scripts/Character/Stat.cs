@@ -3,7 +3,7 @@ using UnityEngine;
 [System.Serializable]
 public class Stat
 {
-    [SerializeField] private int current;
+    private int current;
     [SerializeField] private int max;
 
     public int Current => current;
@@ -19,7 +19,7 @@ public class Stat
     /// This method is called in the Awake so Current can be set
     /// </summary>
     public void Initialize()
-    {        
+    {
         current = max;
     }
 

@@ -51,8 +51,6 @@ public class EnemyManager: MonoBehaviour
     /// <param name="enemy">Enemy object</param>
     public void RemoveEnemy(Enemy enemy)
     {
-        Debug.Log($"Removing {enemy.RunTimeData.CharacterName}");
-
         if (enemy == null)
         {
             Debug.Log($"Enemy is null in EnemyManager (RemoveEnemy)");
@@ -60,16 +58,6 @@ public class EnemyManager: MonoBehaviour
         }
 
         activeEnemies.Remove(enemy.enemyData);
-        Destroy(enemy.gameObject);
-
-        enemyCounter++;
-
-        if (enemyCounter == 5) CallEndScreen();
-    }
-
-    private async void CallEndScreen()
-    {
-        await Task.Delay(2000);
-        SceneManager.LoadScene("EndScreen");
+        Destroy(enemy.gameObject);        
     }
 }

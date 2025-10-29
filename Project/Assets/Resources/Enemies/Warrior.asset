@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fd632307590d5c54a966560ca3cc38c7, type: 3}
-  m_Name: BuffedTriangle
+  m_Name: Warrior
   m_EditorClassIdentifier: 
-  characterName: Enemy
-  characterLevel: 10
+  characterName: Bone warrior
+  characterLevel: 3
   characterPrefab: {fileID: 8985559003228744641, guid: d5eca7fdb628fb94d8e6fd2b40e6c661, type: 3}
-  characterDescription: asd
+  characterDescription: A mighty warrior destined to walk the land for all eternity
   characterType: 0
   characterSpawnLevel: 0
   characterHp:
@@ -23,18 +23,13 @@ MonoBehaviour:
   characterXp:
     max: 0
   characterMana:
-    max: 100
-  characterMovementSpeed: 6
-  characterAttackSpeed: 6
-  characterAttackPower: 6
-  characterDefense: 6
-  characterResistances:
-  - spellAfinity: 2
-    amount: 20
+    max: 0
+  characterMovementSpeed: 0
+  characterAttackSpeed: 0
+  characterAttackPower: 0
+  characterDefense: 0
+  characterResistances: []
   characterEquipedSpells: []
-  characterInventory:
-  - item: {fileID: 7362672995192851571, guid: 0c58a3701768c7147a2732ac37b4d9e8, type: 3}
-    quantity: 10
-  characterEquipedItems:
-  - {fileID: -6673210822022468371, guid: 43d8d4ef6d98f4d469f653da5213643e, type: 3}
-  characterGold: 10
+  characterInventory: []
+  characterEquipedItems: []
+  characterGold: 0
