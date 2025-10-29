@@ -24,10 +24,19 @@ public class InventorySlotUI : MonoBehaviour, IPointerEnterHandler
         tb_Amount.text = item.ItemQuantity.ToString();
     }
 
+    /// <summary>
+    /// This method is called when the mouse is hover an element
+    /// </summary>
+    /// <param name="eventData"></param>
     public void OnPointerEnter(PointerEventData eventData)
     {
-        eventData.pointerEnter.gameObject.TryGetComponent<TMP_Text>(out TMP_Text hoverText);
-        Debug.Log(hoverText.text);
+        GameObject slot = eventData.pointerEnter.gameObject;
+        
+        Transform name = slot.transform.Find("Name");
+
+        TMP_Text tb_name = slot.GetComponent<TMP_Text>();
+
+        Debug.Log($"Hovering over {tb_name.text} slot");
     }
 
 }

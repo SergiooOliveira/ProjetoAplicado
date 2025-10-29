@@ -5,10 +5,10 @@ public class Item : MonoBehaviour
 {
     public static readonly Dictionary<ItemRarity, float> rarityDropRates = new()
     {
-        { ItemRarity.Common, 0.99f },
-        { ItemRarity.Rare, 0.40f },
-        { ItemRarity.Epic, 0.25f },
-        { ItemRarity.Legendary, 0.1f }
+        { ItemRarity.Common, 0.60f },       // 60%
+        { ItemRarity.Rare, 0.40f },         // 40%
+        { ItemRarity.Epic, 0.25f },         // 25%
+        { ItemRarity.Legendary, 0.1f }      // 10%
     };
 
 
@@ -26,9 +26,7 @@ public class Item : MonoBehaviour
     public ItemData RunTimeItemData => runTimeItemData;
     public int ItemQuantity => itemQuantity;
 
-    #region Methods
-    // TODO: It's not on the runTimeSide
-
+    #region Methods    
     /// <summary>
     /// Call this method to add items
     /// </summary>
@@ -47,6 +45,9 @@ public class Item : MonoBehaviour
         itemQuantity = Mathf.Max(0, itemQuantity - quantity);
     }
 
+    /// <summary>
+    /// Call this method to reset the amount of items
+    /// </summary>
     public void ResetQuantity()
     {
         itemQuantity = 0;

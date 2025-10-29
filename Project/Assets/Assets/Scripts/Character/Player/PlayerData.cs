@@ -25,7 +25,7 @@ public class PlayerData : ScriptableObject, ICharacter
     [Header("Equipables and Inventory")]
     [SerializeField] private List<Spell> characterEquipedSpells;    // Character Equiped Spells
     [SerializeField] private List<Item> characterInventory;         // Character Inventory (Also, drop table for enemies)
-    [SerializeField] private List<Equipment> characterEquipedItems; // Character EquipedItems (Also, drop table for enemies)
+    [SerializeField] private List<Equipment> characterEquipItems; // Character EquipedItems (Also, drop table for enemies)
     [SerializeField] private int characterGold;                     // Character Gold
     #endregion
 
@@ -50,7 +50,7 @@ public class PlayerData : ScriptableObject, ICharacter
     // *----- Equipables and Inventory -----*
     public List<Spell> CharacterEquipedSpells => characterEquipedSpells;
     public List<Item> CharacterInventory => characterInventory;
-    public List<Equipment> CharacterEquipedItems => characterEquipedItems;
+    public List<Equipment> CharacterEquipItems => characterEquipItems;
     public int CharacterGold => characterGold;
     #endregion
 
@@ -157,6 +157,47 @@ public class PlayerData : ScriptableObject, ICharacter
     /// <param name="slot">Slot in the inventory</param>
     /// <param name="item">Item to remove</param>
     public void RemoveItem(int slot, Item item)
+    {
+
+    }
+
+    public void AddEquip(Equipment equipment)
+    {
+        Equipment existingEquipment = characterEquipItems.Find(e => e.RunTimeEquipmentData.ItemName == equipment.RunTimeEquipmentData.ItemName);
+
+        if (existingEquipment == null)
+        {
+            // Instantiate and Initialize
+            Equipment newEquipment = ScriptableObject.Instantiate(equipment);
+            newEquipment.Initialize();
+
+            // Null check
+            if (newEquipment == null) Debug.LogWarning("New instantiated equipment is null");
+
+            // Reset quantity
+            newEquipment.ResetQuantity();
+
+            // Unequp equipment to avoid giving stats
+            newEquipment.RunTimeEquipmentData.Unequip();
+
+            // Add the dropped equipment
+            newEquipment.AddQuantity();
+
+            // Add the equipment to list
+            characterEquipItems.Add(newEquipment);
+        }
+        else
+        {
+            existingEquipment.AddQuantity();
+        }
+    }
+
+    public void RemoveEquip(int slot, Equipment equipment)
+    {
+
+    }
+
+    public void SellEquip(int slot, Equipment equipment)
     {
 
     }

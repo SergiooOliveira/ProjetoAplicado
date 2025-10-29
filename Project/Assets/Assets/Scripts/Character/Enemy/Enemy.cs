@@ -1,5 +1,6 @@
-﻿using UnityEngine;
-using Pathfinding;
+﻿using Pathfinding;
+using UnityEngine;
+using static UnityEditor.Progress;
 
 public class Enemy : MonoBehaviour
 {
@@ -148,7 +149,7 @@ public class Enemy : MonoBehaviour
             
         }
 
-        foreach (Equipment equipment in enemyData.CharacterEquipedItems)
+        foreach (Equipment equipment in enemyData.CharacterEquipItems)
         {
             equipment.Initialize();
         }
@@ -468,10 +469,8 @@ public class Enemy : MonoBehaviour
         }
         #endregion
 
-        //Debug.Log($"EnemyManager.Instance is {(EnemyManager.Instance == null ? "NULL" : "OK")}");
-        //Debug.Log($"Enemy reference (this) is {(this == null ? "NULL" : "OK")}");
-
-        foreach (Item item in runtimeData.CharacterInventory)
+        #region Item Drop
+        foreach (Item item in RunTimeData.CharacterInventory)
         {
             /* TODO: Item drop logic
             * Using runtimeData.CharacterInventory and runtimeData.CharacterEquipedItems
@@ -498,14 +497,39 @@ public class Enemy : MonoBehaviour
             if (dropped)
             {
                 // Calculate the amount of items to give to the player
-
+                // Amount varies between half the quantity and the full quantity
                 int amount = Random.Range(item.ItemQuantity / 2, item.ItemQuantity);
                 Debug.Log($"Amount dropped {amount}");
 
                 player.RunTimePlayerData.AddItem(item, amount);                
             }
         }
+        #endregion
 
+        #region Equipment Drop
+        foreach (Equipment equipment in RunTimeData.CharacterEquipItems)
+        {
+            if (!Equipment.rarityDropRates.TryGetValue(equipment.RunTimeEquipmentData.ItemRarity, out float dropChance))
+            {
+                Debug.LogWarning($"No drop chance defined for rarity {equipment.RunTimeEquipmentData.ItemRarity}, defaulting to 0.");
+                dropChance = 0f;
+            }
+
+            float roll = UnityEngine.Random.value;
+            bool dropped = roll <= dropChance;
+
+            Debug.Log($"Item: {equipment.RunTimeEquipmentData.ItemName}: Rarity: {equipment.RunTimeEquipmentData.ItemRarity}," +
+                $" Roll: {roll:F2}, Drop chance: {dropChance * 100:F0}%," +
+                $" Result: {(dropped ? "Dropped" : "No Drop")}");
+
+            if (dropped)
+            {
+                player.RunTimePlayerData.AddEquip(equipment);
+            }
+        }
+        #endregion
+
+        // Add gold to player inventory
         player.RunTimePlayerData.AddGold(RunTimeData.CharacterGold);
 
         EnemyManager.Instance.RemoveEnemy(this);
@@ -519,7 +543,7 @@ public class Enemy : MonoBehaviour
     /// </summary>
     private void GiveStat()
     {
-        foreach (Equipment equipment in enemyData.CharacterEquipedItems)
+        foreach (Equipment equipment in enemyData.CharacterEquipItems)
         {
             // Int and floats
             runtimeData.AddBonusHp(equipment.RunTimeEquipmentData.ItemHpBonus);

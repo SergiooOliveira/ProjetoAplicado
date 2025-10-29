@@ -26,7 +26,7 @@ public interface ICharacter
     // *----- Equipables and Inventory -----*
     List<Spell> CharacterEquipedSpells { get; }
     List<Item> CharacterInventory { get; }
-    List<Equipment> CharacterEquipedItems { get; }
+    List<Equipment> CharacterEquipItems { get; }
     int CharacterGold { get; }
     #endregion
 
@@ -40,6 +40,9 @@ public interface ICharacter
     void AddItem(Item item, int amount);
     void RemoveItem(int slot, Item item);
     void SellItem(int slot, Item item);
+    void AddEquip(Equipment equipment);
+    void RemoveEquip(int slot, Equipment equipment);
+    void SellEquip(int slot, Equipment equipment);
     void AddGold(int amount);
     #endregion
 

@@ -33,4 +33,14 @@ public class EquipmentData : ItemData
     // *----- Equiped Flag -----*
     public bool IsItemEquiped => isItemEquiped;
     #endregion
+
+    #region Methods
+    /// <summary>
+    /// Call this method to Unequip an equipment
+    /// </summary>
+    public void Unequip()
+    {
+        isItemEquiped = false;
+    }
+    #endregion
 }

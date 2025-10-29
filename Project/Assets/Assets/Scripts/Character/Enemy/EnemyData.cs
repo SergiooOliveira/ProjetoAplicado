@@ -57,7 +57,7 @@ public class EnemyData : ScriptableObject, IEnemy
     // *----- Equipables and Inventory -----*
     public List<Spell> CharacterEquipedSpells => characterEquipedSpells;
     public List<Item> CharacterInventory => characterInventory;
-    public List<Equipment> CharacterEquipedItems => characterEquipedItems;
+    public List<Equipment> CharacterEquipItems => characterEquipedItems;
     public int CharacterGold => characterGold;
     #endregion
 
@@ -118,6 +118,37 @@ public class EnemyData : ScriptableObject, IEnemy
         throw new NotSupportedException("This class does not support selling items");
     }
 
+    /// <summary>
+    /// Do not use this method
+    /// </summary>    
+    /// <exception cref="NotSupportedException">Not supported</exception>
+    public void AddEquip(Equipment equipment)
+    {
+        throw new NotSupportedException("This class does not support adding equipment");
+    }
+
+    /// <summary>
+    /// Do not use this method
+    /// </summary>    
+    /// <exception cref="NotSupportedException">Not supported</exception>
+    public void RemoveEquip(int slot, Equipment equipment)
+    {
+        throw new NotSupportedException("This class does not support removing equipment");
+    }
+
+    /// <summary>
+    /// Do not use this method
+    /// </summary>    
+    /// <exception cref="NotSupportedException">Not supported</exception>
+    public void SellEquip(int slot, Equipment equipment)
+    {
+        throw new NotSupportedException("This class does not support selling equipment");
+    }
+
+    /// <summary>
+    /// Do not use this method
+    /// </summary>    
+    /// <exception cref="NotSupportedException">Not supported</exception>
     public void AddGold(int amount)
     {
         throw new NotSupportedException("This class does not support adding gold");
