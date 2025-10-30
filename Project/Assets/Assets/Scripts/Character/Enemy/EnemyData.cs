@@ -15,6 +15,23 @@ public class EnemyData : ScriptableObject, IEnemy
     [Tooltip("Type of the Enemy")]                              [SerializeField] private EnemyType characterType;
     [Tooltip("Where does the Enemy spawn")]                     [SerializeField] private EnemySpawnLevel characterSpawnLevel;
 
+    [Header("Attacks")]
+    [SerializeField] private List<EnemyAttack> attacks;
+    public List<EnemyAttack> Attacks => attacks;
+
+    [System.Serializable]
+    public class EnemyAttack
+    {
+        [Tooltip("Trigger name in Animator")]
+        public string triggerName;
+
+        [Tooltip("Damage this attack does")]
+        public int damage;
+
+        [Tooltip("Relative weight for chance of happening")]
+        public float weight = 1f;
+    }
+
     [Header("Stats")]
     [Tooltip("Enemy HP")]                                       [SerializeField] private Stat characterHp;
     [Tooltip("Amount of XP the enemy will drop")]               [SerializeField] private Stat characterXp;
