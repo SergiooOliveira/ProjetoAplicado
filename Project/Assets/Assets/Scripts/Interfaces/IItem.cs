@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ItemType { Ingredient, Trash, KeyItem }
+public enum ItemType { Ingredient, Trash, KeyItem, Equipment }
 public enum ItemRarity { Common, Rare, Epic, Legendary }
 
 public interface IItem

@@ -29,8 +29,8 @@ public class EnemyData : ScriptableObject, IEnemy
 
     [Header("Equipables and Inventory")]
     [Tooltip("What spells does the Enemy know")]                [SerializeField] private List<Spell> characterEquipedSpells;
-    [Tooltip("What items does the Enemy drops")]                [SerializeField] private List<InventoryEntry> characterInventory;
-    [Tooltip("What equipments does the Enemy drops")]           [SerializeField] private List<Equipment> characterEquipedItems;
+    [Tooltip("What items does the Enemy drops")]                [SerializeField] private List<InventoryItem> characterInventory;
+    [Tooltip("What equipments does the Enemy drops")]           [SerializeField] private List<EquipmentEntry> characterEquipedItems;
     [Tooltip("Amount of gold the enemy will drop")]             [SerializeField] private int characterGold;
     #endregion
 
@@ -57,8 +57,8 @@ public class EnemyData : ScriptableObject, IEnemy
 
     // *----- Equipables and Inventory -----*
     public List<Spell> CharacterEquipedSpells => characterEquipedSpells;
-    public List<InventoryEntry> CharacterInventory => characterInventory;
-    public List<Equipment> CharacterEquipItems => characterEquipedItems;
+    public List<InventoryItem> CharacterInventory => characterInventory;
+    public List<EquipmentEntry> CharacterEquipItems => characterEquipedItems;
     public int CharacterGold => characterGold;
     #endregion
 
@@ -96,7 +96,7 @@ public class EnemyData : ScriptableObject, IEnemy
     /// Do not use this method
     /// </summary>
     /// <exception cref="NotSupportedException">Not supported</exception>
-    public void AddItem(InventoryEntry entry, int quantity)
+    public void AddItem(InventoryItem entry, int quantity)
     {
         throw new NotSupportedException("This class does not support adding items");
     }
@@ -123,7 +123,7 @@ public class EnemyData : ScriptableObject, IEnemy
     /// Do not use this method
     /// </summary>    
     /// <exception cref="NotSupportedException">Not supported</exception>
-    public void AddEquip(Equipment equipment)
+    public void AddEquip(EquipmentEntry equipment)
     {
         throw new NotSupportedException("This class does not support adding equipment");
     }

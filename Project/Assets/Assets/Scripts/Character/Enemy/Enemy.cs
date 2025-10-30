@@ -1,4 +1,8 @@
-﻿using Pathfinding;
+﻿using NUnit.Framework;
+using Pathfinding;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
 using UnityEngine;
 using static UnityEditor.Progress;
 
@@ -19,9 +23,9 @@ public class Enemy : MonoBehaviour
     Path path;
     int currentWaypoint = 0;
     bool reachedEndOfPath = false;
-    [SerializeField] private float stepHeight = 4f;
-    [SerializeField] private float stepCheckDistance = 0.3f;
-    [SerializeField] private float stepSmooth = 5f;
+    //[SerializeField] private float stepHeight = 4f;
+    //[SerializeField] private float stepCheckDistance = 0.3f;
+    //[SerializeField] private float stepSmooth = 5f;
 
     Seeker seeker;
     [SerializeField] private Animator animator;
@@ -142,16 +146,17 @@ public class Enemy : MonoBehaviour
 
     private void Initialize()
     {
+        Debug.Log("Initialize Enemy.cs");
         runtimeData.CharacterHp.Initialize();
 
-        foreach (InventoryEntry entry in runtimeData.CharacterInventory)
+        foreach (InventoryItem entry in runtimeData.CharacterInventory)
         {
             entry.item.Initialize();
         }
 
-        foreach (Equipment equipment in runtimeData.CharacterEquipItems)
+        foreach (EquipmentEntry equipment in runtimeData.CharacterEquipItems)
         {
-            equipment.Initialize();
+            equipment.equipment.Initialize();
         }
     }
 
@@ -211,7 +216,9 @@ public class Enemy : MonoBehaviour
     private void Flip()
     {
         isFacingRight = !isFacingRight;
-        spriteRenderer.flipX = !spriteRenderer.flipX;
+        Vector3 localScale = transform.localScale;
+        localScale.x *= -1f;
+        transform.localScale = localScale;
     }
     #endregion
 
@@ -412,9 +419,29 @@ public class Enemy : MonoBehaviour
         float defenseMultiplier = 100f / (100f + runtimeData.CharacterDefense);
         float baseDamage = spell.SpellDamage * defenseMultiplier;
 
-        // Step 2: Resistance Multiplier
-        float resistanteMultiplier = 1f - (GetResistance(spell.SpellAfinity) / 100f);
-        baseDamage *= resistanteMultiplier;
+        /* Result between the Spell Afinity and the Enemy Resistance
+         * But Player can have an Equipment to add damage to said Resistance
+         */
+
+        // Player equips that match the afinity
+        List<EquipmentEntry> playerEquips = player.RunTimePlayerData.CharacterEquipItems
+            .FindAll(entry =>
+                entry.isEquipped &&
+                entry.equipment != null &&
+                entry.equipment.RunTimeEquipmentData != null &&
+                entry.equipment.RunTimeEquipmentData.ItemDamageAfinity != null &&
+                entry.equipment.RunTimeEquipmentData.ItemDamageAfinity
+                    .Any(ida => ida.SpellAfinity == spell.SpellAfinity));
+
+        // Sum all the damage bonus to that resistance
+        float resistanceDamage = playerEquips
+            .SelectMany(entry => entry.equipment.RunTimeEquipmentData.ItemDamageAfinity)
+            .Where(r => r.SpellAfinity == spell.SpellAfinity)
+            .Sum(r => r.Amount);
+
+        float resistanceMultiplier = 1f - (GetResistance(spell.SpellAfinity) / 100f) + (resistanceDamage / 100f);
+
+        baseDamage *= resistanceMultiplier;
 
         // Step 3: Level disadvantage penalties
         int levelDifference = runtimeData.CharacterLevel - player.GetPlayerLevel();
@@ -427,7 +454,7 @@ public class Enemy : MonoBehaviour
         runtimeData.CharacterHp.TakeDamage(finalDamage);
         
         Debug.Log($"{player.RunTimePlayerData.CharacterName} did {finalDamage} damage - Enemy hp: {runtimeData.CharacterHp.Current}");
-        
+                
         if (runtimeData.CharacterHp.Current <= 0) Die(player);
     }
 
@@ -472,14 +499,14 @@ public class Enemy : MonoBehaviour
         #endregion
 
         #region Item Drop
-        foreach (InventoryEntry entry in RunTimeData.CharacterInventory)
+        foreach (InventoryItem entry in RunTimeData.CharacterInventory)
         {
             /* TODO: Item drop logic
             * Using runtimeData.CharacterInventory and runtimeData.CharacterEquipedItems
             * Both have a chance to drop those items, slightly less chance for the equiped items
             * Utilize the rarity of an item to determine the drop rate and drop quantity
             */
-            
+
             // Flag for no drop chance defined
             if (!Item.rarityDropRates.TryGetValue(entry.item.RunTimeItemData.ItemRarity, out float dropChance))
             {
@@ -487,13 +514,23 @@ public class Enemy : MonoBehaviour
                 dropChance = 0f;
             }
 
-            // Roll between 0 and 1
-            float roll = UnityEngine.Random.value;
-            bool dropped = roll <= dropChance;
+            bool dropped = false;
 
-            Debug.Log($"Item: {entry.item.RunTimeItemData.ItemName}: Rarity: {entry.item.RunTimeItemData.ItemRarity}," +
-                $" Roll: {roll:F2}, Drop chance: {dropChance * 100:F0}%," +
-                $" Result: {(dropped ? "Dropped" : "No Drop")}");
+            if (entry.isGuarantee)
+            {
+                dropped = true;
+                Debug.Log($"Item: {entry.item.RunTimeItemData.ItemName} is a guarantee drop");
+            }
+            else
+            {
+                // Roll between 0 and 1
+                float roll = UnityEngine.Random.value;
+                dropped = roll <= dropChance;
+
+                Debug.Log($"Item: {entry.item.RunTimeItemData.ItemName}: Rarity: {entry.item.RunTimeItemData.ItemRarity}," +
+                    $" Roll: {roll:F2}, Drop chance: {dropChance * 100:F0}%," +
+                    $" Result: {(dropped ? "Dropped" : "No Drop")}");
+            }
 
             // Add to Player Inventory
             if (dropped)
@@ -509,18 +546,18 @@ public class Enemy : MonoBehaviour
         #endregion
 
         #region Equipment Drop
-        foreach (Equipment equipment in RunTimeData.CharacterEquipItems)
+        foreach (EquipmentEntry equipment in RunTimeData.CharacterEquipItems)
         {
-            if (!Equipment.rarityDropRates.TryGetValue(equipment.RunTimeEquipmentData.ItemRarity, out float dropChance))
+            if (!Equipment.rarityDropRates.TryGetValue(equipment.equipment.RunTimeEquipmentData.ItemRarity, out float dropChance))
             {
-                Debug.LogWarning($"No drop chance defined for rarity {equipment.RunTimeEquipmentData.ItemRarity}, defaulting to 0.");
+                Debug.LogWarning($"No drop chance defined for rarity {equipment.equipment.RunTimeEquipmentData.ItemRarity}, defaulting to 0.");
                 dropChance = 0f;
             }
 
             float roll = UnityEngine.Random.value;
             bool dropped = roll <= dropChance;
 
-            Debug.Log($"Item: {equipment.RunTimeEquipmentData.ItemName}: Rarity: {equipment.RunTimeEquipmentData.ItemRarity}," +
+            Debug.Log($"Item: {equipment.equipment.RunTimeEquipmentData.ItemName}: Rarity: {equipment.equipment.RunTimeEquipmentData.ItemRarity}," +
                 $" Roll: {roll:F2}, Drop chance: {dropChance * 100:F0}%," +
                 $" Result: {(dropped ? "Dropped" : "No Drop")}");
 
@@ -544,20 +581,22 @@ public class Enemy : MonoBehaviour
     /// </summary>
     private void GiveStat()
     {
-        foreach (Equipment equipment in enemyData.CharacterEquipItems)
+        foreach (EquipmentEntry equipment in enemyData.CharacterEquipItems)
         {
-            if (equipment.RunTimeEquipmentData.IsItemEquiped)
+            Equipment iterationEquipment = equipment.equipment;
+
+            if (equipment.isEquipped)
             {
                 // Int and floats
-                runtimeData.AddBonusHp(equipment.RunTimeEquipmentData.ItemHpBonus);
-                runtimeData.AddBonusAttack(equipment.RunTimeEquipmentData.ItemAttackBonus);
-                runtimeData.AddBonusAttackSpeed(equipment.RunTimeEquipmentData.ItemAttackSpeedBonus);
-                runtimeData.AddBonusDefense(equipment.RunTimeEquipmentData.ItemDefenseBonus);
-                runtimeData.AddBonusMana(equipment.RunTimeEquipmentData.ItemManaBonus);
-                runtimeData.AddBonusMovementSpeed(equipment.RunTimeEquipmentData.ItemMovementSpeedBonus);
+                runtimeData.AddBonusHp(iterationEquipment.RunTimeEquipmentData.ItemHpBonus);
+                runtimeData.AddBonusAttack(iterationEquipment.RunTimeEquipmentData.ItemAttackBonus);
+                runtimeData.AddBonusAttackSpeed(iterationEquipment.RunTimeEquipmentData.ItemAttackSpeedBonus);
+                runtimeData.AddBonusDefense(iterationEquipment.RunTimeEquipmentData.ItemDefenseBonus);
+                runtimeData.AddBonusMana(iterationEquipment.RunTimeEquipmentData.ItemManaBonus);
+                runtimeData.AddBonusMovementSpeed(iterationEquipment.RunTimeEquipmentData.ItemMovementSpeedBonus);
 
                 // Resistances
-                foreach (Resistance resistance in equipment.RunTimeEquipmentData.ItemResistanceBonus)
+                foreach (Resistance resistance in iterationEquipment.RunTimeEquipmentData.ItemResistanceBonus)
                 {
                     runtimeData.AddResistance(resistance);
                 }

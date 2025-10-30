@@ -8,13 +8,13 @@ public class InventorySlotUI : MonoBehaviour, IPointerEnterHandler
     [SerializeField] private TMP_Text tb_Name;
     [SerializeField] private TMP_Text tb_Amount;
 
-    private InventoryEntry entry;
+    private InventoryItem entry;
     
     /// <summary>
     /// Call this method to set the text values in each slot
     /// </summary>
     /// <param name="i"></param>
-    public void SetSlot(InventoryEntry e)
+    public void SetSlot(InventoryItem e)
     {
         entry = e;
 
