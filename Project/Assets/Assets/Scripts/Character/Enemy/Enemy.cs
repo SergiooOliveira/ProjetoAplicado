@@ -539,7 +539,6 @@ public class Enemy : MonoBehaviour
     #endregion
 
     #region Stat
-
     /// <summary>
     /// Call this method to apply the equipment bonus
     /// </summary>
@@ -547,18 +546,21 @@ public class Enemy : MonoBehaviour
     {
         foreach (Equipment equipment in enemyData.CharacterEquipItems)
         {
-            // Int and floats
-            runtimeData.AddBonusHp(equipment.RunTimeEquipmentData.ItemHpBonus);
-            runtimeData.AddBonusAttack(equipment.RunTimeEquipmentData.ItemAttackBonus);
-            runtimeData.AddBonusAttackSpeed(equipment.RunTimeEquipmentData.ItemAttackSpeedBonus);
-            runtimeData.AddBonusDefense(equipment.RunTimeEquipmentData.ItemDefenseBonus);
-            runtimeData.AddBonusMana(equipment.RunTimeEquipmentData.ItemManaBonus);
-            runtimeData.AddBonusMovementSpeed(equipment.RunTimeEquipmentData.ItemMovementSpeedBonus);
-
-            // Resistances
-            foreach (Resistance resistance in equipment.RunTimeEquipmentData.ItemResistanceBonus)
+            if (equipment.RunTimeEquipmentData.IsItemEquiped)
             {
-                runtimeData.AddResistance(resistance);
+                // Int and floats
+                runtimeData.AddBonusHp(equipment.RunTimeEquipmentData.ItemHpBonus);
+                runtimeData.AddBonusAttack(equipment.RunTimeEquipmentData.ItemAttackBonus);
+                runtimeData.AddBonusAttackSpeed(equipment.RunTimeEquipmentData.ItemAttackSpeedBonus);
+                runtimeData.AddBonusDefense(equipment.RunTimeEquipmentData.ItemDefenseBonus);
+                runtimeData.AddBonusMana(equipment.RunTimeEquipmentData.ItemManaBonus);
+                runtimeData.AddBonusMovementSpeed(equipment.RunTimeEquipmentData.ItemMovementSpeedBonus);
+
+                // Resistances
+                foreach (Resistance resistance in equipment.RunTimeEquipmentData.ItemResistanceBonus)
+                {
+                    runtimeData.AddResistance(resistance);
+                }
             }
         }
     }
