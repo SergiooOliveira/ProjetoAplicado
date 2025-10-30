@@ -151,12 +151,14 @@ public class Enemy : MonoBehaviour
 
         foreach (InventoryItem entry in runtimeData.CharacterInventory)
         {
-            entry.item.Initialize();
+            if (entry.item != null)
+                entry.item.Initialize();
         }
 
         foreach (EquipmentEntry equipment in runtimeData.CharacterEquipItems)
         {
-            equipment.equipment.Initialize();
+            if (equipment.equipment != null)
+                equipment.equipment.Initialize();
         }
     }
 
@@ -475,6 +477,7 @@ public class Enemy : MonoBehaviour
                 return r.Amount;
             }
         }
+
 
         return 0f;
     }

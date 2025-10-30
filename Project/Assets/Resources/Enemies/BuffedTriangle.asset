@@ -36,5 +36,8 @@ MonoBehaviour:
   - item: {fileID: 7362672995192851571, guid: 0c58a3701768c7147a2732ac37b4d9e8, type: 3}
     quantity: 10
     isGuarantee: 1
-  characterEquipedItems: []
+  characterEquipedItems:
+  - equipment: {fileID: 0}
+    quantity: 0
+    isEquipped: 0
   characterGold: 10
