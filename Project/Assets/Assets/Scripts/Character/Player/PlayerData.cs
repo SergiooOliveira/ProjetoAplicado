@@ -153,7 +153,7 @@ public class PlayerData : ScriptableObject, ICharacter
     /// <param name="item">Item to sell</param>
     public void SellItem(int slot, Item item)
     {
-
+        // slot is useless (?)
     }
 
     /// <summary>
@@ -163,9 +163,13 @@ public class PlayerData : ScriptableObject, ICharacter
     /// <param name="item">Item to remove</param>
     public void RemoveItem(int slot, Item item)
     {
-
+        // slot is useless (?)
     }
 
+    /// <summary>
+    /// Call this method to add an Equipment to Player
+    /// </summary>
+    /// <param name="equipment">Equipment to add</param>
     public void AddEquip(Equipment equipment)
     {
         Equipment existingEquipment = characterEquipItems.Find(e => e.RunTimeEquipmentData.ItemName == equipment.RunTimeEquipmentData.ItemName);
@@ -197,14 +201,24 @@ public class PlayerData : ScriptableObject, ICharacter
         }
     }
 
-    public void RemoveEquip(int slot, Equipment equipment)
-    {
-
-    }
-
+    /// <summary>
+    /// Call this method to sell an Equipment
+    /// </summary>
+    /// <param name="slot"></param>
+    /// <param name="equipment">Equipment to sell</param>
     public void SellEquip(int slot, Equipment equipment)
     {
+        // slot is useless (?)
+    }
 
+    /// <summary>
+    /// Call this method to remove an Equipment
+    /// </summary>
+    /// <param name="slot"></param>
+    /// <param name="equipment">Equipment to remove</param>
+    public void RemoveEquip(int slot, Equipment equipment)
+    {
+        // slot is useless (?)
     }
 
     public void AddGold(int amount)
