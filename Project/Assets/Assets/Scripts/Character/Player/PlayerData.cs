@@ -26,8 +26,8 @@ public class PlayerData : ScriptableObject, ICharacter
 
     [Header("Equipables and Inventory")]
     [SerializeField] private List<Spell> characterEquipedSpells;    // Character Equiped Spells
-    [SerializeField] private List<InventoryEntry> characterInventory;         // Character Inventory (Also, drop table for enemies)
-    [SerializeField] private List<Equipment> characterEquipItems; // Character EquipedItems (Also, drop table for enemies)
+    [SerializeField] private List<InventoryItem> characterInventory;         // Character Inventory (Also, drop table for enemies)
+    [SerializeField] private List<EquipmentEntry> characterEquipItems; // Character EquipedItems (Also, drop table for enemies)
     [SerializeField] private int characterGold;                     // Character Gold
     #endregion
 
@@ -51,8 +51,8 @@ public class PlayerData : ScriptableObject, ICharacter
 
     // *----- Equipables and Inventory -----*
     public List<Spell> CharacterEquipedSpells => characterEquipedSpells;
-    public List<InventoryEntry> CharacterInventory => characterInventory;
-    public List<Equipment> CharacterEquipItems => characterEquipItems;
+    public List<InventoryItem> CharacterInventory => characterInventory;
+    public List<EquipmentEntry> CharacterEquipItems => characterEquipItems;
     public int CharacterGold => characterGold;
     #endregion
 
@@ -109,12 +109,13 @@ public class PlayerData : ScriptableObject, ICharacter
     #endregion
 
     #region Inventory Methods
+    #region Items
     /// <summary>
     /// Call this method to add an item to the player inventory
     /// </summary>
     /// <param name="entry">Item to add</param>
     /// <param name="amount">Amount</param>
-    public void AddItem(InventoryEntry entry, int amount)
+    public void AddItem(InventoryItem entry, int amount)
     {
         // Try to find the item in the List
         int index = characterInventory.FindIndex(i => i.item.RunTimeItemData.ItemName == entry.item.RunTimeItemData.ItemName);
@@ -122,7 +123,7 @@ public class PlayerData : ScriptableObject, ICharacter
         if (index >= 0)
         {
             // Item alreaddy exists
-            InventoryEntry existing = characterInventory[index];
+            InventoryItem existing = characterInventory[index];
 
             existing.quantity += amount;
 
@@ -136,7 +137,7 @@ public class PlayerData : ScriptableObject, ICharacter
 
             newItem.Initialize();
 
-            InventoryEntry newEntry = new InventoryEntry
+            InventoryItem newEntry = new InventoryItem
             {
                 item = newItem,
                 quantity = amount
@@ -165,39 +166,38 @@ public class PlayerData : ScriptableObject, ICharacter
     {
         // slot is useless (?)
     }
+    #endregion
 
+    #region Equipment
     /// <summary>
     /// Call this method to add an Equipment to Player
     /// </summary>
     /// <param name="equipment">Equipment to add</param>
-    public void AddEquip(Equipment equipment)
+    public void AddEquip(EquipmentEntry equipment)
     {
-        Equipment existingEquipment = characterEquipItems.Find(e => e.RunTimeEquipmentData.ItemName == equipment.RunTimeEquipmentData.ItemName);
+        int index = characterEquipItems.FindIndex(e => e.equipment.RunTimeEquipmentData.ItemName == equipment.equipment.RunTimeEquipmentData.ItemName);
 
-        if (existingEquipment == null)
+        if (index >= 0)
         {
-            // Instantiate and Initialize
-            Equipment newEquipment = ScriptableObject.Instantiate(equipment);
-            newEquipment.Initialize();
-
-            // Null check
-            if (newEquipment == null) Debug.LogWarning("New instantiated equipment is null");
-
-            // Reset quantity
-            newEquipment.ResetQuantity();
-
-            // Unequp equipment to avoid giving stats
-            newEquipment.RunTimeEquipmentData.Unequip();
-
-            // Add the dropped equipment
-            newEquipment.AddQuantity();
-
-            // Add the equipment to list
-            characterEquipItems.Add(newEquipment);
+            // Equipment found
+            EquipmentEntry existing = characterEquipItems[index];
+            existing.quantity++;
+            characterEquipItems[index] = existing;
         }
         else
         {
-            existingEquipment.AddQuantity();
+            // Equipment not found
+            Equipment eq = ScriptableObject.Instantiate(equipment.equipment);
+            eq.Initialize();
+
+            EquipmentEntry newEntry = new EquipmentEntry
+            {
+                equipment = eq,
+                quantity = 1,
+                isEquipped = false
+            };
+
+            characterEquipItems.Add(newEntry);
         }
     }
 
@@ -220,7 +220,7 @@ public class PlayerData : ScriptableObject, ICharacter
     {
         // slot is useless (?)
     }
-
+    #endregion
     public void AddGold(int amount)
     {
         Debug.Log($"Adding {amount} gold to player");

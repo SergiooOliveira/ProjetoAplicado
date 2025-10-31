@@ -1,9 +1,9 @@
 using UnityEngine;
 
 [System.Serializable]
-public struct InventoryEntry
+public struct InventoryItem
 {
     public Item item;
-    [Min(1)]
-    public int quantity;
+    [Min(1)] public int quantity;
+    public bool isGuarantee;
 }

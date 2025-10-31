@@ -17,16 +17,17 @@ MonoBehaviour:
   itemPrefeb: {fileID: 2714344466841286417, guid: 43d8d4ef6d98f4d469f653da5213643e, type: 3}
   itemType: 0
   itemRarity: 3
-  itemQuantity: 0
   isItemSellable: 1
   itemSellValue: 10000
-  itemHpBonus: 0
-  itemAttackBonus: 100
+  itemHpBonus: 50
+  itemAttackBonus: 0
   itemAttackSpeedBonus: 10
   itemDefenseBonus: 0
   itemManaBonus: 0
   itemMovementSpeedBonus: 0
   itemResistanceBonus:
+  - spellAfinity: 0
+    amount: 20
+  itemDamageAfinity:
   - spellAfinity: 2
     amount: 20
-  isItemEquiped: 0

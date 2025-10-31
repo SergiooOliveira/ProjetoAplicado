@@ -21,7 +21,7 @@ public class InventoryManagerUI : MonoBehaviour
 
     public void SetAllSlots()
     {
-        foreach (InventoryEntry entry in player.RunTimePlayerData.CharacterInventory)
+        foreach (InventoryItem entry in player.RunTimePlayerData.CharacterInventory)
         {
             GameObject newSLot = Instantiate(slot, itemListPanel);
 

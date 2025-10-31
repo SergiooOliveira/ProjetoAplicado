@@ -16,13 +16,10 @@ MonoBehaviour:
   characterLevel: 1
   characterPrefab: {fileID: 1262297832921891090, guid: df68d57ed8f82924aa9409dd2b0ab306, type: 3}
   characterHp:
-    current: 100
     max: 100
   characterXp:
-    current: 0
     max: 0
   characterMana:
-    current: 10
     max: 10
   characterMovementSpeed: 6
   characterAttackSpeed: 6
@@ -34,4 +31,8 @@ MonoBehaviour:
   characterEquipedSpells:
   - {fileID: 11400000, guid: 1bf4a273ae8da7b4987fc678f911c4b6, type: 2}
   characterInventory: []
-  characterEquipedItems: []
+  characterEquipItems:
+  - equipment: {fileID: -6673210822022468371, guid: 43d8d4ef6d98f4d469f653da5213643e, type: 3}
+    quantity: 1
+    isEquipped: 1
+  characterGold: 0

@@ -14,41 +14,10 @@ public class Equipment : MonoBehaviour
     [SerializeField] private EquipmentData equipmentData;
     private EquipmentData runTimeEquipmentData;
 
-    [SerializeField] private int equipmentQuantity;
-
     public void Initialize()
     {
         runTimeEquipmentData = ScriptableObject.Instantiate(equipmentData);
     }
 
     public EquipmentData RunTimeEquipmentData => runTimeEquipmentData;
-
-    public int EquipmentQuantity => equipmentQuantity;
-
-    #region Methods
-    /// <summary>
-    /// Call this method to add equipment
-    /// </summary>
-    public void AddQuantity()
-    {
-        equipmentQuantity++;
-    }
-
-    /// <summary>
-    /// Call this method to remove equipment
-    /// </summary>
-    /// <param name="amount"></param>
-    public void RemoveQuantity(int amount)
-    {
-        equipmentQuantity -= amount;
-    }
-
-    /// <summary>
-    /// Call this method to reset the quantity of equipment
-    /// </summary>
-    public void ResetQuantity()
-    {
-        equipmentQuantity = 0;        
-    }
-    #endregion
 }
