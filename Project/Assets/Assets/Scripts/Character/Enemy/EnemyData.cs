@@ -32,6 +32,12 @@ public class EnemyData : ScriptableObject, IEnemy
         public float weight = 1f;
     }
 
+    [Header("Spawn Settings")]
+    [Tooltip("Max enemies alive")]                              [SerializeField] private int spawnCount;
+    [Tooltip("Player must be inside this radius to spawn")]     [SerializeField] private float distanceSpawn;
+    [Tooltip("Time to respawn after death")]                    [SerializeField] private float respawnTime;
+    [Tooltip("Player must be outside this radius to respawn")]  [SerializeField] private float respawnDistance;
+
     [Header("Stats")]
     [Tooltip("Enemy HP")]                                       [SerializeField] private Stat characterHp;
     [Tooltip("Amount of XP the enemy will drop")]               [SerializeField] private Stat characterXp;
@@ -59,6 +65,12 @@ public class EnemyData : ScriptableObject, IEnemy
     public string CharacterDescription => characterDescription;
     public EnemyType CharacterType => characterType;
     public EnemySpawnLevel CharacterSpawnLevel => characterSpawnLevel;
+
+    // *----- Spawn Settings -----*
+    public int SpawnCount => spawnCount;
+    public float DistanceSpawn => distanceSpawn;
+    public float RespawnTime => respawnTime;
+    public float RespawnDistance => respawnDistance;
 
     // *----- Stats -----*
     public Stat CharacterHp => characterHp;

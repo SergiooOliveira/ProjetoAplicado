@@ -14,12 +14,15 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float sightRange, attackRange;
     private bool playerInSightRange;
     private bool isAttacking = false;
-    private bool isDead = false;
+
     private EnemyData.EnemyAttack currentAttack;
     private Transform player;
 
     [SerializeField] private GameObject enemyHUDPrefab;
     private GameObject hudInstance;
+
+    public EnemySpawnPoint spawnPoint;
+    public EnemySpawner spawner;
 
     [SerializeField] private float nextWaypointDistance = 3f;
     Path path;
@@ -75,7 +78,7 @@ public class Enemy : MonoBehaviour
         if (enemyHUDPrefab != null)
         {
             // Instancia o HUD como filho do Enemy
-            hudInstance = Instantiate(enemyHUDPrefab, transform);
+            hudInstance = Instantiate(enemyHUDPrefab, transform.position, Quaternion.identity);
             hudInstance.GetComponent<EnemyHUD>().Init(this);
         }
 
@@ -585,6 +588,18 @@ public class Enemy : MonoBehaviour
         // Add gold to player inventory
         player.RunTimePlayerData.AddGold(RunTimeData.CharacterGold);
 
+        // Destroy EnemyHUD
+        if (hudInstance != null)
+            Destroy(hudInstance);
+
+        // Inform spawn system that this enemy died
+        if (spawnPoint != null)
+            spawnPoint.ClearEnemy();
+
+        // Notify enemy death
+        if (spawner != null)
+            spawner.OnEnemyDeath(spawnPoint);
+
         // Stop Movimentaion
         rb.linearVelocity = Vector2.zero;
 
@@ -596,7 +611,7 @@ public class Enemy : MonoBehaviour
     // Animation End
     public void OnDeathAnimationEnd()
     {
-        EnemyManager.Instance.RemoveEnemy(this);
+        Destroy(gameObject);
     }
     #endregion
 
