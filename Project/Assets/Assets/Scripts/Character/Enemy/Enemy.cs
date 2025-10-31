@@ -17,7 +17,16 @@ public class Enemy : MonoBehaviour
     [SerializeField] private LayerMask playerLayer;    
     [SerializeField] private float sightRange, attackRange;
     private bool playerInSightRange;
+    private bool isAttacking = false;
+
+    private EnemyData.EnemyAttack currentAttack;
     private Transform player;
+
+    [SerializeField] private GameObject enemyHUDPrefab;
+    private GameObject hudInstance;
+
+    public EnemySpawnPoint spawnPoint;
+    public EnemySpawner spawner;
 
     [SerializeField] private float nextWaypointDistance = 3f;
     Path path;
@@ -70,6 +79,13 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
+        if (enemyHUDPrefab != null)
+        {
+            // Instancia o HUD como filho do Enemy
+            hudInstance = Instantiate(enemyHUDPrefab, transform.position, Quaternion.identity);
+            hudInstance.GetComponent<EnemyHUD>().Init(this);
+        }
+
         InvokeRepeating("UpdatePath", 0f, .5f);
     }
 
@@ -367,7 +383,12 @@ public class Enemy : MonoBehaviour
     /// </summary>
     private void GroundAttack()
     {
+        if (isAttacking) return;
 
+        isAttacking = true;
+
+        currentAttack = GetRandomAttack();
+        animator.SetTrigger(currentAttack.triggerName);
     }
 
     /// <summary>
@@ -387,6 +408,39 @@ public class Enemy : MonoBehaviour
     {
         // TODO: Should be an override cause it's not the same logic
         runtimeData.CharacterEquipedSpells[0].Cast(position, direction, player);
+    }
+
+    // Random Attacks
+    // Each Attack have difrent animation / damage / chances
+    private EnemyData.EnemyAttack GetRandomAttack()
+    {
+        float totalWeight = 0f;
+        foreach (var atk in runtimeData.Attacks)
+            totalWeight += atk.weight;
+
+        float randomValue = UnityEngine.Random.Range(0f, totalWeight);
+        float cumulative = 0f;
+
+        foreach (var atk in runtimeData.Attacks)
+        {
+            cumulative += atk.weight;
+            if (randomValue <= cumulative)
+                return atk;
+        }
+
+        return runtimeData.Attacks[0]; // fallback
+    }
+
+    // Player Take Damage
+    // Is Trigger by Animation Event
+    // Using Script EnemyAnimationEvent
+    public void ApplyAttackDamage()
+    {
+        if (player == null) return;
+
+
+        // Allow attack again
+        isAttacking = false;
     }
     #endregion
 
@@ -574,7 +628,30 @@ public class Enemy : MonoBehaviour
         // Add gold to player inventory
         player.RunTimePlayerData.AddGold(RunTimeData.CharacterGold);
 
-        EnemyManager.Instance.RemoveEnemy(this);
+        // Destroy EnemyHUD
+        if (hudInstance != null)
+            Destroy(hudInstance);
+
+        // Inform spawn system that this enemy died
+        if (spawnPoint != null)
+            spawnPoint.ClearEnemy();
+
+        // Notify enemy death
+        if (spawner != null)
+            spawner.OnEnemyDeath(spawnPoint);
+
+        // Stop Movimentaion
+        rb.linearVelocity = Vector2.zero;
+
+        // Trigger Death Animation
+        animator.SetTrigger("Death");
+    }
+
+    // Destroy Enemy
+    // Animation End
+    public void OnDeathAnimationEnd()
+    {
+        Destroy(gameObject);
     }
     #endregion
 

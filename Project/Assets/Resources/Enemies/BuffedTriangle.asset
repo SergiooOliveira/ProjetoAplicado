@@ -18,6 +18,7 @@ MonoBehaviour:
   characterDescription: asd
   characterType: 0
   characterSpawnLevel: 0
+  attacks: []
   characterHp:
     max: 200
   characterXp:

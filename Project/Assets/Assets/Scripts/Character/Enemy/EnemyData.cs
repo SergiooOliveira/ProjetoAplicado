@@ -15,6 +15,29 @@ public class EnemyData : ScriptableObject, IEnemy
     [Tooltip("Type of the Enemy")]                              [SerializeField] private EnemyType characterType;
     [Tooltip("Where does the Enemy spawn")]                     [SerializeField] private EnemySpawnLevel characterSpawnLevel;
 
+    [Header("Attacks")]
+    [SerializeField] private List<EnemyAttack> attacks;
+    public List<EnemyAttack> Attacks => attacks;
+
+    [System.Serializable]
+    public class EnemyAttack
+    {
+        [Tooltip("Trigger name in Animator")]
+        public string triggerName;
+
+        [Tooltip("Damage this attack does")]
+        public int damage;
+
+        [Tooltip("Relative weight for chance of happening")]
+        public float weight = 1f;
+    }
+
+    [Header("Spawn Settings")]
+    [Tooltip("Max enemies alive")]                              [SerializeField] private int spawnCount;
+    [Tooltip("Player must be inside this radius to spawn")]     [SerializeField] private float distanceSpawn;
+    [Tooltip("Time to respawn after death")]                    [SerializeField] private float respawnTime;
+    [Tooltip("Player must be outside this radius to respawn")]  [SerializeField] private float respawnDistance;
+
     [Header("Stats")]
     [Tooltip("Enemy HP")]                                       [SerializeField] private Stat characterHp;
     [Tooltip("Amount of XP the enemy will drop")]               [SerializeField] private Stat characterXp;
@@ -42,6 +65,12 @@ public class EnemyData : ScriptableObject, IEnemy
     public string CharacterDescription => characterDescription;
     public EnemyType CharacterType => characterType;
     public EnemySpawnLevel CharacterSpawnLevel => characterSpawnLevel;
+
+    // *----- Spawn Settings -----*
+    public int SpawnCount => spawnCount;
+    public float DistanceSpawn => distanceSpawn;
+    public float RespawnTime => respawnTime;
+    public float RespawnDistance => respawnDistance;
 
     // *----- Stats -----*
     public Stat CharacterHp => characterHp;

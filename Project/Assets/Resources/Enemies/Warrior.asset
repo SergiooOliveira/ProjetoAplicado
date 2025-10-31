@@ -18,18 +18,29 @@ MonoBehaviour:
   characterDescription: A mighty warrior destined to walk the land for all eternity
   characterType: 0
   characterSpawnLevel: 0
+  attacks:
+  - triggerName: Attack1
+    damage: 5
+    weight: 70
+  - triggerName: Attack2
+    damage: 10
+    weight: 30
+  spawnCount: 1
+  distanceSpawn: 5
+  respawnTime: 5
+  respawnDistance: 10
   characterHp:
     max: 100
   characterXp:
     max: 0
   characterMana:
     max: 0
-  characterMovementSpeed: 0
-  characterAttackSpeed: 0
+  characterMovementSpeed: 7
+  characterAttackSpeed: 5
   characterAttackPower: 0
-  characterDefense: 0
+  characterDefense: 10
   characterResistances: []
   characterEquipedSpells: []
   characterInventory: []
   characterEquipedItems: []
-  characterGold: 0
+  characterGold: 10
