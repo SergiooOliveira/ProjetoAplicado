@@ -1,12 +1,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum EquipmentSlot { Helmet, Chestplate, Leggings, Shoes, Sword, Wand }
+public enum EquipmentSlot { Helmet, Chestplate, Leggings, Shoes, Weapon, Accessories }
 
 [CreateAssetMenu(menuName = "Items/New Equipment")]
 public class EquipmentData : ItemData
 {
     #region Serialized Fields
+    [Header("Identity")]
+    [SerializeField] private EquipmentSlot slot;
+
     [Header("Bonus Stats")]
     [SerializeField] private int itemHpBonus;                           // Item Hp Bonus
     [SerializeField] private int itemAttackBonus;                       // Item Attack Bonus
@@ -19,6 +22,9 @@ public class EquipmentData : ItemData
     #endregion
 
     #region Property implementation
+    // *----- Identity -----*
+    public EquipmentSlot Slot => slot;
+
     // *----- Bonus Stats -----*
     public int ItemHpBonus => itemHpBonus;
     public int ItemAttackBonus => itemAttackBonus;
