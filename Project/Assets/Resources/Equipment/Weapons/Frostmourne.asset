@@ -15,10 +15,11 @@ MonoBehaviour:
   itemName: Frostmourne
   itemDescription: The runeblade of the Lich King, forged to steal souls.
   itemPrefeb: {fileID: 2714344466841286417, guid: 43d8d4ef6d98f4d469f653da5213643e, type: 3}
-  itemType: 0
+  itemType: 3
   itemRarity: 3
   isItemSellable: 1
   itemSellValue: 10000
+  slot: 0
   itemHpBonus: 50
   itemAttackBonus: 0
   itemAttackSpeedBonus: 10
