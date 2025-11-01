@@ -25,14 +25,8 @@ public class InventoryManagerUI : MonoBehaviour
         {
             GameObject newSLot = Instantiate(slot, itemListPanel);
 
-            Transform name = newSLot.transform.Find("Name");
-            Transform quantity = newSLot.transform.Find("Quantity");
-
-            TMP_Text tb_name = name.GetComponent<TMP_Text>();
-            TMP_Text tb_quantity = quantity.GetComponent<TMP_Text>();
-
-            tb_name.text = entry.item.RunTimeItemData.ItemName;
-            tb_quantity.text = entry.quantity.ToString();
+            InventorySlotUI slotUI = newSLot.GetComponent<InventorySlotUI>();
+            slotUI.SetSlot(entry);
         }
     }
 
