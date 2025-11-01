@@ -170,7 +170,7 @@ public class PlayerData : ScriptableObject, ICharacter
 
     #region Equipment
     /// <summary>
-    /// Call this method to add an Equipment to Player
+    /// Call this method to add an Equipment to Player inventory
     /// </summary>
     /// <param name="equipment">Equipment to add</param>
     public void AddEquip(EquipmentEntry equipment)
@@ -223,7 +223,7 @@ public class PlayerData : ScriptableObject, ICharacter
     #endregion
     public void AddGold(int amount)
     {
-        Debug.Log($"Adding {amount} gold to player");
+        //Debug.Log($"Adding {amount} gold to player");
         characterGold += amount;
     }
     #endregion

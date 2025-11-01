@@ -20,7 +20,7 @@ MonoBehaviour:
   characterSpawnLevel: 0
   attacks: []
   characterHp:
-    max: 200
+    max: 10
   characterXp:
     max: 0
   characterMana:
@@ -37,8 +37,8 @@ MonoBehaviour:
   - item: {fileID: 7362672995192851571, guid: 0c58a3701768c7147a2732ac37b4d9e8, type: 3}
     quantity: 10
     isGuarantee: 1
-  characterEquipedItems:
-  - equipment: {fileID: 0}
-    quantity: 0
-    isEquipped: 0
+  - item: {fileID: 791059958512238194, guid: 5370bea0216ae494c9a334486a90260a, type: 3}
+    quantity: 10
+    isGuarantee: 1
+  characterEquipedItems: []
   characterGold: 10

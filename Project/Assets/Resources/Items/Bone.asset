@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName: Bones
   itemDescription: Brittle and yellowed with age. Worth little, but unsettling to
     hold.
-  itemPrefeb: {fileID: 4571283792198667029, guid: 0c58a3701768c7147a2732ac37b4d9e8, type: 3}
+  itemPrefab: {fileID: 4571283792198667029, guid: 0c58a3701768c7147a2732ac37b4d9e8, type: 3}
   itemType: 0
   itemRarity: 0
   isItemSellable: 1

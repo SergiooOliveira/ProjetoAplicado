@@ -7,7 +7,7 @@ public class ItemData : ScriptableObject, IItem
     [Header("Identity")]
     [SerializeField] private string itemName;           // Item Name
     [SerializeField] private string itemDescription;    // Item Description
-    [SerializeField] private GameObject itemPrefeb;     // Item Prefab
+    [SerializeField] private GameObject itemPrefab;     // Item Prefab
     [SerializeField] private ItemType itemType;         // Item Type
     [SerializeField] private ItemRarity itemRarity;     // Item Rarity  
 
@@ -20,7 +20,7 @@ public class ItemData : ScriptableObject, IItem
     // *----- Identity -----*
     public string ItemName => itemName;
     public string ItemDescription => itemDescription;
-    public GameObject ItemPrefab => itemPrefeb;
+    public GameObject ItemPrefab => itemPrefab;
     public ItemType ItemType => itemType;
     public ItemRarity ItemRarity => itemRarity;
 
