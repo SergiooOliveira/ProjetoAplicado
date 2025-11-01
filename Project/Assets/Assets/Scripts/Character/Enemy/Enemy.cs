@@ -54,9 +54,6 @@ public class Enemy : MonoBehaviour
         Initialize();
         GiveStat();
 
-        Debug.Log($"Initialized enemyData: {enemyData.ToString()}");
-        Debug.Log($"Initialized runtimeData: {runtimeData.ToString()}");
-
         seeker = GetComponent<Seeker>();
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
@@ -146,7 +143,6 @@ public class Enemy : MonoBehaviour
 
     private void Initialize()
     {
-        Debug.Log("Initialize Enemy.cs");
         runtimeData.CharacterHp.Initialize();
 
         foreach (InventoryItem entry in runtimeData.CharacterInventory)
@@ -455,7 +451,7 @@ public class Enemy : MonoBehaviour
 
         runtimeData.CharacterHp.TakeDamage(finalDamage);
         
-        Debug.Log($"{player.RunTimePlayerData.CharacterName} did {finalDamage} damage - Enemy hp: {runtimeData.CharacterHp.Current}");
+        //Debug.Log($"{player.RunTimePlayerData.CharacterName} did {finalDamage} damage - Enemy hp: {runtimeData.CharacterHp.Current}");
                 
         if (runtimeData.CharacterHp.Current <= 0) Die(player);
     }
@@ -509,6 +505,7 @@ public class Enemy : MonoBehaviour
             * Both have a chance to drop those items, slightly less chance for the equiped items
             * Utilize the rarity of an item to determine the drop rate and drop quantity
             */
+            if (entry.item == null) continue;
 
             // Flag for no drop chance defined
             if (!Item.rarityDropRates.TryGetValue(entry.item.RunTimeItemData.ItemRarity, out float dropChance))
@@ -522,7 +519,7 @@ public class Enemy : MonoBehaviour
             if (entry.isGuarantee)
             {
                 dropped = true;
-                Debug.Log($"Item: {entry.item.RunTimeItemData.ItemName} is a guarantee drop");
+                //Debug.Log($"Item: {entry.item.RunTimeItemData.ItemName} is a guarantee drop");
             }
             else
             {
@@ -530,9 +527,9 @@ public class Enemy : MonoBehaviour
                 float roll = UnityEngine.Random.value;
                 dropped = roll <= dropChance;
 
-                Debug.Log($"Item: {entry.item.RunTimeItemData.ItemName}: Rarity: {entry.item.RunTimeItemData.ItemRarity}," +
-                    $" Roll: {roll:F2}, Drop chance: {dropChance * 100:F0}%," +
-                    $" Result: {(dropped ? "Dropped" : "No Drop")}");
+                //Debug.Log($"Item: {entry.item.RunTimeItemData.ItemName}: Rarity: {entry.item.RunTimeItemData.ItemRarity}," +
+                //    $" Roll: {roll:F2}, Drop chance: {dropChance * 100:F0}%," +
+                //    $" Result: {(dropped ? "Dropped" : "No Drop")}");
             }
 
             // Add to Player Inventory
@@ -540,8 +537,7 @@ public class Enemy : MonoBehaviour
             {
                 // Calculate the amount of items to give to the player
                 // Amount varies between half the quantity and the full quantity
-                int amount = Random.Range(entry.quantity / 2, entry.quantity);
-                Debug.Log($"Amount dropped {amount}");
+                int amount = Random.Range(entry.quantity / 2, entry.quantity);                
 
                 player.RunTimePlayerData.AddItem(entry, amount);
             }
@@ -551,6 +547,8 @@ public class Enemy : MonoBehaviour
         #region Equipment Drop
         foreach (EquipmentEntry equipment in RunTimeData.CharacterEquipItems)
         {
+            if (equipment.equipment == null) continue;
+
             if (!Equipment.rarityDropRates.TryGetValue(equipment.equipment.RunTimeEquipmentData.ItemRarity, out float dropChance))
             {
                 Debug.LogWarning($"No drop chance defined for rarity {equipment.equipment.RunTimeEquipmentData.ItemRarity}, defaulting to 0.");
@@ -560,9 +558,9 @@ public class Enemy : MonoBehaviour
             float roll = UnityEngine.Random.value;
             bool dropped = roll <= dropChance;
 
-            Debug.Log($"Item: {equipment.equipment.RunTimeEquipmentData.ItemName}: Rarity: {equipment.equipment.RunTimeEquipmentData.ItemRarity}," +
-                $" Roll: {roll:F2}, Drop chance: {dropChance * 100:F0}%," +
-                $" Result: {(dropped ? "Dropped" : "No Drop")}");
+            //Debug.Log($"Item: {equipment.equipment.RunTimeEquipmentData.ItemName}: Rarity: {equipment.equipment.RunTimeEquipmentData.ItemRarity}," +
+            //    $" Roll: {roll:F2}, Drop chance: {dropChance * 100:F0}%," +
+            //    $" Result: {(dropped ? "Dropped" : "No Drop")}");
 
             if (dropped)
             {

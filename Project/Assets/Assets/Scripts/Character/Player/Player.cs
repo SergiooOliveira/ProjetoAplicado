@@ -11,12 +11,6 @@ public class Player : MonoBehaviour
     {        
         runTimePlayerData = Instantiate(playerData);
         Initialize();
-
-        Debug.Log($"RunTimePlayer: {runTimePlayerData.CharacterName} has the following items");
-        foreach (EquipmentEntry equipment in runTimePlayerData.CharacterEquipItems)
-        {
-            Debug.Log($"{equipment.equipment.RunTimeEquipmentData.ItemName} is {(equipment.isEquipped == true ? "Equipped" : "Not Equipped")}");
-        }
     }
 
     public void Start()
@@ -29,7 +23,6 @@ public class Player : MonoBehaviour
     /// </summary>
     public void Initialize()
     {
-        Debug.Log("Inside Player Initialize");
         runTimePlayerData.CharacterHp.Initialize();
         runTimePlayerData.CharacterMana.Initialize();
         runTimePlayerData.ClearSpellList();
