@@ -34,6 +34,7 @@ public class InventorySlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
     {
         // Instantiate the Tooltip
         tooltipInstance = Instantiate(tooltipObject, GetComponentInParent<Canvas>().transform);
+        tooltipInstance.transform.position = Input.mousePosition;
         
         // Get all transforms for the toolTip information
         Transform itemSpriteTransform =     tooltipInstance.transform.Find("ItemDetailPanel/ItemSprite");
