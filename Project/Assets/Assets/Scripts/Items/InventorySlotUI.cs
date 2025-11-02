@@ -34,6 +34,7 @@ public class InventorySlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
     {
         // Instantiate the Tooltip
         tooltipInstance = Instantiate(tooltipObject, GetComponentInParent<Canvas>().transform);
+        tooltipInstance.transform.position = Input.mousePosition;
         
         // Get all transforms for the toolTip information
         Transform itemSpriteTransform =     tooltipInstance.transform.Find("ItemDetailPanel/ItemSprite");
@@ -49,7 +50,7 @@ public class InventorySlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
         TMP_Text tb_itemRarity = rarityTransform.GetComponent<TMP_Text>();
         TMP_Text tb_itemSellValue = sellValueTransform.GetComponent<TMP_Text>();
 
-        // Check if all th Components are not null
+        // Check if all the Components are not null
         if (itemSprite == null ||
             tb_itemName == null ||
             tb_itemDescription == null ||
@@ -58,8 +59,6 @@ public class InventorySlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
         {
             Debug.LogWarning($"Item prefab for {entry.item.RunTimeItemData.ItemName} has no SpriteRenderer!");
             return;
-            
-            //Debug.Log($"Item Sprite: {prefabRenderer.sprite.name}");
         }
 
         // Set the values

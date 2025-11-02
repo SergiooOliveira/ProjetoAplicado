@@ -540,6 +540,8 @@ public class Enemy : MonoBehaviour
                 int amount = Random.Range(entry.quantity / 2, entry.quantity);                
 
                 player.RunTimePlayerData.AddItem(entry, amount);
+
+                Debug.Log($"Added {amount} {entry.item.RunTimeItemData.ItemName}");
             }
         }
         #endregion
@@ -563,7 +565,7 @@ public class Enemy : MonoBehaviour
             //    $" Result: {(dropped ? "Dropped" : "No Drop")}");
 
             if (dropped)
-            {
+            {                
                 player.RunTimePlayerData.AddEquip(equipment);
             }
         }
@@ -572,7 +574,37 @@ public class Enemy : MonoBehaviour
         // Add gold to player inventory
         player.RunTimePlayerData.AddGold(RunTimeData.CharacterGold);
 
+<<<<<<< Updated upstream
         EnemyManager.Instance.RemoveEnemy(this);
+=======
+        // Destroy EnemyHUD
+        if (hudInstance != null)
+            Destroy(hudInstance);
+
+        // Inform spawn system that this enemy died
+        if (spawnPoint != null)
+            spawnPoint.ClearEnemy();
+
+        // Notify enemy death
+        if (spawner != null)
+            spawner.OnEnemyDeath(spawnPoint);
+
+        // Stop Movimentaion
+        rb.linearVelocity = Vector2.zero;
+
+        // Trigger Death Animation
+        animator.SetTrigger("Death");
+
+        // Disable collider
+        this.gameObject.GetComponent<Collider2D>().enabled = false;
+    }
+
+    // Destroy Enemy
+    // Animation End
+    public void OnDeathAnimationEnd()
+    {
+        Destroy(gameObject);
+>>>>>>> Stashed changes
     }
     #endregion
 
