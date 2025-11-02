@@ -643,6 +643,9 @@ public class Enemy : MonoBehaviour
 
         // Trigger Death Animation
         animator.SetTrigger("Death");
+
+        // Disabel collider to prevent multiple drops
+        this.gameObject.GetComponent<Collider2D>().enabled = false;
     }
 
     // Destroy Enemy
