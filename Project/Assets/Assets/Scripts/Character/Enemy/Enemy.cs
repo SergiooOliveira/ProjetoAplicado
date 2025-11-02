@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem.Processors;
 using static UnityEditor.Progress;
 
 public class Enemy : MonoBehaviour
@@ -32,9 +33,6 @@ public class Enemy : MonoBehaviour
     Path path;
     int currentWaypoint = 0;
     bool reachedEndOfPath = false;
-    //[SerializeField] private float stepHeight = 4f;
-    //[SerializeField] private float stepCheckDistance = 0.3f;
-    //[SerializeField] private float stepSmooth = 5f;
 
     Seeker seeker;
     [SerializeField] private Animator animator;
@@ -56,6 +54,8 @@ public class Enemy : MonoBehaviour
     private float lastJumpTime = -999f;
 
     [SerializeField] private bool debugGizmos = true;
+
+    private bool isDead = false;
 
     private void Awake()
     {        
@@ -549,6 +549,8 @@ public class Enemy : MonoBehaviour
             Debug.Log("Enemy is null");
             return;
         }
+
+        if (isDead) return;
         #endregion
 
         #region Item Drop
@@ -594,6 +596,8 @@ public class Enemy : MonoBehaviour
                 int amount = Random.Range(entry.quantity / 2, entry.quantity);                
 
                 player.RunTimePlayerData.AddItem(entry, amount);
+
+                player.DisplayNotification(entry.item.RunTimeItemData.ItemName, amount);
             }
         }
         #endregion
@@ -619,6 +623,7 @@ public class Enemy : MonoBehaviour
             if (dropped)
             {
                 player.RunTimePlayerData.AddEquip(equipment);
+                player.DisplayNotification(equipment.equipment.RunTimeEquipmentData.ItemName, 1);
             }
         }
         #endregion
@@ -644,8 +649,7 @@ public class Enemy : MonoBehaviour
         // Trigger Death Animation
         animator.SetTrigger("Death");
 
-        // Disabel collider to prevent multiple drops
-        this.gameObject.GetComponent<Collider2D>().enabled = false;
+        isDead = true;
     }
 
     // Destroy Enemy

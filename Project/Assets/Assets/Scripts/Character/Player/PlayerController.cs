@@ -47,6 +47,9 @@ public class PlayerController : NetworkBehaviour
         player = GetComponent<Player>();
         playerData = player.RunTimePlayerData;
 
+        if (playerData == null)
+            Debug.Log("Player data is null");
+
         // TODO: Not sure if we need this
         inventoryManagerUI = inventoryPanel.GetComponent<InventoryManagerUI>();
     }
@@ -57,7 +60,7 @@ public class PlayerController : NetworkBehaviour
     }
 
     private void FixedUpdate()
-    {
+    {       
         rb.linearVelocity = new Vector2(horizontal * playerData.CharacterMovementSpeed, rb.linearVelocity.y);
 
         if (!isFacingRight && horizontal > 0f) Flip();

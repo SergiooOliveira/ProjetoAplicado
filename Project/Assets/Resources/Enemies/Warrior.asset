@@ -41,6 +41,9 @@ MonoBehaviour:
   characterDefense: 10
   characterResistances: []
   characterEquipedSpells: []
-  characterInventory: []
+  characterInventory:
+  - item: {fileID: 7362672995192851571, guid: 0c58a3701768c7147a2732ac37b4d9e8, type: 3}
+    quantity: 10
+    isGuarantee: 1
   characterEquipedItems: []
   characterGold: 10
