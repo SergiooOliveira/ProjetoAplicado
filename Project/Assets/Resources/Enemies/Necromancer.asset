@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd632307590d5c54a966560ca3cc38c7, type: 3}
+  m_Name: Necromancer
+  m_EditorClassIdentifier: 
+  characterName: Necromancer
+  characterLevel: 5
+  characterPrefab: {fileID: 4187340211508186756, guid: 54196fb27e2ada8438b11eeecba8b4eb, type: 3}
+  characterDescription: A mighty warrior destined to walk the land for all eternity
+  characterType: 0
+  characterSpawnLevel: 0
+  attacks:
+  - triggerName: Attack1
+    damage: 10
+    weight: 30
+  - triggerName: Attack2
+    damage: 5
+    weight: 50
+  - triggerName: Attack3
+    damage: 15
+    weight: 20
+  spawnCount: 1
+  distanceSpawn: 5
+  respawnTime: 5
+  respawnDistance: 10
+  characterHp:
+    max: 100
+  characterXp:
+    max: 0
+  characterMana:
+    max: 100
+  characterMovementSpeed: 6
+  characterAttackSpeed: 6
+  characterAttackPower: 6
+  characterDefense: 6
+  characterResistances: []
+  characterEquipedSpells: []
+  characterInventory: []
+  characterEquipedItems: []
+  characterGold: 10

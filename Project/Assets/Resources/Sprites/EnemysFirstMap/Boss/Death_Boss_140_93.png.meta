@@ -1,55 +1,58 @@
 fileFormatVersion: 2
-guid: 3f19b6f3b51ee214ba42c7de79b5d4ff
+guid: 39ce8906e65134e45b46ed9a2cbd3de9
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -692887702037076003
-    second: Atk1_Full_Skeleton_96_96_0
+      213: -9019667498647090473
+    second: Death_Boss_140_93_0
   - first:
-      213: -2420623716643858105
-    second: Atk1_Full_Skeleton_96_96_1
+      213: 3574867254228783954
+    second: Death_Boss_140_93_1
   - first:
-      213: 4786966662446923581
-    second: Atk1_Full_Skeleton_96_96_2
+      213: 8745864501815803366
+    second: Death_Boss_140_93_2
   - first:
-      213: -6364948811779971542
-    second: Atk1_Full_Skeleton_96_96_3
+      213: -4157382134719211099
+    second: Death_Boss_140_93_3
   - first:
-      213: -1231988954018505350
-    second: Atk1_Full_Skeleton_96_96_4
+      213: -204093705652345824
+    second: Death_Boss_140_93_4
   - first:
-      213: -163037954908791788
-    second: Atk1_Full_Skeleton_96_96_5
+      213: -3015762082865265990
+    second: Death_Boss_140_93_5
   - first:
-      213: -4580289359950617836
-    second: Atk1_Full_Skeleton_96_96_6
+      213: -5711435511828152036
+    second: Death_Boss_140_93_6
   - first:
-      213: -2636117340574515004
-    second: Atk1_Full_Skeleton_96_96_7
+      213: 3538719239554000673
+    second: Death_Boss_140_93_7
   - first:
-      213: -3822312761721974194
-    second: Atk1_Full_Skeleton_96_96_8
+      213: -7546629493763971927
+    second: Death_Boss_140_93_8
   - first:
-      213: -2017418209324276222
-    second: Atk1_Full_Skeleton_96_96_9
+      213: -4392201622067305947
+    second: Death_Boss_140_93_9
   - first:
-      213: -9080272675102369652
-    second: Atk1_Full_Skeleton_96_96_10
+      213: 5745035272929328385
+    second: Death_Boss_140_93_10
   - first:
-      213: -360320435899730170
-    second: Atk1_Full_Skeleton_96_96_11
+      213: -4350999382426209973
+    second: Death_Boss_140_93_11
   - first:
-      213: 1822059378796547310
-    second: Atk1_Full_Skeleton_96_96_12
+      213: 2249756051925890347
+    second: Death_Boss_140_93_12
   - first:
-      213: 8887414888248021971
-    second: Atk1_Full_Skeleton_96_96_13
+      213: -7613489237401609353
+    second: Death_Boss_140_93_13
   - first:
-      213: 7366793940982714384
-    second: Atk1_Full_Skeleton_96_96_14
+      213: 5869345882069835042
+    second: Death_Boss_140_93_14
   - first:
-      213: -473378939578491870
-    second: Atk1_Full_Skeleton_96_96_15
+      213: 1661475172900422332
+    second: Death_Boss_140_93_15
+  - first:
+      213: 1884127631878482952
+    second: Death_Boss_140_93_16
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -145,243 +148,221 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Atk1_Full_Skeleton_96_96_0
+      name: Death_Boss_140_93_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 288
-        width: 96
-        height: 96
+        y: 279
+        width: 140
+        height: 93
       alignment: 9
-      pivot: {x: 0.5, y: 0.25}
+      pivot: {x: 0.75, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: dd7e7da5e4e5266f0800000000000000
-      internalID: -692887702037076003
+      spriteID: 7da010fb234b3d280800000000000000
+      internalID: -9019667498647090473
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atk1_Full_Skeleton_96_96_1
+      name: Death_Boss_140_93_1
       rect:
         serializedVersion: 2
-        x: 96
-        y: 288
-        width: 96
-        height: 96
+        x: 140
+        y: 279
+        width: 140
+        height: 93
       alignment: 9
-      pivot: {x: 0.5, y: 0.25}
+      pivot: {x: 0.75, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7499e820e87386ed0800000000000000
-      internalID: -2420623716643858105
+      spriteID: 2539b77c3da7c9130800000000000000
+      internalID: 3574867254228783954
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atk1_Full_Skeleton_96_96_2
+      name: Death_Boss_140_93_2
       rect:
         serializedVersion: 2
-        x: 192
-        y: 288
-        width: 96
-        height: 96
+        x: 280
+        y: 279
+        width: 140
+        height: 93
       alignment: 9
-      pivot: {x: 0.5, y: 0.25}
+      pivot: {x: 0.75, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d3f39ca21d8be6240800000000000000
-      internalID: 4786966662446923581
+      spriteID: 6edfd644d6d8f5970800000000000000
+      internalID: 8745864501815803366
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atk1_Full_Skeleton_96_96_3
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 192
-        width: 96
-        height: 96
-      alignment: 9
-      pivot: {x: 0.5, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a266f4457c82ba7a0800000000000000
-      internalID: -6364948811779971542
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Atk1_Full_Skeleton_96_96_4
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 192
-        width: 96
-        height: 96
-      alignment: 9
-      pivot: {x: 0.5, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a7d958cd29817eee0800000000000000
-      internalID: -1231988954018505350
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Atk1_Full_Skeleton_96_96_5
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 192
-        width: 96
-        height: 96
-      alignment: 9
-      pivot: {x: 0.5, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 41c51c408d5ccbdf0800000000000000
-      internalID: -163037954908791788
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Atk1_Full_Skeleton_96_96_6
+      name: Death_Boss_140_93_3
       rect:
         serializedVersion: 2
         x: 0
-        y: 96
-        width: 96
-        height: 96
+        y: 186
+        width: 140
+        height: 93
       alignment: 9
-      pivot: {x: 0.5, y: 0.25}
+      pivot: {x: 0.75, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 41364a3381b8f60c0800000000000000
-      internalID: -4580289359950617836
+      spriteID: 5a99188a9f20e46c0800000000000000
+      internalID: -4157382134719211099
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atk1_Full_Skeleton_96_96_7
+      name: Death_Boss_140_93_4
       rect:
         serializedVersion: 2
-        x: 96
-        y: 96
-        width: 96
-        height: 96
+        x: 140
+        y: 186
+        width: 140
+        height: 93
       alignment: 9
-      pivot: {x: 0.5, y: 0.25}
+      pivot: {x: 0.75, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4c00fc8de31aa6bd0800000000000000
-      internalID: -2636117340574515004
+      spriteID: 024e2b52bd9ea2df0800000000000000
+      internalID: -204093705652345824
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atk1_Full_Skeleton_96_96_8
+      name: Death_Boss_140_93_5
       rect:
         serializedVersion: 2
-        x: 192
-        y: 96
-        width: 96
-        height: 96
+        x: 280
+        y: 186
+        width: 140
+        height: 93
       alignment: 9
-      pivot: {x: 0.5, y: 0.25}
+      pivot: {x: 0.75, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e429e117bca64fac0800000000000000
-      internalID: -3822312761721974194
+      spriteID: ab249b32d5cd526d0800000000000000
+      internalID: -3015762082865265990
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atk1_Full_Skeleton_96_96_9
+      name: Death_Boss_140_93_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 93
+        width: 140
+        height: 93
+      alignment: 9
+      pivot: {x: 0.75, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c118ee799a7ecb0b0800000000000000
+      internalID: -5711435511828152036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Death_Boss_140_93_7
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 93
+        width: 140
+        height: 93
+      alignment: 9
+      pivot: {x: 0.75, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 127e471466e0c1130800000000000000
+      internalID: 3538719239554000673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Death_Boss_140_93_8
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 93
+        width: 140
+        height: 93
+      alignment: 9
+      pivot: {x: 0.75, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a466bc857cf44790800000000000000
+      internalID: -7546629493763971927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Death_Boss_140_93_9
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 96
-        height: 96
+        width: 140
+        height: 93
       alignment: 9
-      pivot: {x: 0.5, y: 0.25}
+      pivot: {x: 0.75, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 20662ddc3d0b004e0800000000000000
-      internalID: -2017418209324276222
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Atk1_Full_Skeleton_96_96_10
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 96
-        height: 96
-      alignment: 9
-      pivot: {x: 0.5, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c8856d08c146cf180800000000000000
-      internalID: -9080272675102369652
+      spriteID: 522a8c645e3cb03c0800000000000000
+      internalID: -4392201622067305947
       vertices: []
       indices: 
       edges: []
@@ -390,7 +371,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 267c3aacdc82b1e4bbcbc9d47240c5ae
+    spriteID: a584b759b36b5604d83da8e239abb692
     internalID: 0
     vertices: []
     indices: 
@@ -400,17 +381,16 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Atk1_Full_Skeleton_96_96_0: -692887702037076003
-      Atk1_Full_Skeleton_96_96_1: -2420623716643858105
-      Atk1_Full_Skeleton_96_96_10: -9080272675102369652
-      Atk1_Full_Skeleton_96_96_2: 4786966662446923581
-      Atk1_Full_Skeleton_96_96_3: -6364948811779971542
-      Atk1_Full_Skeleton_96_96_4: -1231988954018505350
-      Atk1_Full_Skeleton_96_96_5: -163037954908791788
-      Atk1_Full_Skeleton_96_96_6: -4580289359950617836
-      Atk1_Full_Skeleton_96_96_7: -2636117340574515004
-      Atk1_Full_Skeleton_96_96_8: -3822312761721974194
-      Atk1_Full_Skeleton_96_96_9: -2017418209324276222
+      Death_Boss_140_93_0: -9019667498647090473
+      Death_Boss_140_93_1: 3574867254228783954
+      Death_Boss_140_93_2: 8745864501815803366
+      Death_Boss_140_93_3: -4157382134719211099
+      Death_Boss_140_93_4: -204093705652345824
+      Death_Boss_140_93_5: -3015762082865265990
+      Death_Boss_140_93_6: -5711435511828152036
+      Death_Boss_140_93_7: 3538719239554000673
+      Death_Boss_140_93_8: -7546629493763971927
+      Death_Boss_140_93_9: -4392201622067305947
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
