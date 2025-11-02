@@ -10,30 +10,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fd632307590d5c54a966560ca3cc38c7, type: 3}
-  m_Name: Triangle
+  m_Name: Boss
   m_EditorClassIdentifier: 
-  characterName: asd
-  characterLevel: 0
-  characterPrefab: {fileID: 8985559003228744641, guid: d5eca7fdb628fb94d8e6fd2b40e6c661, type: 3}
-  characterDescription: sad
+  characterName: Bringer Of Death
+  characterLevel: 20
+  characterPrefab: {fileID: 2872877578539829835, guid: a3b68f5b9158f7e45996af45943b3090, type: 3}
+  characterDescription: A mighty warrior destined to walk the land for all eternity
   characterType: 0
   characterSpawnLevel: 0
+  attacks: []
+  spawnCount: 1
+  distanceSpawn: 10
+  respawnTime: 1000
+  respawnDistance: 1000
   characterHp:
-    current: 0
-    max: 200
+    max: 500
   characterXp:
-    current: 0
-    max: 10
+    max: 0
   characterMana:
-    current: 0
-    max: 10
-  characterMovementSpeed: 1
-  characterAttackSpeed: 1
-  characterAttackPower: 1
-  characterDefense: 1
-  characterResistances:
-  - spellAfinity: 2
-    amount: 100
+    max: 1000
+  characterMovementSpeed: 6
+  characterAttackSpeed: 6
+  characterAttackPower: 10
+  characterDefense: 20
+  characterResistances: []
   characterEquipedSpells: []
   characterInventory: []
   characterEquipedItems: []
+  characterGold: 100

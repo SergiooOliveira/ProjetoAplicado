@@ -1,55 +1,124 @@
 fileFormatVersion: 2
-guid: 3f19b6f3b51ee214ba42c7de79b5d4ff
+guid: 1f7aab2a61f7fc743aa96ed4089f6c86
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -692887702037076003
-    second: Atk1_Full_Skeleton_96_96_0
+      213: -1437256286380757335
+    second: Atk1_Boss_140_93_0
   - first:
-      213: -2420623716643858105
-    second: Atk1_Full_Skeleton_96_96_1
+      213: -2614803992080094345
+    second: Atk1_Boss_140_93_1
   - first:
-      213: 4786966662446923581
-    second: Atk1_Full_Skeleton_96_96_2
+      213: -3317662976801682743
+    second: Atk1_Boss_140_93_2
   - first:
-      213: -6364948811779971542
-    second: Atk1_Full_Skeleton_96_96_3
+      213: -2964286008333076238
+    second: Atk1_Boss_140_93_3
   - first:
-      213: -1231988954018505350
-    second: Atk1_Full_Skeleton_96_96_4
+      213: -5806008759023269321
+    second: Atk1_Boss_140_93_4
   - first:
-      213: -163037954908791788
-    second: Atk1_Full_Skeleton_96_96_5
+      213: 8639063516238849858
+    second: Atk1_Boss_140_93_5
   - first:
-      213: -4580289359950617836
-    second: Atk1_Full_Skeleton_96_96_6
+      213: 8739325160945107072
+    second: Atk1_Boss_140_93_6
   - first:
-      213: -2636117340574515004
-    second: Atk1_Full_Skeleton_96_96_7
+      213: -3624736403583528408
+    second: Atk1_Boss_140_93_7
   - first:
-      213: -3822312761721974194
-    second: Atk1_Full_Skeleton_96_96_8
+      213: -2251945045259299651
+    second: Atk1_Boss_140_93_8
   - first:
-      213: -2017418209324276222
-    second: Atk1_Full_Skeleton_96_96_9
+      213: -9098820654686533873
+    second: Atk1_Boss_140_93_9
   - first:
-      213: -9080272675102369652
-    second: Atk1_Full_Skeleton_96_96_10
+      213: -5475858969616523046
+    second: Atk1_Boss_140_93_10
   - first:
-      213: -360320435899730170
-    second: Atk1_Full_Skeleton_96_96_11
+      213: -1280667643547776790
+    second: Atk1_Boss_140_93_11
   - first:
-      213: 1822059378796547310
-    second: Atk1_Full_Skeleton_96_96_12
+      213: 3192196711901611691
+    second: Atk1_Boss_140_93_12
   - first:
-      213: 8887414888248021971
-    second: Atk1_Full_Skeleton_96_96_13
+      213: 2692487861339239478
+    second: Atk1_Boss_140_93_13
   - first:
-      213: 7366793940982714384
-    second: Atk1_Full_Skeleton_96_96_14
+      213: 591809342317482451
+    second: Atk1_Boss_140_93_14
   - first:
-      213: -473378939578491870
-    second: Atk1_Full_Skeleton_96_96_15
+      213: 1270676546102302306
+    second: Atk1_Boss_140_93_15
+  - first:
+      213: -3999639341616513284
+    second: Atk1_Boss_140_93_16
+  - first:
+      213: 3779892435655606350
+    second: Atk1_Boss_140_93_17
+  - first:
+      213: -5271730672565709579
+    second: Atk1_Boss_140_93_18
+  - first:
+      213: 4500981440590409516
+    second: Atk1_Boss_140_93_19
+  - first:
+      213: -586843308237470989
+    second: Atk1_Boss_140_93_20
+  - first:
+      213: -8011586114214122953
+    second: Atk1_Boss_140_93_21
+  - first:
+      213: 1178327388462348121
+    second: Atk1_Boss_140_93_22
+  - first:
+      213: -3617358858002243406
+    second: Atk1_Boss_140_93_23
+  - first:
+      213: 7264806544569621202
+    second: Atk1_Boss_140_93_24
+  - first:
+      213: -6259865625345866229
+    second: Atk1_Boss_140_93_25
+  - first:
+      213: -8498927611413398478
+    second: Atk1_Boss_140_93_26
+  - first:
+      213: -332872319301754444
+    second: Atk1_Boss_140_93_27
+  - first:
+      213: -2031990680356158750
+    second: Atk1_Boss_140_93_28
+  - first:
+      213: 500452897340151952
+    second: Atk1_Boss_140_93_29
+  - first:
+      213: -5637603506035654184
+    second: Atk1_Boss_140_93_30
+  - first:
+      213: 5536426125376472237
+    second: Atk1_Boss_140_93_31
+  - first:
+      213: -3040895481207418342
+    second: Atk1_Boss_140_93_32
+  - first:
+      213: 8244476855604587899
+    second: Atk1_Boss_140_93_33
+  - first:
+      213: 5583319747156757435
+    second: Atk1_Boss_140_93_34
+  - first:
+      213: -7138652830968188984
+    second: Atk1_Boss_140_93_35
+  - first:
+      213: -8400625707525103690
+    second: Atk1_Boss_140_93_36
+  - first:
+      213: 741707376682660384
+    second: Atk1_Boss_140_93_37
+  - first:
+      213: 726088219001674878
+    second: Atk1_Boss_140_93_38
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -145,243 +214,221 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Atk1_Full_Skeleton_96_96_0
+      name: Atk1_Boss_140_93_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 288
-        width: 96
-        height: 96
+        y: 279
+        width: 140
+        height: 93
       alignment: 9
-      pivot: {x: 0.5, y: 0.25}
+      pivot: {x: 0.75, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: dd7e7da5e4e5266f0800000000000000
-      internalID: -692887702037076003
+      spriteID: 9aee31fb507dd0ce0800000000000000
+      internalID: -1437256286380757335
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atk1_Full_Skeleton_96_96_1
+      name: Atk1_Boss_140_93_1
       rect:
         serializedVersion: 2
-        x: 96
-        y: 288
-        width: 96
-        height: 96
+        x: 140
+        y: 279
+        width: 140
+        height: 93
       alignment: 9
-      pivot: {x: 0.5, y: 0.25}
+      pivot: {x: 0.75, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7499e820e87386ed0800000000000000
-      internalID: -2420623716643858105
+      spriteID: 77beace7f9956bbd0800000000000000
+      internalID: -2614803992080094345
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atk1_Full_Skeleton_96_96_2
+      name: Atk1_Boss_140_93_2
       rect:
         serializedVersion: 2
-        x: 192
-        y: 288
-        width: 96
-        height: 96
+        x: 280
+        y: 279
+        width: 140
+        height: 93
       alignment: 9
-      pivot: {x: 0.5, y: 0.25}
+      pivot: {x: 0.75, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d3f39ca21d8be6240800000000000000
-      internalID: 4786966662446923581
+      spriteID: 9ca454fa91b45f1d0800000000000000
+      internalID: -3317662976801682743
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atk1_Full_Skeleton_96_96_3
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 192
-        width: 96
-        height: 96
-      alignment: 9
-      pivot: {x: 0.5, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a266f4457c82ba7a0800000000000000
-      internalID: -6364948811779971542
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Atk1_Full_Skeleton_96_96_4
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 192
-        width: 96
-        height: 96
-      alignment: 9
-      pivot: {x: 0.5, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a7d958cd29817eee0800000000000000
-      internalID: -1231988954018505350
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Atk1_Full_Skeleton_96_96_5
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 192
-        width: 96
-        height: 96
-      alignment: 9
-      pivot: {x: 0.5, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 41c51c408d5ccbdf0800000000000000
-      internalID: -163037954908791788
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Atk1_Full_Skeleton_96_96_6
+      name: Atk1_Boss_140_93_3
       rect:
         serializedVersion: 2
         x: 0
-        y: 96
-        width: 96
-        height: 96
+        y: 186
+        width: 140
+        height: 93
       alignment: 9
-      pivot: {x: 0.5, y: 0.25}
+      pivot: {x: 0.75, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 41364a3381b8f60c0800000000000000
-      internalID: -4580289359950617836
+      spriteID: 2f875a4b49dbcd6d0800000000000000
+      internalID: -2964286008333076238
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atk1_Full_Skeleton_96_96_7
+      name: Atk1_Boss_140_93_4
       rect:
         serializedVersion: 2
-        x: 96
-        y: 96
-        width: 96
-        height: 96
+        x: 140
+        y: 186
+        width: 140
+        height: 93
       alignment: 9
-      pivot: {x: 0.5, y: 0.25}
+      pivot: {x: 0.75, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4c00fc8de31aa6bd0800000000000000
-      internalID: -2636117340574515004
+      spriteID: 73a8c939bc9ec6fa0800000000000000
+      internalID: -5806008759023269321
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atk1_Full_Skeleton_96_96_8
+      name: Atk1_Boss_140_93_5
       rect:
         serializedVersion: 2
-        x: 192
-        y: 96
-        width: 96
-        height: 96
+        x: 280
+        y: 186
+        width: 140
+        height: 93
       alignment: 9
-      pivot: {x: 0.5, y: 0.25}
+      pivot: {x: 0.75, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e429e117bca64fac0800000000000000
-      internalID: -3822312761721974194
+      spriteID: 247247d0f7e14e770800000000000000
+      internalID: 8639063516238849858
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atk1_Full_Skeleton_96_96_9
+      name: Atk1_Boss_140_93_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 93
+        width: 140
+        height: 93
+      alignment: 9
+      pivot: {x: 0.75, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08044c25ee1584970800000000000000
+      internalID: 8739325160945107072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk1_Boss_140_93_7
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 93
+        width: 140
+        height: 93
+      alignment: 9
+      pivot: {x: 0.75, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8221af3127952bdc0800000000000000
+      internalID: -3624736403583528408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk1_Boss_140_93_8
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 93
+        width: 140
+        height: 93
+      alignment: 9
+      pivot: {x: 0.75, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db45e93a9eb7fb0e0800000000000000
+      internalID: -2251945045259299651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk1_Boss_140_93_9
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 96
-        height: 96
+        width: 140
+        height: 93
       alignment: 9
-      pivot: {x: 0.5, y: 0.25}
+      pivot: {x: 0.75, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 20662ddc3d0b004e0800000000000000
-      internalID: -2017418209324276222
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Atk1_Full_Skeleton_96_96_10
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 96
-        height: 96
-      alignment: 9
-      pivot: {x: 0.5, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c8856d08c146cf180800000000000000
-      internalID: -9080272675102369652
+      spriteID: f070c6a72de7ab180800000000000000
+      internalID: -9098820654686533873
       vertices: []
       indices: 
       edges: []
@@ -390,7 +437,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 267c3aacdc82b1e4bbcbc9d47240c5ae
+    spriteID: c3a16f1114b91554bb46e5aa7d613200
     internalID: 0
     vertices: []
     indices: 
@@ -400,17 +447,16 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Atk1_Full_Skeleton_96_96_0: -692887702037076003
-      Atk1_Full_Skeleton_96_96_1: -2420623716643858105
-      Atk1_Full_Skeleton_96_96_10: -9080272675102369652
-      Atk1_Full_Skeleton_96_96_2: 4786966662446923581
-      Atk1_Full_Skeleton_96_96_3: -6364948811779971542
-      Atk1_Full_Skeleton_96_96_4: -1231988954018505350
-      Atk1_Full_Skeleton_96_96_5: -163037954908791788
-      Atk1_Full_Skeleton_96_96_6: -4580289359950617836
-      Atk1_Full_Skeleton_96_96_7: -2636117340574515004
-      Atk1_Full_Skeleton_96_96_8: -3822312761721974194
-      Atk1_Full_Skeleton_96_96_9: -2017418209324276222
+      Atk1_Boss_140_93_0: -1437256286380757335
+      Atk1_Boss_140_93_1: -2614803992080094345
+      Atk1_Boss_140_93_2: -3317662976801682743
+      Atk1_Boss_140_93_3: -2964286008333076238
+      Atk1_Boss_140_93_4: -5806008759023269321
+      Atk1_Boss_140_93_5: 8639063516238849858
+      Atk1_Boss_140_93_6: 8739325160945107072
+      Atk1_Boss_140_93_7: -3624736403583528408
+      Atk1_Boss_140_93_8: -2251945045259299651
+      Atk1_Boss_140_93_9: -9098820654686533873
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

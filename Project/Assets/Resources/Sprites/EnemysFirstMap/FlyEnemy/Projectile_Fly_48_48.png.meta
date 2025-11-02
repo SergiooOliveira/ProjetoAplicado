@@ -1,0 +1,373 @@
+fileFormatVersion: 2
+guid: 70c627bc2bac4ad4d9af490452522ad0
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3633359838641561289
+    second: Projectile_Fly_48_48_0
+  - first:
+      213: 4970623093142046458
+    second: Projectile_Fly_48_48_1
+  - first:
+      213: -408210407216758109
+    second: Projectile_Fly_48_48_2
+  - first:
+      213: 5001970810525759493
+    second: Projectile_Fly_48_48_3
+  - first:
+      213: 4248296036291907895
+    second: Projectile_Fly_48_48_4
+  - first:
+      213: 7124499142798271961
+    second: Projectile_Fly_48_48_5
+  - first:
+      213: 1950672849393400502
+    second: Projectile_Fly_48_48_6
+  - first:
+      213: 1115337364505005826
+    second: Projectile_Fly_48_48_7
+  - first:
+      213: -7365638658680196918
+    second: Projectile_Fly_48_48_8
+  - first:
+      213: 28773733520350225
+    second: Projectile_Fly_48_48_9
+  - first:
+      213: -1822638841298403648
+    second: Projectile_Fly_48_48_10
+  - first:
+      213: -1875581124691774126
+    second: Projectile_Fly_48_48_11
+  - first:
+      213: 5601685701251239443
+    second: Projectile_Fly_48_48_12
+  - first:
+      213: -2121960287988421363
+    second: Projectile_Fly_48_48_13
+  - first:
+      213: -6246920075208536643
+    second: Projectile_Fly_48_48_14
+  - first:
+      213: -3363622243311927977
+    second: Projectile_Fly_48_48_15
+  - first:
+      213: 6997822409562224032
+    second: Projectile_Fly_48_48_16
+  - first:
+      213: 9212352693427991792
+    second: Projectile_Fly_48_48_17
+  - first:
+      213: 4279205256322174735
+    second: Projectile_Fly_48_48_18
+  - first:
+      213: 1955549723384348809
+    second: Projectile_Fly_48_48_19
+  - first:
+      213: 1244915404194569954
+    second: Projectile_Fly_48_48_20
+  - first:
+      213: -1875875508680396765
+    second: Projectile_Fly_48_48_21
+  - first:
+      213: 6619718225302729225
+    second: Projectile_Fly_48_48_22
+  - first:
+      213: -7477771981416006155
+    second: Projectile_Fly_48_48_23
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Projectile_Fly_48_48_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ce966bd5894c6230800000000000000
+      internalID: 3633359838641561289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Projectile_Fly_48_48_1
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 96
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af6c5132e533bf440800000000000000
+      internalID: 4970623093142046458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Projectile_Fly_48_48_2
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 96
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a24a342cceb55af0800000000000000
+      internalID: -408210407216758109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Projectile_Fly_48_48_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 48
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 508b24a53f19a6540800000000000000
+      internalID: 5001970810525759493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Projectile_Fly_48_48_4
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 48
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73111ef8cbaf4fa30800000000000000
+      internalID: 4248296036291907895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Projectile_Fly_48_48_5
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 48
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d5e011293e4fd260800000000000000
+      internalID: 7124499142798271961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Projectile_Fly_48_48_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6bab7151f9e221b10800000000000000
+      internalID: 1950672849393400502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Projectile_Fly_48_48_7
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20f8a087c697a7f00800000000000000
+      internalID: 1115337364505005826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 9db11dbe5de26cc4380f8050d65de6d1
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Projectile_Fly_48_48_0: 3633359838641561289
+      Projectile_Fly_48_48_1: 4970623093142046458
+      Projectile_Fly_48_48_2: -408210407216758109
+      Projectile_Fly_48_48_3: 5001970810525759493
+      Projectile_Fly_48_48_4: 4248296036291907895
+      Projectile_Fly_48_48_5: 7124499142798271961
+      Projectile_Fly_48_48_6: 1950672849393400502
+      Projectile_Fly_48_48_7: 1115337364505005826
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
