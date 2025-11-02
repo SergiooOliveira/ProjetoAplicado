@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -5,6 +6,9 @@ public class Player : MonoBehaviour
     public PlayerData playerData;
     
     private PlayerData runTimePlayerData;
+
+    [SerializeField] private GameObject notificationSlotPrefab;
+    [SerializeField] private Transform notificationPanel;
 
     #region Unity Methods
     public void Awake ()
@@ -44,5 +48,21 @@ public class Player : MonoBehaviour
     public PlayerData RunTimePlayerData => runTimePlayerData;
 
     public int GetPlayerLevel() => runTimePlayerData.CharacterLevel;
+
+    public void DisplayNotification(string name, int amount)
+    {
+        GameObject newNotificationSlot = Instantiate(notificationSlotPrefab, notificationPanel);
+
+        Transform nameTransform = newNotificationSlot.transform.Find("ItemName");
+        Transform amountTransform = newNotificationSlot.transform.Find("ItemAmount");
+
+        TMP_Text tb_name = nameTransform.GetComponent<TMP_Text>();
+        TMP_Text tb_amount = amountTransform.GetComponent<TMP_Text>();
+
+        tb_name.text = "+ " + name;
+        tb_amount.text = "x" + amount.ToString();
+
+        Destroy(newNotificationSlot, 2f);
+    }
     #endregion
 }
