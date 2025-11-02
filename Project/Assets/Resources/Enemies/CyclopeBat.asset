@@ -15,7 +15,7 @@ MonoBehaviour:
   characterName: Cyclope Bat
   characterLevel: 2
   characterPrefab: {fileID: 7057437063388147542, guid: b4f115b0e6ac9a84ca0ac442aafa1a23, type: 3}
-  characterDescription: 
+  characterDescription: A mighty warrior destined to walk the land for all eternity
   characterType: 1
   characterSpawnLevel: 0
   attacks:

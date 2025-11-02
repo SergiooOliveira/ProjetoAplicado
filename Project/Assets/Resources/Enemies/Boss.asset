@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Bringer Of Death
   characterLevel: 20
-  characterPrefab: {fileID: 0}
-  characterDescription: 
+  characterPrefab: {fileID: 2872877578539829835, guid: a3b68f5b9158f7e45996af45943b3090, type: 3}
+  characterDescription: A mighty warrior destined to walk the land for all eternity
   characterType: 0
   characterSpawnLevel: 0
   attacks: []

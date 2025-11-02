@@ -15,7 +15,7 @@ MonoBehaviour:
   characterName: General Warrior Bone
   characterLevel: 10
   characterPrefab: {fileID: 7768565000175433650, guid: d15449881f2c54f4ab1210eedad2e409, type: 3}
-  characterDescription: 
+  characterDescription: A mighty warrior destined to walk the land for all eternity
   characterType: 0
   characterSpawnLevel: 0
   attacks:

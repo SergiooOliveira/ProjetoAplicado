@@ -15,7 +15,7 @@ MonoBehaviour:
   characterName: Necromancer
   characterLevel: 5
   characterPrefab: {fileID: 4187340211508186756, guid: 54196fb27e2ada8438b11eeecba8b4eb, type: 3}
-  characterDescription: 
+  characterDescription: A mighty warrior destined to walk the land for all eternity
   characterType: 0
   characterSpawnLevel: 0
   attacks:
