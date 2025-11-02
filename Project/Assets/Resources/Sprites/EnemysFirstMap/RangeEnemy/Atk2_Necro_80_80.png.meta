@@ -1,55 +1,85 @@
 fileFormatVersion: 2
-guid: 3f19b6f3b51ee214ba42c7de79b5d4ff
+guid: fe067607f445de14f97502ca7b5a198d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -692887702037076003
-    second: Atk1_Full_Skeleton_96_96_0
+      213: -7694532778961053851
+    second: Atk2_Necro_80_80_0
   - first:
-      213: -2420623716643858105
-    second: Atk1_Full_Skeleton_96_96_1
+      213: -5372320614818031684
+    second: Atk2_Necro_80_80_1
   - first:
-      213: 4786966662446923581
-    second: Atk1_Full_Skeleton_96_96_2
+      213: -7067570209331444032
+    second: Atk2_Necro_80_80_2
   - first:
-      213: -6364948811779971542
-    second: Atk1_Full_Skeleton_96_96_3
+      213: -1263066194440098004
+    second: Atk2_Necro_80_80_3
   - first:
-      213: -1231988954018505350
-    second: Atk1_Full_Skeleton_96_96_4
+      213: 1897301725044331832
+    second: Atk2_Necro_80_80_4
   - first:
-      213: -163037954908791788
-    second: Atk1_Full_Skeleton_96_96_5
+      213: -123422835745405393
+    second: Atk2_Necro_80_80_5
   - first:
-      213: -4580289359950617836
-    second: Atk1_Full_Skeleton_96_96_6
+      213: -2249150738900248791
+    second: Atk2_Necro_80_80_6
   - first:
-      213: -2636117340574515004
-    second: Atk1_Full_Skeleton_96_96_7
+      213: -3556424491270937466
+    second: Atk2_Necro_80_80_7
   - first:
-      213: -3822312761721974194
-    second: Atk1_Full_Skeleton_96_96_8
+      213: -9188838094780131282
+    second: Atk2_Necro_80_80_8
   - first:
-      213: -2017418209324276222
-    second: Atk1_Full_Skeleton_96_96_9
+      213: 8176979345577931365
+    second: Atk2_Necro_80_80_9
   - first:
-      213: -9080272675102369652
-    second: Atk1_Full_Skeleton_96_96_10
+      213: -7297738673227445939
+    second: Atk2_Necro_80_80_10
   - first:
-      213: -360320435899730170
-    second: Atk1_Full_Skeleton_96_96_11
+      213: -5735806739401946920
+    second: Atk2_Necro_80_80_11
   - first:
-      213: 1822059378796547310
-    second: Atk1_Full_Skeleton_96_96_12
+      213: -3732839583125658382
+    second: Atk2_Necro_80_80_12
   - first:
-      213: 8887414888248021971
-    second: Atk1_Full_Skeleton_96_96_13
+      213: -5276555136896436824
+    second: Atk2_Necro_80_80_13
   - first:
-      213: 7366793940982714384
-    second: Atk1_Full_Skeleton_96_96_14
+      213: 250450613674437479
+    second: Atk2_Necro_80_80_14
   - first:
-      213: -473378939578491870
-    second: Atk1_Full_Skeleton_96_96_15
+      213: 1297311669564379188
+    second: Atk2_Necro_80_80_15
+  - first:
+      213: -3077255605775476140
+    second: Atk2_Necro_80_80_16
+  - first:
+      213: -7311149721592362492
+    second: Atk2_Necro_80_80_17
+  - first:
+      213: -9208419359828399896
+    second: Atk2_Necro_80_80_18
+  - first:
+      213: 8091780861934226544
+    second: Atk2_Necro_80_80_19
+  - first:
+      213: -9033484961749122963
+    second: Atk2_Necro_80_80_20
+  - first:
+      213: 6034333576200515006
+    second: Atk2_Necro_80_80_21
+  - first:
+      213: 1895606739693514993
+    second: Atk2_Necro_80_80_22
+  - first:
+      213: 3099358038064892867
+    second: Atk2_Necro_80_80_23
+  - first:
+      213: 8811000311509473140
+    second: Atk2_Necro_80_80_24
+  - first:
+      213: -861947385500966865
+    second: Atk2_Necro_80_80_25
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -145,243 +175,287 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Atk1_Full_Skeleton_96_96_0
+      name: Atk2_Necro_80_80_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 288
-        width: 96
-        height: 96
+        y: 240
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.25}
+      pivot: {x: 0.27, y: 0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: dd7e7da5e4e5266f0800000000000000
-      internalID: -692887702037076003
+      spriteID: 5675d657437873590800000000000000
+      internalID: -7694532778961053851
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atk1_Full_Skeleton_96_96_1
+      name: Atk2_Necro_80_80_1
       rect:
         serializedVersion: 2
-        x: 96
-        y: 288
-        width: 96
-        height: 96
+        x: 80
+        y: 240
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.25}
+      pivot: {x: 0.27, y: 0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7499e820e87386ed0800000000000000
-      internalID: -2420623716643858105
+      spriteID: cb753465ddea175b0800000000000000
+      internalID: -5372320614818031684
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atk1_Full_Skeleton_96_96_2
+      name: Atk2_Necro_80_80_2
       rect:
         serializedVersion: 2
-        x: 192
-        y: 288
-        width: 96
-        height: 96
+        x: 160
+        y: 240
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.25}
+      pivot: {x: 0.27, y: 0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d3f39ca21d8be6240800000000000000
-      internalID: 4786966662446923581
+      spriteID: 0c68aa71752faed90800000000000000
+      internalID: -7067570209331444032
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atk1_Full_Skeleton_96_96_3
+      name: Atk2_Necro_80_80_3
       rect:
         serializedVersion: 2
-        x: 0
-        y: 192
-        width: 96
-        height: 96
+        x: 240
+        y: 240
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.25}
+      pivot: {x: 0.27, y: 0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a266f4457c82ba7a0800000000000000
-      internalID: -6364948811779971542
+      spriteID: c2fe798fcffa87ee0800000000000000
+      internalID: -1263066194440098004
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atk1_Full_Skeleton_96_96_4
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 192
-        width: 96
-        height: 96
-      alignment: 9
-      pivot: {x: 0.5, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a7d958cd29817eee0800000000000000
-      internalID: -1231988954018505350
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Atk1_Full_Skeleton_96_96_5
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 192
-        width: 96
-        height: 96
-      alignment: 9
-      pivot: {x: 0.5, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 41c51c408d5ccbdf0800000000000000
-      internalID: -163037954908791788
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Atk1_Full_Skeleton_96_96_6
+      name: Atk2_Necro_80_80_4
       rect:
         serializedVersion: 2
         x: 0
-        y: 96
-        width: 96
-        height: 96
+        y: 160
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.25}
+      pivot: {x: 0.27, y: 0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 41364a3381b8f60c0800000000000000
-      internalID: -4580289359950617836
+      spriteID: 835d009ddd1945a10800000000000000
+      internalID: 1897301725044331832
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atk1_Full_Skeleton_96_96_7
+      name: Atk2_Necro_80_80_5
       rect:
         serializedVersion: 2
-        x: 96
-        y: 96
-        width: 96
-        height: 96
+        x: 80
+        y: 160
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.25}
+      pivot: {x: 0.27, y: 0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4c00fc8de31aa6bd0800000000000000
-      internalID: -2636117340574515004
+      spriteID: f264936b593894ef0800000000000000
+      internalID: -123422835745405393
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atk1_Full_Skeleton_96_96_8
+      name: Atk2_Necro_80_80_6
       rect:
         serializedVersion: 2
-        x: 192
-        y: 96
-        width: 96
-        height: 96
+        x: 160
+        y: 160
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.25}
+      pivot: {x: 0.27, y: 0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e429e117bca64fac0800000000000000
-      internalID: -3822312761721974194
+      spriteID: 9271b89c15969c0e0800000000000000
+      internalID: -2249150738900248791
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atk1_Full_Skeleton_96_96_9
+      name: Atk2_Necro_80_80_7
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 160
+        width: 80
+        height: 80
+      alignment: 9
+      pivot: {x: 0.27, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 684eb4794ca05aec0800000000000000
+      internalID: -3556424491270937466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk2_Necro_80_80_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 80
+        width: 80
+        height: 80
+      alignment: 9
+      pivot: {x: 0.27, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e289d06ff60ba7080800000000000000
+      internalID: -9188838094780131282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk2_Necro_80_80_9
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 80
+        width: 80
+        height: 80
+      alignment: 9
+      pivot: {x: 0.27, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 562f0ec24677a7170800000000000000
+      internalID: 8176979345577931365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk2_Necro_80_80_10
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 80
+        width: 80
+        height: 80
+      alignment: 9
+      pivot: {x: 0.27, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d49c5ae775939ba90800000000000000
+      internalID: -7297738673227445939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk2_Necro_80_80_11
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 80
+        width: 80
+        height: 80
+      alignment: 9
+      pivot: {x: 0.27, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d8c7adf8225660b0800000000000000
+      internalID: -5735806739401946920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk2_Necro_80_80_12
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 96
-        height: 96
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.25}
+      pivot: {x: 0.27, y: 0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 20662ddc3d0b004e0800000000000000
-      internalID: -2017418209324276222
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Atk1_Full_Skeleton_96_96_10
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 96
-        height: 96
-      alignment: 9
-      pivot: {x: 0.5, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c8856d08c146cf180800000000000000
-      internalID: -9080272675102369652
+      spriteID: 2f427443d2a423cc0800000000000000
+      internalID: -3732839583125658382
       vertices: []
       indices: 
       edges: []
@@ -390,7 +464,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 267c3aacdc82b1e4bbcbc9d47240c5ae
+    spriteID: 255a47ef503ff1d4db5bdf96c64aef57
     internalID: 0
     vertices: []
     indices: 
@@ -400,17 +474,19 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Atk1_Full_Skeleton_96_96_0: -692887702037076003
-      Atk1_Full_Skeleton_96_96_1: -2420623716643858105
-      Atk1_Full_Skeleton_96_96_10: -9080272675102369652
-      Atk1_Full_Skeleton_96_96_2: 4786966662446923581
-      Atk1_Full_Skeleton_96_96_3: -6364948811779971542
-      Atk1_Full_Skeleton_96_96_4: -1231988954018505350
-      Atk1_Full_Skeleton_96_96_5: -163037954908791788
-      Atk1_Full_Skeleton_96_96_6: -4580289359950617836
-      Atk1_Full_Skeleton_96_96_7: -2636117340574515004
-      Atk1_Full_Skeleton_96_96_8: -3822312761721974194
-      Atk1_Full_Skeleton_96_96_9: -2017418209324276222
+      Atk2_Necro_80_80_0: -7694532778961053851
+      Atk2_Necro_80_80_1: -5372320614818031684
+      Atk2_Necro_80_80_10: -7297738673227445939
+      Atk2_Necro_80_80_11: -5735806739401946920
+      Atk2_Necro_80_80_12: -3732839583125658382
+      Atk2_Necro_80_80_2: -7067570209331444032
+      Atk2_Necro_80_80_3: -1263066194440098004
+      Atk2_Necro_80_80_4: 1897301725044331832
+      Atk2_Necro_80_80_5: -123422835745405393
+      Atk2_Necro_80_80_6: -2249150738900248791
+      Atk2_Necro_80_80_7: -3556424491270937466
+      Atk2_Necro_80_80_8: -9188838094780131282
+      Atk2_Necro_80_80_9: 8176979345577931365
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

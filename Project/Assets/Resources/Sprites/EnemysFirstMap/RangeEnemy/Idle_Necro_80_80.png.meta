@@ -1,55 +1,55 @@
 fileFormatVersion: 2
-guid: 3f19b6f3b51ee214ba42c7de79b5d4ff
+guid: 62fbece4ef505134e9e2b74ac9ae0786
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -692887702037076003
-    second: Atk1_Full_Skeleton_96_96_0
+      213: -2562664975608981338
+    second: Idle_Necro_80_80_0
   - first:
-      213: -2420623716643858105
-    second: Atk1_Full_Skeleton_96_96_1
+      213: 2500371963045892326
+    second: Idle_Necro_80_80_1
   - first:
-      213: 4786966662446923581
-    second: Atk1_Full_Skeleton_96_96_2
+      213: -1437970218839424596
+    second: Idle_Necro_80_80_2
   - first:
-      213: -6364948811779971542
-    second: Atk1_Full_Skeleton_96_96_3
+      213: 469904454921090596
+    second: Idle_Necro_80_80_3
   - first:
-      213: -1231988954018505350
-    second: Atk1_Full_Skeleton_96_96_4
+      213: 4525400290306549373
+    second: Idle_Necro_80_80_4
   - first:
-      213: -163037954908791788
-    second: Atk1_Full_Skeleton_96_96_5
+      213: -1988551908068780324
+    second: Idle_Necro_80_80_5
   - first:
-      213: -4580289359950617836
-    second: Atk1_Full_Skeleton_96_96_6
+      213: -175374635877347737
+    second: Idle_Necro_80_80_6
   - first:
-      213: -2636117340574515004
-    second: Atk1_Full_Skeleton_96_96_7
+      213: 1321280413931080274
+    second: Idle_Necro_80_80_7
   - first:
-      213: -3822312761721974194
-    second: Atk1_Full_Skeleton_96_96_8
+      213: 4370224491052116508
+    second: Idle_Necro_80_80_8
   - first:
-      213: -2017418209324276222
-    second: Atk1_Full_Skeleton_96_96_9
+      213: 2377638089174736885
+    second: Idle_Necro_80_80_9
   - first:
-      213: -9080272675102369652
-    second: Atk1_Full_Skeleton_96_96_10
+      213: -608018032660359833
+    second: Idle_Necro_80_80_10
   - first:
-      213: -360320435899730170
-    second: Atk1_Full_Skeleton_96_96_11
+      213: 8578068426106175882
+    second: Idle_Necro_80_80_11
   - first:
-      213: 1822059378796547310
-    second: Atk1_Full_Skeleton_96_96_12
+      213: 3969639848677879162
+    second: Idle_Necro_80_80_12
   - first:
-      213: 8887414888248021971
-    second: Atk1_Full_Skeleton_96_96_13
+      213: -1594070719131096366
+    second: Idle_Necro_80_80_13
   - first:
-      213: 7366793940982714384
-    second: Atk1_Full_Skeleton_96_96_14
+      213: -1570596311681328891
+    second: Idle_Necro_80_80_14
   - first:
-      213: -473378939578491870
-    second: Atk1_Full_Skeleton_96_96_15
+      213: -8117636344317938809
+    second: Idle_Necro_80_80_15
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -145,243 +145,177 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Atk1_Full_Skeleton_96_96_0
+      name: Idle_Necro_80_80_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 288
-        width: 96
-        height: 96
+        y: 160
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.25}
+      pivot: {x: 0.27, y: 0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: dd7e7da5e4e5266f0800000000000000
-      internalID: -692887702037076003
+      spriteID: 6a8dd7248c59f6cd0800000000000000
+      internalID: -2562664975608981338
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atk1_Full_Skeleton_96_96_1
+      name: Idle_Necro_80_80_1
       rect:
         serializedVersion: 2
-        x: 96
-        y: 288
-        width: 96
-        height: 96
+        x: 80
+        y: 160
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.25}
+      pivot: {x: 0.27, y: 0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7499e820e87386ed0800000000000000
-      internalID: -2420623716643858105
+      spriteID: 6e052b78d0b13b220800000000000000
+      internalID: 2500371963045892326
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atk1_Full_Skeleton_96_96_2
+      name: Idle_Necro_80_80_2
       rect:
         serializedVersion: 2
-        x: 192
-        y: 288
-        width: 96
-        height: 96
+        x: 160
+        y: 160
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.25}
+      pivot: {x: 0.27, y: 0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d3f39ca21d8be6240800000000000000
-      internalID: 4786966662446923581
+      spriteID: ca14c7464bd4b0ce0800000000000000
+      internalID: -1437970218839424596
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atk1_Full_Skeleton_96_96_3
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 192
-        width: 96
-        height: 96
-      alignment: 9
-      pivot: {x: 0.5, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a266f4457c82ba7a0800000000000000
-      internalID: -6364948811779971542
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Atk1_Full_Skeleton_96_96_4
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 192
-        width: 96
-        height: 96
-      alignment: 9
-      pivot: {x: 0.5, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a7d958cd29817eee0800000000000000
-      internalID: -1231988954018505350
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Atk1_Full_Skeleton_96_96_5
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 192
-        width: 96
-        height: 96
-      alignment: 9
-      pivot: {x: 0.5, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 41c51c408d5ccbdf0800000000000000
-      internalID: -163037954908791788
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Atk1_Full_Skeleton_96_96_6
+      name: Idle_Necro_80_80_3
       rect:
         serializedVersion: 2
         x: 0
-        y: 96
-        width: 96
-        height: 96
+        y: 80
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.25}
+      pivot: {x: 0.27, y: 0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 41364a3381b8f60c0800000000000000
-      internalID: -4580289359950617836
+      spriteID: 426f1f1bc9f658600800000000000000
+      internalID: 469904454921090596
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atk1_Full_Skeleton_96_96_7
+      name: Idle_Necro_80_80_4
       rect:
         serializedVersion: 2
-        x: 96
-        y: 96
-        width: 96
-        height: 96
+        x: 80
+        y: 80
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.25}
+      pivot: {x: 0.27, y: 0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4c00fc8de31aa6bd0800000000000000
-      internalID: -2636117340574515004
+      spriteID: d76eb2266937dce30800000000000000
+      internalID: 4525400290306549373
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atk1_Full_Skeleton_96_96_8
+      name: Idle_Necro_80_80_5
       rect:
         serializedVersion: 2
-        x: 192
-        y: 96
-        width: 96
-        height: 96
+        x: 160
+        y: 80
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.25}
+      pivot: {x: 0.27, y: 0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e429e117bca64fac0800000000000000
-      internalID: -3822312761721974194
+      spriteID: cd6922e439e3764e0800000000000000
+      internalID: -1988551908068780324
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atk1_Full_Skeleton_96_96_9
+      name: Idle_Necro_80_80_6
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 96
-        height: 96
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.25}
+      pivot: {x: 0.27, y: 0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 20662ddc3d0b004e0800000000000000
-      internalID: -2017418209324276222
+      spriteID: 76ecae5a2b1f09df0800000000000000
+      internalID: -175374635877347737
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atk1_Full_Skeleton_96_96_10
+      name: Idle_Necro_80_80_7
       rect:
         serializedVersion: 2
-        x: 96
+        x: 80
         y: 0
-        width: 96
-        height: 96
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.5, y: 0.25}
+      pivot: {x: 0.27, y: 0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c8856d08c146cf180800000000000000
-      internalID: -9080272675102369652
+      spriteID: 25a0b093981265210800000000000000
+      internalID: 1321280413931080274
       vertices: []
       indices: 
       edges: []
@@ -390,7 +324,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 267c3aacdc82b1e4bbcbc9d47240c5ae
+    spriteID: b7913acd6b070ba4393bb6f8aefd7478
     internalID: 0
     vertices: []
     indices: 
@@ -400,17 +334,14 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Atk1_Full_Skeleton_96_96_0: -692887702037076003
-      Atk1_Full_Skeleton_96_96_1: -2420623716643858105
-      Atk1_Full_Skeleton_96_96_10: -9080272675102369652
-      Atk1_Full_Skeleton_96_96_2: 4786966662446923581
-      Atk1_Full_Skeleton_96_96_3: -6364948811779971542
-      Atk1_Full_Skeleton_96_96_4: -1231988954018505350
-      Atk1_Full_Skeleton_96_96_5: -163037954908791788
-      Atk1_Full_Skeleton_96_96_6: -4580289359950617836
-      Atk1_Full_Skeleton_96_96_7: -2636117340574515004
-      Atk1_Full_Skeleton_96_96_8: -3822312761721974194
-      Atk1_Full_Skeleton_96_96_9: -2017418209324276222
+      Idle_Necro_80_80_0: -2562664975608981338
+      Idle_Necro_80_80_1: 2500371963045892326
+      Idle_Necro_80_80_2: -1437970218839424596
+      Idle_Necro_80_80_3: 469904454921090596
+      Idle_Necro_80_80_4: 4525400290306549373
+      Idle_Necro_80_80_5: -1988551908068780324
+      Idle_Necro_80_80_6: -175374635877347737
+      Idle_Necro_80_80_7: 1321280413931080274
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
