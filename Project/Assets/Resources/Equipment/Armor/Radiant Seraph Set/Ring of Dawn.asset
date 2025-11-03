@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Ring of Dawn
   itemDescription: "\u201CHope, when worn, shines the brightest.\u201D"
-  itemPrefab: {fileID: 0}
-  itemType: 0
-  itemRarity: 0
-  isItemSellable: 0
-  itemSellValue: 0
-  slot: 0
+  itemPrefab: {fileID: 148520679820246275, guid: 5d69f530fc1b94a45b0786d44e00678e, type: 3}
+  itemType: 3
+  itemRarity: 1
+  isItemSellable: 1
+  itemSellValue: 700
+  slot: 5
   itemHpBonus: 0
   itemAttackBonus: 0
   itemAttackSpeedBonus: 0
@@ -27,4 +27,6 @@ MonoBehaviour:
   itemManaBonus: 0
   itemMovementSpeedBonus: 0
   itemResistanceBonus: []
-  itemDamageAfinity: []
+  itemDamageAfinity:
+  - spellAfinity: 3
+    amount: 5

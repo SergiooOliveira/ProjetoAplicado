@@ -14,17 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Halo Helm of Illumination
   itemDescription: "\u201CThe light does not blind\u2014it reveals.\u201D"
-  itemPrefab: {fileID: 0}
-  itemType: 0
-  itemRarity: 0
-  isItemSellable: 0
-  itemSellValue: 0
+  itemPrefab: {fileID: 7005097302496288099, guid: ee4223c5ac309cf45a1c5433ae9bbbb4, type: 3}
+  itemType: 3
+  itemRarity: 2
+  isItemSellable: 1
+  itemSellValue: 1200
   slot: 0
   itemHpBonus: 0
   itemAttackBonus: 0
   itemAttackSpeedBonus: 0
-  itemDefenseBonus: 0
-  itemManaBonus: 0
+  itemDefenseBonus: 20
+  itemManaBonus: 100
   itemMovementSpeedBonus: 0
-  itemResistanceBonus: []
+  itemResistanceBonus:
+  - spellAfinity: 3
+    amount: 25
+  - spellAfinity: 4
+    amount: -15
   itemDamageAfinity: []

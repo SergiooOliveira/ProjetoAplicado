@@ -14,17 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Greaves of Purity
   itemDescription: "\u201CStride in truth, and shadows dare not follow.\u201D"
-  itemPrefab: {fileID: 0}
-  itemType: 0
-  itemRarity: 0
-  isItemSellable: 0
-  itemSellValue: 0
-  slot: 0
+  itemPrefab: {fileID: 6625645285042528165, guid: 5dff68a02a5ed3346a40b0fd46eea4bc, type: 3}
+  itemType: 3
+  itemRarity: 1
+  isItemSellable: 1
+  itemSellValue: 600
+  slot: 2
   itemHpBonus: 0
   itemAttackBonus: 0
   itemAttackSpeedBonus: 0
   itemDefenseBonus: 0
   itemManaBonus: 0
-  itemMovementSpeedBonus: 0
-  itemResistanceBonus: []
+  itemMovementSpeedBonus: 10
+  itemResistanceBonus:
+  - spellAfinity: 3
+    amount: 10
+  - spellAfinity: 4
+    amount: -10
   itemDamageAfinity: []

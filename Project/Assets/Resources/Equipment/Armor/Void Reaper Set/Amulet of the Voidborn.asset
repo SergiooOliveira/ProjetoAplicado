@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Amulet of the Voidborn
   itemDescription: "\u201CFeed the dark, and it will feed you.\u201D"
-  itemPrefab: {fileID: 0}
+  itemPrefab: {fileID: 7382110340348384121, guid: 34b8189cfaba0764688fc4a215dd82b1, type: 3}
   itemType: 3
   itemRarity: 3
   isItemSellable: 0

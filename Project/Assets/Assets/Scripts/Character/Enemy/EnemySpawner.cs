@@ -126,6 +126,8 @@ public class EnemySpawner : MonoBehaviour
         Enemy enemy = enemyObj.GetComponent<Enemy>();
         enemy.spawnPoint = sp;
         enemy.spawner = this;
+
+        Debug.Log($"{enemy.RunTimeData.ToString()}");
     }
 
     public void OnEnemyDeath(EnemySpawnPoint sp)

@@ -14,17 +14,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Chestplate of Holy Flame
   itemDescription: "\u201CTo burn for others is the highest devotion.\u201D"
-  itemPrefab: {fileID: 0}
-  itemType: 0
-  itemRarity: 0
+  itemPrefab: {fileID: 5315349129964439033, guid: 98d41954007c2a84884c9218a95bd9b2, type: 3}
+  itemType: 3
+  itemRarity: 3
   isItemSellable: 0
   itemSellValue: 0
-  slot: 0
-  itemHpBonus: 0
-  itemAttackBonus: 0
+  slot: 1
+  itemHpBonus: 200
+  itemAttackBonus: 20
   itemAttackSpeedBonus: 0
   itemDefenseBonus: 0
   itemManaBonus: 0
   itemMovementSpeedBonus: 0
-  itemResistanceBonus: []
+  itemResistanceBonus:
+  - spellAfinity: 4
+    amount: -20
+  - spellAfinity: 3
+    amount: 40
+  - spellAfinity: 0
+    amount: 10
   itemDamageAfinity: []

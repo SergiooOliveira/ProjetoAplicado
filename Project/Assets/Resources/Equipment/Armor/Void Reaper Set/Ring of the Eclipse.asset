@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Ring of the Eclipse
   itemDescription: "\u201CThe sun dies nightly, yet always returns.\u201D"
-  itemPrefab: {fileID: 0}
+  itemPrefab: {fileID: 6319358432666826448, guid: 30329962fb03ea147ba420e60fa123ca, type: 3}
   itemType: 3
-  itemRarity: 0
-  isItemSellable: 0
-  itemSellValue: 0
-  slot: 0
+  itemRarity: 2
+  isItemSellable: 1
+  itemSellValue: 1100
+  slot: 5
   itemHpBonus: 0
   itemAttackBonus: 0
   itemAttackSpeedBonus: 0
@@ -27,4 +27,6 @@ MonoBehaviour:
   itemManaBonus: 0
   itemMovementSpeedBonus: 0
   itemResistanceBonus: []
-  itemDamageAfinity: []
+  itemDamageAfinity:
+  - spellAfinity: 4
+    amount: 10

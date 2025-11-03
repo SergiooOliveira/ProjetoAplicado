@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Chestplate of Consuming Shadow
   itemDescription: "\u201CAll warmth fades, all light feeds the void.\u201D"
-  itemPrefab: {fileID: 0}
+  itemPrefab: {fileID: 1727981770621959092, guid: dfc1d3ba6b0f7e64186d38ba4c5c4a04, type: 3}
   itemType: 3
   itemRarity: 3
   isItemSellable: 0

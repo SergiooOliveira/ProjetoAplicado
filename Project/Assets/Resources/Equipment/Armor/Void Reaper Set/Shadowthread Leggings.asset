@@ -14,17 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Shadowthread Leggings
   itemDescription: "\u201CWalk unseen, but never forgotten.\u201D"
-  itemPrefab: {fileID: 0}
+  itemPrefab: {fileID: 2138815120847727065, guid: 88abadda921c536449e3f2f9b734f61c, type: 3}
   itemType: 3
-  itemRarity: 0
-  isItemSellable: 0
-  itemSellValue: 0
-  slot: 0
+  itemRarity: 1
+  isItemSellable: 1
+  itemSellValue: 1400
+  slot: 2
   itemHpBonus: 0
   itemAttackBonus: 0
   itemAttackSpeedBonus: 0
   itemDefenseBonus: 0
   itemManaBonus: 0
-  itemMovementSpeedBonus: 0
-  itemResistanceBonus: []
+  itemMovementSpeedBonus: 15
+  itemResistanceBonus:
+  - spellAfinity: 4
+    amount: 10
+  - spellAfinity: 3
+    amount: -10
   itemDamageAfinity: []

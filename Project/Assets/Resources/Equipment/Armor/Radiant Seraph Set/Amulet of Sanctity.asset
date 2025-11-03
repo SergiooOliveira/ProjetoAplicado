@@ -14,17 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Amulet of Sanctity
   itemDescription: "\u201CFaith needs no armor, yet it builds one all the same.\u201D"
-  itemPrefab: {fileID: 0}
-  itemType: 0
+  itemPrefab: {fileID: 502455938603244580, guid: 1f0bf4541ba9ea14a84433983ea980d1, type: 3}
+  itemType: 3
   itemRarity: 0
-  isItemSellable: 0
-  itemSellValue: 0
-  slot: 0
+  isItemSellable: 1
+  itemSellValue: 1100
+  slot: 5
   itemHpBonus: 0
   itemAttackBonus: 0
   itemAttackSpeedBonus: 0
   itemDefenseBonus: 0
-  itemManaBonus: 0
+  itemManaBonus: 100
   itemMovementSpeedBonus: 0
-  itemResistanceBonus: []
+  itemResistanceBonus:
+  - spellAfinity: 3
+    amount: 10
   itemDamageAfinity: []

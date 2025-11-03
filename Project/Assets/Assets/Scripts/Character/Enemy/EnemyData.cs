@@ -288,6 +288,23 @@ public class EnemyData : ScriptableObject, IEnemy
     {
         string info = $"{CharacterName}: has {CharacterHp.Current} HP, {CharacterAttackPower} Attack, {CharacterDefense} Defense and {CharacterAttackSpeed:F2} Damage";
 
+        if (CharacterEquipItems.Count > 0)
+        {
+            info += " and has equipped: ";
+            foreach (EquipmentEntry entry in CharacterEquipItems)
+            {
+                info += entry.equipment.RunTimeEquipmentData.ItemName + " ";
+                // See the resistances
+
+                info += " which has ";
+
+                foreach(Resistance resistance in entry.equipment.RunTimeEquipmentData.ItemResistanceBonus)
+                {
+                    info += resistance.SpellAfinity.ToString() + ": " + resistance.Amount.ToString() + " ";
+                }
+            }            
+        }
+
         return info;
     }
     #endregion

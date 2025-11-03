@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Mask of Silent Night
   itemDescription: "\u201CDarkness listens better than light ever could.\u201D"
-  itemPrefab: {fileID: 0}
+  itemPrefab: {fileID: 2519009276396314190, guid: 2318ebfc4a6e1ea40a6ba54f0b4d238f, type: 3}
   itemType: 3
   itemRarity: 2
   isItemSellable: 1
@@ -22,9 +22,9 @@ MonoBehaviour:
   slot: 0
   itemHpBonus: 0
   itemAttackBonus: 0
-  itemAttackSpeedBonus: 0
+  itemAttackSpeedBonus: 5
   itemDefenseBonus: 0
-  itemManaBonus: 0
+  itemManaBonus: 100
   itemMovementSpeedBonus: 0
   itemResistanceBonus:
   - spellAfinity: 4
