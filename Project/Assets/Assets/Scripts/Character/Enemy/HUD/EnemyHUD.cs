@@ -25,10 +25,10 @@ public class EnemyHUD : MonoBehaviour
     {
         if (targetEnemy == null) return;
 
-        // Faz o HUD seguir o inimigo
+        // Makes the HUD follow the enemy
         transform.position = targetEnemy.transform.position + offset;
 
-        // Atualiza a barra de vida
+        // Update life bar
         float normalizedHp = (float)targetEnemy.RunTimeData.CharacterHp.Current / targetEnemy.RunTimeData.CharacterHp.Max;
         healthBar.SetHealth(normalizedHp);
     }
