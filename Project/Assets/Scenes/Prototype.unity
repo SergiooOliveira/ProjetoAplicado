@@ -509,6 +509,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allEnemies: []
   activeEnemies: []
+  enemyCounter: 0
 --- !u!1 &675669299
 GameObject:
   m_ObjectHideFlags: 0

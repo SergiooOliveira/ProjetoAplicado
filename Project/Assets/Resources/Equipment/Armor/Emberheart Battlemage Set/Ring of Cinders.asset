@@ -10,25 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 90527b799fd04aa43ac0e7d68a420c39, type: 3}
-  m_Name: Frostmourne
+  m_Name: Ring of Cinders
   m_EditorClassIdentifier: 
-  itemName: Frostmourne
-  itemDescription: The runeblade of the Lich King, forged to steal souls.
-  itemPrefeb: {fileID: 2714344466841286417, guid: 43d8d4ef6d98f4d469f653da5213643e, type: 3}
+  itemName: Ring of Cinders
+  itemDescription: "\u201CA spark that refuses to fade.\u201D"
+  itemPrefab: {fileID: 5833821328958165735, guid: 7c35d40e41de38b4881f89869bbc8ef4, type: 3}
   itemType: 3
-  itemRarity: 3
+  itemRarity: 2
   isItemSellable: 1
-  itemSellValue: 10000
-  slot: 0
-  itemHpBonus: 50
+  itemSellValue: 900
+  slot: 5
+  itemHpBonus: 0
   itemAttackBonus: 0
-  itemAttackSpeedBonus: 10
+  itemAttackSpeedBonus: 5
   itemDefenseBonus: 0
   itemManaBonus: 0
   itemMovementSpeedBonus: 0
-  itemResistanceBonus:
-  - spellAfinity: 0
-    amount: 20
+  itemResistanceBonus: []
   itemDamageAfinity:
-  - spellAfinity: 2
-    amount: 20
+  - spellAfinity: 0
+    amount: 10

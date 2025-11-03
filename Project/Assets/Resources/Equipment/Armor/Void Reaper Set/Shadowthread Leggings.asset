@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90527b799fd04aa43ac0e7d68a420c39, type: 3}
+  m_Name: Shadowthread Leggings
+  m_EditorClassIdentifier: 
+  itemName: Shadowthread Leggings
+  itemDescription: "\u201CWalk unseen, but never forgotten.\u201D"
+  itemPrefab: {fileID: 0}
+  itemType: 3
+  itemRarity: 0
+  isItemSellable: 0
+  itemSellValue: 0
+  slot: 0
+  itemHpBonus: 0
+  itemAttackBonus: 0
+  itemAttackSpeedBonus: 0
+  itemDefenseBonus: 0
+  itemManaBonus: 0
+  itemMovementSpeedBonus: 0
+  itemResistanceBonus: []
+  itemDamageAfinity: []
