@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using Pathfinding;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -9,53 +10,33 @@ using static UnityEditor.Progress;
 
 public class Enemy : MonoBehaviour
 {
+    [Header("Data")]
     public EnemyData enemyData;
     private EnemyData runtimeData;
-
     public EnemyData RunTimeData => runtimeData;
 
-    // AI (???)
-    [SerializeField] private LayerMask playerLayer;    
-    [SerializeField] private float sightRange, attackRange;
-    private bool playerInSightRange;
-    private bool isAttacking = false;
-
-    private EnemyData.EnemyAttack currentAttack;
+    [Header("AI Senses")]
+    [SerializeField] private LayerMask playerLayer;
+    [SerializeField] private float sightRange = 8f;
+    [SerializeField] private float attackRange = 1.5f;
     private Transform player;
+    private bool playerInSightRange = false;
 
+    [Header("Movement")]
+    public EnemyMovementBase mover; // assign either Grounded or Flying mover in inspector
+
+    [Header("References")]
     [SerializeField] private GameObject enemyHUDPrefab;
     private GameObject hudInstance;
+    [SerializeField] private Animator animator;
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    Rigidbody2D rb;
 
     public EnemySpawnPoint spawnPoint;
     public EnemySpawner spawner;
 
-    [SerializeField] private float nextWaypointDistance = 3f;
-    Path path;
-    int currentWaypoint = 0;
-    bool reachedEndOfPath = false;
-
-    Seeker seeker;
-    [SerializeField] private Animator animator;
-    Rigidbody2D rb;
-    [SerializeField] private SpriteRenderer spriteRenderer;
-    bool grounded = true;
-    bool isFacingRight = true;
-
-    [Header("Jump / Step Settings")]
-    [SerializeField] private float maxJumpHeight = 2.0f;       // maximum vertical difference we will try to jump
-    [SerializeField] private float minStepHeight = 0.15f;      // minimum vertical difference treated as a step/jump
-    [SerializeField] private float jumpVelocity = 10f;         // vertical velocity applied when jumping
-    [SerializeField] private float spaceCheckHeight = 0.2f;    // how much vertical clearance we need above the obstacle
-    [SerializeField] private float spaceCheckWidth = 0.3f;     // width for the overhead box check
-    [SerializeField] private LayerMask groundLayer;            // what counts as ground/obstacle
-    [SerializeField] private Transform feetPoint;              // where we test grounded (small circle at bottom)
-    [SerializeField] private float groundedRadius = 0.12f;
-    [SerializeField] private float jumpCooldown = 1.5f;        // seconds between allowed jumps
-    private float lastJumpTime = -999f;
-
-    [SerializeField] private bool debugGizmos = true;
-
     private bool isDead = false;
+    private bool isAttacking = false;
 
     private void Awake()
     {        
@@ -63,15 +44,11 @@ public class Enemy : MonoBehaviour
         Initialize();
         GiveStat();
 
-        seeker = GetComponent<Seeker>();
-        animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
-
-        if (animator == null)
-            animator = GetComponentInChildren<Animator>();
-
-        if (spriteRenderer == null)
-            spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        if (animator == null) animator = GetComponentInChildren<Animator>();
+        if (spriteRenderer == null) spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        if (mover == null) mover = GetComponent<EnemyMovementBase>();
+        if (mover != null) mover.Initialize(this);
     }
 
     private void Start()
@@ -83,79 +60,69 @@ public class Enemy : MonoBehaviour
             hudInstance.GetComponent<EnemyHUD>().Init(this);
         }
 
-        InvokeRepeating("UpdatePath", 0f, .5f);
+        StartCoroutine(AI_Tick());
     }
 
-    void OnPathComplete(Path p)
+    private IEnumerator AI_Tick()
     {
-        if (!p.error)
+        while (true)
         {
-            path = p;
-            currentWaypoint = 0;
-        }
-    }
-
-    void UpdatePath()
-    {
-        if (seeker.IsDone())
-        {
-            /* 
-             * See if any Player is in the sight range
-             * If a Player is in sight range, store position and check if he is in attack range
-             * If he is not on attack range, chase player.
-             * if he is in range, attack
-            */
+            // Se usares servidor/NetworkBehaviour
+            // if (!IsServer) { yield return null; continue; }
 
             FindClosestPlayer();
 
-            if (playerInSightRange)
+            if (playerInSightRange && player != null)
             {
-                float playerInAttackRange = Vector2.Distance(transform.position, player.position);
-
-                if (playerInAttackRange <= attackRange)
+                float dist = Vector2.Distance(transform.position, player.position);
+                if (dist <= attackRange)
                 {
                     AttackPlayer();
-                    return;
                 }
                 else
                 {
                     ChasePlayer();
-                    return;
                 }
             }
+            else
+            {
+                Patrolling();
+            }
 
-            Patrolling();
+            UpdateAnimator(); // velocidade, grounded, etc.
+
+            // Tick a cada 0.1s (10x por segundo, bem mais leve que Update)
+            yield return new WaitForSeconds(0.1f);
         }
     }
 
+    private void FixedUpdate()
+    {
+        // delega movimento ao mover. mover aplica velocidade ao rigidbody
+        if (mover != null)
+            mover.OnFixedUpdate();
+    }
+
+    #region Senses
     void FindClosestPlayer()
     {
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, sightRange, playerLayer);
-        Transform closestPlayer = null;
-        float closestDistance = Mathf.Infinity;
-
-        foreach (Collider2D hit in hits)
+        Transform closest = null;
+        float closestDist = Mathf.Infinity;
+        foreach (var h in hits)
         {
-            float distance = Vector2.Distance(transform.position, hit.transform.position);
-
-            if (distance < closestDistance)
+            float d = Vector2.Distance(transform.position, h.transform.position);
+            if (d < closestDist)
             {
-                closestDistance = distance;
-                closestPlayer = hit.transform;
+                closestDist = d;
+                closest = h.transform;
             }
         }
 
-        if (closestPlayer != null)
-        {
-            playerInSightRange = true;
-            player = closestPlayer;
-        }
-        else
-        {
-            playerInSightRange = false;
-            player = null;
-        }
+        player = closest;
+        playerInSightRange = closest != null;
     }
+    #endregion
 
     private void Initialize()
     {
@@ -174,181 +141,57 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
+    #region Animator helper
+    private void UpdateAnimator()
     {
-        if (path == null) return;
-
-        grounded = Physics2D.OverlapCircle(feetPoint.position, groundedRadius, groundLayer);
-        
-        // Tries to jump if needed
-        TryJumpAlongPath();
-
-        if (currentWaypoint >= path.vectorPath.Count)
-        {
-            reachedEndOfPath = true;
-            UpdateAnimatorAndFlip();
-            return;
-        } else
-        {
-            reachedEndOfPath = false;
-        }
-
-        Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
-        Vector2 force = direction * runtimeData.CharacterMovementSpeed;
-
-        rb.AddForce(force);
-
-        float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
-
-        if (distance < nextWaypointDistance)
-        {
-            currentWaypoint++;
-        }
-
-        rb.linearVelocity = Vector2.ClampMagnitude(rb.linearVelocity, runtimeData.CharacterMovementSpeed);
-        UpdateAnimatorAndFlip();
-    }
-
-    #region Animation
-    private void UpdateAnimatorAndFlip()
-    {
+        if (animator == null || rb == null) return;
         float speed = Mathf.Abs(rb.linearVelocity.x);
-        float verticalVelocity = rb.linearVelocity.y;
-
-        // Atualiza parâmetros do Animator
         animator.SetFloat("Speed", speed);
-        animator.SetFloat("VerticalVelocity", verticalVelocity);
-        animator.SetBool("IsGrounded", grounded);
 
-        // Faz flip automático conforme direção do movimento
-        if (rb.linearVelocity.x > 0.05f && !isFacingRight)
-            Flip();
-        else if (rb.linearVelocity.x < -0.05f && isFacingRight)
-            Flip();
-    }
+        if (mover != null)
+        {
+            animator.SetFloat("VerticalVelocity", rb.linearVelocity.y);
+            animator.SetBool("IsGrounded", mover.IsGrounded());
+        }
 
-    private void Flip()
-    {
-        isFacingRight = !isFacingRight;
-        Vector3 localScale = transform.localScale;
-        localScale.x *= -1f;
-        transform.localScale = localScale;
+        // Flip sprite depending on velocity.x
+        if (rb.linearVelocity.x > 0.05f) transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        else if (rb.linearVelocity.x < -0.05f) transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
     }
     #endregion
 
-    #region Movement
-    /// <summary>
-    /// This method should handle the move factor of the enemy
-    /// </summary>
+    #region High-level actions (brain)
     public void Patrolling()
     {
-        Debug.LogWarning("Enemy is Patrolling");
+        // Example: mover.MoveTo(waypoint) or idle - keep simple here
+        if (mover != null)
+            mover.SetTarget(null); // no target -> do patrol inside mover if it supports it
     }
 
-    private void ChasePlayer()
-    {   
-        //Debug.LogWarning("Enemy is chasing, path starting");
-
-        //Debug.LogWarning("Grounded? " + grounded);
-
-        if (grounded)
-        {
-            //Debug.LogWarning("Looking for a path");
-            seeker.StartPath(rb.position, player.position, OnPathComplete);
-        }
-    }
-        
-    private void TryJumpAlongPath()
+    public void ChasePlayer()
     {
-        // 1) must have a path and still have waypoints left
-        if (path == null) return;
-        if (currentWaypoint >= path.vectorPath.Count) return;
+        if (player == null) return;
+        if (mover != null)
+            mover.SetTarget(player);
+    }
 
-        // 2) must be grounded (so we don't multi-jump)
-        if (!grounded) return;
+    public void AttackPlayer()
+    {
+        if (isAttacking) return;
+        isAttacking = true;
 
-        // 3) look ahead a bit to the next waypoint (and possibly the one after if needed)
-        // Use the next waypoint we are moving towards; if it's essentially same Y then maybe check the next non-equal Y waypoint.
-        int lookIndex = currentWaypoint;
-        Vector2 nextWP = path.vectorPath[lookIndex];
+        // pick attack from runtimeData.Attacks
+        var atk = GetRandomAttack();
+        if (animator != null) animator.SetTrigger(atk.triggerName);
 
-        // If the next waypoint is at almost same x but small Y difference, it's valid; otherwise we may look further a few nodes
-        // Try to find the next waypoint that has a Y difference beyond a tiny epsilon
-        for (int i = currentWaypoint; i < Mathf.Min(path.vectorPath.Count, currentWaypoint + 4); i++)
-        {
-            float dy = path.vectorPath[i].y - rb.position.y;
-            // pick the first waypoint with noticeable vertical difference
-            if (Mathf.Abs(dy) > 0.01f)
-            {
-                nextWP = path.vectorPath[i];
-                lookIndex = i;
-                break;
-            }
-        }
+        // Attack flow: Animation event should call ApplyAttackDamage() and reset isAttacking = false
+    }
 
-        float heightDiff = nextWP.y - rb.position.y;
-
-        if (debugGizmos)
-        {
-            Debug.DrawLine(rb.position, nextWP, Color.yellow);
-            Debug.DrawRay(feetPoint.position, Vector2.up * (spaceCheckHeight + heightDiff), Color.cyan);
-        }
-
-        // 4) If the target is higher than a minimal step and less than or equal to max jump height -> consider jump
-        if (heightDiff >= minStepHeight && heightDiff <= maxJumpHeight)
-        {
-            //Debug.LogWarning($"HeightDiff = {heightDiff} for nextWP.y={nextWP.y}");
-
-            // 5) Check if there is space above the obstacle (so we don't jump into a ceiling)
-            // We'll check an area at the landing position (slightly above nextWP) for obstacles.
-            Vector2 spaceCheckCenter = new Vector2(nextWP.x, nextWP.y + (spaceCheckHeight * 0.5f));
-            Vector2 boxHalf = new Vector2(spaceCheckWidth * 0.5f, spaceCheckHeight * 0.5f);
-
-            Collider2D overlap = Physics2D.OverlapBox(spaceCheckCenter, boxHalf * 2f, 0f, groundLayer);
-
-            if (debugGizmos)
-            {
-                // draw the box corners for debugging (approx)
-                Vector2 tl = spaceCheckCenter + new Vector2(-boxHalf.x, boxHalf.y);
-                Vector2 tr = spaceCheckCenter + new Vector2(boxHalf.x, boxHalf.y);
-                Vector2 bl = spaceCheckCenter + new Vector2(-boxHalf.x, -boxHalf.y);
-                Vector2 br = spaceCheckCenter + new Vector2(boxHalf.x, -boxHalf.y);
-                Debug.DrawLine(tl, tr, Color.green);
-                Debug.DrawLine(tr, br, Color.green);
-                Debug.DrawLine(br, bl, Color.green);
-                Debug.DrawLine(bl, tl, Color.green);
-            }
-
-            //if (debugGizmos)
-            //    Debug.LogWarning($"Jump cooldown remaining: {Mathf.Max(0, jumpCooldown - (Time.time - lastJumpTime))}");
-            // Debug.LogWarning($"FeetY={feetPoint.position.y:F3}, PathNodeY={nextWP.y:F3}");
-
-            // if nothing overlaps, we have space and can jump
-            if (overlap == null)
-            {
-                if (Time.time - lastJumpTime >= jumpCooldown)
-                {
-                    // 6) Apply jump - set vertical velocity directly for consistent behavior
-                    Vector2 v = rb.linearVelocity;
-                    v.y = jumpVelocity;
-                    rb.linearVelocity = v;
-
-                    // optional: slightly push toward the waypoint horizontally so the arc moves forward
-                    float dirX = Mathf.Sign(nextWP.x - rb.position.x);
-                    //Debug.LogWarning("Jumping! heightDiff=" + heightDiff);
-                    rb.linearVelocity = new Vector2(dirX * Mathf.Abs(rb.linearVelocity.x), jumpVelocity);
-                    //rb.linearVelocity = new Vector2(dirX * Mathf.Abs(rb.linearVelocity.x), rb.linearVelocity.y);
-
-                    // you may optionally increment currentWaypoint if this jump should skip small nodes:
-                    lastJumpTime = Time.time;
-                    currentWaypoint = lookIndex;
-                }
-            }
-            else
-            {
-                // space is blocked - do nothing (or you could try to find a NodeLink2 or alternative route)
-            }
-        }
+    public void ApplyAttackDamage()
+    {
+        if (player == null) { isAttacking = false; return; }
+        // aplicar dano ao player (invocar método no player)
+        isAttacking = false;
     }
     #endregion
 
@@ -356,36 +199,36 @@ public class Enemy : MonoBehaviour
     /// <summary>
     /// Call this method to make the enemy attack
     /// </summary>
-    public void AttackPlayer()
-    {
-        // Debug.LogWarning("Enemy is attacking");
+    //public void AttackPlayer()
+    //{
+    //    // Debug.LogWarning("Enemy is attacking");
 
-        switch (runtimeData.CharacterType)
-        {
-            case EnemyType.Ground:
-                GroundAttack();
-                break;
-            case EnemyType.Flying:
-                FlyingAttack();
-                break;
+    //    switch (runtimeData.CharacterType)
+    //    {
+    //        case EnemyType.Ground:
+    //            GroundAttack();
+    //            break;
+    //        case EnemyType.Flying:
+    //            FlyingAttack();
+    //            break;
 
-            default:
-                break;
-        }
-    }
+    //        default:
+    //            break;
+    //    }
+    //}
 
     /// <summary>
     /// Call this method to handle a ground enemy attack
     /// </summary>
-    private void GroundAttack()
-    {
-        if (isAttacking) return;
+    //private void GroundAttack()
+    //{
+    //    if (isAttacking) return;
 
-        isAttacking = true;
+    //    isAttacking = true;
 
-        currentAttack = GetRandomAttack();
-        animator.SetTrigger(currentAttack.triggerName);
-    }
+    //    currentAttack = GetRandomAttack();
+    //    animator.SetTrigger(currentAttack.triggerName);
+    //}
 
     /// <summary>
     /// Call this method to handle a flying enemy attack
@@ -430,14 +273,14 @@ public class Enemy : MonoBehaviour
     // Player Take Damage
     // Is Trigger by Animation Event
     // Using Script EnemyAnimationEvent
-    public void ApplyAttackDamage()
-    {
-        if (player == null) return;
+    //public void ApplyAttackDamage()
+    //{
+    //    if (player == null) return;
 
 
-        // Allow attack again
-        isAttacking = false;
-    }
+    //    // Allow attack again
+    //    isAttacking = false;
+    //}
     #endregion
 
     #region Take Damage
