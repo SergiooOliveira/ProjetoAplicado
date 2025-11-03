@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90527b799fd04aa43ac0e7d68a420c39, type: 3}
+  m_Name: Stormcaller
+  m_EditorClassIdentifier: 
+  itemName: Stormcaller Rod
+  itemDescription: Cracks with static energy.
+  itemPrefab: {fileID: 1168058817356472853, guid: 6a90d40a8d834204c9ed2e908b238801, type: 3}
+  itemType: 3
+  itemRarity: 2
+  isItemSellable: 1
+  itemSellValue: 100
+  slot: 4
+  itemHpBonus: 0
+  itemAttackBonus: 0
+  itemAttackSpeedBonus: 0
+  itemDefenseBonus: 0
+  itemManaBonus: 20
+  itemMovementSpeedBonus: 0
+  itemResistanceBonus: []
+  itemDamageAfinity:
+  - spellAfinity: 1
+    amount: 45

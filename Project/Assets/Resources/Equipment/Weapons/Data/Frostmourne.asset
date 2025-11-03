@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90527b799fd04aa43ac0e7d68a420c39, type: 3}
+  m_Name: Frostmourne
+  m_EditorClassIdentifier: 
+  itemName: Frostmourne
+  itemDescription: The runeblade of the Lich King, forged to steal souls.
+  itemPrefab: {fileID: 2714344466841286417, guid: 43d8d4ef6d98f4d469f653da5213643e, type: 3}
+  itemType: 3
+  itemRarity: 3
+  isItemSellable: 1
+  itemSellValue: 10000
+  slot: 4
+  itemHpBonus: 50
+  itemAttackBonus: 0
+  itemAttackSpeedBonus: 10
+  itemDefenseBonus: 0
+  itemManaBonus: 0
+  itemMovementSpeedBonus: 0
+  itemResistanceBonus:
+  - spellAfinity: 0
+    amount: 20
+  itemDamageAfinity:
+  - spellAfinity: 2
+    amount: 20

@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90527b799fd04aa43ac0e7d68a420c39, type: 3}
+  m_Name: Wand of Embers
+  m_EditorClassIdentifier: 
+  itemName: Wand of Embers
+  itemDescription: A charred wooden wand that glows faintly red.
+  itemPrefab: {fileID: 1485961657334958641, guid: fc45cce0c8992d7438e09a941648ea6a, type: 3}
+  itemType: 3
+  itemRarity: 0
+  isItemSellable: 1
+  itemSellValue: 100
+  slot: 4
+  itemHpBonus: 0
+  itemAttackBonus: 0
+  itemAttackSpeedBonus: 0
+  itemDefenseBonus: 0
+  itemManaBonus: 0
+  itemMovementSpeedBonus: 0
+  itemResistanceBonus: []
+  itemDamageAfinity:
+  - spellAfinity: 0
+    amount: 20
