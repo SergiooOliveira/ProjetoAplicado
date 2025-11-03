@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90527b799fd04aa43ac0e7d68a420c39, type: 3}
+  m_Name: Ring of Dawn
+  m_EditorClassIdentifier: 
+  itemName: Ring of Dawn
+  itemDescription: "\u201CHope, when worn, shines the brightest.\u201D"
+  itemPrefab: {fileID: 148520679820246275, guid: 5d69f530fc1b94a45b0786d44e00678e, type: 3}
+  itemType: 3
+  itemRarity: 1
+  isItemSellable: 1
+  itemSellValue: 700
+  slot: 5
+  itemHpBonus: 0
+  itemAttackBonus: 0
+  itemAttackSpeedBonus: 0
+  itemDefenseBonus: 0
+  itemManaBonus: 0
+  itemMovementSpeedBonus: 0
+  itemResistanceBonus: []
+  itemDamageAfinity:
+  - spellAfinity: 3
+    amount: 5

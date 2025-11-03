@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90527b799fd04aa43ac0e7d68a420c39, type: 3}
+  m_Name: Breeches of the Tempest
+  m_EditorClassIdentifier: 
+  itemName: Breeches of the Tempest
+  itemDescription: "\u201CFeet unbound, heart untethered.\u201D"
+  itemPrefab: {fileID: 8698855677721646295, guid: c550ddbdb60180c4f84cb0de2206c7eb, type: 3}
+  itemType: 3
+  itemRarity: 2
+  isItemSellable: 1
+  itemSellValue: 1000
+  slot: 2
+  itemHpBonus: 0
+  itemAttackBonus: 0
+  itemAttackSpeedBonus: 10
+  itemDefenseBonus: 0
+  itemManaBonus: 0
+  itemMovementSpeedBonus: 10
+  itemResistanceBonus:
+  - spellAfinity: 1
+    amount: 10
+  - spellAfinity: 2
+    amount: 10
+  itemDamageAfinity:
+  - spellAfinity: 1
+    amount: 10

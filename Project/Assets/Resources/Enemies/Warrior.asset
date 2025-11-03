@@ -45,5 +45,14 @@ MonoBehaviour:
   - item: {fileID: 7362672995192851571, guid: 0c58a3701768c7147a2732ac37b4d9e8, type: 3}
     quantity: 10
     isGuarantee: 1
-  characterEquipedItems: []
-  characterGold: 10
+  characterEquipedItems:
+  - equipment: {fileID: 4949913919596823538, guid: 3c35adc5bc3fc5a46930f025e38e0130, type: 3}
+    quantity: 1
+    isEquipped: 1
+  - equipment: {fileID: 1415593202068403262, guid: 65a606b9c6e0bb94e8830406e3685d1a, type: 3}
+    quantity: 1
+    isEquipped: 1
+  - equipment: {fileID: 6958278521302479874, guid: 1725560fc06b1cb4b95f6019057e72f9, type: 3}
+    quantity: 1
+    isEquipped: 1
+  characterGold: 50

@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90527b799fd04aa43ac0e7d68a420c39, type: 3}
+  m_Name: Greaves of the Frozen Flow
+  m_EditorClassIdentifier: 
+  itemName: Greaves of the Frozen Flow
+  itemDescription: "\u201CMove slow; let the world freeze instead.\u201D"
+  itemPrefab: {fileID: 2810835179165280612, guid: 6834958e8338c834f86974e396547418, type: 3}
+  itemType: 3
+  itemRarity: 2
+  isItemSellable: 1
+  itemSellValue: 1200
+  slot: 2
+  itemHpBonus: 0
+  itemAttackBonus: 0
+  itemAttackSpeedBonus: 5
+  itemDefenseBonus: 0
+  itemManaBonus: 0
+  itemMovementSpeedBonus: 5
+  itemResistanceBonus:
+  - spellAfinity: 2
+    amount: 15
+  - spellAfinity: 1
+    amount: -10
+  itemDamageAfinity:
+  - spellAfinity: 0
+    amount: 10

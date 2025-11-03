@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90527b799fd04aa43ac0e7d68a420c39, type: 3}
+  m_Name: Celestial Grimoire
+  m_EditorClassIdentifier: 
+  itemName: Celestial Grimoire
+  itemDescription: Shimmers with starlight; pages never end.
+  itemPrefab: {fileID: 5984645247952306968, guid: a038c1ac49d44094a9d92d0150183c51, type: 3}
+  itemType: 3
+  itemRarity: 3
+  isItemSellable: 1
+  itemSellValue: 100
+  slot: 4
+  itemHpBonus: 150
+  itemAttackBonus: 20
+  itemAttackSpeedBonus: 0
+  itemDefenseBonus: 0
+  itemManaBonus: 30
+  itemMovementSpeedBonus: 0
+  itemResistanceBonus: []
+  itemDamageAfinity:
+  - spellAfinity: 3
+    amount: 50
