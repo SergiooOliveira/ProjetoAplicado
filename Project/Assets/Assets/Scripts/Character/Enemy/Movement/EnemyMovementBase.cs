@@ -28,4 +28,13 @@ public abstract class EnemyMovementBase : MonoBehaviour
     /// Returns if mover considers itself grounded (only for grounded mover)
     /// </summary>
     public virtual bool IsGrounded() => false;
+
+    /// <summary>
+    /// Stop Movement
+    /// </summary>
+    public virtual void StopMovement()
+    {
+        if (rb != null)
+            rb.linearVelocity = Vector2.zero;
+    }
 }

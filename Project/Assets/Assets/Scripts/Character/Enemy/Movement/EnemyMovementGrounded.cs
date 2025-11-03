@@ -75,7 +75,7 @@ public class EnemyMovementGrounded : EnemyMovementBase
         Vector2 dir = (nextWP - rb.position).normalized;
         Vector2 desiredVel = new Vector2(dir.x * speed, rb.linearVelocity.y);
 
-        // apply horizontal velocity directly
+        // Apply horizontal velocity directly
         rb.linearVelocity = Vector2.MoveTowards(rb.linearVelocity, desiredVel, speed * Time.fixedDeltaTime * 10f);
 
         float dist = Vector2.Distance(rb.position, nextWP);
@@ -85,7 +85,7 @@ public class EnemyMovementGrounded : EnemyMovementBase
     public override void SetTarget(Transform t)
     {
         target = t;
-        // start path immediately
+        // Start path immediately
         if (seeker != null && rb != null && t != null && seeker.IsDone())
             seeker.StartPath(rb.position, t.position, OnPathComplete);
     }
@@ -96,7 +96,11 @@ public class EnemyMovementGrounded : EnemyMovementBase
         if (currentWaypoint >= path.vectorPath.Count) return;
         if (!grounded) return;
 
-        // look ahead for a waypoint with vertical difference
+        // Don't jump if too close to the player (avoid climbing on them)
+        if (target != null && Vector2.Distance(rb.position, target.position) < 1.2f)
+            return;
+
+        // Look ahead for a waypoint with vertical difference
         int lookIndex = currentWaypoint;
         Vector2 nextWP = path.vectorPath[lookIndex];
 
@@ -114,9 +118,14 @@ public class EnemyMovementGrounded : EnemyMovementBase
         float heightDiff = nextWP.y - rb.position.y;
         if (heightDiff >= minStepHeight && heightDiff <= maxJumpHeight)
         {
-            // check space above
+            // Check space above
             Vector2 center = new Vector2(nextWP.x, nextWP.y + 0.1f);
             Collider2D overlap = Physics2D.OverlapBox(center, new Vector2(0.3f, 0.2f), 0f, groundLayer);
+
+            // Don't jump if the thing in front is the Player
+            if (overlap != null && overlap.CompareTag("Player"))
+                return;
+
             if (overlap == null && Time.time - lastJumpTime >= jumpCooldown)
             {
                 Vector2 v = rb.linearVelocity;
@@ -135,5 +144,10 @@ public class EnemyMovementGrounded : EnemyMovementBase
     {
         if (feetPoint == null) return false;
         return Physics2D.OverlapCircle(feetPoint.position, groundedRadius, groundLayer);
+    }
+
+    public override void StopMovement()
+    {
+        rb.linearVelocity = Vector2.zero;
     }
 }

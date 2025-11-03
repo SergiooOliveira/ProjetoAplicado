@@ -5,8 +5,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.InputSystem.Processors;
-using static UnityEditor.Progress;
 
 public class Enemy : MonoBehaviour
 {
@@ -23,7 +21,7 @@ public class Enemy : MonoBehaviour
     private bool playerInSightRange = false;
 
     [Header("Movement")]
-    public EnemyMovementBase mover; // assign either Grounded or Flying mover in inspector
+    public EnemyMovementBase movement;
 
     [Header("References")]
     [SerializeField] private GameObject enemyHUDPrefab;
@@ -47,16 +45,16 @@ public class Enemy : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         if (animator == null) animator = GetComponentInChildren<Animator>();
         if (spriteRenderer == null) spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        if (mover == null) mover = GetComponent<EnemyMovementBase>();
-        if (mover != null) mover.Initialize(this);
+        if (movement == null) movement = GetComponent<EnemyMovementBase>();
+        if (movement != null) movement.Initialize(this);
     }
 
     private void Start()
     {
         if (enemyHUDPrefab != null)
         {
-            // Instancia o HUD como filho do Enemy
-            hudInstance = Instantiate(enemyHUDPrefab, transform.position, Quaternion.identity);
+            // Capture the EnemyHUD which is a child
+            hudInstance = GetComponentInChildren<EnemyHUD>(true)?.gameObject;
             hudInstance.GetComponent<EnemyHUD>().Init(this);
         }
 
@@ -67,7 +65,7 @@ public class Enemy : MonoBehaviour
     {
         while (true)
         {
-            // Se usares servidor/NetworkBehaviour
+            // If you use server/NetworkBehaviour
             // if (!IsServer) { yield return null; continue; }
 
             FindClosestPlayer();
@@ -77,6 +75,8 @@ public class Enemy : MonoBehaviour
                 float dist = Vector2.Distance(transform.position, player.position);
                 if (dist <= attackRange)
                 {
+                    movement.SetTarget(null);
+                    movement.StopMovement();
                     AttackPlayer();
                 }
                 else
@@ -89,18 +89,18 @@ public class Enemy : MonoBehaviour
                 Patrolling();
             }
 
-            UpdateAnimator(); // velocidade, grounded, etc.
+            UpdateAnimator(); // speed, grounded, etc.
 
-            // Tick a cada 0.1s (10x por segundo, bem mais leve que Update)
+            // Tick every 0.1s (10x per second, much lighter than Update)
             yield return new WaitForSeconds(0.1f);
         }
     }
 
     private void FixedUpdate()
     {
-        // delega movimento ao mover. mover aplica velocidade ao rigidbody
-        if (mover != null)
-            mover.OnFixedUpdate();
+        // Delegate movement when moving. move speed app to rigid body
+        if (movement != null)
+            movement.OnFixedUpdate();
     }
 
     #region Senses
@@ -148,10 +148,10 @@ public class Enemy : MonoBehaviour
         float speed = Mathf.Abs(rb.linearVelocity.x);
         animator.SetFloat("Speed", speed);
 
-        if (mover != null)
+        if (movement != null)
         {
             animator.SetFloat("VerticalVelocity", rb.linearVelocity.y);
-            animator.SetBool("IsGrounded", mover.IsGrounded());
+            animator.SetBool("IsGrounded", movement.IsGrounded());
         }
 
         // Flip sprite depending on velocity.x
@@ -164,15 +164,15 @@ public class Enemy : MonoBehaviour
     public void Patrolling()
     {
         // Example: mover.MoveTo(waypoint) or idle - keep simple here
-        if (mover != null)
-            mover.SetTarget(null); // no target -> do patrol inside mover if it supports it
+        if (movement != null)
+            movement.SetTarget(null); // no target -> do patrol inside mover if it supports it
     }
 
     public void ChasePlayer()
     {
         if (player == null) return;
-        if (mover != null)
-            mover.SetTarget(player);
+        if (movement != null)
+            movement.SetTarget(player);
     }
 
     public void AttackPlayer()
@@ -187,57 +187,18 @@ public class Enemy : MonoBehaviour
         // Attack flow: Animation event should call ApplyAttackDamage() and reset isAttacking = false
     }
 
+    // Player Take Damage
+    // Is Trigger by Animation Event
+    // Using Script EnemyAnimationEvent
     public void ApplyAttackDamage()
     {
         if (player == null) { isAttacking = false; return; }
-        // aplicar dano ao player (invocar método no player)
+        // apply damage to player
         isAttacking = false;
     }
     #endregion
 
     #region Attack
-    /// <summary>
-    /// Call this method to make the enemy attack
-    /// </summary>
-    //public void AttackPlayer()
-    //{
-    //    // Debug.LogWarning("Enemy is attacking");
-
-    //    switch (runtimeData.CharacterType)
-    //    {
-    //        case EnemyType.Ground:
-    //            GroundAttack();
-    //            break;
-    //        case EnemyType.Flying:
-    //            FlyingAttack();
-    //            break;
-
-    //        default:
-    //            break;
-    //    }
-    //}
-
-    /// <summary>
-    /// Call this method to handle a ground enemy attack
-    /// </summary>
-    //private void GroundAttack()
-    //{
-    //    if (isAttacking) return;
-
-    //    isAttacking = true;
-
-    //    currentAttack = GetRandomAttack();
-    //    animator.SetTrigger(currentAttack.triggerName);
-    //}
-
-    /// <summary>
-    /// Call this method to handle a flying enemy attack
-    /// </summary>
-    private void FlyingAttack()
-    {
-
-    }
-
     /// <summary>
     /// Call this method for Enemy to use the spell
     /// </summary>
@@ -269,18 +230,6 @@ public class Enemy : MonoBehaviour
 
         return runtimeData.Attacks[0]; // fallback
     }
-
-    // Player Take Damage
-    // Is Trigger by Animation Event
-    // Using Script EnemyAnimationEvent
-    //public void ApplyAttackDamage()
-    //{
-    //    if (player == null) return;
-
-
-    //    // Allow attack again
-    //    isAttacking = false;
-    //}
     #endregion
 
     #region Take Damage

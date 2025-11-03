@@ -327,6 +327,7 @@ GameObject:
   - component: {fileID: 4711906330916773081}
   - component: {fileID: 7958978521125445184}
   - component: {fileID: 526637441347140178}
+  - component: {fileID: 7763941549924288077}
   m_Layer: 5
   m_Name: EnemyHud
   m_TagString: Untagged
@@ -408,6 +409,18 @@ MonoBehaviour:
   nameText: {fileID: 1665664933047852158}
   levelText: {fileID: 2549380948649440139}
   healthBar: {fileID: 8188479845373907790}
+--- !u!114 &7763941549924288077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3619784858494841894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d27a144f41bb1a74c871fc0f2affe8a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8193464097156934046
 GameObject:
   m_ObjectHideFlags: 0
@@ -544,7 +557,7 @@ GameObject:
   - component: {fileID: 5089850166863044970}
   - component: {fileID: 1665664933047852158}
   m_Layer: 5
-  m_Name: Nome
+  m_Name: Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

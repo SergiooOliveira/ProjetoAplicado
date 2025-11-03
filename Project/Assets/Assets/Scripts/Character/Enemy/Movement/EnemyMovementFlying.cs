@@ -42,4 +42,9 @@ public class EnemyMovementFlying : EnemyMovementBase
     public override void SetTarget(Transform t) => target = t;
 
     public override bool IsGrounded() => false;
+
+    public override void StopMovement()
+    {
+        rb.linearVelocity = Vector2.zero;
+    }
 }
