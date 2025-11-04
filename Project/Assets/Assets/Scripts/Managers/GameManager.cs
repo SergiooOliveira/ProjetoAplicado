@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public readonly string playerTag = "Player";
     public readonly string grimoireTag = "Grimoire";
     public readonly string interactableTag = "Interactable";
+    public readonly LayerMask bossLayer;
     public readonly LayerMask groundLayer;
 
     [SerializeField] private List<Player> players = new();

@@ -1,16 +1,70 @@
 fileFormatVersion: 2
-guid: 70c627bc2bac4ad4d9af490452522ad0
+guid: 44990e5f30432224ebf56bf904103b89
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3633359838641561289
-    second: Projectile_Fly_48_48_0
+      213: -5923451598123209398
+    second: Projectile_Impact_48_48_0
   - first:
-      213: 4970623093142046458
-    second: Projectile_Fly_48_48_1
+      213: -4743553949367435877
+    second: Projectile_Impact_48_48_1
   - first:
-      213: -408210407216758109
-    second: Projectile_Fly_48_48_2
+      213: 6753764449139919626
+    second: Projectile_Impact_48_48_2
+  - first:
+      213: 2352429264162779517
+    second: Projectile_Impact_48_48_3
+  - first:
+      213: -1072201813579417000
+    second: Projectile_Impact_48_48_4
+  - first:
+      213: 7291439969614927239
+    second: Projectile_Impact_48_48_5
+  - first:
+      213: -1843416621083960617
+    second: Projectile_Impact_48_48_6
+  - first:
+      213: 8157965091785143720
+    second: Projectile_Impact_48_48_7
+  - first:
+      213: -2891398804641855707
+    second: Projectile_Impact_48_48_8
+  - first:
+      213: 3771005327003949398
+    second: Projectile_Impact_48_48_9
+  - first:
+      213: 2914892885212878789
+    second: Projectile_Impact_48_48_10
+  - first:
+      213: 1860498839290787946
+    second: Projectile_Impact_48_48_11
+  - first:
+      213: 6071787919540972796
+    second: Projectile_Impact_48_48_12
+  - first:
+      213: 7646075800826680118
+    second: Projectile_Impact_48_48_13
+  - first:
+      213: -4963269735790096283
+    second: Projectile_Impact_48_48_14
+  - first:
+      213: -6229949132038788738
+    second: Projectile_Impact_48_48_15
+  - first:
+      213: -8710421241625555886
+    second: Projectile_Impact_48_48_16
+  - first:
+      213: 489195530365887826
+    second: Projectile_Impact_48_48_17
+  - first:
+      213: 6214454234113609502
+    second: Projectile_Impact_48_48_18
+  - first:
+      213: -2024648342275859659
+    second: Projectile_Impact_48_48_19
+  - first:
+      213: -5135071750145955923
+    second: Projectile_Impact_48_48_20
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -106,7 +160,51 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Projectile_Fly_48_48_0
+      name: Projectile_Impact_48_48_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4d65a1c72cabcda0800000000000000
+      internalID: -5923451598123209398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Projectile_Impact_48_48_1
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 96
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9d7d03c0d28b2eb0800000000000000
+      internalID: -4743553949367435877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Projectile_Impact_48_48_2
       rect:
         serializedVersion: 2
         x: 0
@@ -121,14 +219,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9ce966bd5894c6230800000000000000
-      internalID: 3633359838641561289
+      spriteID: a0b85a7cbf03abd50800000000000000
+      internalID: 6753764449139919626
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Projectile_Fly_48_48_1
+      name: Projectile_Impact_48_48_3
       rect:
         serializedVersion: 2
         x: 48
@@ -143,14 +241,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: af6c5132e533bf440800000000000000
-      internalID: 4970623093142046458
+      spriteID: d71f7a9b3f185a020800000000000000
+      internalID: 2352429264162779517
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Projectile_Fly_48_48_2
+      name: Projectile_Impact_48_48_4
       rect:
         serializedVersion: 2
         x: 0
@@ -165,8 +263,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3a24a342cceb55af0800000000000000
-      internalID: -408210407216758109
+      spriteID: 85ab11e9126ce11f0800000000000000
+      internalID: -1072201813579417000
       vertices: []
       indices: 
       edges: []
@@ -175,7 +273,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: a4096d1b9a66ea04eb837a90e4ae5088
+    spriteID: 418417b4aa8c3a2489006bb38fd4567a
     internalID: 0
     vertices: []
     indices: 
@@ -185,9 +283,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Projectile_Fly_48_48_0: 3633359838641561289
-      Projectile_Fly_48_48_1: 4970623093142046458
-      Projectile_Fly_48_48_2: -408210407216758109
+      Projectile_Impact_48_48_0: -5923451598123209398
+      Projectile_Impact_48_48_1: -4743553949367435877
+      Projectile_Impact_48_48_2: 6753764449139919626
+      Projectile_Impact_48_48_3: 2352429264162779517
+      Projectile_Impact_48_48_4: -1072201813579417000
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

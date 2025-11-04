@@ -30,6 +30,9 @@ public class EnemyData : ScriptableObject, IEnemy
 
         [Tooltip("Relative weight for chance of happening")]
         public float weight = 1f;
+
+        [Tooltip("Attack Type")]
+        public AttackType attackType;
     }
 
     [Header("Spawn Settings")]
