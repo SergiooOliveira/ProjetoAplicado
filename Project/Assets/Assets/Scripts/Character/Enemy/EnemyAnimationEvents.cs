@@ -13,6 +13,14 @@ public class EnemyAnimationEvents : MonoBehaviour
         }
     }
 
+    public void ApplyAttackEffect()
+    {
+        if (enemy != null)
+        {
+            enemy.ApplyAttackEffect();
+        }
+    }
+
     public void OnDeathAnimationEnd()
     {
         if (enemy != null)

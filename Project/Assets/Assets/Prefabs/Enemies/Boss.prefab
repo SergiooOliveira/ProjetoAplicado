@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5631223849854087603}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FeetPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 6042606345442990947}
   - component: {fileID: 1050586355504262063}
   - component: {fileID: 1876663406190225746}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Boss
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -167,6 +167,8 @@ MonoBehaviour:
   spriteRenderer: {fileID: 5316661916064533989}
   spawnPoint: {fileID: 0}
   spawner: {fileID: 0}
+  projectilePrefab: {fileID: 0}
+  firePoint: {fileID: 0}
 --- !u!114 &1050586355504262063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,7 +232,7 @@ GameObject:
   - component: {fileID: 5316661916064533989}
   - component: {fileID: 1688808849773129249}
   - component: {fileID: 943640059567357697}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -350,6 +352,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 996334664489061579}
     m_Modifications:
+    - target: {fileID: 121211417271842831, guid: c4a60a41218926742bec8b1e88cc6c4e, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1974452791497822771, guid: c4a60a41218926742bec8b1e88cc6c4e, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 2747964323068605872, guid: c4a60a41218926742bec8b1e88cc6c4e, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -430,9 +440,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3019690281892590313, guid: c4a60a41218926742bec8b1e88cc6c4e, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 3619784858494841894, guid: c4a60a41218926742bec8b1e88cc6c4e, type: 3}
       propertyPath: m_Name
       value: EnemyHud
+      objectReference: {fileID: 0}
+    - target: {fileID: 3619784858494841894, guid: c4a60a41218926742bec8b1e88cc6c4e, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8193464097156934046, guid: c4a60a41218926742bec8b1e88cc6c4e, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8799030458277925137, guid: c4a60a41218926742bec8b1e88cc6c4e, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 9164714707228077136, guid: c4a60a41218926742bec8b1e88cc6c4e, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -33,6 +33,10 @@ public class Enemy : MonoBehaviour
     public EnemySpawnPoint spawnPoint;
     public EnemySpawner spawner;
 
+    private EnemyData.EnemyAttack currentAttack;
+    public GameObject projectilePrefab;
+    public Transform firePoint;
+
     private bool isDead = false;
     private bool isAttacking = false;
 
@@ -146,17 +150,34 @@ public class Enemy : MonoBehaviour
     {
         if (animator == null || rb == null) return;
         float speed = Mathf.Abs(rb.linearVelocity.x);
-        animator.SetFloat("Speed", speed);
+
+        if (HasAnimatorParameter("Speed", AnimatorControllerParameterType.Float))
+            animator.SetFloat("Speed", speed);
 
         if (movement != null)
         {
-            animator.SetFloat("VerticalVelocity", rb.linearVelocity.y);
-            animator.SetBool("IsGrounded", movement.IsGrounded());
+            if (HasAnimatorParameter("VerticalVelocity", AnimatorControllerParameterType.Float))
+                animator.SetFloat("VerticalVelocity", rb.linearVelocity.y);
+
+            if (HasAnimatorParameter("IsGrounded", AnimatorControllerParameterType.Bool))
+                animator.SetBool("IsGrounded", movement.IsGrounded());
         }
 
         // Flip sprite depending on velocity.x
         if (rb.linearVelocity.x > 0.05f) transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
         else if (rb.linearVelocity.x < -0.05f) transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+    }
+
+    // Check if the parameters exist
+    private bool HasAnimatorParameter(string paramName, AnimatorControllerParameterType type)
+    {
+        if (animator == null) return false;
+
+        foreach (var param in animator.parameters)
+        {
+            if (param.name == paramName && param.type == type) return true;
+        }
+        return false;
     }
     #endregion
 
@@ -181,8 +202,8 @@ public class Enemy : MonoBehaviour
         isAttacking = true;
 
         // pick attack from runtimeData.Attacks
-        var atk = GetRandomAttack();
-        if (animator != null) animator.SetTrigger(atk.triggerName);
+        currentAttack = GetRandomAttack();
+        if (animator != null) animator.SetTrigger(currentAttack.triggerName);
 
         // Attack flow: Animation event should call ApplyAttackDamage() and reset isAttacking = false
     }
@@ -196,6 +217,30 @@ public class Enemy : MonoBehaviour
         // apply damage to player
         isAttacking = false;
     }
+
+    public void ApplyAttackEffect()
+    {
+        if (player == null) { isAttacking = false; return; }
+
+        // Pega o ataque atual que disparou a animação
+        var atk = currentAttack;
+        if (atk == null) { isAttacking = false; return; }
+
+        if (atk.attackType == AttackType.Melee)
+        {
+            // Aplica dano direto
+            //player.TakeDamage(atk.damage);
+        }
+        else if (atk.attackType == AttackType.Ranged)
+        {
+            // Dispara o projetil
+            Vector2 direction = (player.position - firePoint.position).normalized;
+            Player playerComponent = player.GetComponent<Player>();
+            UseSpell(firePoint.position, direction, playerComponent);
+        }
+
+        isAttacking = false;
+    }
     #endregion
 
     #region Attack
@@ -204,10 +249,33 @@ public class Enemy : MonoBehaviour
     /// </summary>
     /// <param name="position">Player position</param>
     /// <param name="direction">Player direction</param>
+    //public void UseSpell(Vector3 position, Vector2 direction, Player player)
+    //{
+    //    // TODO: Should be an override cause it's not the same logic
+    //    runtimeData.CharacterEquipedSpells[0].Cast(position, direction, player);
+    //}
+
     public void UseSpell(Vector3 position, Vector2 direction, Player player)
     {
-        // TODO: Should be an override cause it's not the same logic
-        runtimeData.CharacterEquipedSpells[0].Cast(position, direction, player);
+        // Instantiate projectile
+        GameObject proj = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
+
+        // Pega o script do projetil
+        Projectile projectileScript = proj.GetComponent<Projectile>();
+
+        // Define direção
+        projectileScript.direction = (player.transform.position - firePoint.position).normalized;
+
+        // Define dano
+        projectileScript.damage = currentAttack.damage;
+
+        // Ignora colisão com o inimigo que disparou
+        Collider2D enemyCollider = GetComponent<Collider2D>();
+        Collider2D projectileCollider = proj.GetComponent<Collider2D>();
+        if (enemyCollider != null && projectileCollider != null)
+        {
+            Physics2D.IgnoreCollision(projectileCollider, enemyCollider);
+        }
     }
 
     // Random Attacks
