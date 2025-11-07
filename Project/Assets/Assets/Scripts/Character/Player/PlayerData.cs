@@ -26,7 +26,7 @@ public class PlayerData : ScriptableObject, ICharacter
 
     [Header("Equipables and Inventory")]
     [SerializeField] private List<Spell> characterEquipedSpells;    // Character Equiped Spells
-    [SerializeField] private List<InventoryItem> characterInventory;         // Character Inventory (Also, drop table for enemies)
+    [SerializeField] private List<ItemEntry> characterInventory;         // Character Inventory (Also, drop table for enemies)
     [SerializeField] private List<EquipmentEntry> characterEquipItems; // Character EquipedItems (Also, drop table for enemies)
     [SerializeField] private int characterGold;                     // Character Gold
     #endregion
@@ -51,7 +51,7 @@ public class PlayerData : ScriptableObject, ICharacter
 
     // *----- Equipables and Inventory -----*
     public List<Spell> CharacterEquipedSpells => characterEquipedSpells;
-    public List<InventoryItem> CharacterInventory => characterInventory;
+    public List<ItemEntry> CharacterInventory => characterInventory;
     public List<EquipmentEntry> CharacterEquipItems => characterEquipItems;
     public int CharacterGold => characterGold;
     #endregion
@@ -115,7 +115,7 @@ public class PlayerData : ScriptableObject, ICharacter
     /// </summary>
     /// <param name="entry">Item to add</param>
     /// <param name="amount">Amount</param>
-    public void AddItem(InventoryItem entry, int amount)
+    public void AddItem(ItemEntry entry, int amount)
     {
         // Try to find the item in the List
         int index = characterInventory.FindIndex(i => i.item.RunTimeItemData.ItemName == entry.item.RunTimeItemData.ItemName);
@@ -123,7 +123,7 @@ public class PlayerData : ScriptableObject, ICharacter
         if (index >= 0)
         {
             // Item alreaddy exists
-            InventoryItem existing = characterInventory[index];
+            ItemEntry existing = characterInventory[index];
 
             existing.quantity += amount;
 
@@ -137,7 +137,7 @@ public class PlayerData : ScriptableObject, ICharacter
 
             newItem.Initialize();
 
-            InventoryItem newEntry = new InventoryItem
+            ItemEntry newEntry = new ItemEntry
             {
                 item = newItem,
                 quantity = amount

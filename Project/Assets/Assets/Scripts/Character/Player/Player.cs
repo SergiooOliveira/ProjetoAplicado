@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
         runTimePlayerData.CharacterMana.Initialize();
         runTimePlayerData.ClearSpellList();
 
-        foreach (InventoryItem item in runTimePlayerData.CharacterInventory)
+        foreach (ItemEntry item in runTimePlayerData.CharacterInventory)
         {
             item.item.Initialize();
         }

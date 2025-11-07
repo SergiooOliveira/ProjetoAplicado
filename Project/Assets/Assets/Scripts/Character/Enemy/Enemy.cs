@@ -132,7 +132,7 @@ public class Enemy : MonoBehaviour
     {
         runtimeData.CharacterHp.Initialize();
 
-        foreach (InventoryItem entry in runtimeData.CharacterInventory)
+        foreach (ItemEntry entry in runtimeData.CharacterInventory)
         {
             if (entry.item != null)
                 entry.item.Initialize();
@@ -413,7 +413,7 @@ public class Enemy : MonoBehaviour
         #endregion
 
         #region Item Drop
-        foreach (InventoryItem entry in RunTimeData.CharacterInventory)
+        foreach (ItemEntry entry in RunTimeData.CharacterInventory)
         {
             /* TODO: Item drop logic
             * Using runtimeData.CharacterInventory and runtimeData.CharacterEquipedItems

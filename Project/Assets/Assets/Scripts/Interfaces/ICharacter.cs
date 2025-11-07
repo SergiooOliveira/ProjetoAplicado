@@ -24,7 +24,7 @@ public interface ICharacter
 
     // *----- Equipables and Inventory -----*
     List<Spell> CharacterEquipedSpells { get; }
-    List<InventoryItem> CharacterInventory { get; }
+    List<ItemEntry> CharacterInventory { get; }
     List<EquipmentEntry> CharacterEquipItems { get; }
     int CharacterGold { get; }
     #endregion
@@ -36,7 +36,7 @@ public interface ICharacter
     #endregion
 
     #region Inventory Methods
-    void AddItem(InventoryItem entry, int amount);
+    void AddItem(ItemEntry entry, int amount);
     void RemoveItem(int slot, Item item);
     void SellItem(int slot, Item item);
     void AddEquip(EquipmentEntry equipment);
