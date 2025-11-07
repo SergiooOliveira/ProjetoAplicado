@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
 
     #region Unity Methods
     public void Awake ()
-    {        
+    {
         runTimePlayerData = Instantiate(playerData);
         Initialize();
     }
@@ -36,9 +36,28 @@ public class Player : MonoBehaviour
             item.item.Initialize();
         }
 
-        foreach (EquipmentEntry equipment in runTimePlayerData.CharacterEquipItems)
+        foreach (EquipmentEntry eq in runTimePlayerData.CharacterEquipItems)
         {
-            equipment.equipment.Initialize();
+            Equipment equipment = eq.equipment;
+
+            equipment.Initialize();
+
+            if (eq.isEquipped)
+            {
+                // Int and floats
+                runTimePlayerData.AddBonusHp(equipment.RunTimeEquipmentData.ItemHpBonus);
+                runTimePlayerData.AddBonusAttack(equipment.RunTimeEquipmentData.ItemAttackBonus);
+                runTimePlayerData.AddBonusAttackSpeed(equipment.RunTimeEquipmentData.ItemAttackSpeedBonus);
+                runTimePlayerData.AddBonusDefense(equipment.RunTimeEquipmentData.ItemDefenseBonus);
+                runTimePlayerData.AddBonusMana(equipment.RunTimeEquipmentData.ItemManaBonus);
+                runTimePlayerData.AddBonusMovementSpeed(equipment.RunTimeEquipmentData.ItemMovementSpeedBonus);
+
+                // Resistances
+                foreach (Resistance resistance in equipment.RunTimeEquipmentData.ItemResistanceBonus)
+                {
+                    runTimePlayerData.AddResistance(resistance);
+                }
+            }
         }
     }
 
