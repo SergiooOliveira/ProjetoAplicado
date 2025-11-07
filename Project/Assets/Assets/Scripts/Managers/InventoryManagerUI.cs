@@ -25,8 +25,16 @@ public class InventoryManagerUI : MonoBehaviour
         {
             GameObject newSLot = Instantiate(slot, itemListPanel);
 
-            InventorySlotUI slotUI = newSLot.GetComponent<InventorySlotUI>();
+            InventoryItemSlot slotUI = newSLot.GetComponent<InventoryItemSlot>();
             slotUI.SetSlot(entry);
+        }
+
+        foreach (EquipmentEntry entry in player.RunTimePlayerData.CharacterEquipItems)
+        {
+            GameObject newSlot = Instantiate(slot, itemListPanel);
+
+            InventoryEquipmentSlot sslotUI = newSlot.GetComponent<InventoryEquipmentSlot>();
+            sslotUI.SetSlot(entry);
         }
     }
 
