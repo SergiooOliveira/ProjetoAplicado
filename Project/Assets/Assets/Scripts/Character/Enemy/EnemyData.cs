@@ -195,7 +195,7 @@ public class EnemyData : ScriptableObject, IEnemy
     /// <param name="amount">Quantity to add</param>
     public void AddBonusHp(int amount)
     {        
-        if (amount <= 0) return;
+        if (amount == 0) return;
         
         characterHp.IncreaseMaxCurrent(amount);
     }
@@ -206,7 +206,7 @@ public class EnemyData : ScriptableObject, IEnemy
     /// <param name="amount">Quantity to add</param>
     public void AddBonusAttack(int amount)
     {
-        if (amount <= 0) return;
+        if (amount == 0) return;
 
         characterAttackPower += amount;
     }
@@ -218,7 +218,7 @@ public class EnemyData : ScriptableObject, IEnemy
     /// <param name="amount">Quantity to add</param>
     public void AddBonusAttackSpeed(float amount)
     {
-        if (amount <= 0) return;
+        if (amount == 0) return;
 
         characterAttackSpeed *= 1 + (amount / 100f);
     }
@@ -229,7 +229,7 @@ public class EnemyData : ScriptableObject, IEnemy
     /// <param name="amount">Quantity to add</param>
     public void AddBonusDefense(int amount)
     {
-        if (amount <= 0) return;
+        if (amount == 0) return;
 
         characterDefense += amount;
     }
@@ -240,7 +240,7 @@ public class EnemyData : ScriptableObject, IEnemy
     /// <param name="amount">Quantity to add</param>
     public void AddBonusMana(int amount)
     {
-        if (amount <= 0) return;
+        if (amount == 0) return;
 
         characterMana.IncreaseMaxCurrent(amount);
     }
@@ -251,7 +251,7 @@ public class EnemyData : ScriptableObject, IEnemy
     /// <param name="amount">Quantity to add</param>
     public void AddBonusMovementSpeed(float amount)
     {
-        if (amount <= 0) return;
+        if (amount == 0) return;
 
         characterMovementSpeed *= 1 + (amount / 100f);
     }

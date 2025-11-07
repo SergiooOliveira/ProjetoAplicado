@@ -235,7 +235,11 @@ public class PlayerData : ScriptableObject, ICharacter
     /// <param name="amount">Quantity to add</param>
     public void AddBonusHp(int amount)
     {
-        if (amount <= 0) return;
+        if (amount == 0)
+        {
+            Debug.Log("Amount is 0");
+            return;
+        }
 
         characterHp.IncreaseMaxCurrent(amount);
     }
@@ -246,7 +250,7 @@ public class PlayerData : ScriptableObject, ICharacter
     /// <param name="amount">Quantity to add</param>
     public void AddBonusAttack(int amount)
     {
-        if (amount <= 0) return;
+        if (amount == 0) return;
 
         characterAttackPower += amount;
     }
@@ -258,7 +262,7 @@ public class PlayerData : ScriptableObject, ICharacter
     /// <param name="amount">Quantity to add</param>
     public void AddBonusAttackSpeed(float amount)
     {
-        if (amount <= 0) return;
+        if (amount == 0) return;
 
         characterAttackSpeed *= 1 + (amount / 100f);
     }
@@ -269,7 +273,7 @@ public class PlayerData : ScriptableObject, ICharacter
     /// <param name="amount">Quantity to add</param>
     public void AddBonusDefense(int amount)
     {
-        if (amount <= 0) return;
+        if (amount == 0) return;
 
         characterDefense += amount;
     }
@@ -280,7 +284,7 @@ public class PlayerData : ScriptableObject, ICharacter
     /// <param name="amount">Quantity to add</param>
     public void AddBonusMana(int amount)
     {
-        if (amount <= 0) return;
+        if (amount == 0) return;
 
         characterMana.IncreaseMaxCurrent(amount);
     }
@@ -291,9 +295,34 @@ public class PlayerData : ScriptableObject, ICharacter
     /// <param name="amount">Quantity to add</param>
     public void AddBonusMovementSpeed(float amount)
     {
-        if (amount <= 0) return;
+        if (amount == 0) return;
 
         characterMovementSpeed *= 1 + (amount / 100f);
+    }
+    #endregion
+
+    #region Resistance Methods
+    /// <summary>
+    /// Call this method to add resistances to an enemy
+    /// </summary>
+    /// <param name="resistance">Resistance to add</param>
+    public void AddResistance(Resistance resistance)
+    {
+        Resistance foundResistance = characterResistances.Find(cr => cr.SpellAfinity == resistance.SpellAfinity);
+
+        // TODO: Define if resistance is flat or a %
+        if (foundResistance == null)
+        {
+            // No resistance in the List
+            // Add resistance
+            characterResistances.Add(resistance);
+        }
+        else
+        {
+            // Resistance already in the list
+            // Add amount
+            foundResistance.AddAmount(resistance.Amount);
+        }
     }
     #endregion
 }
