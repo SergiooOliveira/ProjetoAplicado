@@ -36,7 +36,6 @@ public class Stat
     /// <param name="amount">Amount to increase</param>
     public void IncreaseMaxCurrent(int amount)
     {
-        Debug.LogWarning("Inside IncreaseMaxCurrent");
         max += amount;
         current += amount;
     }

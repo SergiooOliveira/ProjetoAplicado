@@ -3,15 +3,27 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class InventorySlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class InventoryItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    // TODO: When closing inventory it needs to close the tooltip as well, otherwise it stays there
+
     [SerializeField] private TMP_Text tb_Name;
     [SerializeField] private TMP_Text tb_Amount;
     [SerializeField] private GameObject tooltipObject;
     private GameObject tooltipInstance;
 
+    private Canvas canvas;
+    private RectTransform panel;
+    private bool isHovering;
+
     private InventoryItem entry;
-    
+
+    private void Update()
+    {
+        if (isHovering && tooltipInstance != null)
+            UpdateTooltipPosition();
+    }
+
     /// <summary>
     /// Call this method to set the text values in each slot
     /// </summary>
@@ -32,10 +44,20 @@ public class InventorySlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
     /// <param name="eventData"></param>
     public void OnPointerEnter(PointerEventData eventData)
     {
-        // Instantiate the Tooltip
-        tooltipInstance = Instantiate(tooltipObject, GetComponentInParent<Canvas>().transform);
-        tooltipInstance.transform.position = Input.mousePosition;
+        if (entry.item == null) return;
         
+        canvas = GetComponentInParent<Canvas>();
+
+        // Instantiate the Tooltip
+        tooltipInstance = Instantiate(tooltipObject, canvas.transform);
+        tooltipInstance.transform.position = Input.mousePosition;
+
+        panel = tooltipInstance.GetComponent<RectTransform>();
+
+        // Position it initially
+        UpdateTooltipPosition();
+        isHovering = true;
+
         // Get all transforms for the toolTip information
         Transform itemSpriteTransform =     tooltipInstance.transform.Find("ItemDetailPanel/ItemSprite");
         Transform nameTransform =           tooltipInstance.transform.Find("ItemDetailPanel/DetailsGroup/tb_itemName");
@@ -50,7 +72,7 @@ public class InventorySlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
         TMP_Text tb_itemRarity = rarityTransform.GetComponent<TMP_Text>();
         TMP_Text tb_itemSellValue = sellValueTransform.GetComponent<TMP_Text>();
 
-        // Check if all th Components are not null
+        // Check if all the Components are not null
         if (itemSprite == null ||
             tb_itemName == null ||
             tb_itemDescription == null ||
@@ -75,6 +97,7 @@ public class InventorySlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        isHovering = false;
         if (tooltipInstance != null)
         {
             Destroy(tooltipInstance);
@@ -82,9 +105,22 @@ public class InventorySlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
         }
     }
 
-    public void FixedUpdate()
+    private void UpdateTooltipPosition()
     {
-        if (tooltipInstance != null)
-            tooltipInstance.transform.position = Input.mousePosition;
+        Vector2 mousePos = Input.mousePosition;
+        Vector2 tooltipSize = panel.sizeDelta * canvas.scaleFactor;
+
+        float screenHeight = Screen.height;
+
+        // Start tooltip right next to the mouse (a few pixels offset to avoid overlap)
+        Vector2 targetPos = mousePos + new Vector2(8f, -8f);
+
+        // Clamp vertically if tooltip would go off-screen
+        if (targetPos.y + tooltipSize.y > screenHeight)
+            targetPos.y = screenHeight - tooltipSize.y - 5f;
+        else if (targetPos.y < 0)
+            targetPos.y = 5f;
+
+        panel.position = targetPos;
     }
 }
