@@ -32,7 +32,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1bf4a273ae8da7b4987fc678f911c4b6, type: 2}
   characterInventory: []
   characterEquipItems:
-  - equipment: {fileID: -6673210822022468371, guid: 43d8d4ef6d98f4d469f653da5213643e, type: 3}
+  - equipment: {fileID: 7218981325612991994, guid: 33ce799735974c840b091552fdc440e2, type: 3}
     quantity: 1
     isEquipped: 1
   characterGold: 0
