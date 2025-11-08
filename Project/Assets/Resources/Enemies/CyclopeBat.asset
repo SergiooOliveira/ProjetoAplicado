@@ -19,17 +19,9 @@ MonoBehaviour:
   characterType: 1
   characterSpawnLevel: 0
   attacks:
-  - triggerName: Attack1
-    damage: 10
-    weight: 25
-    attackType: 0
-  - triggerName: Attack2
-    damage: 10
-    weight: 25
-    attackType: 0
   - triggerName: Attack3
     damage: 5
-    weight: 50
+    weight: 100
     attackType: 1
   spawnCount: 1
   distanceSpawn: 5
