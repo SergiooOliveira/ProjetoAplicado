@@ -8,6 +8,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    #region Variables / References
+
     [Header("Data")]
     public EnemyData enemyData;
     private EnemyData runtimeData;
@@ -40,6 +42,10 @@ public class Enemy : MonoBehaviour
     private bool isDead = false;
     private bool isAttacking = false;
 
+    #endregion
+
+    #region Unity Callbacks
+
     private void Awake()
     {        
         runtimeData = Instantiate(enemyData);
@@ -65,41 +71,6 @@ public class Enemy : MonoBehaviour
         StartCoroutine(AI_Tick());
     }
 
-    private IEnumerator AI_Tick()
-    {
-        while (true)
-        {
-            // If you use server/NetworkBehaviour
-            // if (!IsServer) { yield return null; continue; }
-
-            FindClosestPlayer();
-
-            if (playerInSightRange && player != null)
-            {
-                float dist = Vector2.Distance(transform.position, player.position);
-                if (dist <= attackRange)
-                {
-                    movement.SetTarget(null);
-                    movement.StopMovement();
-                    AttackPlayer();
-                }
-                else
-                {
-                    ChasePlayer();
-                }
-            }
-            else
-            {
-                Patrolling();
-            }
-
-            UpdateAnimator(); // speed, grounded, etc.
-
-            // Tick every 0.1s (10x per second, much lighter than Update)
-            yield return new WaitForSeconds(0.1f);
-        }
-    }
-
     private void FixedUpdate()
     {
         // Delegate movement when moving. move speed app to rigid body
@@ -107,26 +78,9 @@ public class Enemy : MonoBehaviour
             movement.OnFixedUpdate();
     }
 
-    #region Senses
-    void FindClosestPlayer()
-    {
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, sightRange, playerLayer);
-        Transform closest = null;
-        float closestDist = Mathf.Infinity;
-        foreach (var h in hits)
-        {
-            float d = Vector2.Distance(transform.position, h.transform.position);
-            if (d < closestDist)
-            {
-                closestDist = d;
-                closest = h.transform;
-            }
-        }
-
-        player = closest;
-        playerInSightRange = closest != null;
-    }
     #endregion
+
+    #region Initialization
 
     private void Initialize()
     {
@@ -145,45 +99,82 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    #region Animator helper
-    private void UpdateAnimator()
-    {
-        if (animator == null || rb == null) return;
-        float speed = Mathf.Abs(rb.linearVelocity.x);
-
-        if (HasAnimatorParameter("Speed", AnimatorControllerParameterType.Float))
-            animator.SetFloat("Speed", speed);
-
-        if (movement != null)
-        {
-            if (HasAnimatorParameter("VerticalVelocity", AnimatorControllerParameterType.Float))
-                animator.SetFloat("VerticalVelocity", rb.linearVelocity.y);
-
-            if (HasAnimatorParameter("IsGrounded", AnimatorControllerParameterType.Bool))
-                animator.SetBool("IsGrounded", movement.IsGrounded());
-        }
-
-        // Flip sprite depending on velocity.x
-        if (rb.linearVelocity.x > 0.05f) transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
-        else if (rb.linearVelocity.x < -0.05f) transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
-    }
-
-    // Check if the parameters exist
-    private bool HasAnimatorParameter(string paramName, AnimatorControllerParameterType type)
-    {
-        if (animator == null) return false;
-
-        foreach (var param in animator.parameters)
-        {
-            if (param.name == paramName && param.type == type) return true;
-        }
-        return false;
-    }
     #endregion
 
-    #region High-level actions (brain)
+    #region Senses
+
+    void FindClosestPlayer()
+    {
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, sightRange, playerLayer);
+        Transform closest = null;
+        float closestDist = Mathf.Infinity;
+        foreach (var h in hits)
+        {
+            float d = Vector2.Distance(transform.position, h.transform.position);
+            if (d < closestDist)
+            {
+                closestDist = d;
+                closest = h.transform;
+            }
+        }
+
+        player = closest;
+        playerInSightRange = closest != null;
+    }
+    
+    private IEnumerator AI_Tick()
+    {
+        while (true)
+        {
+            // If you use server/NetworkBehaviour
+            // if (!IsServer) { yield return null; continue; }
+
+            FindClosestPlayer();
+
+            if (movement != null)
+            {
+                movement.SetPlayerInSight(playerInSightRange);
+                movement.SetAttacking(isAttacking);
+            }
+
+            if (playerInSightRange && player != null)
+            {
+                float dist = Vector2.Distance(transform.position, player.position);
+                if (dist <= attackRange)
+                {
+                    if (!isAttacking)
+                    {
+                        movement.SetTarget(null);
+                        movement.StopMovement();
+                        AttackPlayer();
+                    }
+                }
+                else
+                {
+                    ChasePlayer();
+                }
+            }
+            else
+            {
+                Patrolling();
+            }
+
+            UpdateAnimator(); // speed, grounded, etc.
+
+            // Tick every 0.1s (10x per second, much lighter than Update)
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
+
+    #endregion
+
+    #region Movement / High-Level Actions
+
     public void Patrolling()
     {
+        if (isAttacking || playerInSightRange)
+            return;
+
         // Example: mover.MoveTo(waypoint) or idle - keep simple here
         if (movement != null)
             movement.SetTarget(null); // no target -> do patrol inside mover if it supports it
@@ -201,7 +192,7 @@ public class Enemy : MonoBehaviour
         if (isAttacking) return;
         isAttacking = true;
 
-        // pick attack from runtimeData.Attacks
+        // Pick attack from runtimeData.Attacks
         currentAttack = GetRandomAttack();
         if (animator != null) animator.SetTrigger(currentAttack.triggerName);
 
@@ -214,7 +205,9 @@ public class Enemy : MonoBehaviour
     public void ApplyAttackDamage()
     {
         if (player == null) { isAttacking = false; return; }
-        // apply damage to player
+
+        // TODO:
+        // Apply damage to player
         isAttacking = false;
     }
 
@@ -228,7 +221,8 @@ public class Enemy : MonoBehaviour
 
         if (atk.attackType == AttackType.Melee)
         {
-            // Aplica dano direto
+            // TODO:
+            // Apply damage to player
             //player.TakeDamage(atk.damage);
         }
         else if (atk.attackType == AttackType.Ranged)
@@ -241,20 +235,14 @@ public class Enemy : MonoBehaviour
 
         isAttacking = false;
     }
+
     #endregion
 
-    #region Attack
+    #region Attack / Spells
+
     /// <summary>
     /// Call this method for Enemy to use the spell
     /// </summary>
-    /// <param name="position">Player position</param>
-    /// <param name="direction">Player direction</param>
-    //public void UseSpell(Vector3 position, Vector2 direction, Player player)
-    //{
-    //    // TODO: Should be an override cause it's not the same logic
-    //    runtimeData.CharacterEquipedSpells[0].Cast(position, direction, player);
-    //}
-
     public void UseSpell(Vector3 position, Vector2 direction, Player player)
     {
         // Instantiate projectile
@@ -298,9 +286,11 @@ public class Enemy : MonoBehaviour
 
         return runtimeData.Attacks[0]; // fallback
     }
+
     #endregion
 
-    #region Take Damage
+    #region Take Damage / Death
+
     /// <summary>
     /// Call this method to give damage to the enemy
     /// </summary>
@@ -517,9 +507,11 @@ public class Enemy : MonoBehaviour
     {
         Destroy(gameObject);
     }
+
     #endregion
 
-    #region Stat
+    #region Stats / Equipment Bonuses
+
     /// <summary>
     /// Call this method to apply the equipment bonus
     /// </summary>
@@ -547,9 +539,49 @@ public class Enemy : MonoBehaviour
             }
         }
     }
+
+    #endregion
+
+    #region Animator helper
+
+    private void UpdateAnimator()
+    {
+        if (animator == null || rb == null) return;
+        float speed = Mathf.Abs(rb.linearVelocity.x);
+
+        if (HasAnimatorParameter("Speed", AnimatorControllerParameterType.Float))
+            animator.SetFloat("Speed", speed);
+
+        if (movement != null)
+        {
+            if (HasAnimatorParameter("VerticalVelocity", AnimatorControllerParameterType.Float))
+                animator.SetFloat("VerticalVelocity", rb.linearVelocity.y);
+
+            if (HasAnimatorParameter("IsGrounded", AnimatorControllerParameterType.Bool))
+                animator.SetBool("IsGrounded", movement.IsGrounded());
+        }
+
+        // Flip sprite depending on velocity.x
+        if (rb.linearVelocity.x > 0.05f) transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        else if (rb.linearVelocity.x < -0.05f) transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+    }
+
+    // Check if the parameters exist
+    private bool HasAnimatorParameter(string paramName, AnimatorControllerParameterType type)
+    {
+        if (animator == null) return false;
+
+        foreach (var param in animator.parameters)
+        {
+            if (param.name == paramName && param.type == type) return true;
+        }
+        return false;
+    }
+
     #endregion
 
     #region Gizmos
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
@@ -558,5 +590,6 @@ public class Enemy : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
     }
+
     #endregion
 }

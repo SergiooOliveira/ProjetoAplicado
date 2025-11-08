@@ -283,7 +283,7 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
-  sightRange: 28
+  sightRange: 5
   attackRange: 2
   movement: {fileID: 0}
   enemyHUDPrefab: {fileID: 3619784858494841894, guid: c4a60a41218926742bec8b1e88cc6c4e, type: 3}
@@ -291,6 +291,8 @@ MonoBehaviour:
   spriteRenderer: {fileID: 7324215712132969535}
   spawnPoint: {fileID: 0}
   spawner: {fileID: 0}
+  projectilePrefab: {fileID: 0}
+  firePoint: {fileID: 0}
 --- !u!114 &-3212755625456027727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -305,6 +307,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3.5
   nextWaypointDistance: 0.6
+  patrolRange: 3
+  patrolSpeed: 2
+  patrolWaitTime: 1.5
   feetPoint: {fileID: 2283377669054764596}
   groundLayer:
     serializedVersion: 2

@@ -22,9 +22,11 @@ MonoBehaviour:
   - triggerName: Attack1
     damage: 10
     weight: 60
+    attackType: 0
   - triggerName: Attack2
     damage: 15
     weight: 40
+    attackType: 0
   spawnCount: 1
   distanceSpawn: 5
   respawnTime: 5

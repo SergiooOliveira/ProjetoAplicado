@@ -1,13 +1,30 @@
 using Pathfinding;
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Seeker))]
 public class EnemyMovementGrounded : EnemyMovementBase
 {
+    #region Fields
+
     Seeker seeker;
     Path path;
     int currentWaypoint = 0;
     public float nextWaypointDistance = 0.6f;
+
+    [Header("Patrol (no target)")]
+    public float patrolRange = 3f;
+    public float patrolSpeed = 2f;
+    public float patrolWaitTime = 1.5f;
+
+    private Vector2 patrolCenter;
+    private Vector2 patrolTarget;
+    private bool waiting = false;
+    private bool initializedPatrol = false;
+    private Vector2? fixedTargetPoint = null;
+
+    private bool playerInSight = false;
+    private bool isAttacking = false;
 
     [Header("Jump settings")]
     public Transform feetPoint;
@@ -21,6 +38,10 @@ public class EnemyMovementGrounded : EnemyMovementBase
 
     private Transform target;
 
+    #endregion
+
+    #region Initialize
+
     private void Awake()
     {
         seeker = GetComponent<Seeker>();
@@ -29,8 +50,35 @@ public class EnemyMovementGrounded : EnemyMovementBase
     public override void Initialize(Enemy ownerEnemy)
     {
         base.Initialize(ownerEnemy);
+
+        // We haven't defined patrolCenter yet
+        initializedPatrol = false;
+
+        // Check Update/FixedUpdate to see if it is on the ground
+        StartCoroutine(WaitUntilGrounded());
+    }
+
+    private IEnumerator WaitUntilGrounded()
+    {
+        while (!IsGrounded())
+            yield return null;
+
+        patrolCenter = transform.position;
+        ChooseNewPatrolPoint();
+        initializedPatrol = true;
+
         InvokeRepeating(nameof(UpdatePath), 0f, 0.4f);
     }
+
+    private void ChooseNewPatrolPoint()
+    {
+        float randomX = patrolCenter.x + Random.Range(-patrolRange, patrolRange);
+        patrolTarget = new Vector2(randomX, patrolCenter.y);
+    }
+
+    #endregion
+
+    #region Pathfinding
 
     void UpdatePath()
     {
@@ -55,15 +103,33 @@ public class EnemyMovementGrounded : EnemyMovementBase
         }
     }
 
+    #endregion
+
+    #region FixedUpdate / Movement
+
     public override void OnFixedUpdate()
     {
         if (rb == null) return;
 
         bool grounded = Physics2D.OverlapCircle(feetPoint.position, groundedRadius, groundLayer);
 
+        if (isAttacking)
+        {
+            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+            return;
+        }
+
+        Vector2 destination = fixedTargetPoint ?? (target != null ? (Vector2)target.position : rb.position);
+
+        if (!playerInSight && target == null)
+        {
+            HandlePatrol();
+            return;
+        }
+
         if (path == null || currentWaypoint >= path.vectorPath.Count)
         {
-            // no path - decelerate
+            // No path - decelerate
             rb.linearVelocity = Vector2.Lerp(rb.linearVelocity, Vector2.zero, 0.2f);
             return;
         }
@@ -82,12 +148,80 @@ public class EnemyMovementGrounded : EnemyMovementBase
         if (dist < nextWaypointDistance) currentWaypoint++;
     }
 
-    public override void SetTarget(Transform t)
+    #endregion
+
+    #region Patrol
+
+    private void HandlePatrol()
     {
-        target = t;
-        // Start path immediately
-        if (seeker != null && rb != null && t != null && seeker.IsDone())
-            seeker.StartPath(rb.position, t.position, OnPathComplete);
+        if (!initializedPatrol) return;
+
+        float distToTarget = Vector2.Distance(rb.position, patrolTarget);
+
+        if (distToTarget < 0.2f)
+        {
+            if (!waiting)
+                StartCoroutine(WaitAndChooseNewPatrol());
+            return;
+        }
+
+        Vector2 dir = (patrolTarget - rb.position).normalized;
+        TryJumpPatrolObstacle(dir);
+        rb.linearVelocity = new Vector2(dir.x * patrolSpeed, rb.linearVelocity.y);
+
+        if (dir.x > 0.1f)
+            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        else if (dir.x < -0.1f)
+            transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+    }
+
+    private IEnumerator WaitAndChooseNewPatrol()
+    {
+        waiting = true;
+        rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+        yield return new WaitForSeconds(patrolWaitTime);
+        ChooseNewPatrolPoint();
+        waiting = false;
+    }
+
+    #endregion
+
+    #region Jump Logic
+
+    private void TryJumpPatrolObstacle(Vector2 dir)
+    {
+        bool grounded = IsGrounded();
+
+        if (!grounded) return;
+
+        // Raycast origin: at foot height
+        Vector2 origin = rb.position + Vector2.up * -0.05f;
+
+        // Pure horizontal direction, ignoring y
+        Vector2 horizontalDir = new Vector2(Mathf.Sign(dir.x), 0f);
+
+        // Raycast length, adjusts according to obstacle
+        float distance = 1f;
+
+        // Draw for debug
+        Debug.DrawRay(origin, horizontalDir * distance, Color.red);
+
+        RaycastHit2D hit = Physics2D.Raycast(origin, horizontalDir, distance, groundLayer);
+
+        if (hit.collider != null)
+        {
+            // Ceiling check, keep it higher than the obstacle
+            Vector2 ceilingCheck = rb.position + Vector2.up * 1f;
+            Collider2D overlap = Physics2D.OverlapBox(ceilingCheck, new Vector2(0.3f, 0.5f), 0f, groundLayer);
+
+            if (overlap == null)
+            {
+                Vector2 v = rb.linearVelocity;
+                v.y = jumpVelocity;
+                rb.linearVelocity = v;
+                lastJumpTime = Time.time;
+            }
+        }
     }
 
     private void TryJumpAlongPath(bool grounded)
@@ -130,7 +264,7 @@ public class EnemyMovementGrounded : EnemyMovementBase
             {
                 Vector2 v = rb.linearVelocity;
                 v.y = jumpVelocity;
-                // small horizontal push towards waypoint
+                // Small horizontal push towards waypoint
                 float dirX = Mathf.Sign(nextWP.x - rb.position.x);
                 v.x = dirX * Mathf.Abs(v.x);
                 rb.linearVelocity = v;
@@ -138,6 +272,18 @@ public class EnemyMovementGrounded : EnemyMovementBase
                 currentWaypoint = lookIndex;
             }
         }
+    }
+
+    #endregion
+
+    #region Overrides / Utility
+
+    public override void SetTarget(Transform t)
+    {
+        target = t;
+        // Start path immediately
+        if (seeker != null && rb != null && t != null && seeker.IsDone())
+            seeker.StartPath(rb.position, t.position, OnPathComplete);
     }
 
     public override bool IsGrounded()
@@ -150,4 +296,49 @@ public class EnemyMovementGrounded : EnemyMovementBase
     {
         rb.linearVelocity = Vector2.zero;
     }
+
+    public override void SetAttacking(bool attacking)
+    {
+        isAttacking = attacking;
+    }
+
+    public override void SetPlayerInSight(bool inSight)
+    {
+        playerInSight = inSight;
+    }
+
+    #endregion
+
+    #region Gizmos
+
+    private void OnDrawGizmosSelected()
+    {
+        // Patrol Center
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(patrolCenter, 0.2f);
+
+        // Patrol area
+        Gizmos.color = new Color(1f, 1f, 0f, 0.2f); // Translucent yellow
+        Gizmos.DrawSphere(patrolCenter, patrolRange);
+
+        // Ponto de patrulha atual
+        Gizmos.color = Color.green;
+        Gizmos.DrawSphere(patrolTarget, 0.15f);
+
+        // Line from enemy to target (optional)
+        if (rb != null)
+        {
+            Gizmos.color = Color.cyan;
+            Gizmos.DrawLine(rb.position, patrolTarget);
+        }
+
+        // Jump check point (feet)
+        if (feetPoint != null)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(feetPoint.position, groundedRadius);
+        }
+    }
+
+    #endregion
 }
