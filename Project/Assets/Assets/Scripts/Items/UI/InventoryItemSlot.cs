@@ -2,9 +2,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using static UnityEngine.EventSystems.EventTrigger;
 
-public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     #region Variables
     [Header("Slot components")]
@@ -33,44 +32,6 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         if (isHovering && tooltipInstance != null)
             UpdateTooltipPosition();
     }
-    #endregion
-
-    #region Tooltip position
-    private void UpdateTooltipPosition()
-    {
-        // Read mouse position in screen pixels
-        Vector2 mouse = Input.mousePosition;
-
-        // Measure tooltip size in screen pixels
-        Vector2 tooltipSize = panel.rect.size * canvas.scaleFactor;
-
-        float x = mouse.x;
-        float y = mouse.y;
-
-        // Clamp horizontally so the right edge stays inside the screen
-        if (x + tooltipSize.x > Screen.width)
-            x = Screen.width - tooltipSize.x;
-
-        if (x < 0)
-            x = 0;
-
-        // Clamp vertically so the tooltip never leaves the top/bottom
-        if (y + tooltipSize.y * 0.5f > Screen.height)
-            y = Screen.height - tooltipSize.y * 0.5f;
-
-        if (y - tooltipSize.y * 0.5f < 0)
-            y = tooltipSize.y * 0.5f;
-
-        // Apply the final position (ScreenSpace Overlay → world camera is null)
-        Vector2 clamped = new Vector2(x, y);
-        panel.position = clamped;
-    }
-
-
-
-
-
-
     #endregion
 
     #region Inventory list setters
@@ -103,6 +64,7 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     }
     #endregion
 
+    #region OnPointer methods
     /// <summary>
     /// This method is called when the mouse is hover an element
     /// </summary>
@@ -117,6 +79,10 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         if (equipment.equipment != null) DisplayEquipmentTooltip();
     }
 
+    /// <summary>
+    /// This method is called when the mouse stops hovering an element
+    /// </summary>
+    /// <param name="eventData"></param>
     public void OnPointerExit(PointerEventData eventData)
     {
         // Turn the flag false
@@ -128,8 +94,39 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             Destroy(tooltipInstance);
             tooltipInstance = null;
         }
-    }  
-    
+    }
+
+    /// <summary>
+    /// This method is called when the mouse clicks an element
+    /// </summary>
+    /// <param name="eventData"></param>
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        // Read the right click
+        if (eventData.button == PointerEventData.InputButton.Right)
+        {            
+            /* Check if its an equipment
+             * If its an equipment check if that equipment slot is empty
+             * Is empty? Cool, just set the Equip tag on
+             * Is not empty? Show a little pop up to ask, swap equipment? Then, yes or no 
+             */
+            
+            // Only equipments
+            if (item.item != null) return;
+             
+            // Check what type of slot it has
+            /*
+             * 1 - Helmet, Chestplate, Leggings, Weapon
+             * 2 - Accessories
+             */
+
+            // Get the playerData from parent
+        }
+        //else if (eventData.button == PointerEventData.InputButton.Left) { }
+    }
+    #endregion
+
+    #region Displays
     /// <summary>
     /// Call this method to display the item tooltip
     /// </summary>
@@ -168,7 +165,7 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             tb_itemRarity == null ||
             tb_itemSellValue == null)
         {
-            Debug.LogWarning($"Item prefab for {item.item.RunTimeItemData.ItemName} has no SpriteRenderer!");
+            Debug.LogWarning($"Item prefab for {item.item.RunTimeItemData.ItemName} has a null component!");
             return;
         }
 
@@ -178,8 +175,6 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         tb_itemDescription.text = item.item.RunTimeItemData.ItemDescription;
         tb_itemRarity.text = item.item.RunTimeItemData.ItemRarity.ToString();
         tb_itemSellValue.text = "Sell value: " + item.item.RunTimeItemData.ItemSellValue.ToString();
-
-        tooltipInstance.SetActive(true);
     }
 
     /// <summary>
@@ -228,7 +223,7 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             tb_equipStats == null ||
             tb_equipSellValue == null)
         {
-            Debug.LogWarning($"Error getting an equipment tooltip component");
+            Debug.LogWarning($"Item prefab for {ed.ItemName} has a null component!");
             return;
         }
 
@@ -250,8 +245,6 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         statString += AppendStat(ed.ItemMovementSpeedBonus, "MovementSpeed");
 
         tb_equipStats.text = statString;
-
-        Debug.Log($"{tb_equipName.text}");
     }
 
     /// <summary>
@@ -268,4 +261,37 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
         return stat;
     }
+
+    #region Tooltip position
+    private void UpdateTooltipPosition()
+    {
+        // Read mouse position in screen pixels
+        Vector2 mouse = Input.mousePosition;
+
+        // Measure tooltip size in screen pixels
+        Vector2 tooltipSize = panel.rect.size * canvas.scaleFactor;
+
+        float x = mouse.x;
+        float y = mouse.y;
+
+        // Clamp horizontally so the right edge stays inside the screen
+        if (x + tooltipSize.x > Screen.width)
+            x = Screen.width - tooltipSize.x;
+
+        if (x < 0)
+            x = 0;
+
+        // Clamp vertically so the tooltip never leaves the top/bottom
+        if (y + tooltipSize.y * 0.5f > Screen.height)
+            y = Screen.height - tooltipSize.y * 0.5f;
+
+        if (y - tooltipSize.y * 0.5f < 0)
+            y = tooltipSize.y * 0.5f;
+
+        // Apply the final position (ScreenSpace Overlay → world camera is null)
+        Vector2 clamped = new Vector2(x, y);
+        panel.position = clamped;
+    }
+    #endregion
+    #endregion
 }

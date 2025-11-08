@@ -8,6 +8,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    #region Variables
     [Header("Data")]
     public EnemyData enemyData;
     private EnemyData runtimeData;
@@ -39,12 +40,14 @@ public class Enemy : MonoBehaviour
 
     private bool isDead = false;
     private bool isAttacking = false;
+    #endregion
 
+    #region MonoBehaviour
     private void Awake()
     {        
         runtimeData = Instantiate(enemyData);
         Initialize();
-        GiveStat();
+        runtimeData.EquipmentStats();
 
         rb = GetComponent<Rigidbody2D>();
         if (animator == null) animator = GetComponentInChildren<Animator>();
@@ -63,6 +66,31 @@ public class Enemy : MonoBehaviour
         }
 
         StartCoroutine(AI_Tick());
+    }
+
+    private void FixedUpdate()
+    {
+        // Delegate movement when moving. move speed app to rigid body
+        if (movement != null)
+            movement.OnFixedUpdate();
+    }
+    #endregion
+
+    private void Initialize()
+    {
+        runtimeData.CharacterHp.Initialize();
+
+        foreach (ItemEntry entry in runtimeData.CharacterInventory)
+        {
+            if (entry.item != null)
+                entry.item.Initialize();
+        }
+
+        foreach (EquipmentEntry equipment in runtimeData.CharacterEquipItems)
+        {
+            if (equipment.equipment != null)
+                equipment.equipment.Initialize();
+        }
     }
 
     private IEnumerator AI_Tick()
@@ -100,13 +128,6 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
-    {
-        // Delegate movement when moving. move speed app to rigid body
-        if (movement != null)
-            movement.OnFixedUpdate();
-    }
-
     #region Senses
     void FindClosestPlayer()
     {
@@ -127,23 +148,6 @@ public class Enemy : MonoBehaviour
         playerInSightRange = closest != null;
     }
     #endregion
-
-    private void Initialize()
-    {
-        runtimeData.CharacterHp.Initialize();
-
-        foreach (ItemEntry entry in runtimeData.CharacterInventory)
-        {
-            if (entry.item != null)
-                entry.item.Initialize();
-        }
-
-        foreach (EquipmentEntry equipment in runtimeData.CharacterEquipItems)
-        {
-            if (equipment.equipment != null)
-                equipment.equipment.Initialize();
-        }
-    }
 
     #region Animator helper
     private void UpdateAnimator()
@@ -516,36 +520,6 @@ public class Enemy : MonoBehaviour
     public void OnDeathAnimationEnd()
     {
         Destroy(gameObject);
-    }
-    #endregion
-
-    #region Stat
-    /// <summary>
-    /// Call this method to apply the equipment bonus
-    /// </summary>
-    private void GiveStat()
-    {
-        foreach (EquipmentEntry equipment in enemyData.CharacterEquipItems)
-        {
-            Equipment iterationEquipment = equipment.equipment;
-
-            if (equipment.isEquipped)
-            {
-                // Int and floats
-                runtimeData.AddBonusHp(iterationEquipment.RunTimeEquipmentData.ItemHpBonus);
-                runtimeData.AddBonusAttack(iterationEquipment.RunTimeEquipmentData.ItemAttackBonus);
-                runtimeData.AddBonusAttackSpeed(iterationEquipment.RunTimeEquipmentData.ItemAttackSpeedBonus);
-                runtimeData.AddBonusDefense(iterationEquipment.RunTimeEquipmentData.ItemDefenseBonus);
-                runtimeData.AddBonusMana(iterationEquipment.RunTimeEquipmentData.ItemManaBonus);
-                runtimeData.AddBonusMovementSpeed(iterationEquipment.RunTimeEquipmentData.ItemMovementSpeedBonus);
-
-                // Resistances
-                foreach (Resistance resistance in iterationEquipment.RunTimeEquipmentData.ItemResistanceBonus)
-                {
-                    runtimeData.AddResistance(resistance);
-                }
-            }
-        }
     }
     #endregion
 

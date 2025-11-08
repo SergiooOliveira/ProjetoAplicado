@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public interface ICharacter
 {
@@ -46,6 +47,15 @@ public interface ICharacter
     #endregion
 
     #region Equipment Methods
+    void EquipEquipment(EquipmentEntry equipment);
+    void UnequipEquipment(EquipmentEntry equipment);
+    void SwapEquipment(EquipmentEntry equipmentToAdd, EquipmentEntry equipmentToRemove);
+    #endregion
+
+    #region Stat Methods
+    void EquipmentStats();
+    void AddEquipmentStats(EquipmentData equipment);
+    void RemoveEquipmentStats(EquipmentData equipment);
     void AddBonusHp(int amount);
     void AddBonusAttack(int amount);
     void AddBonusAttackSpeed(float amount);

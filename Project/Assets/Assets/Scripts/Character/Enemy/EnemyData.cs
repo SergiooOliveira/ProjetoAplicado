@@ -190,13 +190,106 @@ public class EnemyData : ScriptableObject, IEnemy
 
     #region Equipment Methods
     /// <summary>
+    /// Call this method to Equip a new Equipment
+    /// </summary>
+    /// <param name="equipment">Equipment to add</param>
+    public void EquipEquipment(EquipmentEntry equipment)
+    {
+        equipment.Equip();
+
+        // Give all the stats
+        AddEquipmentStats(equipment.equipment.RunTimeEquipmentData);
+    }
+
+    /// <summary>
+    /// Call this method to Unequip a new Equipment
+    /// </summary>
+    /// <param name="equipment">Equipment to remove</param>
+    public void UnequipEquipment(EquipmentEntry equipment)
+    {
+        equipment.Unequip();
+
+        RemoveEquipmentStats(equipment.equipment.RunTimeEquipmentData);
+    }
+
+    /// <summary>
+    /// Call this method to Swap 2 equipments
+    /// </summary>
+    /// <param name="equipmentToAdd">Equipment to add</param>
+    /// <param name="equipmentToRemove">Equipment to remove</param>
+    public void SwapEquipment(EquipmentEntry equipmentToAdd, EquipmentEntry equipmentToRemove)
+    {
+        // Remove Equipment and stats
+        UnequipEquipment(equipmentToRemove);
+
+        // Equip new Equipment and stats
+        EquipEquipment(equipmentToAdd);
+    }
+    #endregion
+
+    #region Stat Methods
+    /// <summary>
+    /// Call this method to give all the equipment stats
+    /// </summary>
+    public void EquipmentStats()
+    {
+        foreach (EquipmentEntry entry in characterEquipedItems)
+        {            
+            if (entry.isEquipped)
+            {
+                AddEquipmentStats(entry.equipment.RunTimeEquipmentData);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Call this method when a new equipment is equiped
+    /// </summary>
+    /// <param name="equipment">Equipment to add</param>
+    public void AddEquipmentStats(EquipmentData equipment)
+    {
+        AddBonusHp(equipment.ItemHpBonus);
+        AddBonusAttack(equipment.ItemAttackBonus);
+        AddBonusAttackSpeed(equipment.ItemAttackSpeedBonus);
+        AddBonusDefense(equipment.ItemDefenseBonus);
+        AddBonusMana(equipment.ItemManaBonus);
+        AddBonusMovementSpeed(equipment.ItemMovementSpeedBonus);
+
+        foreach (Resistance resistance in equipment.ItemResistanceBonus)
+        {
+            AddResistance(resistance);
+        }
+    }
+
+    /// <summary>
+    /// Call this method to unequip an equipment
+    /// </summary>
+    /// <param name="equipment">Equipment to remove</param>
+    public void RemoveEquipmentStats(EquipmentData equipment)
+    {
+        AddBonusHp(-equipment.ItemHpBonus);
+        AddBonusAttack(-equipment.ItemAttackBonus);
+        AddBonusAttackSpeed(-equipment.ItemAttackSpeedBonus);
+        AddBonusDefense(-equipment.ItemDefenseBonus);
+        AddBonusMana(-equipment.ItemManaBonus);
+        AddBonusMovementSpeed(-equipment.ItemMovementSpeedBonus);
+
+        // TODO: Resistances needs a way to remove them
+        foreach (Resistance resistance in equipment.ItemResistanceBonus)
+        {
+            AddResistance(resistance);
+        }
+    }
+
+    #region Additions
+    /// <summary>
     /// Call this method to add the bonus hp from the equipment to the enemy data
     /// </summary>
     /// <param name="amount">Quantity to add</param>
     public void AddBonusHp(int amount)
-    {        
+    {
         if (amount == 0) return;
-        
+
         characterHp.IncreaseMaxCurrent(amount);
     }
 
@@ -255,6 +348,7 @@ public class EnemyData : ScriptableObject, IEnemy
 
         characterMovementSpeed *= 1 + (amount / 100f);
     }
+    #endregion
     #endregion
 
     #region Resistance Methods

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum EquipmentSlot { Helmet, Chestplate, Leggings, Shoes, Weapon, Accessories }
+public enum EquipmentSlot { Helmet, Chestplate, Leggings, Weapon, Accessories }
 
 [CreateAssetMenu(menuName = "Items/New Equipment")]
 public class EquipmentData : ItemData

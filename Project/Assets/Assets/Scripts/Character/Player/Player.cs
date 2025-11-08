@@ -38,27 +38,10 @@ public class Player : MonoBehaviour
 
         foreach (EquipmentEntry eq in runTimePlayerData.CharacterEquipItems)
         {
-            Equipment equipment = eq.equipment;
-
-            equipment.Initialize();
-
-            if (eq.isEquipped)
-            {
-                // Int and floats
-                runTimePlayerData.AddBonusHp(equipment.RunTimeEquipmentData.ItemHpBonus);
-                runTimePlayerData.AddBonusAttack(equipment.RunTimeEquipmentData.ItemAttackBonus);
-                runTimePlayerData.AddBonusAttackSpeed(equipment.RunTimeEquipmentData.ItemAttackSpeedBonus);
-                runTimePlayerData.AddBonusDefense(equipment.RunTimeEquipmentData.ItemDefenseBonus);
-                runTimePlayerData.AddBonusMana(equipment.RunTimeEquipmentData.ItemManaBonus);
-                runTimePlayerData.AddBonusMovementSpeed(equipment.RunTimeEquipmentData.ItemMovementSpeedBonus);
-
-                // Resistances
-                foreach (Resistance resistance in equipment.RunTimeEquipmentData.ItemResistanceBonus)
-                {
-                    runTimePlayerData.AddResistance(resistance);
-                }
-            }
+            eq.equipment.Initialize();
         }
+
+        runTimePlayerData.EquipmentStats();
     }
 
     /// <summary>
