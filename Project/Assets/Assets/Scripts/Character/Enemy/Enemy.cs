@@ -345,13 +345,13 @@ public class Enemy : MonoBehaviour
                 entry.isEquipped &&
                 entry.equipment != null &&
                 entry.equipment.RunTimeEquipmentData != null &&
-                entry.equipment.RunTimeEquipmentData.ItemDamageAfinity != null &&
-                entry.equipment.RunTimeEquipmentData.ItemDamageAfinity
+                entry.equipment.RunTimeEquipmentData.ItemDamageAffinity != null &&
+                entry.equipment.RunTimeEquipmentData.ItemDamageAffinity
                     .Any(ida => ida.SpellAfinity == spell.SpellAfinity));
 
         // Sum all the damage bonus to that resistance
         float resistanceDamage = playerEquips
-            .SelectMany(entry => entry.equipment.RunTimeEquipmentData.ItemDamageAfinity)
+            .SelectMany(entry => entry.equipment.RunTimeEquipmentData.ItemDamageAffinity)
             .Where(r => r.SpellAfinity == spell.SpellAfinity)
             .Sum(r => r.Amount);
 
@@ -379,9 +379,9 @@ public class Enemy : MonoBehaviour
     /// </summary>
     /// <param name="spellAfinity">Attack spell</param>
     /// <returns></returns>
-    private float GetResistance(SpellAfinity spellAfinity)
+    private float GetResistance(SpellAffinity spellAfinity)
     {
-        SpellAfinity resistanceAfinity = Resistance.weaknessChart.ContainsKey(spellAfinity) ? Resistance.weaknessChart[spellAfinity] : spellAfinity;
+        SpellAffinity resistanceAfinity = Resistance.weaknessChart.ContainsKey(spellAfinity) ? Resistance.weaknessChart[spellAfinity] : spellAfinity;
 
         foreach (Resistance r in runtimeData.CharacterResistances)
         {
