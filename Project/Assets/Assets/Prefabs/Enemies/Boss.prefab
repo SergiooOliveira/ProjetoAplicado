@@ -169,6 +169,7 @@ MonoBehaviour:
   spawner: {fileID: 0}
   projectilePrefab: {fileID: 0}
   firePoint: {fileID: 0}
+  spellPrefab: {fileID: 4413296936335631655, guid: 2e1ae0da52948d94ab5d7c0f9af8c5ec, type: 3}
 --- !u!114 &1050586355504262063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,6 +184,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3.5
   nextWaypointDistance: 0.6
+  patrolRange: 3
+  patrolSpeed: 2
+  patrolWaitTime: 1.5
   feetPoint: {fileID: 5631223849854087603}
   groundLayer:
     serializedVersion: 2
