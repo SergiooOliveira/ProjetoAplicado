@@ -564,6 +564,7 @@ public class Enemy : MonoBehaviour
         if (animator == null || rb == null) return;
         float speed = Mathf.Abs(rb.linearVelocity.x);
 
+        // Update animator parameters
         if (HasAnimatorParameter("Speed", AnimatorControllerParameterType.Float))
             animator.SetFloat("Speed", speed);
 
@@ -576,9 +577,14 @@ public class Enemy : MonoBehaviour
                 animator.SetBool("IsGrounded", movement.IsGrounded());
         }
 
-        // Flip sprite depending on velocity.x
-        if (rb.linearVelocity.x > 0.05f) transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
-        else if (rb.linearVelocity.x < -0.05f) transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        // Flip sprite based only on player position
+        if (player != null)
+        {
+            if (player.position.x > transform.position.x)
+                transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            else if (player.position.x < transform.position.x)
+                transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        }
     }
 
     // Check if the parameters exist
