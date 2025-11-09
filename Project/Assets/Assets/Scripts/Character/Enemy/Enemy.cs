@@ -32,12 +32,17 @@ public class Enemy : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRenderer;
     Rigidbody2D rb;
 
+    [Header("Spawn")]
     public EnemySpawnPoint spawnPoint;
     public EnemySpawner spawner;
 
-    private EnemyData.EnemyAttack currentAttack;
+    [Header("FlyEnemy Range Attack")]
     public GameObject projectilePrefab;
     public Transform firePoint;
+    private EnemyData.EnemyAttack currentAttack;
+
+    [Header("Boss Spell Attack")]
+    public GameObject spellPrefab;
 
     private bool isDead = false;
     private bool isAttacking = false;
@@ -202,15 +207,6 @@ public class Enemy : MonoBehaviour
     // Player Take Damage
     // Is Trigger by Animation Event
     // Using Script EnemyAnimationEvent
-    public void ApplyAttackDamage()
-    {
-        if (player == null) { isAttacking = false; return; }
-
-        // TODO:
-        // Apply damage to player
-        isAttacking = false;
-    }
-
     public void ApplyAttackEffect()
     {
         if (player == null) { isAttacking = false; return; }
@@ -227,10 +223,21 @@ public class Enemy : MonoBehaviour
         }
         else if (atk.attackType == AttackType.Ranged)
         {
-            // Dispara o projetil
-            Vector2 direction = (player.position - firePoint.position).normalized;
-            Player playerComponent = player.GetComponent<Player>();
-            UseSpell(firePoint.position, direction, playerComponent);
+            if (runtimeData.CharacterCategory == EnemyCategory.CyclopeBat)
+            {
+                // Fire the projectile
+                Vector2 direction = (player.position - firePoint.position).normalized;
+                Player playerComponent = player.GetComponent<Player>();
+                UseSpell(firePoint.position, direction, playerComponent);
+            } 
+            else if (runtimeData.CharacterCategory == EnemyCategory.Necromancer)
+            {
+                // TODO: Attack Necromancer
+            } 
+            else if (runtimeData.CharacterCategory == EnemyCategory.Boss)
+            {
+                UseFallingHandSpell();
+            }
         }
 
         isAttacking = false;
@@ -248,22 +255,30 @@ public class Enemy : MonoBehaviour
         // Instantiate projectile
         GameObject proj = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
 
-        // Pega o script do projetil
+        // Get the projectile script
         Projectile projectileScript = proj.GetComponent<Projectile>();
 
         // Define direção
         projectileScript.direction = (player.transform.position - firePoint.position).normalized;
 
-        // Define dano
-        projectileScript.damage = currentAttack.damage;
-
-        // Ignora colisão com o inimigo que disparou
+        // Ignores collision with enemy that fired
         Collider2D enemyCollider = GetComponent<Collider2D>();
         Collider2D projectileCollider = proj.GetComponent<Collider2D>();
         if (enemyCollider != null && projectileCollider != null)
         {
             Physics2D.IgnoreCollision(projectileCollider, enemyCollider);
         }
+    }
+
+    public void UseFallingHandSpell()
+    {
+        if (spellPrefab == null) return;
+
+        // Position above the player's head
+        Vector3 spawnPos = player.position + Vector3.up * 2f;
+
+        // Instantiate the spell prefab
+        GameObject spell = Instantiate(spellPrefab, spawnPos, Quaternion.identity);
     }
 
     // Random Attacks
@@ -284,7 +299,7 @@ public class Enemy : MonoBehaviour
                 return atk;
         }
 
-        return runtimeData.Attacks[0]; // fallback
+        return runtimeData.Attacks[0]; // Fallback
     }
 
     #endregion

@@ -14,6 +14,7 @@ public class EnemyData : ScriptableObject, IEnemy
     [Tooltip("Description of the Enemy")]                       [SerializeField] private string characterDescription;
     [Tooltip("Type of the Enemy")]                              [SerializeField] private EnemyType characterType;
     [Tooltip("Where does the Enemy spawn")]                     [SerializeField] private EnemySpawnLevel characterSpawnLevel;
+    [Tooltip("Enemy Category")]                                 [SerializeField] private EnemyCategory characterCategory;
 
     [Header("Attacks")]
     [SerializeField] private List<EnemyAttack> attacks;
@@ -68,6 +69,7 @@ public class EnemyData : ScriptableObject, IEnemy
     public string CharacterDescription => characterDescription;
     public EnemyType CharacterType => characterType;
     public EnemySpawnLevel CharacterSpawnLevel => characterSpawnLevel;
+    public EnemyCategory CharacterCategory => characterCategory;
 
     // *----- Spawn Settings -----*
     public int SpawnCount => spawnCount;
