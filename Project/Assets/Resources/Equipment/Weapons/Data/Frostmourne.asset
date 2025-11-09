@@ -19,7 +19,8 @@ MonoBehaviour:
   itemRarity: 3
   isItemSellable: 1
   itemSellValue: 10000
-  slot: 4
+  itemSlot: 3
+  itemSet: 1
   itemHpBonus: 50
   itemAttackBonus: 0
   itemAttackSpeedBonus: 10
@@ -29,6 +30,4 @@ MonoBehaviour:
   itemResistanceBonus:
   - spellAfinity: 0
     amount: 20
-  itemDamageAfinity:
-  - spellAfinity: 2
-    amount: 20
+  itemDamageAffinity: []
