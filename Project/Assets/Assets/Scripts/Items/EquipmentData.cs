@@ -1,14 +1,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum EquipmentSlot { Helmet, Chestplate, Leggings, Weapon, Accessories }
+public enum EquipmentSlot { Helmet, Chestplate, Leggings, Weapon, Amulet, Ring }
+public enum EquipmentSet { Fire, Ice, Wind, Light, Dark }                            
 
 [CreateAssetMenu(menuName = "Items/New Equipment")]
 public class EquipmentData : ItemData
 {
     #region Serialized Fields
     [Header("Identity")]
-    [SerializeField] private EquipmentSlot slot;
+    [SerializeField] private EquipmentSlot itemSlot;
+    [SerializeField] private EquipmentSet itemSet;
 
     [Header("Bonus Stats")]
     [SerializeField] private int itemHpBonus;                           // Item Hp Bonus
@@ -18,12 +20,13 @@ public class EquipmentData : ItemData
     [SerializeField] private int itemManaBonus;                         // Item Mana Bonus
     [SerializeField] private float itemMovementSpeedBonus;              // Item Movement Speed Bonus in percentage
     [SerializeField] private List<Resistance> itemResistanceBonus;      // Item Resistance Bonus in percentage
-    [SerializeField] private List<Resistance> itemDamageAfinity;        // Item Afinity Attack Bonus
+    [SerializeField] private List<Resistance> itemDamageAffinity;        // Item Afinity Attack Bonus
     #endregion
 
     #region Property implementation
     // *----- Identity -----*
-    public EquipmentSlot Slot => slot;
+    public EquipmentSlot ItemSlot => itemSlot;
+    public EquipmentSet ItemSet => itemSet;
 
     // *----- Bonus Stats -----*
     public int ItemHpBonus => itemHpBonus;
@@ -33,6 +36,6 @@ public class EquipmentData : ItemData
     public int ItemManaBonus => itemManaBonus;
     public float ItemMovementSpeedBonus => itemMovementSpeedBonus;
     public List<Resistance> ItemResistanceBonus => itemResistanceBonus;
-    public List<Resistance> ItemDamageAfinity => itemDamageAfinity;
+    public List<Resistance> ItemDamageAffinity => itemDamageAffinity;
     #endregion
 }
