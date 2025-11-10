@@ -32,6 +32,11 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         if (isHovering && tooltipInstance != null)
             UpdateTooltipPosition();
     }
+
+    private void OnDisable()
+    {
+        DestroyTooltip();
+    }
     #endregion
 
     #region Inventory list setters
@@ -85,15 +90,7 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     /// <param name="eventData"></param>
     public void OnPointerExit(PointerEventData eventData)
     {
-        // Turn the flag false
-        isHovering = false;
-
-        // Destroy instance
-        if (tooltipInstance != null)
-        {
-            Destroy(tooltipInstance);
-            tooltipInstance = null;
-        }
+        DestroyTooltip();
     }
 
     /// <summary>
@@ -260,6 +257,19 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             stat += $"{(value > 0 ? "+ " : "- ")}{Mathf.Abs(value)} {name}\n";
 
         return stat;
+    }
+
+    private void DestroyTooltip()
+    {
+        // Turn the flag false
+        isHovering = false;
+
+        // Destroy instance
+        if (tooltipInstance != null)
+        {
+            Destroy(tooltipInstance);
+            tooltipInstance = null;
+        }
     }
 
     #region Tooltip position

@@ -318,7 +318,6 @@ public class PlayerData : ScriptableObject, ICharacter
     {
         if (amount == 0)
         {
-            Debug.Log("Amount is 0");
             return;
         }
 
