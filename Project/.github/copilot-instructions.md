@@ -2,7 +2,7 @@
 - Project name: Project
 - Unity version: Unity 6000.0.58f1
 - Active game object:
-  - Name: Managers
+  - Name: SpawnPoint_W3
   - Tag: Untagged
   - Layer: Default
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->
