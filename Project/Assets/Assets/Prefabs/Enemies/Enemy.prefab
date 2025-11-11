@@ -231,7 +231,7 @@ BoxCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 45420c259fc0cd24d80617a78e774bd9, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -293,6 +293,7 @@ MonoBehaviour:
   spawner: {fileID: 0}
   projectilePrefab: {fileID: 0}
   firePoint: {fileID: 0}
+  spellPrefab: {fileID: 0}
 --- !u!114 &-3212755625456027727
 MonoBehaviour:
   m_ObjectHideFlags: 0
