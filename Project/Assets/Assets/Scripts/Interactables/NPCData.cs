@@ -29,4 +29,9 @@ public class NPCData : ScriptableObject
     // *----- UI -----*
     public GameObject NPCItemPanel => npcItemPanel;
     #endregion
+
+    public void SetPanel(GameObject npcPanel)
+    {
+        npcItemPanel = npcPanel;
+    }
 }

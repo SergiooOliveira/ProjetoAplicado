@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class NPC : MonoBehaviour
@@ -8,6 +9,8 @@ public class NPC : MonoBehaviour
     private bool isInventoryOpen = false;
 
     public NPCData RuntimeData => runtimeData;
+
+    private GameObject shopPanel;
 
     private void Awake()
     {
@@ -29,15 +32,28 @@ public class NPC : MonoBehaviour
             if (entry.equipment != null)
                 entry.equipment.Initialize();
         }
+
+        // Get ItemPanel
+        runtimeData.SetPanel(this.transform.Find("Canvas/ListPanel").gameObject);
     }
 
     public void Interact(PlayerData playerData)
-    {        
-        if (runtimeData == null) Debug.LogWarning("NPC data is null");
-        if (playerData == null) Debug.LogWarning("Player data is null");
+    {
+        bool newState = !runtimeData.NPCItemPanel.activeSelf;
+        runtimeData.NPCItemPanel.SetActive(newState);
 
-        isInventoryOpen = runtimeData.NPCItemPanel.activeSelf;
+        Debug.Log($"Panel now {(newState ? "open" : "closed")}");
+    }
 
-        runtimeData.NPCItemPanel.SetActive(!isInventoryOpen);
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == GameManager.Instance.playerTag)
+        {
+            if (runtimeData.NPCItemPanel.activeSelf)
+            {
+                runtimeData.NPCItemPanel.SetActive(false);
+                Debug.Log("Closed panel on trigger exit");
+            }
+        }
     }
 }
