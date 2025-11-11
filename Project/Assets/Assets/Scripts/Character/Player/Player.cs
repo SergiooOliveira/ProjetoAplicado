@@ -31,14 +31,27 @@ public class Player : MonoBehaviour
         runTimePlayerData.CharacterMana.Initialize();
         runTimePlayerData.ClearSpellList();
 
+        // Initialize item list
         foreach (ItemEntry item in runTimePlayerData.CharacterInventory)
         {
             item.item.Initialize();
         }
 
-        foreach (EquipmentEntry eq in runTimePlayerData.CharacterEquipItems)
+        // Initialize equipment list
+        foreach (EquipmentEntry eq in runTimePlayerData.CharacterEquipment)
         {
             eq.equipment.Initialize();
+
+            // Check if its equipped
+            if (eq.isEquipped)
+            {
+                // Check if slot already has something
+                // if does unequip
+                bool isEquipped = (runTimePlayerData.CharacterEquipedEquipment.Find(e => e.equipment.RunTimeEquipmentData.ItemSlot == eq.equipment.RunTimeEquipmentData.ItemSlot).equipment != null);
+
+                if (isEquipped) eq.Unequip();
+                else runTimePlayerData.EquipEquipment(eq);
+            }
         }
 
         runTimePlayerData.EquipmentStats();

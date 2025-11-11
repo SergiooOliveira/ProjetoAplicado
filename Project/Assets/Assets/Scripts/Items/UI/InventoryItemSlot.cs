@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -13,12 +15,15 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     [Header("Tooltips")]
     [SerializeField] private GameObject itemTooltipObject;
     [SerializeField] private GameObject equipmentTooltipObject;
+    
+    private PlayerData player;
 
     // Types of Entry
     private ItemEntry item;
     private EquipmentEntry equipment;
     
     private GameObject tooltipInstance;
+    private StatManagerUI statManagerUI;
 
     // For positioning
     private Canvas canvas;
@@ -27,6 +32,12 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     #endregion
 
     #region Unity MonoBehaviours
+    private void Awake()
+    {
+        player = GetComponentInParent<Player>().RunTimePlayerData;
+        statManagerUI = GetComponentInParent<StatManagerUI>();
+    }
+
     private void Update()
     {
         if (isHovering && tooltipInstance != null)
@@ -110,7 +121,7 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             
             // Only equipments
             if (item.item != null) return;
-             
+
             // Check what type of slot it has
             /*
              * 1 - Helmet, Chestplate, Leggings, Weapon
@@ -118,9 +129,32 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
              */
 
             // Get the playerData from parent
+            EquipmentEntry equippedEquipment = player.CharacterEquipedEquipment.Single(e => e.equipment.RunTimeEquipmentData.ItemSlot == equipment.equipment.RunTimeEquipmentData.ItemSlot);
+
+            if (equippedEquipment.equipment == null)
+            {                
+                player.EquipEquipment(equipment);
+            }
+            else
+            {                
+                // Swap
+                player.SwapEquipment(equipment, equippedEquipment);
+            }
+
+            // Update UI
+            statManagerUI.UpdateEquipedEquipment();
+            statManagerUI.UpdateUI();
+            
         }
         //else if (eventData.button == PointerEventData.InputButton.Left) { }
     }
+
+    #region Auxiliary methods
+    private void IsEquipmentEquipped()
+    {
+
+    }
+    #endregion
     #endregion
 
     #region Displays
@@ -230,10 +264,13 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         tb_equipDescription.text = ed.ItemDescription;
         tb_equipName.text = ed.ItemName;
         tb_equipRarity.text = ed.ItemRarity.ToString();
-        tb_equipSellValue.text = ed.ItemSellValue.ToString();
 
-        // Create the string to show stats
-        string statString = "";
+        if (ed.IsItemSellable)
+            tb_equipSellValue.text = ed.ItemSellValue.ToString();
+        else tb_equipSellValue.text = "Not sellable";
+
+            // Create the string to show stats
+            string statString = "";
         statString += AppendStat(ed.ItemHpBonus, "max HP");
         statString += AppendStat(ed.ItemAttackBonus, "Attack");
         statString += AppendStat(ed.ItemAttackSpeedBonus, "Attack speed");

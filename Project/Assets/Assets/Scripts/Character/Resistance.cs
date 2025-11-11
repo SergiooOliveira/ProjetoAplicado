@@ -24,9 +24,16 @@ public class Resistance
     public float Amount => amount;
     #endregion
 
-    public Resistance (int amount)
+    public Resistance (SpellAffinity affinity, int amount)
     {
+        this.spellAfinity = affinity;
         this.amount = amount;
+    }
+
+    public Resistance (Resistance r)
+    {
+        this.spellAfinity = r.spellAfinity;
+        this.amount = r.amount;
     }
 
     /// <summary>

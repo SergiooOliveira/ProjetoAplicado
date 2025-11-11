@@ -34,7 +34,7 @@ public class InventoryManagerUI : MonoBehaviour
             slotUI.SetItemSlot(entry);
         }
 
-        foreach (EquipmentEntry entry in player.RunTimePlayerData.CharacterEquipItems)
+        foreach (EquipmentEntry entry in player.RunTimePlayerData.CharacterEquipment)
         {
             GameObject newSlot = Instantiate(slot, itemListPanel);
 

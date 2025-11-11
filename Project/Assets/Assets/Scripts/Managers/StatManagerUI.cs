@@ -84,12 +84,17 @@ public class StatManagerUI : MonoBehaviour
 
     private void OnEnable()
     {
+        UpdateUI();
+    }
+
+    #region Updaters
+    public void UpdateUI()
+    {
         UpdateSimpleStats();
         UpdateResistanceStats();
         UpdateEquipedEquipment();
     }
 
-    #region Updaters
     /// <summary>
     /// Call this method to update the simple stats of the player
     /// </summary>
@@ -133,38 +138,35 @@ public class StatManagerUI : MonoBehaviour
     /// <summary>
     /// Call this method to update the Equipment section
     /// </summary>
-    private void UpdateEquipedEquipment()
+    public void UpdateEquipedEquipment()
     {
         /*
          * Update by order of the variables
          * Helmet - Chestplate - Leggings - Amulet - Ring - Weapon
          * Maybe create some sub-methods to handdle it better
          */
-        foreach (EquipmentEntry entry in player.CharacterEquipItems)
+        foreach (EquipmentEntry entry in player.CharacterEquipedEquipment)
         {
-            if (entry.isEquipped) // If item is equipped update it
+            switch (entry.equipment.RunTimeEquipmentData.ItemSlot)
             {
-                switch (entry.equipment.RunTimeEquipmentData.ItemSlot)
-                {
-                    case EquipmentSlot.Helmet:
-                        HelmetObject(entry);
-                        break;
-                    case EquipmentSlot.Chestplate:
-                        ChestplateObject(entry);
-                        break;
-                    case EquipmentSlot.Leggings:
-                        LeggingsObject(entry);
-                        break;
-                    case EquipmentSlot.Amulet:
-                        AmuletObject(entry);
-                        break;
-                    case EquipmentSlot.Ring:
-                        RingObject(entry);
-                        break;
-                    case EquipmentSlot.Weapon:
-                        WeaponObject(entry);
-                        break;
-                }
+                case EquipmentSlot.Helmet:
+                    HelmetObject(entry);
+                    break;
+                case EquipmentSlot.Chestplate:
+                    ChestplateObject(entry);
+                    break;
+                case EquipmentSlot.Leggings:
+                    LeggingsObject(entry);
+                    break;
+                case EquipmentSlot.Amulet:
+                    AmuletObject(entry);
+                    break;
+                case EquipmentSlot.Ring:
+                    RingObject(entry);
+                    break;
+                case EquipmentSlot.Weapon:
+                    WeaponObject(entry);
+                    break;
             }
         }
     }
