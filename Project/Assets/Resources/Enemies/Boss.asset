@@ -30,10 +30,8 @@ MonoBehaviour:
     attackType: 1
   spawnCount: 1
   distanceSpawn: 10
-  respawnTime: 1000
-  respawnDistance: 1000
-  isBoss: 0
-  CurrentSpawned: 1
+  respawnTime: 5
+  respawnDistance: 1
   characterHp:
     max: 500
   characterXp:

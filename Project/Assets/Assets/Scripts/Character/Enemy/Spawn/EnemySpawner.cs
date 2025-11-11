@@ -5,45 +5,70 @@ using FishNet.Object;
 
 public class EnemySpawner : MonoBehaviour
 {
+    #region Serialized Fields
+
     [SerializeField] private EnemyData enemyData; // Data defining spawn count, distances, respawn time, prefab
+
+    #endregion
+
+    #region Private Fields
 
     private List<EnemySpawnPoint> allSpawnPoints = new(); // All spawn points in the scene
     private List<EnemySpawnPoint> activeSpawnPoints = new(); // Spawn points currently used for spawning
-
     private Transform player; // Reference to the player
+
+    [Header("Boss Spawn")]
+    [Tooltip("Boss dies permanently when false -> Save On Disk")]
+    [SerializeField] private bool debugMode = true;
+
+    private HashSet<string> sessionDeadBosses = new();
+
+    #endregion
+
+    #region Unity Methods
 
     private void Awake()
     {
-        // Get all spawn points in the scene using the new Unity API
         allSpawnPoints = new List<EnemySpawnPoint>(GetComponentsInChildren<EnemySpawnPoint>());
+
+        if (IsBossDead())
+        {
+            Debug.Log($"[Spawner] Boss {enemyData.CharacterName} já morto detectado no Awake. Desativando objeto.");
+            gameObject.SetActive(false);
+        }
     }
 
     private void Start()
     {
-        // Start routine to find the player before spawning enemies
         StartCoroutine(FindPlayerRoutine());
     }
 
+    #endregion
+
+    #region Player Finding
+
     private IEnumerator FindPlayerRoutine()
     {
-        // Keep trying until we find the player
         while (player == null)
         {
             TryFindLocalPlayer();
             yield return new WaitForSeconds(0.5f);
         }
 
-        // Once player is found, select active spawn points and start spawning routine
+        if (IsBossDead())
+        {
+            Debug.Log($"[Spawner] Boss {enemyData.CharacterName} está morto permanentemente. Spawner desativado.");
+            yield break;
+        }
+
         SetupSpawnPoints();
         StartCoroutine(SpawnRoutine());
     }
 
     private void TryFindLocalPlayer()
     {
-        // Multiplayer: search for local network-owned player
-        var allNetObjs = FindObjectsByType<NetworkObject>(FindObjectsSortMode.None);
-
-        foreach (var netObj in allNetObjs)
+        // Multiplayer
+        foreach (var netObj in FindObjectsByType<NetworkObject>(FindObjectsSortMode.None))
         {
             if (netObj != null && netObj.CompareTag("Player") && netObj.IsOwner)
             {
@@ -53,7 +78,7 @@ public class EnemySpawner : MonoBehaviour
             }
         }
 
-        // Singleplayer fallback: find object tagged as Player
+        // Singleplayer fallback
         var spPlayer = GameObject.FindWithTag("Player");
         if (spPlayer != null)
         {
@@ -62,100 +87,154 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
+    #endregion
+
+    #region Spawn Points Setup
+
     private void SetupSpawnPoints()
     {
         activeSpawnPoints.Clear();
 
-        // Clone the list to randomly select unique spawn points
-        List<EnemySpawnPoint> temp = new(allSpawnPoints);
-
-        // Ensure we don't select more than available
+        var temp = new List<EnemySpawnPoint>(allSpawnPoints);
         int count = Mathf.Min(enemyData.SpawnCount, temp.Count);
         Debug.Log($"[Spawner] Selecting {count}/{temp.Count} spawn points randomly.");
 
         for (int i = 0; i < count; i++)
         {
             int index = Random.Range(0, temp.Count);
-            activeSpawnPoints.Add(temp[index]);
-
-            // Mark this spawn point as actively used
-            temp[index].isActiveSpawnPoint = true;
-            Debug.Log($"[Spawner] Active spawn: {temp[index].name}");
-
-            temp.RemoveAt(index); // Remove from temp to avoid duplicates
+            var sp = temp[index];
+            activeSpawnPoints.Add(sp);
+            sp.isActiveSpawnPoint = true;
+            Debug.Log($"[Spawner] Active spawn: {sp.name}");
+            temp.RemoveAt(index);
         }
     }
 
-    IEnumerator SpawnRoutine()
+    #endregion
+
+    #region Spawning
+
+    private IEnumerator SpawnRoutine()
     {
-        // Main spawning loop
         while (true)
         {
             foreach (var sp in activeSpawnPoints)
             {
-                if (sp == null) continue;
+
+                if (enemyData.CharacterCategory == EnemyCategory.Boss)
+{
+                    string bossKey = $"{enemyData.CharacterSpawnLevel}_{enemyData.CharacterName}";
+                    if (sessionDeadBosses.Contains(bossKey))
+                        continue; // não spawna mais na sessão
+}
+
+                if (sp == null || !sp.isActiveSpawnPoint) continue;
 
                 float dist = Vector3.Distance(player.position, sp.transform.position);
 
-                // Spawn only if:
-                // 1. No enemy is currently at this spawn
-                // 2. Not already respawning
-                // 3. Player is within spawn distance
                 if (!sp.hasEnemy && !sp.isRespawning && dist <= enemyData.DistanceSpawn)
                 {
                     SpawnEnemy(sp);
                 }
             }
 
-            // Check every 1 second
             yield return new WaitForSeconds(1f);
         }
     }
 
     private void SpawnEnemy(EnemySpawnPoint sp)
     {
-        // Instantiate the enemy prefab at the spawn point
-        GameObject enemyObj = Instantiate(enemyData.CharacterPrefab, sp.transform.position, Quaternion.identity);
+        if (IsBossDead()) return;
 
-        // Assign enemy to this spawn point
+        GameObject enemyObj = Instantiate(enemyData.CharacterPrefab, sp.transform.position, Quaternion.identity);
         sp.AssignEnemy(enemyObj);
 
-        // Set references for the enemy to notify this spawner when it dies
-        Enemy enemy = enemyObj.GetComponent<Enemy>();
+        var enemy = enemyObj.GetComponent<Enemy>();
         enemy.spawnPoint = sp;
         enemy.spawner = this;
 
-        Debug.Log($"{enemy.RunTimeData.ToString()}");
+        Debug.Log($"{enemy.RunTimeData}");
     }
 
-    public void OnEnemyDeath(EnemySpawnPoint sp)
+    #endregion
+
+    #region Enemy Death Handling
+
+    public void OnEnemyDeath(EnemySpawnPoint sp, Enemy enemy)
     {
-        // Called by the enemy when it dies
+        if (enemy == null) return;
+
+        if (enemy.RunTimeData.CharacterCategory == EnemyCategory.Boss)
+        {
+            SaveBossDeath(enemy);
+            sp.isRespawning = false;
+            sp.hasEnemy = true;
+            sp.isActiveSpawnPoint = false;
+            return;
+        }
+
         if (!sp.isRespawning)
         {
             Debug.Log($"Enemy died at {sp.name}. Respawn in {enemyData.RespawnTime}s");
-            sp.isRespawning = true; // Block spawn until respawn completes
+            sp.isRespawning = true;
             StartCoroutine(RespawnEnemy(sp));
         }
     }
 
-    IEnumerator RespawnEnemy(EnemySpawnPoint sp)
+    private IEnumerator RespawnEnemy(EnemySpawnPoint sp)
     {
-        // Clear current enemy from the spawn point
         sp.ClearEnemy();
-
-        // Wait for the defined respawn time
         yield return new WaitForSeconds(enemyData.RespawnTime);
 
-        // Wait until the player leaves the respawn radius
         while (Vector3.Distance(player.position, sp.transform.position) < enemyData.RespawnDistance)
             yield return new WaitForSeconds(1f);
 
-        // Release the spawn point and allow spawning again
+        if (IsBossDead()) yield break;
+
         sp.hasEnemy = false;
         sp.isRespawning = false;
-
-        // Spawn a new enemy
         SpawnEnemy(sp);
     }
+
+    #endregion
+
+    #region Utilities
+
+    private bool IsBossDead()
+    {
+        if (enemyData.CharacterCategory != EnemyCategory.Boss)
+            return false; // normal enemies never use debugMode
+
+        string bossKey = $"{enemyData.CharacterSpawnLevel}_{enemyData.CharacterName}";
+
+        if (debugMode)
+            return sessionDeadBosses.Contains(bossKey); // only in session
+        else
+            return PlayerPrefs.GetInt($"BossDead_{bossKey}", 0) == 1; // save on disk
+    }
+
+    private void SaveBossDeath(Enemy enemy)
+    {
+        if (enemy.RunTimeData.CharacterCategory != EnemyCategory.Boss)
+            return; // normal enemies never use debugMode
+
+        string bossKey = $"{enemy.RunTimeData.CharacterSpawnLevel}_{enemy.RunTimeData.CharacterName}";
+
+        if (debugMode)
+        {
+            // Just blocks in session
+            sessionDeadBosses.Add(bossKey);
+            Debug.Log($"[DEBUG] Boss {enemy.RunTimeData.CharacterName} morto (somente na sessão).");
+        }
+        else
+        {
+            // Write permanently
+            string saveKey = $"BossDead_{bossKey}";
+            PlayerPrefs.SetInt(saveKey, 1);
+            PlayerPrefs.Save();
+            Debug.Log($"[Spawner] Boss {enemy.RunTimeData.CharacterName} morto permanentemente e salvo em PlayerPrefs.");
+        }
+    }
+
+    #endregion
 }

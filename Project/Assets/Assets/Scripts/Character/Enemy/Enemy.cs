@@ -504,8 +504,10 @@ public class Enemy : MonoBehaviour
             spawnPoint.ClearEnemy();
 
         // Notify enemy death
-        if (spawner != null)
-            spawner.OnEnemyDeath(spawnPoint);
+        if (spawner != null && spawnPoint != null)
+        {
+            spawner.OnEnemyDeath(spawnPoint, this);
+        }
 
         // Stop Movimentaion
         rb.linearVelocity = Vector2.zero;

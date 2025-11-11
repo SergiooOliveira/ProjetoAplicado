@@ -99416,6 +99416,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 255871da6ba237645867b24ed5c3b997, type: 2}
+  debugMode: 1
 --- !u!1001 &772214566
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -105820,6 +105821,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 5d5518ccbe72c404f832b4e260303920, type: 2}
+  debugMode: 1
 --- !u!1 &1620711178
 GameObject:
   m_ObjectHideFlags: 0
@@ -106273,6 +106275,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 824d16d3b0f3856408482351a03034db, type: 2}
+  debugMode: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
