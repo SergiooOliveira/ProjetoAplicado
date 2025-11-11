@@ -32,6 +32,8 @@ MonoBehaviour:
   distanceSpawn: 10
   respawnTime: 1000
   respawnDistance: 1000
+  isBoss: 0
+  CurrentSpawned: 1
   characterHp:
     max: 500
   characterXp:

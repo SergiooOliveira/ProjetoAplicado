@@ -15,7 +15,7 @@ public class EnemyData : ScriptableObject, IEnemy
     [Tooltip("Type of the Enemy")]                              [SerializeField] private EnemyType characterType;
     [Tooltip("Where does the Enemy spawn")]                     [SerializeField] private EnemySpawnLevel characterSpawnLevel;
     [Tooltip("Enemy Category")]                                 [SerializeField] private EnemyCategory characterCategory;
-
+    
     [Header("Attacks")]
     [SerializeField] private List<EnemyAttack> attacks;
     public List<EnemyAttack> Attacks => attacks;
@@ -41,6 +41,8 @@ public class EnemyData : ScriptableObject, IEnemy
     [Tooltip("Player must be inside this radius to spawn")]     [SerializeField] private float distanceSpawn;
     [Tooltip("Time to respawn after death")]                    [SerializeField] private float respawnTime;
     [Tooltip("Player must be outside this radius to respawn")]  [SerializeField] private float respawnDistance;
+    [SerializeField] private bool isBoss = false; // Se é boss único
+    [HideInInspector] public int CurrentSpawned = 0;
 
     [Header("Stats")]
     [Tooltip("Enemy HP")]                                       [SerializeField] private Stat characterHp;
@@ -76,6 +78,7 @@ public class EnemyData : ScriptableObject, IEnemy
     public float DistanceSpawn => distanceSpawn;
     public float RespawnTime => respawnTime;
     public float RespawnDistance => respawnDistance;
+    public bool IsBoss => isBoss;
 
     // *----- Stats -----*
     public Stat CharacterHp => characterHp;

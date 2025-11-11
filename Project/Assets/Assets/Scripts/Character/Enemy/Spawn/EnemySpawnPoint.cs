@@ -2,10 +2,16 @@ using UnityEngine;
 
 public class EnemySpawnPoint : MonoBehaviour
 {
+    #region Fields
+
     public bool hasEnemy = false; // Check if it is spawned
     public GameObject currentEnemy; // Tag the Enemy
     public bool isRespawning = false; // Prevent double respawn
     public bool isActiveSpawnPoint = false; // Spawn is activated
+
+    [HideInInspector] public EnemyData enemyTypeData;
+
+    #endregion
 
     // Assign Enemy
     // Parameters

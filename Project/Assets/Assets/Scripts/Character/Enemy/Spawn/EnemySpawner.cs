@@ -15,9 +15,7 @@ public class EnemySpawner : MonoBehaviour
     private void Awake()
     {
         // Get all spawn points in the scene using the new Unity API
-        allSpawnPoints = new List<EnemySpawnPoint>(
-            FindObjectsByType<EnemySpawnPoint>(FindObjectsSortMode.None)
-        );
+        allSpawnPoints = new List<EnemySpawnPoint>(GetComponentsInChildren<EnemySpawnPoint>());
     }
 
     private void Start()
