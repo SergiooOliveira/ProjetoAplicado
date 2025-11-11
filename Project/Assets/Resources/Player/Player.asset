@@ -37,23 +37,12 @@ MonoBehaviour:
   - item: {fileID: 791059958512238194, guid: 5370bea0216ae494c9a334486a90260a, type: 3}
     quantity: 10
     isGuarantee: 0
-  characterEquipItems:
-  - equipment: {fileID: 4949913919596823538, guid: 3c35adc5bc3fc5a46930f025e38e0130, type: 3}
-    quantity: 1
-    isEquipped: 1
+  characterEquipment:
   - equipment: {fileID: 1415593202068403262, guid: 65a606b9c6e0bb94e8830406e3685d1a, type: 3}
     quantity: 1
     isEquipped: 1
-  - equipment: {fileID: 6958278521302479874, guid: 1725560fc06b1cb4b95f6019057e72f9, type: 3}
+  - equipment: {fileID: 549791756682562146, guid: be0fc2a3546714c46942d89fdb6af273, type: 3}
     quantity: 1
     isEquipped: 1
-  - equipment: {fileID: 7012709423314061630, guid: 7c35d40e41de38b4881f89869bbc8ef4, type: 3}
-    quantity: 1
-    isEquipped: 1
-  - equipment: {fileID: 7218981325612991994, guid: db49082421be56249ab0caccaa3d0211, type: 3}
-    quantity: 1
-    isEquipped: 1
-  - equipment: {fileID: 2459443685308743523, guid: fc45cce0c8992d7438e09a941648ea6a, type: 3}
-    quantity: 1
-    isEquipped: 1
+  characterEquipedEquipment: []
   characterGold: 0

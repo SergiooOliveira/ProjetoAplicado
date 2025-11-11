@@ -16,6 +16,7 @@ public class PlayerController : NetworkBehaviour
 
     private bool canPlayerInteract = false;
     private Chest interactedChest = null;
+    private NPC interactedNPC = null;
 
     private float horizontal;
     private float jumpingPower = 8f;
@@ -90,6 +91,8 @@ public class PlayerController : NetworkBehaviour
             canPlayerInteract = true;
             if (collision.TryGetComponent<Chest>(out Chest chest))
                 interactedChest = chest;
+            if (collision.TryGetComponent<NPC>(out NPC npc))
+                interactedNPC = npc;
             // Can Add more collisions components as needed
         }
     }
@@ -187,7 +190,12 @@ public class PlayerController : NetworkBehaviour
     {
         // TODO: .started helped but I should be able to do even better
         if (callbackContext.started && canPlayerInteract)
-            interactedChest.Interact(playerData);
+        {
+            if (interactedChest != null)
+                interactedChest.Interact(playerData);
+            else if (interactedNPC != null)
+                interactedNPC.Interact(playerData);
+        }
     }
 
     /// <summary>
