@@ -2,7 +2,7 @@
 - Project name: Project
 - Unity version: Unity 6000.0.58f1
 - Active game object:
-  - Name: SpawnPoint_W3
+  - Name: SpawnGeneralWarrior
   - Tag: Untagged
   - Layer: Default
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->
