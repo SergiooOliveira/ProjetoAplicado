@@ -1,7 +1,5 @@
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using static ICharacter;
+using System.Collections.Generic;
 
 [CreateAssetMenu (menuName = "Player/Starter Player")]
 public class PlayerData : ScriptableObject, ICharacter
@@ -25,10 +23,11 @@ public class PlayerData : ScriptableObject, ICharacter
     [SerializeField] private List<Resistance> characterResistances; // Character Resistances
 
     [Header("Equipables and Inventory")]
-    [SerializeField] private List<Spell> characterEquipedSpells;    // Character Equiped Spells
-    [SerializeField] private List<ItemEntry> characterInventory;         // Character Inventory (Also, drop table for enemies)
-    [SerializeField] private List<EquipmentEntry> characterEquipItems; // Character EquipedItems (Also, drop table for enemies)
-    [SerializeField] private int characterGold;                     // Character Gold
+    [SerializeField] private List<Spell> characterEquipedSpells;                // Character Equiped Spells
+    [SerializeField] private List<ItemEntry> characterInventory;                // Character Inventory (Also, drop table for enemies)
+    [SerializeField] private List<EquipmentEntry> characterEquipment;           // Character Equipment (Also, drop table for enemies)
+    [SerializeField] private List<EquipmentEntry> characterEquipedEquipment;    // Character Equiped Equipment
+    [SerializeField] private int characterGold;                                 // Character Gold
     #endregion
 
     #region Property implementation
@@ -52,7 +51,8 @@ public class PlayerData : ScriptableObject, ICharacter
     // *----- Equipables and Inventory -----*
     public List<Spell> CharacterEquipedSpells => characterEquipedSpells;
     public List<ItemEntry> CharacterInventory => characterInventory;
-    public List<EquipmentEntry> CharacterEquipItems => characterEquipItems;
+    public List<EquipmentEntry> CharacterEquipment => characterEquipment;
+    public List<EquipmentEntry> CharacterEquipedEquipment => characterEquipedEquipment;
     public int CharacterGold => characterGold;
     #endregion
 
@@ -175,14 +175,14 @@ public class PlayerData : ScriptableObject, ICharacter
     /// <param name="equipment">Equipment to add</param>
     public void AddEquip(EquipmentEntry equipment)
     {
-        int index = characterEquipItems.FindIndex(e => e.equipment.RunTimeEquipmentData.ItemName == equipment.equipment.RunTimeEquipmentData.ItemName);
+        int index = characterEquipment.FindIndex(e => e.equipment.RunTimeEquipmentData.ItemName == equipment.equipment.RunTimeEquipmentData.ItemName);
 
         if (index >= 0)
         {
             // Equipment found
-            EquipmentEntry existing = characterEquipItems[index];
+            EquipmentEntry existing = characterEquipment[index];
             existing.quantity++;
-            characterEquipItems[index] = existing;
+            characterEquipment[index] = existing;
         }
         else
         {
@@ -197,7 +197,7 @@ public class PlayerData : ScriptableObject, ICharacter
                 isEquipped = false
             };
 
-            characterEquipItems.Add(newEntry);
+            characterEquipment.Add(newEntry);
         }
     }
 
@@ -235,6 +235,9 @@ public class PlayerData : ScriptableObject, ICharacter
     /// <param name="equipment">Equipment to add</param>
     public void EquipEquipment(EquipmentEntry equipment)
     {
+        equipment.Equip();
+        CharacterEquipedEquipment.Add(equipment);
+        AddEquipmentStats(equipment.equipment.RunTimeEquipmentData);
     }
 
     /// <summary>
@@ -243,6 +246,9 @@ public class PlayerData : ScriptableObject, ICharacter
     /// <param name="equipment">Equipment to remove</param>
     public void UnequipEquipment(EquipmentEntry equipment)
     {
+        equipment.Unequip();
+        CharacterEquipedEquipment.RemoveAll(e => e.equipment.RunTimeEquipmentData.ItemName == equipment.equipment.RunTimeEquipmentData.ItemName);
+        RemoveEquipmentStats(equipment.equipment.RunTimeEquipmentData);
     }
 
     /// <summary>
@@ -251,7 +257,9 @@ public class PlayerData : ScriptableObject, ICharacter
     /// <param name="equipmentToAdd">Equipment to add</param>
     /// <param name="equipmentToRemove">Equipment to remove</param>
     public void SwapEquipment(EquipmentEntry equipmentToAdd, EquipmentEntry equipmentToRemove)
-    {
+    {        
+        UnequipEquipment(equipmentToRemove);
+        EquipEquipment(equipmentToAdd);
     }
     #endregion
 
@@ -261,12 +269,10 @@ public class PlayerData : ScriptableObject, ICharacter
     /// </summary>
     public void EquipmentStats()
     {
-        foreach (EquipmentEntry entry in characterEquipItems)
+        foreach (EquipmentEntry entry in CharacterEquipedEquipment)
         {
-            if (entry.isEquipped)
-            {
-                AddEquipmentStats(entry.equipment.RunTimeEquipmentData);
-            }
+            Debug.Log($"Adding {entry.equipment.RunTimeEquipmentData.ItemName}");
+            AddEquipmentStats(entry.equipment.RunTimeEquipmentData);
         }
     }
 
@@ -283,9 +289,15 @@ public class PlayerData : ScriptableObject, ICharacter
         AddBonusMana(equipment.ItemManaBonus);
         AddBonusMovementSpeed(equipment.ItemMovementSpeedBonus);
 
+        // Giving equipment resistances from the Player
         foreach (Resistance resistance in equipment.ItemResistanceBonus)
         {
-            AddResistance(resistance);
+            Resistance playerResistance = characterResistances.Find(pr => pr.SpellAfinity == resistance.SpellAfinity);
+
+            if (playerResistance == null)
+                characterResistances.Add(new Resistance(resistance));
+            else
+                playerResistance.AddAmount(resistance.Amount);
         }
     }
 
@@ -302,10 +314,12 @@ public class PlayerData : ScriptableObject, ICharacter
         AddBonusMana(-equipment.ItemManaBonus);
         AddBonusMovementSpeed(-equipment.ItemMovementSpeedBonus);
 
-        // TODO: Resistances needs a way to remove them
+        // Removing equipment resistances from the Player
         foreach (Resistance resistance in equipment.ItemResistanceBonus)
         {
-            AddResistance(resistance);
+            Resistance playerResistance = characterResistances.Find(pr => pr.SpellAfinity == resistance.SpellAfinity);
+
+            playerResistance.AddAmount(-resistance.Amount);
         }
     }
 
@@ -380,30 +394,5 @@ public class PlayerData : ScriptableObject, ICharacter
         characterMovementSpeed *= 1 + (amount / 100f);
     }
     #endregion
-    #endregion
-
-    #region Resistance Methods
-    /// <summary>
-    /// Call this method to add resistances to an enemy
-    /// </summary>
-    /// <param name="resistance">Resistance to add</param>
-    public void AddResistance(Resistance resistance)
-    {
-        Resistance foundResistance = characterResistances.Find(cr => cr.SpellAfinity == resistance.SpellAfinity);
-
-        // TODO: Define if resistance is flat or a %
-        if (foundResistance == null)
-        {
-            // No resistance in the List
-            // Add resistance
-            characterResistances.Add(resistance);
-        }
-        else
-        {
-            // Resistance already in the list
-            // Add amount
-            foundResistance.AddAmount(resistance.Amount);
-        }
-    }
     #endregion
 }

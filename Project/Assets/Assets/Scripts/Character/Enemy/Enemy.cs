@@ -86,7 +86,7 @@ public class Enemy : MonoBehaviour
                 entry.item.Initialize();
         }
 
-        foreach (EquipmentEntry equipment in runtimeData.CharacterEquipItems)
+        foreach (EquipmentEntry equipment in runtimeData.CharacterEquipment)
         {
             if (equipment.equipment != null)
                 equipment.equipment.Initialize();
@@ -340,7 +340,7 @@ public class Enemy : MonoBehaviour
          */
 
         // Player equips that match the afinity
-        List<EquipmentEntry> playerEquips = player.RunTimePlayerData.CharacterEquipItems
+        List<EquipmentEntry> playerEquips = player.RunTimePlayerData.CharacterEquipment
             .FindAll(entry =>
                 entry.isEquipped &&
                 entry.equipment != null &&
@@ -466,7 +466,7 @@ public class Enemy : MonoBehaviour
         #endregion
 
         #region Equipment Drop
-        foreach (EquipmentEntry equipment in RunTimeData.CharacterEquipItems)
+        foreach (EquipmentEntry equipment in RunTimeData.CharacterEquipment)
         {
             if (equipment.equipment == null) continue;
 
