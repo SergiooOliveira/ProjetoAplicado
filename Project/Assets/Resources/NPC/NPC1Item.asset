@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 404d813c9b0ed574c88cd7b15d3500e0, type: 3}
-  m_Name: StarterNPCData
+  m_Name: NPC1Item
   m_EditorClassIdentifier: 
   npcName: Starter NPC
   npcPrefab: {fileID: 3020755681615273721, guid: 28961f88c1d287c4d9750bb9ee8f3ca7, type: 3}

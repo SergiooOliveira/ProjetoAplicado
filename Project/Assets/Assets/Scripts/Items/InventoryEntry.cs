@@ -9,4 +9,7 @@ public struct ItemEntry
 
     public bool isEmpty => item == null;
     public void Clear() => item = null;
+
+    public void AddQuantity(int amount) => quantity += amount;
+    public void RemoveQuantity(int amount) => quantity -= amount;
 }

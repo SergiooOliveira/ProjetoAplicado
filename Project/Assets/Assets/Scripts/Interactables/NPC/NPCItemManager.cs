@@ -14,7 +14,6 @@ public class NPCItemManager : MonoBehaviour
 
     public void OnEnable()
     {
-        Debug.Log("OnEnable NPCItemManager");
         DeleteList();
         SetAllSlots();
     }
@@ -33,8 +32,6 @@ public class NPCItemManager : MonoBehaviour
 
             NPCitemSlot slotUI = newSlot.GetComponent<NPCitemSlot>();
 
-
-
             slotUI.SetItem(entry);
         }
     }
@@ -43,6 +40,7 @@ public class NPCItemManager : MonoBehaviour
     {
         foreach (Transform i in itemList)
         {
+            if (i.name == "Title") continue;
             Destroy(i.gameObject);
         }
     }

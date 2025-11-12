@@ -45,4 +45,4 @@ MonoBehaviour:
     quantity: 1
     isEquipped: 1
   characterEquipedEquipment: []
-  characterGold: 0
+  characterGold: 500

@@ -34,15 +34,15 @@ public class NPC : MonoBehaviour
         }
 
         // Get ItemPanel
-        runtimeData.SetPanel(this.transform.Find("Canvas/ListPanel").gameObject);
+        runtimeData.SetPanel(this.transform.Find("Canvas/Scroll View").gameObject);
     }
 
     public void Interact(PlayerData playerData)
     {
+        this.playerData = playerData;
+
         bool newState = !runtimeData.NPCItemPanel.activeSelf;
         runtimeData.NPCItemPanel.SetActive(newState);
-
-        this.playerData = playerData;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
