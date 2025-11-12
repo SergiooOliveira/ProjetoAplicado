@@ -5,9 +5,7 @@ public class NPC : MonoBehaviour
 {    
     public NPCData npcData;
     private NPCData runtimeData;
-    
-    private bool isInventoryOpen = false;
-
+   
     public NPCData RuntimeData => runtimeData;
 
     private GameObject shopPanel;
