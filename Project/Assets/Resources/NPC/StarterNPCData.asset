@@ -14,6 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   npcName: Starter NPC
   npcPrefab: {fileID: 3020755681615273721, guid: 28961f88c1d287c4d9750bb9ee8f3ca7, type: 3}
-  npcInventory: []
+  npcInventory:
+  - item: {fileID: 7362672995192851571, guid: 0c58a3701768c7147a2732ac37b4d9e8, type: 3}
+    quantity: 10
+    isGuarantee: 0
   npcEquipment: []
   npcItemPanel: {fileID: 3919678629286285478, guid: 40f5da4586da0224a8466e617a8fa714, type: 3}

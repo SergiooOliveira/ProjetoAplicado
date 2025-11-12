@@ -9,13 +9,15 @@ public class NPC : MonoBehaviour
     public NPCData RuntimeData => runtimeData;
 
     private GameObject shopPanel;
+    private PlayerData playerData;
+
+    public PlayerData PlayerData => playerData;
 
     private void Awake()
     {
         runtimeData = Instantiate(npcData);
         Initialize();
     }
-
 
     private void Initialize()
     {
@@ -40,7 +42,7 @@ public class NPC : MonoBehaviour
         bool newState = !runtimeData.NPCItemPanel.activeSelf;
         runtimeData.NPCItemPanel.SetActive(newState);
 
-        Debug.Log($"Panel now {(newState ? "open" : "closed")}");
+        this.playerData = playerData;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
