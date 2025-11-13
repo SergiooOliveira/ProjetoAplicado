@@ -30,9 +30,22 @@ MonoBehaviour:
     amount: 20
   characterEquipedSpells:
   - {fileID: 11400000, guid: 1bf4a273ae8da7b4987fc678f911c4b6, type: 2}
-  characterInventory: []
-  characterEquipItems:
-  - equipment: {fileID: -6673210822022468371, guid: 43d8d4ef6d98f4d469f653da5213643e, type: 3}
+  characterInventory:
+  - item: {fileID: 7362672995192851571, guid: 0c58a3701768c7147a2732ac37b4d9e8, type: 3}
+    quantity: 10
+    isGuarantee: 0
+  - item: {fileID: 791059958512238194, guid: 5370bea0216ae494c9a334486a90260a, type: 3}
+    quantity: 10
+    isGuarantee: 0
+  characterEquipment:
+  - equipment: {fileID: 1415593202068403262, guid: 65a606b9c6e0bb94e8830406e3685d1a, type: 3}
     quantity: 1
     isEquipped: 1
-  characterGold: 0
+  - equipment: {fileID: 549791756682562146, guid: be0fc2a3546714c46942d89fdb6af273, type: 3}
+    quantity: 1
+    isEquipped: 1
+  - equipment: {fileID: 7012709423314061630, guid: 7c35d40e41de38b4881f89869bbc8ef4, type: 3}
+    quantity: 1
+    isEquipped: 0
+  characterEquipedEquipment: []
+  characterGold: 500

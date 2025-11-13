@@ -52,7 +52,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tb_Name: {fileID: 4164999664564781351}
   tb_Amount: {fileID: 68932898438142440}
-  tooltipObject: {fileID: 4682603709417337159, guid: 70156e6cb2ca1814a969351c71322f64, type: 3}
+  itemTooltipObject: {fileID: 7425838267255208170, guid: 809d80b0bb803384bbe2046510496d45, type: 3}
+  equipmentTooltipObject: {fileID: 6858775542234781565, guid: 4cfa5b227b38469459d2bbf09a78c4a4, type: 3}
 --- !u!114 &3372773011202932217
 MonoBehaviour:
   m_ObjectHideFlags: 0

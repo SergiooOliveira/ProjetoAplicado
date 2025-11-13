@@ -122,11 +122,11 @@ public class EnemySpawner : MonoBehaviour
             {
 
                 if (enemyData.CharacterCategory == EnemyCategory.Boss)
-{
+                {
                     string bossKey = $"{enemyData.CharacterSpawnLevel}_{enemyData.CharacterName}";
                     if (sessionDeadBosses.Contains(bossKey))
                         continue; // não spawna mais na sessão
-}
+                }
 
                 if (sp == null || !sp.isActiveSpawnPoint) continue;
 

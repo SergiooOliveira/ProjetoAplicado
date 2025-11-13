@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
 
     #region Unity Methods
     public void Awake ()
-    {        
+    {
         runTimePlayerData = Instantiate(playerData);
         Initialize();
     }
@@ -31,15 +31,30 @@ public class Player : MonoBehaviour
         runTimePlayerData.CharacterMana.Initialize();
         runTimePlayerData.ClearSpellList();
 
-        foreach (InventoryItem item in runTimePlayerData.CharacterInventory)
+        // Initialize item list
+        foreach (ItemEntry item in runTimePlayerData.CharacterInventory)
         {
             item.item.Initialize();
         }
 
-        foreach (EquipmentEntry equipment in runTimePlayerData.CharacterEquipItems)
+        // Initialize equipment list
+        foreach (EquipmentEntry eq in runTimePlayerData.CharacterEquipment)
         {
-            equipment.equipment.Initialize();
+            eq.equipment.Initialize();
+
+            // Check if its equipped
+            if (eq.isEquipped)
+            {
+                // Check if slot already has something
+                // if does unequip
+                bool isEquipped = (runTimePlayerData.CharacterEquipedEquipment.Find(e => e.equipment.RunTimeEquipmentData.ItemSlot == eq.equipment.RunTimeEquipmentData.ItemSlot).equipment != null);
+
+                if (isEquipped) eq.Unequip();
+                else runTimePlayerData.EquipEquipment(eq);
+            }
         }
+
+        runTimePlayerData.EquipmentStats();
     }
 
     /// <summary>
