@@ -17,6 +17,15 @@ MonoBehaviour:
   npcInventory:
   - item: {fileID: 7362672995192851571, guid: 0c58a3701768c7147a2732ac37b4d9e8, type: 3}
     quantity: 10
+    isGuarantee: 1
+  - item: {fileID: 791059958512238194, guid: 5370bea0216ae494c9a334486a90260a, type: 3}
+    quantity: 10
     isGuarantee: 0
-  npcEquipment: []
+  npcEquipment:
+  - equipment: {fileID: 7012709423314061630, guid: 7c35d40e41de38b4881f89869bbc8ef4, type: 3}
+    quantity: 2
+    isEquipped: 0
+  - equipment: {fileID: 757658082841171293, guid: 79ac6aad41a12304eaa6c9f9185b55d3, type: 3}
+    quantity: 2
+    isEquipped: 0
   npcItemPanel: {fileID: 3919678629286285478, guid: 40f5da4586da0224a8466e617a8fa714, type: 3}

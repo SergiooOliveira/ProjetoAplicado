@@ -38,11 +38,9 @@ public interface ICharacter
 
     #region Inventory Methods
     void AddItem(ItemEntry entry, int amount);
-    void RemoveItem(int slot, Item item);
-    void SellItem(int slot, Item item);
+    ItemEntry RemoveItem(ItemEntry entry, int amount);    
     void AddEquip(EquipmentEntry equipment);
-    void RemoveEquip(int slot, Equipment equipment);
-    void SellEquip(int slot, Equipment equipment);
+    EquipmentEntry RemoveEquip(EquipmentEntry equipment);
     void AddGold(int amount);
     #endregion
 

@@ -1,5 +1,6 @@
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
 [CreateAssetMenu (menuName = "Player/Starter Player")]
 public class PlayerData : ScriptableObject, ICharacter
@@ -28,6 +29,10 @@ public class PlayerData : ScriptableObject, ICharacter
     [SerializeField] private List<EquipmentEntry> characterEquipment;           // Character Equipment (Also, drop table for enemies)
     [SerializeField] private List<EquipmentEntry> characterEquipedEquipment;    // Character Equiped Equipment
     [SerializeField] private int characterGold;                                 // Character Gold
+
+    // *----- Internal runtime modifiers -----*
+    private float totalAttackSpeedBonus;                            // Character attack speed modifiers
+    private float totalMovementSpeedBonus;                          // Character movement speed modifiers
     #endregion
 
     #region Property implementation
@@ -42,8 +47,8 @@ public class PlayerData : ScriptableObject, ICharacter
     public Stat CharacterMana => characterMana;
 
     // *----- Attributes -----*
-    public float CharacterMovementSpeed => characterMovementSpeed;
-    public float CharacterAttackSpeed => characterAttackSpeed;
+    public float CharacterMovementSpeed => characterMovementSpeed * (1 + totalMovementSpeedBonus / 100f);
+    public float CharacterAttackSpeed => characterAttackSpeed * (1 + totalAttackSpeedBonus / 100f);
     public int CharacterAttackPower => characterAttackPower;
     public int CharacterDefense => characterDefense;
     public List<Resistance> CharacterResistances => characterResistances;
@@ -122,7 +127,7 @@ public class PlayerData : ScriptableObject, ICharacter
 
         if (index >= 0)
         {
-            // Item alreaddy exists
+            // Item already exists
             ItemEntry existing = characterInventory[index];
 
             existing.quantity += amount;
@@ -148,23 +153,22 @@ public class PlayerData : ScriptableObject, ICharacter
     }
 
     /// <summary>
-    /// Call this method to sell an item from the player inventory
-    /// </summary>
-    /// <param name="slot">Slot in the inventory</param>
-    /// <param name="item">Item to sell</param>
-    public void SellItem(int slot, Item item)
-    {
-        // slot is useless (?)
-    }
-
-    /// <summary>
     /// Call this method to remove an item from the player inventory
     /// </summary>
     /// <param name="slot">Slot in the inventory</param>
     /// <param name="item">Item to remove</param>
-    public void RemoveItem(int slot, Item item)
+    public ItemEntry RemoveItem(ItemEntry entry, int amount)
     {
-        // slot is useless (?)
+        int index = characterInventory.FindIndex(i => i.item.RunTimeItemData.ItemName == entry.item.RunTimeItemData.ItemName);
+
+        ItemEntry item = characterInventory[index];
+
+        item.RemoveQuantity(amount);
+
+        if (item.quantity <= 0) characterInventory.RemoveAt(index);
+        else characterInventory[index] = item;
+
+        return item;
     }
     #endregion
 
@@ -187,12 +191,12 @@ public class PlayerData : ScriptableObject, ICharacter
         else
         {
             // Equipment not found
-            Equipment eq = ScriptableObject.Instantiate(equipment.equipment);
-            eq.Initialize();
+            //EquipmentData
+            equipment.equipment.Initialize();
 
             EquipmentEntry newEntry = new EquipmentEntry
             {
-                equipment = eq,
+                equipment = equipment.equipment,
                 quantity = 1,
                 isEquipped = false
             };
@@ -202,23 +206,22 @@ public class PlayerData : ScriptableObject, ICharacter
     }
 
     /// <summary>
-    /// Call this method to sell an Equipment
-    /// </summary>
-    /// <param name="slot"></param>
-    /// <param name="equipment">Equipment to sell</param>
-    public void SellEquip(int slot, Equipment equipment)
-    {
-        // slot is useless (?)
-    }
-
-    /// <summary>
     /// Call this method to remove an Equipment
     /// </summary>
     /// <param name="slot"></param>
     /// <param name="equipment">Equipment to remove</param>
-    public void RemoveEquip(int slot, Equipment equipment)
+    public EquipmentEntry RemoveEquip(EquipmentEntry entry)
     {
-        // slot is useless (?)
+        int index = characterEquipment.FindIndex(e => e.equipment.RunTimeEquipmentData.ItemName == entry.equipment.RunTimeEquipmentData.ItemName);
+
+        EquipmentEntry equipment = characterEquipment[index];
+
+        equipment.RemoveQuantity(1);
+
+        if (equipment.quantity <= 0) characterEquipment.RemoveAt(index);
+        else characterEquipment[index] = equipment;
+
+        return equipment;
     }
     #endregion
     public void AddGold(int amount)
@@ -271,7 +274,7 @@ public class PlayerData : ScriptableObject, ICharacter
     {
         foreach (EquipmentEntry entry in CharacterEquipedEquipment)
         {
-            Debug.Log($"Adding {entry.equipment.RunTimeEquipmentData.ItemName}");
+            //Debug.Log($"Adding {entry.equipment.RunTimeEquipmentData.ItemName}");
             AddEquipmentStats(entry.equipment.RunTimeEquipmentData);
         }
     }
@@ -358,7 +361,7 @@ public class PlayerData : ScriptableObject, ICharacter
     {
         if (amount == 0) return;
 
-        characterAttackSpeed *= 1 + (amount / 100f);
+        totalAttackSpeedBonus += amount;
     }
 
     /// <summary>
@@ -391,7 +394,7 @@ public class PlayerData : ScriptableObject, ICharacter
     {
         if (amount == 0) return;
 
-        characterMovementSpeed *= 1 + (amount / 100f);
+        totalMovementSpeedBonus += amount;        
     }
     #endregion
     #endregion

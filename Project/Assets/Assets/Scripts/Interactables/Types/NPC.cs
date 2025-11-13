@@ -34,7 +34,7 @@ public class NPC : MonoBehaviour
         }
 
         // Get ItemPanel
-        runtimeData.SetPanel(this.transform.Find("Canvas/Scroll View").gameObject);
+        runtimeData.SetPanel(this.transform.Find("Canvas/Menus").gameObject);
     }
 
     public void Interact(PlayerData playerData)
@@ -52,7 +52,6 @@ public class NPC : MonoBehaviour
             if (runtimeData.NPCItemPanel.activeSelf)
             {
                 runtimeData.NPCItemPanel.SetActive(false);
-                Debug.Log("Closed panel on trigger exit");
             }
         }
     }

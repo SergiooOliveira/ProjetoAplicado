@@ -50,7 +50,7 @@ public class EnemySpawner : MonoBehaviour
             if (netObj != null && netObj.CompareTag("Player") && netObj.IsOwner)
             {
                 player = netObj.transform;
-                Debug.Log($"[Spawner] Local Network Player Found: {player.name}");
+                //Debug.Log($"[Spawner] Local Network Player Found: {player.name}");
                 return;
             }
         }
@@ -60,7 +60,7 @@ public class EnemySpawner : MonoBehaviour
         if (spPlayer != null)
         {
             player = spPlayer.transform;
-            Debug.Log("[Spawner] Singleplayer Player Found.");
+            //Debug.Log("[Spawner] Singleplayer Player Found.");
         }
     }
 
@@ -73,7 +73,7 @@ public class EnemySpawner : MonoBehaviour
 
         // Ensure we don't select more than available
         int count = Mathf.Min(enemyData.SpawnCount, temp.Count);
-        Debug.Log($"[Spawner] Selecting {count}/{temp.Count} spawn points randomly.");
+        //Debug.Log($"[Spawner] Selecting {count}/{temp.Count} spawn points randomly.");
 
         for (int i = 0; i < count; i++)
         {
@@ -82,7 +82,7 @@ public class EnemySpawner : MonoBehaviour
 
             // Mark this spawn point as actively used
             temp[index].isActiveSpawnPoint = true;
-            Debug.Log($"[Spawner] Active spawn: {temp[index].name}");
+            //Debug.Log($"[Spawner] Active spawn: {temp[index].name}");
 
             temp.RemoveAt(index); // Remove from temp to avoid duplicates
         }

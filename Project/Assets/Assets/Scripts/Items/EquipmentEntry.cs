@@ -9,4 +9,7 @@ public struct EquipmentEntry
 
     public void Equip() =>   isEquipped = true;
     public void Unequip() => isEquipped = false;
+
+    public void AddQuantity(int amount) => quantity += amount;
+    public void RemoveQuantity(int amount) => quantity -= amount;
 }

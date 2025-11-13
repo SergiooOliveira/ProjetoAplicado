@@ -293,7 +293,7 @@ public class StatManagerUI : MonoBehaviour
             stat += $"{(equipment.ItemAttackBonus > 0 ? "+ " : "- ")}{Mathf.Abs(equipment.ItemAttackBonus)} Attack\n";
 
         if (equipment.ItemAttackSpeedBonus != 0)
-            stat += $"{(equipment.ItemAttackSpeedBonus > 0 ? "+ " : "- ")}{Mathf.Abs(equipment.ItemAttackSpeedBonus)} Attack Speed\n";
+            stat += $"{(equipment.ItemAttackSpeedBonus > 0 ? "+ " : "- ")}{Mathf.Abs(equipment.ItemAttackSpeedBonus):F2} Attack Speed\n";
 
         if (equipment.ItemDefenseBonus != 0)
             stat += $"{(equipment.ItemDefenseBonus > 0 ? "+ " : "- ")}{Mathf.Abs(equipment.ItemDefenseBonus)} Defense\n";
@@ -302,7 +302,7 @@ public class StatManagerUI : MonoBehaviour
             stat += $"{(equipment.ItemManaBonus > 0 ? "+ " : "- ")}{Mathf.Abs(equipment.ItemManaBonus)} Mana\n";
 
         if (equipment.ItemMovementSpeedBonus != 0)
-            stat += $"{(equipment.ItemMovementSpeedBonus > 0 ? "+ " : "- ")}{Mathf.Abs(equipment.ItemMovementSpeedBonus)} Movement Speed\n";
+            stat += $"{(equipment.ItemMovementSpeedBonus > 0 ? "+ " : "- ")}{Mathf.Abs(equipment.ItemMovementSpeedBonus):F2} Movement Speed\n";
 
         // Also add the item damage afinities
         stat += GetItemDamageAffinity(equipment);

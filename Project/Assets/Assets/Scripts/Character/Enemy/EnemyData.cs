@@ -137,18 +137,9 @@ public class EnemyData : ScriptableObject, IEnemy
     /// Do not use this method
     /// </summary>
     /// <exception cref="NotSupportedException">Not supported</exception>
-    public void RemoveItem(int slot, Item item)
+    public ItemEntry RemoveItem(ItemEntry entry, int quantity)
     {
         throw new NotSupportedException("This class does not support removing items");
-    }
-
-    /// <summary>
-    /// Do not use this method
-    /// </summary>
-    /// <exception cref="NotSupportedException">Not supported</exception>
-    public void SellItem(int slot, Item item)
-    {
-        throw new NotSupportedException("This class does not support selling items");
     }
 
     /// <summary>
@@ -164,18 +155,9 @@ public class EnemyData : ScriptableObject, IEnemy
     /// Do not use this method
     /// </summary>    
     /// <exception cref="NotSupportedException">Not supported</exception>
-    public void RemoveEquip(int slot, Equipment equipment)
+    public EquipmentEntry RemoveEquip(EquipmentEntry equipment)
     {
         throw new NotSupportedException("This class does not support removing equipment");
-    }
-
-    /// <summary>
-    /// Do not use this method
-    /// </summary>    
-    /// <exception cref="NotSupportedException">Not supported</exception>
-    public void SellEquip(int slot, Equipment equipment)
-    {
-        throw new NotSupportedException("This class does not support selling equipment");
     }
 
     /// <summary>
