@@ -2,17 +2,15 @@ using UnityEngine;
 
 public class EnemyAnimationEvents : MonoBehaviour
 {
+    #region Fields
 
     [SerializeField] private Enemy enemy;
 
-    public void ApplyAttackDamage()
-    {
-        if (enemy != null)
-        {
-            enemy.ApplyAttackDamage();
-        }
-    }
+    #endregion
 
+    #region Animation Event
+
+    // Apply Attack / Effect Damage
     public void ApplyAttackEffect()
     {
         if (enemy != null)
@@ -21,6 +19,7 @@ public class EnemyAnimationEvents : MonoBehaviour
         }
     }
 
+    // Death Animation
     public void OnDeathAnimationEnd()
     {
         if (enemy != null)
@@ -28,4 +27,6 @@ public class EnemyAnimationEvents : MonoBehaviour
             enemy.OnDeathAnimationEnd();
         }
     }
+
+    #endregion
 }
