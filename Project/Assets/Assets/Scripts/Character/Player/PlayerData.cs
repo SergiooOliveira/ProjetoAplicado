@@ -29,10 +29,6 @@ public class PlayerData : ScriptableObject, ICharacter
     [SerializeField] private List<EquipmentEntry> characterEquipment;           // Character Equipment (Also, drop table for enemies)
     [SerializeField] private List<EquipmentEntry> characterEquipedEquipment;    // Character Equiped Equipment
     [SerializeField] private int characterGold;                                 // Character Gold
-
-    // *----- Internal runtime modifiers -----*
-    private float totalAttackSpeedBonus;                            // Character attack speed modifiers
-    private float totalMovementSpeedBonus;                          // Character movement speed modifiers
     #endregion
 
     #region Property implementation
@@ -59,6 +55,10 @@ public class PlayerData : ScriptableObject, ICharacter
     public List<EquipmentEntry> CharacterEquipment => characterEquipment;
     public List<EquipmentEntry> CharacterEquipedEquipment => characterEquipedEquipment;
     public int CharacterGold => characterGold;
+
+    // *----- Internal runtime modifiers -----*
+    private float totalAttackSpeedBonus;                            // Character attack speed modifiers
+    private float totalMovementSpeedBonus;                          // Character movement speed modifiers
     #endregion
 
     #region Spell Methods

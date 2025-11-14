@@ -17,25 +17,8 @@ public class EnemyData : ScriptableObject, IEnemy
     [Tooltip("Enemy Category")]                                 [SerializeField] private EnemyCategory characterCategory;
     
     [Header("Attacks")]
-    [SerializeField] private List<EnemyAttack> attacks;
-    public List<EnemyAttack> Attacks => attacks;
-
-    [System.Serializable]
-    public class EnemyAttack
-    {
-        [Tooltip("Trigger name in Animator")]
-        public string triggerName;
-
-        [Tooltip("Damage this attack does")]
-        public int damage;
-
-        [Tooltip("Relative weight for chance of happening")]
-        public float weight = 1f;
-
-        [Tooltip("Attack Type")]
-        public AttackType attackType;
-    }
-
+    [Tooltip("Enemy attacks")]                                  [SerializeField] private List<EnemyAttack> attacks;
+    
     [Header("Spawn Settings")]
     [Tooltip("Max enemies alive")]                              [SerializeField] private int spawnCount;
     [Tooltip("Player must be inside this radius to spawn")]     [SerializeField] private float distanceSpawn;
@@ -71,6 +54,9 @@ public class EnemyData : ScriptableObject, IEnemy
     public EnemySpawnLevel CharacterSpawnLevel => characterSpawnLevel;
     public EnemyCategory CharacterCategory => characterCategory;
 
+    // *----- Attacks -----*  
+    public List<EnemyAttack> Attacks => attacks;
+
     // *----- Spawn Settings -----*
     public int SpawnCount => spawnCount;
     public float DistanceSpawn => distanceSpawn;
@@ -83,8 +69,8 @@ public class EnemyData : ScriptableObject, IEnemy
     public Stat CharacterMana => characterMana;
 
     // *----- Attributes -----*
-    public float CharacterMovementSpeed => characterMovementSpeed;
-    public float CharacterAttackSpeed => characterAttackSpeed;
+    public float CharacterMovementSpeed => characterMovementSpeed * (1 + totalMovementSpeedBonus / 100f);
+    public float CharacterAttackSpeed => characterAttackSpeed * (1 + totalAttackSpeedBonus / 100f);
     public int CharacterAttackPower => characterAttackPower;
     public int CharacterDefense => characterDefense;
     public List<Resistance> CharacterResistances => characterResistances;
@@ -94,6 +80,10 @@ public class EnemyData : ScriptableObject, IEnemy
     public List<ItemEntry> CharacterInventory => characterInventory;
     public List<EquipmentEntry> CharacterEquipment => characterEquipedItems;
     public int CharacterGold => characterGold;
+
+    // *----- Internal runtime modifiers -----*
+    private float totalAttackSpeedBonus;                            // Character attack speed modifiers
+    private float totalMovementSpeedBonus;                          // Character movement speed modifiers
     #endregion
 
     #region Spell Methods (not supported)
@@ -297,7 +287,7 @@ public class EnemyData : ScriptableObject, IEnemy
     {
         if (amount == 0) return;
 
-        characterAttackSpeed *= 1 + (amount / 100f);
+        totalAttackSpeedBonus += amount;
     }
 
     /// <summary>
@@ -330,7 +320,7 @@ public class EnemyData : ScriptableObject, IEnemy
     {
         if (amount == 0) return;
 
-        characterMovementSpeed *= 1 + (amount / 100f);
+        totalMovementSpeedBonus += amount;
     }
     #endregion
     #endregion

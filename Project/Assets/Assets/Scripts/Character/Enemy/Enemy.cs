@@ -26,10 +26,10 @@ public class Enemy : MonoBehaviour
     public EnemyMovementBase movement;
 
     [Header("References")]
-    [SerializeField] private GameObject enemyHUDPrefab;
-    private GameObject hudInstance;
+    [SerializeField] private GameObject enemyHUDPrefab;    
     [SerializeField] private Animator animator;
     [SerializeField] private SpriteRenderer spriteRenderer;
+    private GameObject hudInstance;
     Rigidbody2D rb;
 
     [Header("Spawn")]
@@ -39,7 +39,7 @@ public class Enemy : MonoBehaviour
     [Header("FlyEnemy Range Attack")]
     public GameObject projectilePrefab;
     public Transform firePoint;
-    private EnemyData.EnemyAttack currentAttack;
+    private EnemyAttack currentAttack;
 
     [Header("Boss Spell Attack")]
     public GameObject spellPrefab;
@@ -283,7 +283,7 @@ public class Enemy : MonoBehaviour
 
     // Random Attacks
     // Each Attack have difrent animation / damage / chances
-    private EnemyData.EnemyAttack GetRandomAttack()
+    private EnemyAttack GetRandomAttack()
     {
         float totalWeight = 0f;
         foreach (var atk in runtimeData.Attacks)

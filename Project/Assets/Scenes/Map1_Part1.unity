@@ -644,7 +644,7 @@ PrefabInstance:
     - target: {fileID: 8271270082612654025, guid: 28961f88c1d287c4d9750bb9ee8f3ca7, type: 3}
       propertyPath: npcData
       value: 
-      objectReference: {fileID: 11400000, guid: ba3001d6c840c5e4bb4fd45f7dc2731f, type: 2}
+      objectReference: {fileID: 11400000, guid: 99537f3142f469f488960997104cc1b2, type: 2}
     - target: {fileID: 8854129655483748159, guid: 28961f88c1d287c4d9750bb9ee8f3ca7, type: 3}
       propertyPath: m_VerticalScrollbarVisibility
       value: 0
@@ -106510,8 +106510,7 @@ Transform:
   m_LocalPosition: {x: 8.9, y: 4.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 354495541}
+  m_Children: []
   m_Father: {fileID: 1209469842}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2068665788
@@ -106541,4 +106540,4 @@ SceneRoots:
   - {fileID: 772214566}
   - {fileID: 1959171713}
   - {fileID: 1209469842}
-  - {fileID: 1190578080}
+  - {fileID: 382652025}
