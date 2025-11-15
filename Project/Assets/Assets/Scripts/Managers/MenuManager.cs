@@ -23,4 +23,20 @@ public class MenuManager: MonoBehaviour
     {
         SceneManager.LoadScene("Map1_Part1");
     }
+
+    public void MapSelect()
+    {
+        SceneManager.LoadScene("MapSelect");
+    }
+
+    public void Map2_cloud()
+    {
+        Debug.Log("hello world");
+        SceneManager.LoadScene("Map2_cloud");
+    }
+
+    public void test()
+    {
+        Debug.Log("test");
+    }
 }
