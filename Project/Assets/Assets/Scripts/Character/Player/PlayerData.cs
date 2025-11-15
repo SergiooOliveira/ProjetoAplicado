@@ -26,6 +26,7 @@ public class PlayerData : ScriptableObject, ICharacter
 
     [Header("Equipables and Inventory")]
     [SerializeField] private List<Spell> characterEquipedSpells;    // Character Equiped Spells
+    [System.NonSerialized] public int selectedSpellIndex = 0;
     [SerializeField] private List<InventoryItem> characterInventory;         // Character Inventory (Also, drop table for enemies)
     [SerializeField] private List<EquipmentEntry> characterEquipItems; // Character EquipedItems (Also, drop table for enemies)
     [SerializeField] private int characterGold;                     // Character Gold
@@ -100,6 +101,14 @@ public class PlayerData : ScriptableObject, ICharacter
     {
         RemoveSpell(slot, spellToRemove);
         AddSpell(spellToAdd);
+    }
+
+    public Spell GetActiveSpell()
+    {
+        if (characterEquipedSpells == null || characterEquipedSpells.Count == 0)
+            return null;
+
+        return characterEquipedSpells[selectedSpellIndex];
     }
 
     public void ClearSpellList()

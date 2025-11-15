@@ -110,7 +110,7 @@ public class StatusEffectController : MonoBehaviour
     }
 
     // ---------------- UPDATE / TICK ----------------
-    private void Update()
+    private void FixedUpdate()
     {
         for (int i = activeEffects.Count - 1; i >= 0; i--)
         {

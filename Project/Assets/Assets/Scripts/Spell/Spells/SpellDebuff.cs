@@ -51,7 +51,7 @@ public class SpellDebuff : MonoBehaviour
         // Move the projectile by setting velocity (use SpellTravelSpeed)
         if (rb != null && spellData != null)
         {
-            rb.velocity = moveDirection.normalized * spellData.SpellTravelSpeed;
+            rb.linearVelocity = moveDirection.normalized * spellData.SpellTravelSpeed;
         }
     }
 
@@ -87,7 +87,7 @@ public class SpellDebuff : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning($"{enemy.name} não possui StatusEffectController para receber debuffs.");
+            Debug.LogWarning($"{enemy.name} nï¿½o possui StatusEffectController para receber debuffs.");
         }
     }
 

@@ -2,6 +2,7 @@ using UnityEngine;
 
 public abstract class Spell : ScriptableObject, ISpell
 {
+    #region Serialized Fields
     [Header("Identity")]
     [SerializeField] private string spellName;
     [SerializeField] private string spellDescription;
@@ -18,6 +19,8 @@ public abstract class Spell : ScriptableObject, ISpell
     [SerializeField] private float spellCastSpeed;
     [SerializeField] private int spellCost;
     [SerializeField] private float spellDuration;
+    [System.NonSerialized] private float lastCastTime;
+    [System.NonSerialized] private bool hasBeenCastOnce = false;
 
     [Header("Conditions")]
     [SerializeField] private bool isSpellUnlocked;
@@ -28,7 +31,9 @@ public abstract class Spell : ScriptableObject, ISpell
     [SerializeField] private bool spellHasCC;
     [SerializeField] private bool spellHasBuff;
     [SerializeField] private bool spellHasDebuff;
+    #endregion
 
+    #region Property implementation
     // Property implementations
     public string SpellName => spellName;
     public string SpellDescription => spellDescription;
@@ -51,6 +56,7 @@ public abstract class Spell : ScriptableObject, ISpell
     public bool SpellHasCC => spellHasCC;
     public bool SpellHasBuff => spellHasBuff;
     public bool SpellHasDebuff => spellHasDebuff;
+    #endregion
 
     #region Methods
     public virtual void Cast(Vector3 position, Vector2 direction, Player player)
@@ -66,6 +72,25 @@ public abstract class Spell : ScriptableObject, ISpell
         //    aoe.Initialize(this);
         //else if (instance.TryGetComponent<SpellBuff>(out SpellBuff buff))
         //    buff.Initialize(this);
+    }
+
+    /// <summary>
+    /// Checks if the spell is ready to be cast
+    /// </summary>
+    public bool IsReadyToCast()
+    {
+        if (!hasBeenCastOnce) return true;
+
+        return Time.time >= lastCastTime + spellCooldown;
+    }
+
+    /// <summary>
+    /// Registers the spell cast
+    /// </summary>
+    public void RegisterCast()
+    {
+        lastCastTime = Time.time;
+        hasBeenCastOnce = true;
     }
 
     /// <summary>

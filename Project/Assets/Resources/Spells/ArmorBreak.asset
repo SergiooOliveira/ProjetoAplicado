@@ -9,27 +9,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ef915324b4f1cc4d92336bc927528ca, type: 3}
-  m_Name: a
+  m_Script: {fileID: 11500000, guid: 83117bad0efad2d41be5118675a570c6, type: 3}
+  m_Name: ArmorBreak
   m_EditorClassIdentifier: 
-  spellName: aaa
-  spellDescription: aaa
-  spellTag: 2
-  spellPrefab: {fileID: 495043577162514139, guid: 4cd3172f44e33da42b943cada15f5f50, type: 3}
+  spellName: ArmorBreaker
+  spellDescription: ArmorBreaker
+  spellTag: 1
+  spellPrefab: {fileID: 630829662884969359, guid: ea3e5071ab8174c4aaf293ad087d1e00, type: 3}
   spellAfinity: 0
   spellProjectileType: 0
   spellDamage: 0
-  spellRange: 5
+  spellRange: 2
   spellTravelSpeed: 0
   spellCooldown: 10
   spellCastSpeed: 0
-  spellCost: 0
+  spellCost: 10
   spellDuration: 5
-  isSpellUnlocked: 0
+  isSpellUnlocked: 1
   isSpellEquiped: 1
   isSpellSelected: 1
   spellHasCC: 0
   spellHasBuff: 0
   spellHasDebuff: 0
-  debuffType: 0
-  debuffValue: 0
+  buffType: 0
+  buffValue: 15

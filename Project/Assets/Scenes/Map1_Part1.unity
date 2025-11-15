@@ -106008,7 +106008,7 @@ PrefabInstance:
     - target: {fileID: 3288258466330080081, guid: ba83de55d5070f44a8c63fd7a72775eb, type: 3}
       propertyPath: spellReward
       value: 
-      objectReference: {fileID: 11400000, guid: ab35ecf243f99aa44a63e94e6771e1a8, type: 2}
+      objectReference: {fileID: 11400000, guid: 669f032df5a50674290136ae68fff637, type: 2}
     - target: {fileID: 7783078003308098956, guid: ba83de55d5070f44a8c63fd7a72775eb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.4465785
