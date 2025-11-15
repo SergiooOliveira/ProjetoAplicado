@@ -3,6 +3,8 @@ using UnityEngine;
 public enum SpellTag { Damage, Buff, Debuff }
 public enum SpellAffinity { Fire, Wind, Ice, Light, Dark }
 public enum SpellProjectileType { Normal, Explosive, Chain, Pierce }
+public enum DebuffType { Slow }
+public enum BuffType { ArmorBreaker }
 
 public interface ISpell
 {

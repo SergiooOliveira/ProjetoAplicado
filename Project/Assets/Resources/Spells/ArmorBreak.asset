@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83117bad0efad2d41be5118675a570c6, type: 3}
+  m_Name: ArmorBreak
+  m_EditorClassIdentifier: 
+  spellName: ArmorBreaker
+  spellDescription: ArmorBreaker
+  spellTag: 1
+  spellPrefab: {fileID: 630829662884969359, guid: ea3e5071ab8174c4aaf293ad087d1e00, type: 3}
+  spellAfinity: 0
+  spellProjectileType: 0
+  spellDamage: 0
+  spellRange: 2
+  spellTravelSpeed: 0
+  spellCooldown: 10
+  spellCastSpeed: 0
+  spellCost: 10
+  spellDuration: 5
+  isSpellUnlocked: 1
+  isSpellEquiped: 1
+  isSpellSelected: 1
+  spellHasCC: 0
+  spellHasBuff: 0
+  spellHasDebuff: 0
+  buffType: 0
+  buffValue: 15
