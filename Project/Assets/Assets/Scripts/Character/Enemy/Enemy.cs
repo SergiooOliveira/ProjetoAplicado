@@ -26,10 +26,10 @@ public class Enemy : MonoBehaviour
     public EnemyMovementBase movement;
 
     [Header("References")]
-    [SerializeField] private GameObject enemyHUDPrefab;
-    private GameObject hudInstance;
+    [SerializeField] private GameObject enemyHUDPrefab;    
     [SerializeField] private Animator animator;
     [SerializeField] private SpriteRenderer spriteRenderer;
+    private GameObject hudInstance;
     Rigidbody2D rb;
 
     [Header("Spawn")]
@@ -39,7 +39,7 @@ public class Enemy : MonoBehaviour
     [Header("FlyEnemy Range Attack")]
     public GameObject projectilePrefab;
     public Transform firePoint;
-    private EnemyData.EnemyAttack currentAttack;
+    private EnemyAttack currentAttack;
 
     [Header("Boss Spell Attack")]
     public GameObject spellPrefab;
@@ -52,7 +52,7 @@ public class Enemy : MonoBehaviour
     #region Unity Callbacks
 
     private void Awake()
-    {        
+    {
         runtimeData = Instantiate(enemyData);
         Initialize();
         GiveStat();
@@ -91,13 +91,13 @@ public class Enemy : MonoBehaviour
     {
         runtimeData.CharacterHp.Initialize();
 
-        foreach (InventoryItem entry in runtimeData.CharacterInventory)
+        foreach (ItemEntry entry in runtimeData.CharacterInventory)
         {
             if (entry.item != null)
                 entry.item.Initialize();
         }
 
-        foreach (EquipmentEntry equipment in runtimeData.CharacterEquipItems)
+        foreach (EquipmentEntry equipment in runtimeData.CharacterEquipment)
         {
             if (equipment.equipment != null)
                 equipment.equipment.Initialize();
@@ -126,7 +126,7 @@ public class Enemy : MonoBehaviour
         player = closest;
         playerInSightRange = closest != null;
     }
-    
+
     private IEnumerator AI_Tick()
     {
         while (true)
@@ -229,11 +229,11 @@ public class Enemy : MonoBehaviour
                 Vector2 direction = (player.position - firePoint.position).normalized;
                 Player playerComponent = player.GetComponent<Player>();
                 UseSpell(firePoint.position, direction, playerComponent);
-            } 
+            }
             else if (runtimeData.CharacterCategory == EnemyCategory.Necromancer)
             {
                 // TODO: Attack Necromancer
-            } 
+            }
             else if (runtimeData.CharacterCategory == EnemyCategory.Boss)
             {
                 UseFallingHandSpell();
@@ -283,7 +283,7 @@ public class Enemy : MonoBehaviour
 
     // Random Attacks
     // Each Attack have difrent animation / damage / chances
-    private EnemyData.EnemyAttack GetRandomAttack()
+    private EnemyAttack GetRandomAttack()
     {
         float totalWeight = 0f;
         foreach (var atk in runtimeData.Attacks)
@@ -341,18 +341,18 @@ public class Enemy : MonoBehaviour
          */
 
         // Player equips that match the afinity
-        List<EquipmentEntry> playerEquips = player.RunTimePlayerData.CharacterEquipItems
+        List<EquipmentEntry> playerEquips = player.RunTimePlayerData.CharacterEquipment
             .FindAll(entry =>
                 entry.isEquipped &&
                 entry.equipment != null &&
                 entry.equipment.RunTimeEquipmentData != null &&
-                entry.equipment.RunTimeEquipmentData.ItemDamageAfinity != null &&
-                entry.equipment.RunTimeEquipmentData.ItemDamageAfinity
+                entry.equipment.RunTimeEquipmentData.ItemDamageAffinity != null &&
+                entry.equipment.RunTimeEquipmentData.ItemDamageAffinity
                     .Any(ida => ida.SpellAfinity == spell.SpellAfinity));
 
         // Sum all the damage bonus to that resistance
         float resistanceDamage = playerEquips
-            .SelectMany(entry => entry.equipment.RunTimeEquipmentData.ItemDamageAfinity)
+            .SelectMany(entry => entry.equipment.RunTimeEquipmentData.ItemDamageAffinity)
             .Where(r => r.SpellAfinity == spell.SpellAfinity)
             .Sum(r => r.Amount);
 
@@ -369,9 +369,9 @@ public class Enemy : MonoBehaviour
         int finalDamage = Mathf.Max(1, Mathf.RoundToInt(baseDamage));
 
         runtimeData.CharacterHp.TakeDamage(finalDamage);
-        
+
         //Debug.Log($"{player.RunTimePlayerData.CharacterName} did {finalDamage} damage - Enemy hp: {runtimeData.CharacterHp.Current}");
-                
+
         if (runtimeData.CharacterHp.Current <= 0) Die(player);
     }
 
@@ -380,9 +380,9 @@ public class Enemy : MonoBehaviour
     /// </summary>
     /// <param name="spellAfinity">Attack spell</param>
     /// <returns></returns>
-    private float GetResistance(SpellAfinity spellAfinity)
+    private float GetResistance(SpellAffinity spellAfinity)
     {
-        SpellAfinity resistanceAfinity = Resistance.weaknessChart.ContainsKey(spellAfinity) ? Resistance.weaknessChart[spellAfinity] : spellAfinity;
+        SpellAffinity resistanceAfinity = Resistance.weaknessChart.ContainsKey(spellAfinity) ? Resistance.weaknessChart[spellAfinity] : spellAfinity;
 
         foreach (Resistance r in runtimeData.CharacterResistances)
         {
@@ -418,7 +418,7 @@ public class Enemy : MonoBehaviour
         #endregion
 
         #region Item Drop
-        foreach (InventoryItem entry in RunTimeData.CharacterInventory)
+        foreach (ItemEntry entry in RunTimeData.CharacterInventory)
         {
             /* TODO: Item drop logic
             * Using runtimeData.CharacterInventory and runtimeData.CharacterEquipedItems
@@ -457,7 +457,7 @@ public class Enemy : MonoBehaviour
             {
                 // Calculate the amount of items to give to the player
                 // Amount varies between half the quantity and the full quantity
-                int amount = Random.Range(entry.quantity / 2, entry.quantity);                
+                int amount = Random.Range(entry.quantity / 2, entry.quantity);
 
                 player.RunTimePlayerData.AddItem(entry, amount);
 
@@ -467,7 +467,7 @@ public class Enemy : MonoBehaviour
         #endregion
 
         #region Equipment Drop
-        foreach (EquipmentEntry equipment in RunTimeData.CharacterEquipItems)
+        foreach (EquipmentEntry equipment in RunTimeData.CharacterEquipment)
         {
             if (equipment.equipment == null) continue;
 
@@ -534,7 +534,7 @@ public class Enemy : MonoBehaviour
     /// </summary>
     private void GiveStat()
     {
-        foreach (EquipmentEntry equipment in enemyData.CharacterEquipItems)
+        foreach (EquipmentEntry equipment in enemyData.CharacterEquipment)
         {
             Equipment iterationEquipment = equipment.equipment;
 

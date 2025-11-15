@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public enum SpellTag { Damage, Buff, Debuff }
-public enum SpellAfinity { Fire, Wind, Ice, Light, Dark }
+public enum SpellAffinity { Fire, Wind, Ice, Light, Dark }
 public enum SpellProjectileType { Normal, Explosive, Chain, Pierce }
 public enum DebuffType { Slow }
 public enum BuffType { ArmorBreaker }
@@ -13,7 +13,7 @@ public interface ISpell
     string SpellDescription { get; }
     SpellTag SpellTag { get; }
     GameObject SpellPrefab { get; }
-    SpellAfinity SpellAfinity { get; }
+    SpellAffinity SpellAfinity { get; }
     SpellProjectileType SpellProjectileType { get; }
 
     // *----- Mechanics -----*

@@ -17,25 +17,8 @@ public class EnemyData : ScriptableObject, IEnemy
     [Tooltip("Enemy Category")]                                 [SerializeField] private EnemyCategory characterCategory;
     
     [Header("Attacks")]
-    [SerializeField] private List<EnemyAttack> attacks;
-    public List<EnemyAttack> Attacks => attacks;
-
-    [System.Serializable]
-    public class EnemyAttack
-    {
-        [Tooltip("Trigger name in Animator")]
-        public string triggerName;
-
-        [Tooltip("Damage this attack does")]
-        public int damage;
-
-        [Tooltip("Relative weight for chance of happening")]
-        public float weight = 1f;
-
-        [Tooltip("Attack Type")]
-        public AttackType attackType;
-    }
-
+    [Tooltip("Enemy attacks")]                                  [SerializeField] private List<EnemyAttack> attacks;
+    
     [Header("Spawn Settings")]
     [Tooltip("Max enemies alive")]                              [SerializeField] private int spawnCount;
     [Tooltip("Player must be inside this radius to spawn")]     [SerializeField] private float distanceSpawn;
@@ -56,7 +39,7 @@ public class EnemyData : ScriptableObject, IEnemy
 
     [Header("Equipables and Inventory")]
     [Tooltip("What spells does the Enemy know")]                [SerializeField] private List<Spell> characterEquipedSpells;
-    [Tooltip("What items does the Enemy drops")]                [SerializeField] private List<InventoryItem> characterInventory;
+    [Tooltip("What items does the Enemy drops")]                [SerializeField] private List<ItemEntry> characterInventory;
     [Tooltip("What equipments does the Enemy drops")]           [SerializeField] private List<EquipmentEntry> characterEquipedItems;
     [Tooltip("Amount of gold the enemy will drop")]             [SerializeField] private int characterGold;
     #endregion
@@ -71,6 +54,9 @@ public class EnemyData : ScriptableObject, IEnemy
     public EnemySpawnLevel CharacterSpawnLevel => characterSpawnLevel;
     public EnemyCategory CharacterCategory => characterCategory;
 
+    // *----- Attacks -----*  
+    public List<EnemyAttack> Attacks => attacks;
+
     // *----- Spawn Settings -----*
     public int SpawnCount => spawnCount;
     public float DistanceSpawn => distanceSpawn;
@@ -83,17 +69,21 @@ public class EnemyData : ScriptableObject, IEnemy
     public Stat CharacterMana => characterMana;
 
     // *----- Attributes -----*
-    public float CharacterMovementSpeed => characterMovementSpeed;
-    public float CharacterAttackSpeed => characterAttackSpeed;
+    public float CharacterMovementSpeed => characterMovementSpeed * (1 + totalMovementSpeedBonus / 100f);
+    public float CharacterAttackSpeed => characterAttackSpeed * (1 + totalAttackSpeedBonus / 100f);
     public int CharacterAttackPower => characterAttackPower;
     public int CharacterDefense => characterDefense;
     public List<Resistance> CharacterResistances => characterResistances;
 
     // *----- Equipables and Inventory -----*
     public List<Spell> CharacterEquipedSpells => characterEquipedSpells;
-    public List<InventoryItem> CharacterInventory => characterInventory;
-    public List<EquipmentEntry> CharacterEquipItems => characterEquipedItems;
+    public List<ItemEntry> CharacterInventory => characterInventory;
+    public List<EquipmentEntry> CharacterEquipment => characterEquipedItems;
     public int CharacterGold => characterGold;
+
+    // *----- Internal runtime modifiers -----*
+    private float totalAttackSpeedBonus;                            // Character attack speed modifiers
+    private float totalMovementSpeedBonus;                          // Character movement speed modifiers
     #endregion
 
     #region Spell Methods (not supported)
@@ -130,7 +120,7 @@ public class EnemyData : ScriptableObject, IEnemy
     /// Do not use this method
     /// </summary>
     /// <exception cref="NotSupportedException">Not supported</exception>
-    public void AddItem(InventoryItem entry, int quantity)
+    public void AddItem(ItemEntry entry, int quantity)
     {
         throw new NotSupportedException("This class does not support adding items");
     }
@@ -139,18 +129,9 @@ public class EnemyData : ScriptableObject, IEnemy
     /// Do not use this method
     /// </summary>
     /// <exception cref="NotSupportedException">Not supported</exception>
-    public void RemoveItem(int slot, Item item)
+    public ItemEntry RemoveItem(ItemEntry entry, int quantity)
     {
         throw new NotSupportedException("This class does not support removing items");
-    }
-
-    /// <summary>
-    /// Do not use this method
-    /// </summary>
-    /// <exception cref="NotSupportedException">Not supported</exception>
-    public void SellItem(int slot, Item item)
-    {
-        throw new NotSupportedException("This class does not support selling items");
     }
 
     /// <summary>
@@ -166,18 +147,9 @@ public class EnemyData : ScriptableObject, IEnemy
     /// Do not use this method
     /// </summary>    
     /// <exception cref="NotSupportedException">Not supported</exception>
-    public void RemoveEquip(int slot, Equipment equipment)
+    public EquipmentEntry RemoveEquip(EquipmentEntry equipment)
     {
         throw new NotSupportedException("This class does not support removing equipment");
-    }
-
-    /// <summary>
-    /// Do not use this method
-    /// </summary>    
-    /// <exception cref="NotSupportedException">Not supported</exception>
-    public void SellEquip(int slot, Equipment equipment)
-    {
-        throw new NotSupportedException("This class does not support selling equipment");
     }
 
     /// <summary>
@@ -192,13 +164,106 @@ public class EnemyData : ScriptableObject, IEnemy
 
     #region Equipment Methods
     /// <summary>
+    /// Call this method to Equip a new Equipment
+    /// </summary>
+    /// <param name="equipment">Equipment to add</param>
+    public void EquipEquipment(EquipmentEntry equipment)
+    {
+        equipment.Equip();
+
+        // Give all the stats
+        AddEquipmentStats(equipment.equipment.RunTimeEquipmentData);
+    }
+
+    /// <summary>
+    /// Call this method to Unequip a new Equipment
+    /// </summary>
+    /// <param name="equipment">Equipment to remove</param>
+    public void UnequipEquipment(EquipmentEntry equipment)
+    {
+        equipment.Unequip();
+
+        RemoveEquipmentStats(equipment.equipment.RunTimeEquipmentData);
+    }
+
+    /// <summary>
+    /// Call this method to Swap 2 equipments
+    /// </summary>
+    /// <param name="equipmentToAdd">Equipment to add</param>
+    /// <param name="equipmentToRemove">Equipment to remove</param>
+    public void SwapEquipment(EquipmentEntry equipmentToAdd, EquipmentEntry equipmentToRemove)
+    {
+        // Remove Equipment and stats
+        UnequipEquipment(equipmentToRemove);
+
+        // Equip new Equipment and stats
+        EquipEquipment(equipmentToAdd);
+    }
+    #endregion
+
+    #region Stat Methods
+    /// <summary>
+    /// Call this method to give all the equipment stats
+    /// </summary>
+    public void EquipmentStats()
+    {
+        foreach (EquipmentEntry entry in characterEquipedItems)
+        {            
+            if (entry.isEquipped)
+            {
+                AddEquipmentStats(entry.equipment.RunTimeEquipmentData);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Call this method when a new equipment is equiped
+    /// </summary>
+    /// <param name="equipment">Equipment to add</param>
+    public void AddEquipmentStats(EquipmentData equipment)
+    {
+        AddBonusHp(equipment.ItemHpBonus);
+        AddBonusAttack(equipment.ItemAttackBonus);
+        AddBonusAttackSpeed(equipment.ItemAttackSpeedBonus);
+        AddBonusDefense(equipment.ItemDefenseBonus);
+        AddBonusMana(equipment.ItemManaBonus);
+        AddBonusMovementSpeed(equipment.ItemMovementSpeedBonus);
+
+        foreach (Resistance resistance in equipment.ItemResistanceBonus)
+        {
+            AddResistance(resistance);
+        }
+    }
+
+    /// <summary>
+    /// Call this method to unequip an equipment
+    /// </summary>
+    /// <param name="equipment">Equipment to remove</param>
+    public void RemoveEquipmentStats(EquipmentData equipment)
+    {
+        AddBonusHp(-equipment.ItemHpBonus);
+        AddBonusAttack(-equipment.ItemAttackBonus);
+        AddBonusAttackSpeed(-equipment.ItemAttackSpeedBonus);
+        AddBonusDefense(-equipment.ItemDefenseBonus);
+        AddBonusMana(-equipment.ItemManaBonus);
+        AddBonusMovementSpeed(-equipment.ItemMovementSpeedBonus);
+
+        // TODO: Resistances needs a way to remove them
+        foreach (Resistance resistance in equipment.ItemResistanceBonus)
+        {
+            AddResistance(resistance);
+        }
+    }
+
+    #region Additions
+    /// <summary>
     /// Call this method to add the bonus hp from the equipment to the enemy data
     /// </summary>
     /// <param name="amount">Quantity to add</param>
     public void AddBonusHp(int amount)
-    {        
-        if (amount <= 0) return;
-        
+    {
+        if (amount == 0) return;
+
         characterHp.IncreaseMaxCurrent(amount);
     }
 
@@ -208,7 +273,7 @@ public class EnemyData : ScriptableObject, IEnemy
     /// <param name="amount">Quantity to add</param>
     public void AddBonusAttack(int amount)
     {
-        if (amount <= 0) return;
+        if (amount == 0) return;
 
         characterAttackPower += amount;
     }
@@ -220,9 +285,9 @@ public class EnemyData : ScriptableObject, IEnemy
     /// <param name="amount">Quantity to add</param>
     public void AddBonusAttackSpeed(float amount)
     {
-        if (amount <= 0) return;
+        if (amount == 0) return;
 
-        characterAttackSpeed *= 1 + (amount / 100f);
+        totalAttackSpeedBonus += amount;
     }
 
     /// <summary>
@@ -231,7 +296,7 @@ public class EnemyData : ScriptableObject, IEnemy
     /// <param name="amount">Quantity to add</param>
     public void AddBonusDefense(int amount)
     {
-        if (amount <= 0) return;
+        if (amount == 0) return;
 
         characterDefense += amount;
     }
@@ -242,7 +307,7 @@ public class EnemyData : ScriptableObject, IEnemy
     /// <param name="amount">Quantity to add</param>
     public void AddBonusMana(int amount)
     {
-        if (amount <= 0) return;
+        if (amount == 0) return;
 
         characterMana.IncreaseMaxCurrent(amount);
     }
@@ -253,10 +318,11 @@ public class EnemyData : ScriptableObject, IEnemy
     /// <param name="amount">Quantity to add</param>
     public void AddBonusMovementSpeed(float amount)
     {
-        if (amount <= 0) return;
+        if (amount == 0) return;
 
-        characterMovementSpeed *= 1 + (amount / 100f);
+        totalMovementSpeedBonus += amount;
     }
+    #endregion
     #endregion
 
     #region Resistance Methods
@@ -293,10 +359,10 @@ public class EnemyData : ScriptableObject, IEnemy
     {
         string info = $"{CharacterName}: has {CharacterHp.Current} HP, {CharacterAttackPower} Attack, {CharacterDefense} Defense and {CharacterAttackSpeed:F2} Damage";
 
-        if (CharacterEquipItems.Count > 0)
+        if (CharacterEquipment.Count > 0)
         {
             info += " and has equipped: ";
-            foreach (EquipmentEntry entry in CharacterEquipItems)
+            foreach (EquipmentEntry entry in CharacterEquipment)
             {
                 info += entry.equipment.RunTimeEquipmentData.ItemName + " ";
                 // See the resistances

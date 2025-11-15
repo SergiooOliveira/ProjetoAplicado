@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: Ring of Cinders
   m_EditorClassIdentifier: 
   itemName: Ring of Cinders
-  itemDescription: "\u201CA spark that refuses to fade.\u201D"
+  itemDescription: '"A spark that refuses to fade."'
   itemPrefab: {fileID: 5833821328958165735, guid: 7c35d40e41de38b4881f89869bbc8ef4, type: 3}
   itemType: 3
   itemRarity: 2
   isItemSellable: 1
   itemSellValue: 900
-  slot: 5
+  itemSlot: 5
+  itemSet: 0
   itemHpBonus: 0
   itemAttackBonus: 0
   itemAttackSpeedBonus: 5
@@ -27,6 +28,6 @@ MonoBehaviour:
   itemManaBonus: 0
   itemMovementSpeedBonus: 0
   itemResistanceBonus: []
-  itemDamageAfinity:
+  itemDamageAffinity:
   - spellAfinity: 0
     amount: 10

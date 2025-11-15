@@ -8,7 +8,7 @@ public abstract class Spell : ScriptableObject, ISpell
     [SerializeField] private string spellDescription;
     [SerializeField] private SpellTag spellTag;
     [SerializeField] private GameObject spellPrefab;
-    [SerializeField] private SpellAfinity spellAfinity;
+    [SerializeField] private SpellAffinity spellAfinity;
     [SerializeField] private SpellProjectileType spellProjectileType;
 
     [Header("Mechanics")]
@@ -39,7 +39,7 @@ public abstract class Spell : ScriptableObject, ISpell
     public string SpellDescription => spellDescription;
     public SpellTag SpellTag => spellTag;
     public GameObject SpellPrefab => spellPrefab;
-    public SpellAfinity SpellAfinity => spellAfinity;
+    public SpellAffinity SpellAfinity => spellAfinity;
     public SpellProjectileType SpellProjectileType => spellProjectileType;
     public int SpellDamage => spellDamage;
     public int SpellRange => spellRange;
@@ -120,16 +120,16 @@ public abstract class Spell : ScriptableObject, ISpell
 
         switch (attacker.SpellAfinity)
         {
-            case SpellAfinity.Fire:
-                if (defender.SpellAfinity == SpellAfinity.Ice) resistance = 2f;
+            case SpellAffinity.Fire:
+                if (defender.SpellAfinity == SpellAffinity.Ice) resistance = 2f;
                 break;
-            case SpellAfinity.Ice:
+            case SpellAffinity.Ice:
                 break;
-            case SpellAfinity.Wind:
+            case SpellAffinity.Wind:
                 break;
-            case SpellAfinity.Light:
+            case SpellAffinity.Light:
                 break;
-            case SpellAfinity.Dark:
+            case SpellAffinity.Dark:
                 break;
         }
 

@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public interface ICharacter
 {
@@ -24,8 +25,8 @@ public interface ICharacter
 
     // *----- Equipables and Inventory -----*
     List<Spell> CharacterEquipedSpells { get; }
-    List<InventoryItem> CharacterInventory { get; }
-    List<EquipmentEntry> CharacterEquipItems { get; }
+    List<ItemEntry> CharacterInventory { get; }
+    List<EquipmentEntry> CharacterEquipment { get; }
     int CharacterGold { get; }
     #endregion
 
@@ -36,16 +37,23 @@ public interface ICharacter
     #endregion
 
     #region Inventory Methods
-    void AddItem(InventoryItem entry, int amount);
-    void RemoveItem(int slot, Item item);
-    void SellItem(int slot, Item item);
+    void AddItem(ItemEntry entry, int amount);
+    ItemEntry RemoveItem(ItemEntry entry, int amount);    
     void AddEquip(EquipmentEntry equipment);
-    void RemoveEquip(int slot, Equipment equipment);
-    void SellEquip(int slot, Equipment equipment);
+    EquipmentEntry RemoveEquip(EquipmentEntry equipment);
     void AddGold(int amount);
     #endregion
 
     #region Equipment Methods
+    void EquipEquipment(EquipmentEntry equipment);
+    void UnequipEquipment(EquipmentEntry equipment);
+    void SwapEquipment(EquipmentEntry equipmentToAdd, EquipmentEntry equipmentToRemove);
+    #endregion
+
+    #region Stat Methods
+    void EquipmentStats();
+    void AddEquipmentStats(EquipmentData equipment);
+    void RemoveEquipmentStats(EquipmentData equipment);
     void AddBonusHp(int amount);
     void AddBonusAttack(int amount);
     void AddBonusAttackSpeed(float amount);

@@ -19,14 +19,27 @@ public class InventoryManagerUI : MonoBehaviour
         SetAllSlots();
     }
 
+    private void OnDisable()
+    {
+        // TODO: Get all the tooltips that might exist and destroy them
+    }
+
     public void SetAllSlots()
     {
-        foreach (InventoryItem entry in player.RunTimePlayerData.CharacterInventory)
+        foreach (ItemEntry entry in player.RunTimePlayerData.CharacterInventory)
         {
             GameObject newSLot = Instantiate(slot, itemListPanel);
 
-            InventorySlotUI slotUI = newSLot.GetComponent<InventorySlotUI>();
-            slotUI.SetSlot(entry);
+            InventorySlot slotUI = newSLot.GetComponent<InventorySlot>();
+            slotUI.SetItemSlot(entry);
+        }
+
+        foreach (EquipmentEntry entry in player.RunTimePlayerData.CharacterEquipment)
+        {
+            GameObject newSlot = Instantiate(slot, itemListPanel);
+
+            InventorySlot sslotUI = newSlot.GetComponent<InventorySlot>();
+            sslotUI.SetEquipmentSlot(entry);
         }
     }
 
