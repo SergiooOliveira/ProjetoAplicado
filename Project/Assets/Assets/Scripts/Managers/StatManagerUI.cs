@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.EventSystems.EventTrigger;
 using static UnityEngine.Rendering.DebugUI;
 
 public class StatManagerUI : MonoBehaviour
@@ -145,6 +146,8 @@ public class StatManagerUI : MonoBehaviour
          * Helmet - Chestplate - Leggings - Amulet - Ring - Weapon
          * Maybe create some sub-methods to handdle it better
          */
+        ClearAllEquipmentSlots();
+
         foreach (EquipmentEntry entry in player.CharacterEquipedEquipment)
         {
             switch (entry.equipment.RunTimeEquipmentData.ItemSlot)
@@ -173,6 +176,17 @@ public class StatManagerUI : MonoBehaviour
     #endregion
 
     #region Equipment auxiliary methods
+    private void ClearAllEquipmentSlots()
+    {
+        ClearHelmet();
+        ClearChestplate();
+        ClearLeggings();
+        ClearAmulet();
+        ClearRing();
+        ClearWeapon();
+    }
+
+    #region Equip equipment
     /// <summary>
     /// Call this method to update the helmet UI
     /// </summary>
@@ -182,6 +196,7 @@ public class StatManagerUI : MonoBehaviour
         EquipmentData entry = e.equipment.RunTimeEquipmentData;
         
         img_helmetSprite.sprite = entry.ItemPrefab.GetComponent<SpriteRenderer>().sprite;
+        img_helmetSprite.enabled = true;
         tb_helmetName.text = entry.ItemName;
         tb_helmetSetName.text = GetItemSet(entry.ItemSet);
         tb_helmetStat.text = GetItemStats(entry);
@@ -197,6 +212,7 @@ public class StatManagerUI : MonoBehaviour
         EquipmentData entry = e.equipment.RunTimeEquipmentData;
 
         img_chestplateSprite.sprite = entry.ItemPrefab.GetComponent<SpriteRenderer>().sprite;
+        img_chestplateSprite.enabled = true;
         tb_chestplateName.text = entry.ItemName;
         tb_chestplateSetName.text = GetItemSet(entry.ItemSet);
         tb_chestplateStat.text = GetItemStats(entry);
@@ -212,6 +228,7 @@ public class StatManagerUI : MonoBehaviour
         EquipmentData entry = e.equipment.RunTimeEquipmentData;
 
         img_leggingsSprite.sprite = entry.ItemPrefab.GetComponent<SpriteRenderer>().sprite;
+        img_leggingsSprite.enabled = true;
         tb_leggingsName.text = entry.ItemName;
         tb_leggingsSetName.text = GetItemSet(entry.ItemSet);
         tb_leggingsStat.text = GetItemStats(entry);
@@ -227,6 +244,7 @@ public class StatManagerUI : MonoBehaviour
         EquipmentData entry = e.equipment.RunTimeEquipmentData;
 
         img_amuletSprite.sprite = entry.ItemPrefab.GetComponent<SpriteRenderer>().sprite;
+        img_amuletSprite.enabled = true;
         tb_amuletName.text = entry.ItemName;
         tb_amuletStat.text = GetItemStats(entry) + GetItemResistances(entry) + GetItemDamageAffinity(entry);
     }
@@ -240,6 +258,7 @@ public class StatManagerUI : MonoBehaviour
         EquipmentData entry = e.equipment.RunTimeEquipmentData;
 
         img_ringSprite.sprite = entry.ItemPrefab.GetComponent<SpriteRenderer>().sprite;
+        img_ringSprite.enabled = true;
         tb_ringName.text = entry.ItemName;
         tb_ringStat.text = GetItemStats(entry) + GetItemResistances(entry) + GetItemDamageAffinity(entry);
     }
@@ -253,9 +272,67 @@ public class StatManagerUI : MonoBehaviour
         EquipmentData entry = e.equipment.RunTimeEquipmentData;
 
         img_weaponSprite.sprite = entry.ItemPrefab.GetComponent<SpriteRenderer>().sprite;
+        img_weaponSprite.enabled = true;
         tb_weaponName.text = entry.ItemName;
         tb_weaponStat.text = GetItemStats(entry) + GetItemResistances(entry) + GetItemDamageAffinity(entry);
     }
+    #endregion
+
+    #region Remove equipment
+    private void ClearHelmet()
+    {
+        img_helmetSprite.sprite = null;
+        img_helmetSprite.enabled = false;
+        tb_helmetName.text = "No helmet equipped";
+        tb_helmetSetName.text = "";
+        tb_helmetStat.text = "";
+        tb_helmetResist.text = "";
+    }
+
+    private void ClearChestplate()
+    {
+        img_chestplateSprite.sprite = null;
+        img_chestplateSprite.enabled = false;
+        tb_chestplateName.text = "No chestplate equipped";
+        tb_chestplateSetName.text = "";
+        tb_chestplateStat.text = "";
+        tb_chestplateResist.text = "";
+    }
+
+    private void ClearLeggings()
+    {
+        img_leggingsSprite.sprite = null;
+        img_leggingsSprite.enabled = false;
+        tb_leggingsName.text = "No leggings equipped";
+        tb_leggingsSetName.text = "";
+        tb_leggingsStat.text = "";
+        tb_leggingsResist.text = "";
+    }
+
+    private void ClearAmulet()
+    {
+        img_amuletSprite.sprite = null;
+        img_amuletSprite.enabled = false;
+        tb_amuletName.text = "No amulet equipped";
+        tb_amuletStat.text = "";
+    }
+
+    private void ClearRing()
+    {
+        img_ringSprite.sprite = null;
+        img_ringSprite.enabled = false;
+        tb_ringName.text = "No ring equipped";
+        tb_ringStat.text = "";
+    }
+
+    private void ClearWeapon()
+    {
+        img_weaponSprite.sprite = null;
+        img_weaponSprite.enabled = false;
+        tb_weaponName.text = "No weapon equipped";
+        tb_weaponStat.text = "";
+    }
+    #endregion
     #endregion
 
     #region Auxiliary methods
@@ -293,7 +370,7 @@ public class StatManagerUI : MonoBehaviour
             stat += $"{(equipment.ItemAttackBonus > 0 ? "+ " : "- ")}{Mathf.Abs(equipment.ItemAttackBonus)} Attack\n";
 
         if (equipment.ItemAttackSpeedBonus != 0)
-            stat += $"{(equipment.ItemAttackSpeedBonus > 0 ? "+ " : "- ")}{Mathf.Abs(equipment.ItemAttackSpeedBonus):F2} Attack Speed\n";
+            stat += $"{(equipment.ItemAttackSpeedBonus > 0 ? "+ " : "- ")}{Mathf.Abs(equipment.ItemAttackSpeedBonus):F0}% Attack Speed\n";
 
         if (equipment.ItemDefenseBonus != 0)
             stat += $"{(equipment.ItemDefenseBonus > 0 ? "+ " : "- ")}{Mathf.Abs(equipment.ItemDefenseBonus)} Defense\n";
@@ -302,7 +379,7 @@ public class StatManagerUI : MonoBehaviour
             stat += $"{(equipment.ItemManaBonus > 0 ? "+ " : "- ")}{Mathf.Abs(equipment.ItemManaBonus)} Mana\n";
 
         if (equipment.ItemMovementSpeedBonus != 0)
-            stat += $"{(equipment.ItemMovementSpeedBonus > 0 ? "+ " : "- ")}{Mathf.Abs(equipment.ItemMovementSpeedBonus):F2} Movement Speed\n";
+            stat += $"{(equipment.ItemMovementSpeedBonus > 0 ? "+ " : "- ")}{Mathf.Abs(equipment.ItemMovementSpeedBonus):F0}% Movement Speed\n";
 
         // Also add the item damage afinities
         stat += GetItemDamageAffinity(equipment);

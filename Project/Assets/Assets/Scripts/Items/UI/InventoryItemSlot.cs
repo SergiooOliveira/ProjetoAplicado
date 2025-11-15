@@ -138,25 +138,23 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             }
             else
             {
-                Debug.Log("equippedEquipment is not null");
-                // Swap
-                player.SwapEquipment(equipment, equippedEquipment);
+                if (equippedEquipment.equipment.RunTimeEquipmentData.ItemName == equipment.equipment.RunTimeEquipmentData.ItemName)
+                {
+                    player.UnequipEquipment(equipment);
+                } 
+                else
+                {
+                    // Swap
+                    player.SwapEquipment(equipment, equippedEquipment);
+                }
             }
 
             // Update UI
             statManagerUI.UpdateEquipedEquipment();
-            statManagerUI.UpdateUI();
-            
+            statManagerUI.UpdateUI();            
         }
         //else if (eventData.button == PointerEventData.InputButton.Left) { }
     }
-
-    #region Auxiliary methods
-    private void IsEquipmentEquipped()
-    {
-
-    }
-    #endregion
     #endregion
 
     #region Displays
