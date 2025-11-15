@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 9094768673917523455}
   - component: {fileID: 5583541194016498489}
   - component: {fileID: 6103418654445112873}
+  - component: {fileID: 2677654432138788341}
   m_Layer: 5
   m_Name: Leggings
   m_TagString: Untagged
@@ -104,6 +105,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2677654432138788341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 104260258666153794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfe2767e23cdd714884f7bde24fb2bb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &109203411127269418
 GameObject:
   m_ObjectHideFlags: 0
@@ -1875,6 +1888,7 @@ GameObject:
   - component: {fileID: 2627087027816969222}
   - component: {fileID: 8115542007666640220}
   - component: {fileID: 9093650847919579268}
+  - component: {fileID: 4308446876344115522}
   m_Layer: 5
   m_Name: Ring
   m_TagString: Untagged
@@ -1968,6 +1982,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4308446876344115522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813522363886542341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfe2767e23cdd714884f7bde24fb2bb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1815821408760602447
 GameObject:
   m_ObjectHideFlags: 0
@@ -2639,6 +2665,7 @@ GameObject:
   - component: {fileID: 2726910651863208159}
   - component: {fileID: 6371751117521591214}
   - component: {fileID: 8357220259515904463}
+  - component: {fileID: 4602756660505922287}
   m_Layer: 5
   m_Name: Amulet
   m_TagString: Untagged
@@ -2732,6 +2759,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4602756660505922287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2492982769415009276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfe2767e23cdd714884f7bde24fb2bb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2545778251425675286
 GameObject:
   m_ObjectHideFlags: 0
@@ -6098,6 +6137,7 @@ GameObject:
   - component: {fileID: 7655020385366653172}
   - component: {fileID: 5804258837749652878}
   - component: {fileID: 3028783148991449879}
+  - component: {fileID: 8233972172059050321}
   m_Layer: 5
   m_Name: Chestplate
   m_TagString: Untagged
@@ -6190,6 +6230,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8233972172059050321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6456085038298787350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfe2767e23cdd714884f7bde24fb2bb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6515322157145746002
 GameObject:
   m_ObjectHideFlags: 0
@@ -6474,6 +6526,7 @@ GameObject:
   - component: {fileID: 967328494549092064}
   - component: {fileID: 8472361156133113897}
   - component: {fileID: 2883448961265685291}
+  - component: {fileID: 7190597497552031607}
   m_Layer: 5
   m_Name: Weapon
   m_TagString: Untagged
@@ -6567,6 +6620,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7190597497552031607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6561655408491482719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfe2767e23cdd714884f7bde24fb2bb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6611457854150384903
 GameObject:
   m_ObjectHideFlags: 0
@@ -7792,6 +7857,7 @@ GameObject:
   - component: {fileID: 8834448636086807674}
   - component: {fileID: 8628324335409721887}
   - component: {fileID: 173187305722930277}
+  - component: {fileID: 941769444935915483}
   m_Layer: 5
   m_Name: Helmet
   m_TagString: Untagged
@@ -7884,6 +7950,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &941769444935915483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7778843579996465251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfe2767e23cdd714884f7bde24fb2bb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7915815490991872221
 GameObject:
   m_ObjectHideFlags: 0
