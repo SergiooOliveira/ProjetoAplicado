@@ -321,32 +321,6 @@ Transform:
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-<<<<<<< HEAD
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.7, y: 24.93, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2068665787}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &354495542
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 354495540}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 304b391d38382d44e8fd0b30ef25c931, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hasEnemy: 0
-  currentEnemy: {fileID: 0}
-  isRespawning: 0
-  isActiveSpawnPoint: 0
-  enemyTypeData: {fileID: 0}
-=======
   m_Modification:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
@@ -684,7 +658,6 @@ MonoBehaviour:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28961f88c1d287c4d9750bb9ee8f3ca7, type: 3}
->>>>>>> main
 --- !u!1 &644755022
 GameObject:
   m_ObjectHideFlags: 0
