@@ -14,6 +14,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/EndScreen.unity
     guid: 93e5812c866e7d34ba205ffd33591f0c
+  - enabled: 1
+    path: Assets/Scenes/Map2_cloud.unity
+    guid: 7596aa6e93820024cb5ad62021432339
+  - enabled: 1
+    path: Assets/Scenes/Map3_ice.unity
+    guid: 91ac6699de20e11479742ce56c8b05f8
+  - enabled: 1
+    path: Assets/Scenes/Map4_light.unity
+    guid: 7ff5b2f9ac63a0b40ba6de1af29e7ed5
+  - enabled: 1
+    path: Assets/Scenes/MapSelect.unity
+    guid: a6ad49fe3cbf4fe47a322ed1faea37f6
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 75fbbde1c66dd6e45bde1931e4444ec1, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

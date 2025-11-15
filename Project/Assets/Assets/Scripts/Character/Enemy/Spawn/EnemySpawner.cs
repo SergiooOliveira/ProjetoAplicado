@@ -25,6 +25,8 @@ public class EnemySpawner : MonoBehaviour
 
     #endregion
 
+    public ScenesManager scenesManager;
+
     #region Unity Methods
 
     private void Awake()
@@ -33,7 +35,7 @@ public class EnemySpawner : MonoBehaviour
 
         if (IsBossDead())
         {
-            Debug.Log($"[Spawner] Boss {enemyData.CharacterName} já morto detectado no Awake. Desativando objeto.");
+            Debug.Log($"[Spawner] Boss {enemyData.CharacterName} jï¿½ morto detectado no Awake. Desativando objeto.");
             gameObject.SetActive(false);
         }
     }
@@ -57,7 +59,7 @@ public class EnemySpawner : MonoBehaviour
 
         if (IsBossDead())
         {
-            Debug.Log($"[Spawner] Boss {enemyData.CharacterName} está morto permanentemente. Spawner desativado.");
+            Debug.Log($"[Spawner] Boss {enemyData.CharacterName} estï¿½ morto permanentemente. Spawner desativado.");
             yield break;
         }
 
@@ -125,7 +127,7 @@ public class EnemySpawner : MonoBehaviour
                 {
                     string bossKey = $"{enemyData.CharacterSpawnLevel}_{enemyData.CharacterName}";
                     if (sessionDeadBosses.Contains(bossKey))
-                        continue; // não spawna mais na sessão
+                        continue; // nï¿½o spawna mais na sessï¿½o
                 }
 
                 if (sp == null || !sp.isActiveSpawnPoint) continue;
@@ -224,7 +226,9 @@ public class EnemySpawner : MonoBehaviour
         {
             // Just blocks in session
             sessionDeadBosses.Add(bossKey);
-            Debug.Log($"[DEBUG] Boss {enemy.RunTimeData.CharacterName} morto (somente na sessão).");
+            Debug.Log($"[DEBUG] Boss {enemy.RunTimeData.CharacterName} morto (somente na sessï¿½o).");
+
+            scenesManager.MapSelect();
         }
         else
         {

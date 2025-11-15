@@ -99709,6 +99709,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 255871da6ba237645867b24ed5c3b997, type: 2}
   debugMode: 1
+  scenesManager: {fileID: 0}
 --- !u!1001 &772214566
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -106074,6 +106075,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 5d5518ccbe72c404f832b4e260303920, type: 2}
   debugMode: 1
+  scenesManager: {fileID: 1924759771}
 --- !u!1 &1620711178
 GameObject:
   m_ObjectHideFlags: 0
@@ -106265,6 +106267,7 @@ GameObject:
   - component: {fileID: 1924759766}
   - component: {fileID: 1924759770}
   - component: {fileID: 1924759769}
+  - component: {fileID: 1924759771}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -106341,6 +106344,18 @@ MonoBehaviour:
   allEnemies: []
   activeEnemies: []
   enemyCounter: 0
+--- !u!114 &1924759771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1924759765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 884ea75c171cc0541880d5cac0c351e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1959171713
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -106527,6 +106542,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 824d16d3b0f3856408482351a03034db, type: 2}
   debugMode: 1
+  scenesManager: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
