@@ -22,8 +22,7 @@ public abstract class Spell : ScriptableObject, ISpell
     [System.NonSerialized] private float lastCastTime;
     [System.NonSerialized] private bool hasBeenCastOnce = false;
 
-    [Header("Conditions")]
-    [SerializeField] private bool isSpellUnlocked;
+    [Header("Conditions")]    
     [SerializeField] private bool isSpellEquiped;
     [SerializeField] private bool isSpellSelected;
 
@@ -49,7 +48,6 @@ public abstract class Spell : ScriptableObject, ISpell
     public int SpellCost => spellCost;
     public float SpellDuration => spellDuration;
 
-    public bool IsSpellUnlocked => isSpellUnlocked;
     public bool IsSpellEquiped => isSpellEquiped;
     public bool IsSpellSelected => isSpellSelected;
 
@@ -91,6 +89,16 @@ public abstract class Spell : ScriptableObject, ISpell
     {
         lastCastTime = Time.time;
         hasBeenCastOnce = true;
+    }
+
+    public void Equip()
+    {
+        isSpellEquiped = true;
+    }
+
+    public void Unequip()
+    {
+        isSpellEquiped = false;
     }
 
     /// <summary>

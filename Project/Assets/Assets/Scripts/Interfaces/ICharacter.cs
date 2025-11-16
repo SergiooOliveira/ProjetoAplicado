@@ -24,16 +24,17 @@ public interface ICharacter
     List<Resistance> CharacterResistances { get; }
 
     // *----- Equipables and Inventory -----*
-    List<Spell> CharacterEquipedSpells { get; }
+    List<Spell> CharacterSpells { get; }
     List<ItemEntry> CharacterInventory { get; }
     List<EquipmentEntry> CharacterEquipment { get; }
     int CharacterGold { get; }
     #endregion
 
     #region Spell Methods
-    void AddSpell(Spell spell);
-    void RemoveSpell(int slot, Spell spell);
-    void SwapSpell(int slot, Spell spellToRemove, Spell spellToAdd);
+    void AddSpell(Spell spell); // To add a spell to the characterList
+    void EquipSpell(Spell spell);
+    void UnequipSpell(Spell spell);
+    void SwapSpell(Spell spellToRemove, Spell spellToAdd);
     #endregion
 
     #region Inventory Methods

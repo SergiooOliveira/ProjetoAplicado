@@ -1,12 +1,8 @@
-using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class SpellManager : MonoBehaviour
-{
-    public static SpellManager Instance;
-    
+{ 
     public List<Spell> Spells { get; private set; }
 
     public Transform spellDisplayCanvas;
@@ -16,9 +12,6 @@ public class SpellManager : MonoBehaviour
 
     public void Awake()
     {
-        if (Instance != null) Destroy(gameObject);
-        else Instance = this;
-
         // Load all the Spells from Resource file
         Spells = new List<Spell>(Resources.LoadAll<Spell>("Spells"));
     }
@@ -30,8 +23,8 @@ public class SpellManager : MonoBehaviour
     {
         foreach (Player player in GameManager.Instance.Players)
         {
-            foreach (Spell spell in player.RunTimePlayerData.CharacterEquipedSpells)
-                Debug.Log("Equipped: " + spell.name);
+            foreach (Spell spell in player.RunTimePlayerData.CharacterSpells)
+                Debug.Log($"{spell.name}: Equipped: {spell.IsSpellEquiped}, Selected: {spell.IsSpellSelected}");
         }
     }
 

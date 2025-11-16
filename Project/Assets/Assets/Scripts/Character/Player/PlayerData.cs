@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.EventSystems.EventTrigger;
 
 [CreateAssetMenu (menuName = "Player/Starter Player")]
 public class PlayerData : ScriptableObject, ICharacter
@@ -23,9 +22,9 @@ public class PlayerData : ScriptableObject, ICharacter
     [SerializeField] private int characterDefense;                  // Character Defense
     [SerializeField] private List<Resistance> characterResistances; // Character Resistances
 
-    [Header("Equipables and Inventory")]
-    [SerializeField] private List<Spell> characterEquipedSpells;                // Character Equiped Spells
-    [System.NonSerialized] public int selectedSpellIndex = 0;                   // Character Spell Index
+    [Header("Spells and Inventory")]
+    [SerializeField] private List<Spell> characterSpells;                       // Character learned Spells
+    [SerializeField] private List<Spell> characterEquippedSpells;               // Character equipped Spells
     [SerializeField] private List<ItemEntry> characterInventory;                // Character Inventory (Also, drop table for enemies)
     [SerializeField] private List<EquipmentEntry> characterEquipment;           // Character Equipment (Also, drop table for enemies)
     [SerializeField] private List<EquipmentEntry> characterEquipedEquipment;    // Character Equiped Equipment
@@ -50,8 +49,9 @@ public class PlayerData : ScriptableObject, ICharacter
     public int CharacterDefense => characterDefense;
     public List<Resistance> CharacterResistances => characterResistances;
 
-    // *----- Equipables and Inventory -----*
-    public List<Spell> CharacterEquipedSpells => characterEquipedSpells;
+    // *----- Spells and Inventory -----*
+    public List<Spell> CharacterSpells => characterSpells;
+    public List<Spell> CharacterEquippedSpells => characterEquippedSpells;
     public List<ItemEntry> CharacterInventory => characterInventory;
     public List<EquipmentEntry> CharacterEquipment => characterEquipment;
     public List<EquipmentEntry> CharacterEquipedEquipment => characterEquipedEquipment;
@@ -68,22 +68,39 @@ public class PlayerData : ScriptableObject, ICharacter
     /// TODO: Change this to add an int with the slot to place said spell
     /// </summary>
     /// <param name="newSpell"></param>
-    public virtual void AddSpell(Spell spell)
+    public void AddSpell(Spell spell)
     {
         // Firstly check if Spell is already there
-        if (CharacterEquipedSpells.Exists(spell => spell.name == spell.name)) return;
+        if (CharacterSpells.Exists(spell => spell.name == spell.name)) return;
 
-        // TODO: Check if the limit is already passed, limit it to 3, and keep the order even if it's deleted. Maybe needs to change to array
+        // Spell doesnst exist in the List
+        this.CharacterSpells.Add(spell);
+    }
 
-        this.CharacterEquipedSpells.Add(spell);
-
-        // If it's the first spell set as selected and save it as an object
-        if (CharacterEquipedSpells.Count == 1)
+    /// <summary>
+    /// Call this method to equip a spell
+    /// </summary>
+    /// <param name="spell">Spell to add</param>
+    public void EquipSpell(Spell spell)
+    {
+        // Check if list already has 3 Spells
+        if (CharacterEquippedSpells.Count >= 3)
         {
-            CharacterEquipedSpells[0].Select();
-            SpellManager.Instance.selectedSpell = spell;
+            Debug.Log("List of spells is full");
+            return;
         }
-        // Debug.Log("Added: " + spell.name);
+
+        // Add to Equipped spell list
+        spell.Equip();
+
+        // If no spells in list Select first        
+        if (CharacterEquippedSpells.Count == 0)
+        {
+            spell.Select();
+        }
+
+        // Add it to the list
+        CharacterEquippedSpells.Add(spell);
     }
 
     /// <summary>
@@ -91,7 +108,7 @@ public class PlayerData : ScriptableObject, ICharacter
     /// </summary>
     /// <param name="slot">Spell slot in the player spell book</param>
     /// <param name="spell">Spell to remove</param>
-    public void RemoveSpell(int slot, Spell spell)
+    public void UnequipSpell(Spell spell)
     {
 
     }
@@ -102,23 +119,32 @@ public class PlayerData : ScriptableObject, ICharacter
     /// <param name="slot">Spell slot in the player spell book</param>
     /// <param name="spellToRemove">Spell to remove</param>
     /// <param name="spellToAdd">Spell to add</param>
-    public void SwapSpell(int slot, Spell spellToRemove, Spell spellToAdd)
+    public void SwapSpell(Spell spellToRemove, Spell spellToAdd)
     {
-        RemoveSpell(slot, spellToRemove);
+        UnequipSpell(spellToRemove);
         AddSpell(spellToAdd);
     }
 
     public Spell GetActiveSpell()
     {
-        if (characterEquipedSpells == null || characterEquipedSpells.Count == 0)
-            return null;
+        Spell activeSpell = CharacterEquippedSpells.Find(s => s.IsSpellSelected == true);
 
-        return characterEquipedSpells[selectedSpellIndex];
+        if (activeSpell != null) return activeSpell;
+        else return null;
     }
 
     public void ClearSpellList()
     {
-        characterEquipedSpells = new List<Spell>();
+        characterSpells = new List<Spell>();
+    }
+
+    public void SeeAllSpells()
+    {
+        Debug.Log("Seeing all spells");
+        foreach (Spell spell in CharacterSpells)
+        {
+            Debug.Log($"{spell.SpellName} is {spell.IsSpellEquiped}");
+        }
     }
     #endregion
 

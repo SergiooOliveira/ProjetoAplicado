@@ -26,7 +26,6 @@ public interface ISpell
     float SpellDuration { get; }
 
     // *----- Conditions -----*
-    bool IsSpellUnlocked { get; }
     bool IsSpellEquiped { get; }
     bool IsSpellSelected { get; }
 

@@ -16,7 +16,7 @@ MonoBehaviour:
   spellDescription: Slow
   spellTag: 2
   spellPrefab: {fileID: 495043577162514139, guid: 4cd3172f44e33da42b943cada15f5f50, type: 3}
-  spellAfinity: 0
+  spellAfinity: 2
   spellProjectileType: 0
   spellDamage: 0
   spellRange: 1
@@ -27,7 +27,7 @@ MonoBehaviour:
   spellDuration: 5
   isSpellUnlocked: 0
   isSpellEquiped: 1
-  isSpellSelected: 1
+  isSpellSelected: 0
   spellHasCC: 0
   spellHasBuff: 0
   spellHasDebuff: 0

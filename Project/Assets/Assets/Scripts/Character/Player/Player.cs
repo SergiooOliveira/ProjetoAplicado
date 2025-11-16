@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
     {
         runTimePlayerData.CharacterHp.Initialize();
         runTimePlayerData.CharacterMana.Initialize();
-        runTimePlayerData.ClearSpellList();
+        //runTimePlayerData.ClearSpellList();
 
         // Initialize item list
         foreach (ItemEntry item in runTimePlayerData.CharacterInventory)
@@ -55,6 +55,7 @@ public class Player : MonoBehaviour
         }
 
         runTimePlayerData.EquipmentStats();
+        //runTimePlayerData.SeeAllSpells();
     }
 
     /// <summary>

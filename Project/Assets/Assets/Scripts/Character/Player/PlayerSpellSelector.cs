@@ -22,7 +22,7 @@ public class PlayerSpellSelector : MonoBehaviour
     #region Initialization
     private void InitializeActiveSpell()
     {
-        if (playerData.CharacterEquipedSpells.Count > 0)
+        if (playerData.CharacterSpells.Count > 0)
             SetActiveSpellByIndex(0);
     }
     #endregion
@@ -44,14 +44,14 @@ public class PlayerSpellSelector : MonoBehaviour
     #region Spell Management
     public void SetActiveSpellByIndex(int index)
     {
-        if (index < 0 || index >= playerData.CharacterEquipedSpells.Count)
+        if (index < 0 || index >= playerData.CharacterSpells.Count)
             return;
 
         // Update PlayerData
-        playerData.selectedSpellIndex = index;
+        //playerData.selectedSpellIndex = index;
 
         // Update local reference
-        activeSpell = playerData.CharacterEquipedSpells[index];
+        activeSpell = playerData.CharacterSpells[index];
 
         Debug.Log("Spell ativo mudou para: " + activeSpell.name);
     }

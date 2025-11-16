@@ -10,7 +10,7 @@ public class PlayerSpellCaster : MonoBehaviour
     #region Unity Callbacks
     private void Update()
     {
-        HandleSpellCastInput();
+        
     }
     #endregion
 

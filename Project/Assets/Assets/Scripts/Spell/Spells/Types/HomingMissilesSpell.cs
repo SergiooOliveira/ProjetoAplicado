@@ -17,7 +17,7 @@ public class HomingMissilesSpell : ProjectileSpell
             return;
         }
 
-        // Debug.Log($"[WaterMissilesSpell] Casting {SpellName} at {position} in HomingMissilesSpell");
+        //Debug.Log($"[WaterMissilesSpell] Casting {SpellName} at {position} in HomingMissilesSpell");
 
         // TODO: Change this to be dynamic and we can choose the amount of missiles we want to send
         Vector2[] compassDir = new Vector2[]{
@@ -31,7 +31,7 @@ public class HomingMissilesSpell : ProjectileSpell
         foreach (Vector2 dir in compassDir)
         {
             // small offset so they don't overlap with player collider
-            Vector3 spawnPos = position + (Vector3)dir * 0.5f;
+            Vector3 spawnPos = player.transform.position + (Vector3)dir * 0.5f;
             GameObject instance = Instantiate(SpellPrefab, spawnPos, Quaternion.identity);
 
             if (instance.TryGetComponent<SpellProjectile>(out SpellProjectile projectile))

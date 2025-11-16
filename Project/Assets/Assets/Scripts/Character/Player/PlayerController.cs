@@ -78,12 +78,13 @@ public class PlayerController : NetworkBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == GameManager.Instance.grimoireTag)
-        {
-            //Debug.Log("Triggered with " + collision.name);
-            playerData.AddSpell(SpellManager.Instance.GetSpell(collision.name));
-            Destroy(collision.gameObject);
-        }
+        // TODO: Remake interactable object to add a spell
+        //if (collision.tag == GameManager.Instance.grimoireTag)
+        //{
+        //    //Debug.Log("Triggered with " + collision.name);
+        //    //playerData.AddSpell(SpellManager.GetSpell(collision.name));
+        //    Destroy(collision.gameObject);
+        //}
 
         // Cares about all the interactables
         if (collision.tag == GameManager.Instance.interactableTag)
@@ -165,20 +166,24 @@ public class PlayerController : NetworkBehaviour
     {
         // Each spell has different interactions
         // Check what is the selected spell first
-        // At the moment we only have fireball       
+        // At the moment we only have fireball
 
         // Debug.Log("Attacking");
 
         if (callbackContext.performed)
         {
-            //Instantiate(fireball, new Vector2(rb.position.x, rb.position.y), Quaternion.identity);            
-            //SpellManager.Instance.ShowEquippedSpells();
-            if (SpellManager.Instance.selectedSpell == null) return;
+            Spell activeSpell = playerData.GetActiveSpell();
+
+            if (activeSpell == null)
+            {
+                Debug.Log("No active spell");
+                return;
+            }
 
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 castDirection = (mousePos - rb.position).normalized;
 
-            SpellManager.Instance.selectedSpell.Cast(rb.position, castDirection, player);
+            activeSpell.Cast(mousePos, castDirection, player);
         }
     }
 
@@ -204,14 +209,14 @@ public class PlayerController : NetworkBehaviour
     /// <param name="callbackContext"></param>
     public void NextSpell(InputAction.CallbackContext callbackContext)
     {
-        for (int i = 0; i < playerData.CharacterEquipedSpells.Count; i++)
+        for (int i = 0; i < playerData.CharacterSpells.Count; i++)
         {
-            if (playerData.CharacterEquipedSpells[i].IsSpellSelected)
+            if (playerData.CharacterSpells[i].IsSpellSelected)
             {
-                playerData.CharacterEquipedSpells[i].Deselect();
+                playerData.CharacterSpells[i].Deselect();
 
-                int nextIndex = (i + 1) % playerData.CharacterEquipedSpells.Count;
-                playerData.CharacterEquipedSpells[nextIndex].Select();
+                int nextIndex = (i + 1) % playerData.CharacterSpells.Count;
+                playerData.CharacterSpells[nextIndex].Select();
 
                 break;
             }
