@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d44939c2f6790f3499f3e478cc6c96a3, type: 3}
+  m_Name: BoneChestData
+  m_EditorClassIdentifier: 
+  dropObject: {fileID: 4571283792198667029, guid: 0c58a3701768c7147a2732ac37b4d9e8, type: 3}
+  amount: 50

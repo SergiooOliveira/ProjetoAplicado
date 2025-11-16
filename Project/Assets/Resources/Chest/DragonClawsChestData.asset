@@ -10,7 +10,8 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d44939c2f6790f3499f3e478cc6c96a3, type: 3}
-  m_Name: DragonClawsChest
+  m_Name: DragonClawsChestData
   m_EditorClassIdentifier: 
   chestName: Dragon Claws Chest
   dropObject: {fileID: 681572975424605454, guid: 5370bea0216ae494c9a334486a90260a, type: 3}
+  amount: 10
