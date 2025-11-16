@@ -1,28 +1,44 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Interactables/Chest")]
+[CreateAssetMenu(menuName = "Interactables/ChestData")]
 public class ChestData : ScriptableObject
 {
-    public string chestName;
-    public GameObject dropObject;
-    private ItemData itemDrop;
+    [SerializeField] private GameObject dropObject;
+    [SerializeField] private int amount;
+    private ItemEntry itemDrop;
+    private EquipmentEntry equipmentDrop;
+
+    public GameObject DropObject => dropObject;
+    public ItemEntry ItemDrop => itemDrop;
+    public EquipmentEntry EquipmentDrop => equipmentDrop;
 
     public void Initialize()
     {
-        Item item = dropObject.GetComponent<Item>();
+        dropObject.TryGetComponent<Item>(out Item item);
+        dropObject.TryGetComponent<Equipment>(out Equipment equipment);
+        
+        if (item != null)
+        {
+            item.Initialize();
+            
+            itemDrop = new ItemEntry
+            {
+                item = item,
+                quantity = amount,
+                isGuarantee = true
+            };            
+        }
 
-        item.Initialize();
-        itemDrop = item.RunTimeItemData;
-    }
+        if (equipment != null)
+        {
+            equipment.Initialize();
 
-    /// <summary>
-    /// Call this method to get the info of an item
-    /// </summary>
-    /// <returns>Returns the name and the type of the item</returns>
-    public override string ToString()
-    {
-        string info = $"Name: {itemDrop.ItemName}\nItem Type: {itemDrop.ItemType}";
-
-        return info;
+            equipmentDrop = new EquipmentEntry
+            {
+                equipment = equipment,
+                quantity = amount,
+                isEquipped = false
+            };
+        }
     }
 }

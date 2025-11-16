@@ -1,15 +1,23 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Chest : MonoBehaviour
 {
-    public ChestData chestData;
-    public Spell spellReward;
-    //public PlayerData playerData;
+    [SerializeField] private string chestName;
+    public List<ChestData> chestData;
+    public List<Spell> spellReward;
     private bool isOpened = false;
+
+    public string ChestName => chestName;
 
     private void Awake()
     {
-        chestData.Initialize();
+        foreach (ChestData data in chestData)
+        {
+            if (data.DropObject != null)
+                data.Initialize();
+        }
+
     }
 
     /// <summary>
@@ -18,17 +26,41 @@ public class Chest : MonoBehaviour
     public void Interact(PlayerData playerData)
     {
         if (isOpened) return;
-
-        // Debug.Log($"Giving Player {chestData}");
-
-        if (spellReward != null && playerData != null)
+        if (playerData == null)
         {
-            playerData.AddSpell(spellReward);
-            // Debug.Log($"Added spell {spellReward.name} to player!");
+            Debug.Log("Player data is null");
+            return;
         }
-        else
+
+        foreach (ChestData data in chestData)
         {
-            Debug.LogWarning("Chest is missing spellReward or playerData reference!");
+            // Chest will give an item
+            if (data != null)
+            {
+                if (data.ItemDrop.item != null)
+                {
+                    // It's an item
+                    playerData.AddItem(data.ItemDrop, data.ItemDrop.quantity);
+                    Debug.Log($"{chestName} gave item: {data.ItemDrop.item.RunTimeItemData.ItemName}");
+                }
+
+                if (data.EquipmentDrop.equipment != null)
+                {
+                    // It's an equipment
+                    playerData.AddEquip(data.EquipmentDrop);
+                    Debug.Log($"{chestName} gave item: {data.EquipmentDrop.equipment.RunTimeEquipmentData.ItemName}");
+                }
+            }
+        }
+
+        foreach (Spell spell in spellReward)
+        {
+            // Chest will give a spell
+            if (spell != null)
+            {
+                playerData.AddSpell(spell);
+                Debug.Log($"Added spell {spell.SpellName} to player!");
+            }
         }
 
         isOpened = true;
