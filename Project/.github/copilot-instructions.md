@@ -8,7 +8,7 @@
   - Layers:
     - Default, TransparentFX, Ignore Raycast, Player, Water, UI, Ground, Boss
 - Active game object:
-  - Name: Managers
-  - Tag: Untagged
-  - Layer: Default
+  - Name: Player(Clone)
+  - Tag: Player
+  - Layer: Player
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->

@@ -24,8 +24,11 @@ public class EnemySpawner : MonoBehaviour
     private HashSet<string> sessionDeadBosses = new();
 
     #endregion
-
+    //v1
     public ScenesManager scenesManager;
+
+    //v2
+    // private ScenesManager scenesManager;
 
     #region Unity Methods
 
@@ -43,6 +46,9 @@ public class EnemySpawner : MonoBehaviour
     private void Start()
     {
         StartCoroutine(FindPlayerRoutine());
+
+        // v2
+        // scenesManager = Object.FindFirstObjectByType<ScenesManager>();
     }
 
     #endregion
@@ -228,7 +234,7 @@ public class EnemySpawner : MonoBehaviour
             sessionDeadBosses.Add(bossKey);
             Debug.Log($"[DEBUG] Boss {enemy.RunTimeData.CharacterName} morto (somente na sess�o).");
 
-            scenesManager.MapSelect();
+            scenesManager.Map2_cloud();
         }
         else
         {
