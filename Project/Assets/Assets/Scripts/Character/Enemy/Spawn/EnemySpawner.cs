@@ -25,6 +25,11 @@ public class EnemySpawner : MonoBehaviour
 
     #endregion
 
+    private GameObject teleportPoints;
+    private GameObject startMap2; // Reference to the "StartMap2" object
+    private GameObject startMap3; // Reference to the "StartMap3" object
+    private GameObject startMap4; // Reference to the "StartMap4" object
+
     #region Unity Methods
 
     private void Awake()
@@ -33,7 +38,7 @@ public class EnemySpawner : MonoBehaviour
 
         if (IsBossDead())
         {
-            Debug.Log($"[Spawner] Boss {enemyData.CharacterName} já morto detectado no Awake. Desativando objeto.");
+            Debug.Log($"[Spawner] Boss {enemyData.CharacterName} jï¿½ morto detectado no Awake. Desativando objeto.");
             gameObject.SetActive(false);
         }
     }
@@ -41,6 +46,11 @@ public class EnemySpawner : MonoBehaviour
     private void Start()
     {
         StartCoroutine(FindPlayerRoutine());
+
+        teleportPoints = GameObject.Find("TeleportPoints");
+        startMap2 = teleportPoints.transform.Find("StartMap2").gameObject;
+        startMap3 = teleportPoints.transform.Find("StartMap3").gameObject;
+        startMap4 = teleportPoints.transform.Find("StartMap4").gameObject;
     }
 
     #endregion
@@ -57,7 +67,7 @@ public class EnemySpawner : MonoBehaviour
 
         if (IsBossDead())
         {
-            Debug.Log($"[Spawner] Boss {enemyData.CharacterName} está morto permanentemente. Spawner desativado.");
+            Debug.Log($"[Spawner] Boss {enemyData.CharacterName} estï¿½ morto permanentemente. Spawner desativado.");
             yield break;
         }
 
@@ -125,7 +135,7 @@ public class EnemySpawner : MonoBehaviour
                 {
                     string bossKey = $"{enemyData.CharacterSpawnLevel}_{enemyData.CharacterName}";
                     if (sessionDeadBosses.Contains(bossKey))
-                        continue; // não spawna mais na sessão
+                        continue; // nï¿½o spawna mais na sessï¿½o
                 }
 
                 if (sp == null || !sp.isActiveSpawnPoint) continue;
@@ -224,7 +234,9 @@ public class EnemySpawner : MonoBehaviour
         {
             // Just blocks in session
             sessionDeadBosses.Add(bossKey);
-            Debug.Log($"[DEBUG] Boss {enemy.RunTimeData.CharacterName} morto (somente na sessão).");
+            Debug.Log($"[DEBUG] Boss {enemy.RunTimeData.CharacterName} morto (somente na sessï¿½o).");
+
+            TeleportToPoint();
         }
         else
         {
@@ -237,4 +249,11 @@ public class EnemySpawner : MonoBehaviour
     }
 
     #endregion
+
+    void TeleportToPoint()
+    {
+        // Debug.Log(player.position);
+        // Set the player's position to (201, -63, 0)
+        player.transform.position = startMap2.transform.position;
+    }
 }
