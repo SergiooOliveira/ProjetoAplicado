@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Spells/Debuff Spell")]
@@ -18,13 +19,12 @@ public class DebuffSpell : Spell
             return;
         }
 
-        Vector3 spawnPos = position + (Vector3)direction.normalized * 0.5f;
-        GameObject instance = Instantiate(SpellPrefab, spawnPos, Quaternion.identity);
+        //Vector3 spawnPos = position + (Vector3)direction.normalized * 0.5f;
+        GameObject instance = Instantiate(SpellPrefab, player.transform.position, Quaternion.identity);
 
         if (instance.TryGetComponent<SpellDebuff>(out SpellDebuff debuff))
         {
-            debuff.Initialize(this, player);
-            debuff.SetDirection(direction);
+            debuff.Initialize(this, direction, player);
         }
     }
 }

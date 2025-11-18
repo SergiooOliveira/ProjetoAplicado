@@ -25,9 +25,8 @@ MonoBehaviour:
   spellCastSpeed: 0
   spellCost: 0
   spellDuration: 0
-  isSpellUnlocked: 0
   isSpellEquiped: 1
-  isSpellSelected: 1
+  isSpellSelected: 0
   spellHasCC: 0
   spellHasBuff: 0
   spellHasDebuff: 0

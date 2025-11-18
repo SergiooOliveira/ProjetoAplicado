@@ -1,6 +1,7 @@
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEngine.EventSystems.EventTrigger;
 
 [CreateAssetMenu (menuName = "Player/Starter Player")]
 public class PlayerData : ScriptableObject, ICharacter
@@ -23,9 +24,9 @@ public class PlayerData : ScriptableObject, ICharacter
     [SerializeField] private int characterDefense;                  // Character Defense
     [SerializeField] private List<Resistance> characterResistances; // Character Resistances
 
-    [Header("Equipables and Inventory")]
-    [SerializeField] private List<Spell> characterEquipedSpells;                // Character Equiped Spells
-    [System.NonSerialized] public int selectedSpellIndex = 0;                   // Character Spell Index
+    [Header("Spells and Inventory")]
+    [SerializeField] private List<Spell> characterSpells;                       // Character learned Spells
+    [SerializeField] private List<SpellEntry> characterEquippedSpells;          // Character equipped Spells
     [SerializeField] private List<ItemEntry> characterInventory;                // Character Inventory (Also, drop table for enemies)
     [SerializeField] private List<EquipmentEntry> characterEquipment;           // Character Equipment (Also, drop table for enemies)
     [SerializeField] private List<EquipmentEntry> characterEquipedEquipment;    // Character Equiped Equipment
@@ -50,8 +51,9 @@ public class PlayerData : ScriptableObject, ICharacter
     public int CharacterDefense => characterDefense;
     public List<Resistance> CharacterResistances => characterResistances;
 
-    // *----- Equipables and Inventory -----*
-    public List<Spell> CharacterEquipedSpells => characterEquipedSpells;
+    // *----- Spells and Inventory -----*
+    public List<Spell> CharacterSpells => characterSpells;
+    public List<SpellEntry> CharacterEquippedSpells => characterEquippedSpells;
     public List<ItemEntry> CharacterInventory => characterInventory;
     public List<EquipmentEntry> CharacterEquipment => characterEquipment;
     public List<EquipmentEntry> CharacterEquipedEquipment => characterEquipedEquipment;
@@ -63,27 +65,63 @@ public class PlayerData : ScriptableObject, ICharacter
     #endregion
 
     #region Spell Methods
+    public void InitializeSpells()
+    {
+        CharacterEquippedSpells.Clear();
+
+        CharacterEquippedSpells.Add(new SpellEntry { spell = null, slot = 1, isSelected = false });
+        CharacterEquippedSpells.Add(new SpellEntry { spell = null, slot = 2, isSelected = false });
+        CharacterEquippedSpells.Add(new SpellEntry { spell = null, slot = 3, isSelected = false });
+    }
+
     /// <summary>
     /// Call this method to add a Spell to the player spell book
     /// TODO: Change this to add an int with the slot to place said spell
     /// </summary>
     /// <param name="newSpell"></param>
-    public virtual void AddSpell(Spell spell)
+    public void AddSpell(Spell spell)
     {
         // Firstly check if Spell is already there
-        if (CharacterEquipedSpells.Exists(spell => spell.name == spell.name)) return;
+        if (CharacterSpells.Exists(s => s.SpellName == spell.SpellName)) return;
 
-        // TODO: Check if the limit is already passed, limit it to 3, and keep the order even if it's deleted. Maybe needs to change to array
+        // Spell doesnst exist in the List
+        this.CharacterSpells.Add(spell);
+    }
 
-        this.CharacterEquipedSpells.Add(spell);
+    /// <summary>
+    /// Call this method to equip a spell
+    /// </summary>
+    /// <param name="spell">Spell to add</param>
+    public void EquipSpell(Spell spell)
+    {
+        bool alreadyEquipped = CharacterEquippedSpells.Any(s => s.spell != null && s.spell.SpellName == spell.SpellName);
 
-        // If it's the first spell set as selected and save it as an object
-        if (CharacterEquipedSpells.Count == 1)
+        // Check if spell is already equipped
+        if (alreadyEquipped)
         {
-            CharacterEquipedSpells[0].Select();
-            SpellManager.Instance.selectedSpell = spell;
+            Debug.Log($"{spell.SpellName} is already equipped");
+            return;
         }
-        // Debug.Log("Added: " + spell.name);
+
+        bool hasAnyEquipped = CharacterEquippedSpells.Any(s => s.spell != null);
+
+        // Find first empty slot
+        for (int i = 0; i < 3; i++)
+        {
+            if (SlotIsEmpty(i))
+            {
+                SpellEntry entry = new SpellEntry
+                {
+                    slot = i,
+                    spell = spell,
+                    isSelected = !hasAnyEquipped
+                };
+
+                SetSlot(i, entry);
+
+                return;
+            }
+        }
     }
 
     /// <summary>
@@ -91,9 +129,20 @@ public class PlayerData : ScriptableObject, ICharacter
     /// </summary>
     /// <param name="slot">Spell slot in the player spell book</param>
     /// <param name="spell">Spell to remove</param>
-    public void RemoveSpell(int slot, Spell spell)
+    public void UnequipSpell(int slot)
     {
+        SpellEntry entry = GetSlot(slot);
 
+        if (entry.spell == null)
+            return;
+
+        bool wasSelected = entry.isSelected;
+
+        entry.spell = null;
+        entry.isSelected = false;
+        SetSlot(slot, entry);
+
+        if (wasSelected) SelectNextAvailableSpell();
     }
 
     /// <summary>
@@ -102,24 +151,84 @@ public class PlayerData : ScriptableObject, ICharacter
     /// <param name="slot">Spell slot in the player spell book</param>
     /// <param name="spellToRemove">Spell to remove</param>
     /// <param name="spellToAdd">Spell to add</param>
-    public void SwapSpell(int slot, Spell spellToRemove, Spell spellToAdd)
+    public void SwapSpell(Spell spellToRemove, Spell spellToAdd)
     {
-        RemoveSpell(slot, spellToRemove);
-        AddSpell(spellToAdd);
+        //UnequipSpell(spellToRemove);
+        //AddSpell(spellToAdd);
     }
 
-    public Spell GetActiveSpell()
+    public void SwapActiveSpell(SpellEntry activeSpell, SpellEntry newActiveSpell)
     {
-        if (characterEquipedSpells == null || characterEquipedSpells.Count == 0)
-            return null;
+        if (activeSpell.spell == null)
+        {
+            Debug.Log("Active spell is null");
+        }
+        else if (newActiveSpell.spell == null)
+        {
+            Debug.Log("New active Spell is null");
+        } else
+        {
+            Debug.LogWarning($"Swaping {activeSpell.spell.SpellName} with {newActiveSpell.spell.SpellName}");            
+            activeSpell.Deselect();
+            newActiveSpell.Select();
 
-        return characterEquipedSpells[selectedSpellIndex];
+            SetSlot(activeSpell.slot, activeSpell);
+            SetSlot(newActiveSpell.slot, newActiveSpell);
+
+            foreach(SpellEntry entry in CharacterEquippedSpells)
+            {
+                if (entry.spell  != null)
+                    Debug.Log($"<Color=green>{entry.spell.SpellName}: {entry.isSelected}</Color>");
+            }
+            // TODO: Update Spell bar
+        }
     }
 
     public void ClearSpellList()
     {
-        characterEquipedSpells = new List<Spell>();
+        characterSpells = new List<Spell>();
     }
+
+    #region Auxiliary methods
+    public SpellEntry GetSlot(int slot)
+    {
+        //Debug.LogWarning($"CharacterEquippedSpells[{slot}].IsEmpty: {CharacterEquippedSpells[slot].IsEmpty}");
+        return CharacterEquippedSpells[slot];
+    }
+
+    public void SetSlot(int slot, SpellEntry entry)
+    {
+        CharacterEquippedSpells[slot] = entry;
+    }
+
+    public bool SlotIsEmpty(int slot)
+    {
+        return CharacterEquippedSpells[slot].spell == null;
+    }
+
+    public int GetActiveSpellIndex()
+    {
+        SpellEntry activeSpell = CharacterEquippedSpells.Find(s => s.isSelected == true);
+
+        if (activeSpell.spell != null) return activeSpell.slot;
+        else return -1;
+    }
+
+    private void SelectNextAvailableSpell()
+    {
+        for (int i = 0; i < CharacterEquippedSpells.Count; i++)
+        {
+            SpellEntry entry = GetSlot(i);
+
+            if (entry.spell != null)
+            {
+                entry.isSelected = true;
+                SetSlot(i, entry);
+                return;
+            }
+        }
+    }
+    #endregion
     #endregion
 
     #region Inventory Methods

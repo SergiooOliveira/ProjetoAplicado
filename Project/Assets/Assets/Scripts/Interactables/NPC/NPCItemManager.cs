@@ -37,7 +37,7 @@ public class NPCItemManager : MonoBehaviour
     {
         if (npc == null)
         {
-            Debug.Log($"NPC {this.name} is null");
+            Debug.Log($"NPC {npc.npcData.NPCName} is null");
             return;
         }
 

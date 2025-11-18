@@ -1,7 +1,6 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEngine.EventSystems.EventTrigger;
 
 public class NPCitemSlot : MonoBehaviour
 {
@@ -214,5 +213,4 @@ public class NPCitemSlot : MonoBehaviour
             }
         }
     }
-
 }

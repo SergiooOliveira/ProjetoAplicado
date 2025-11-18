@@ -76,7 +76,7 @@ public class EnemyData : ScriptableObject, IEnemy
     public List<Resistance> CharacterResistances => characterResistances;
 
     // *----- Equipables and Inventory -----*
-    public List<Spell> CharacterEquipedSpells => characterEquipedSpells;
+    public List<Spell> CharacterSpells => characterEquipedSpells;
     public List<ItemEntry> CharacterInventory => characterInventory;
     public List<EquipmentEntry> CharacterEquipment => characterEquipedItems;
     public int CharacterGold => characterGold;
@@ -93,14 +93,23 @@ public class EnemyData : ScriptableObject, IEnemy
     /// <exception cref="NotSupportedException">Not supported</exception>
     public void AddSpell(Spell spell)
     {
-        throw new NotSupportedException ("This class does not support adding spells");
+        throw new NotSupportedException("This class does not support adding spells");
     }
 
     /// <summary>
     /// Do not use this method
     /// </summary>
     /// <exception cref="NotSupportedException">Not supported</exception>
-    public void RemoveSpell(int slot, Spell spell)
+    public void EquipSpell(Spell spell)
+    {
+        throw new NotSupportedException("This class does not support equipping spells");
+    }
+
+    /// <summary>
+    /// Do not use this method
+    /// </summary>
+    /// <exception cref="NotSupportedException">Not supported</exception>
+    public void UnequipSpell(int slot)
     {
         throw new NotSupportedException("This class does not support removing spells");
     }
@@ -109,7 +118,7 @@ public class EnemyData : ScriptableObject, IEnemy
     /// Do not use this method
     /// </summary>
     /// <exception cref="NotSupportedException">Not supported</exception>
-    public void SwapSpell(int slot, Spell spellToRemove, Spell spellToAdd)
+    public void SwapSpell(Spell spellToRemove, Spell spellToAdd)
     {
         throw new NotSupportedException("This class does not support swapping spells");
     }

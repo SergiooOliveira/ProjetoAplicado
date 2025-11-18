@@ -1,58 +1,66 @@
-using NUnit.Framework;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class SpellManager : MonoBehaviour
 {
-    public static SpellManager Instance;
-    
-    public List<Spell> Spells { get; private set; }
+    [SerializeField] private List<Transform> slots;
 
-    public Transform spellDisplayCanvas;
+    private PlayerData playerData;
 
-    // Current spell selected
-    public Spell selectedSpell = null;
-
-    public void Awake()
+    private void Awake()
     {
-        if (Instance != null) Destroy(gameObject);
-        else Instance = this;
-
-        // Load all the Spells from Resource file
-        Spells = new List<Spell>(Resources.LoadAll<Spell>("Spells"));
+        playerData = GetComponentInParent<Player>().RunTimePlayerData;
+        SetAllSlots();
     }
 
-    /// <summary>
-    /// Call this method to see all the equipped spells in the console
-    /// </summary>
-    public void ShowEquippedSpells()
+    public void SetAllSlots()
     {
-        foreach (Player player in GameManager.Instance.Players)
+        DisableAllSlots();
+        
+        SetSlot(0);
+        SetSlot(1);
+        SetSlot(2);        
+    }
+
+    private void SetSlot(int index)
+    {
+        Debug.LogWarning($"Trying to set: {index}");
+
+        Image img = slots[index].GetComponentInChildren<Image>();
+        TMP_Text tb = slots[index].GetComponentInChildren<TMP_Text>();
+
+        if (img == null || tb == null)
         {
-            foreach (Spell spell in player.RunTimePlayerData.CharacterEquipedSpells)
-                Debug.Log("Equipped: " + spell.name);
+            Debug.LogWarning($"{img} is null or {tb} is null on {index}");
+            return;
+        }
+        else
+        {
+            Debug.LogWarning($"Everything ok for {index}");
+        }
+
+
+        SpellEntry entry = playerData.GetSlot(index);
+
+        if (entry.spell != null)
+        {            
+            Debug.Log($"{entry.spell.SpellName} is not null");
+         
+            img.enabled = true;
+            img.sprite = entry.spell.SpellPrefab.GetComponent<SpriteRenderer>().sprite;
+            tb.text = entry.spell.SpellName;
+        }
+        else
+        {
+            img.enabled = false;
+            tb.text = "No spell equipped";
         }
     }
 
-    /// <summary>
-    /// Call this method to get the spell object
-    /// </summary>
-    /// <param name="name">Spell name</param>
-    /// <returns>Spell</returns>
-    public Spell GetSpell(string name)
+    private void DisableAllSlots()
     {
-        return Spells.Find(spell => spell.name == name);
+        
     }
-
-    // TODO: Change this to another manager, either GameManager or UiManager
-    #region UI
-
-    //public void UpdateSpellDisplayCanvas()
-    //{
-    //    foreach (Spell spell in Player.Instance.EquipedSpells)
-    //        spellDisplayCanvas.GetComponentInChildren<Image>();
-    //}
-
-    #endregion
 }
