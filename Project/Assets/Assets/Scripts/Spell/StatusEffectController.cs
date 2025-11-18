@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -26,7 +25,7 @@ public class StatusEffectController : MonoBehaviour
         // Aplica imediatamente o efeito
         ApplyDebuffEffect(type, value);
 
-        Debug.Log($"{gameObject.name} recebeu debuff {type} por {duration}s");
+        Debug.Log($"<Color=red>{gameObject.name}</Color><Color=blue> recebeu debuff {type} por {duration}s</color>");
     }
 
     private void ApplyDebuffEffect(DebuffType type, float value)

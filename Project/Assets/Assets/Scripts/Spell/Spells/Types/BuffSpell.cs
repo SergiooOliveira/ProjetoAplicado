@@ -12,6 +12,7 @@ public class BuffSpell : Spell
 
     public override void Cast(Vector3 position, Vector2 direction, Player player)
     {
+        Debug.Log("BuffSpell");
         if (SpellPrefab == null)
         {
             Debug.LogWarning($"Spell prefab is null in {SpellName}");

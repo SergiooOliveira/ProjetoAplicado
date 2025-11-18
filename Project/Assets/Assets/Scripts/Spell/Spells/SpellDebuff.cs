@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(CircleCollider2D))]
@@ -13,7 +14,7 @@ public class SpellDebuff : MonoBehaviour
     private float lifeTimer;
 
     // Called by the DebuffSpell when instantiated
-    public void Initialize(DebuffSpell spell, Player player)
+    public void Initialize(DebuffSpell spell, Vector2 direction, Player player)
     {
         spellData = spell;
         playerData = player;
@@ -35,46 +36,32 @@ public class SpellDebuff : MonoBehaviour
         {
             rb.gravityScale = 0f;
             rb.freezeRotation = true;
+            rb.linearVelocity = direction.normalized * spellData.SpellTravelSpeed;
         }
+
+        StartCoroutine(LifetimeRoutine());
     }
 
-    private void Update()
+    public IEnumerator LifetimeRoutine()
     {
-        // Timer for auto-destroy if duration set
-        lifeTimer -= Time.deltaTime;
-        if (lifeTimer <= 0f)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        // Move the projectile by setting velocity (use SpellTravelSpeed)
-        if (rb != null && spellData != null)
-        {
-            rb.linearVelocity = moveDirection.normalized * spellData.SpellTravelSpeed;
-        }
-    }
-
-    /// <summary>
-    /// Call this right after Initialize to set movement direction.
-    /// </summary>
-    public void SetDirection(Vector2 dir)
-    {
-        if (dir.sqrMagnitude > 0.0001f)
-            moveDirection = dir.normalized;
+        Debug.Log("Starting lifetime routine");
+        yield return new WaitForSeconds(lifeTimer);
+        Destroy(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // Only affect enemies
-        if (collision.CompareTag("Enemy") && collision.TryGetComponent<Enemy>(out Enemy enemy))
-        {
-            ApplyDebuff(enemy);
-            Destroy(gameObject);
-        }
-
-        // Optionally, ignore Player, Grid, etc.
         if (collision.CompareTag("Player") || collision.CompareTag("Grid")) return;
+
+        // Only affect enemies
+        if (collision.CompareTag("Enemy"))
+        {
+            if (collision.TryGetComponent<Enemy>(out Enemy enemy))
+            {
+                ApplyDebuff(enemy);
+                Destroy(gameObject);
+            }
+        }
     }
 
     private void ApplyDebuff(Enemy enemy)

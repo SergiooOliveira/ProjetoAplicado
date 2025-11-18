@@ -2,50 +2,29 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SpellManager : MonoBehaviour
-{ 
-    public List<Spell> Spells { get; private set; }
+{
+    [SerializeField] GameObject slot1;
+    [SerializeField] GameObject slot2;
+    [SerializeField] GameObject slot3;
 
-    public Transform spellDisplayCanvas;
+    private PlayerData playerData;
 
-    // Current spell selected
-    public Spell selectedSpell = null;
-
-    public void Awake()
+    private void Awake()
     {
-        // Load all the Spells from Resource file
-        Spells = new List<Spell>(Resources.LoadAll<Spell>("Spells"));
+        playerData = GetComponentInParent<Player>().RunTimePlayerData;
     }
 
-    /// <summary>
-    /// Call this method to see all the equipped spells in the console
-    /// </summary>
-    public void ShowEquippedSpells()
+    public void SetAllSlots()
     {
-        foreach (Player player in GameManager.Instance.Players)
-        {
-            foreach (Spell spell in player.RunTimePlayerData.CharacterSpells)
-                Debug.Log($"{spell.name}: Equipped: {spell.IsSpellEquiped}, Selected: {spell.IsSpellSelected}");
-        }
+        DisableAllSlots();
+
+        
     }
 
-    /// <summary>
-    /// Call this method to get the spell object
-    /// </summary>
-    /// <param name="name">Spell name</param>
-    /// <returns>Spell</returns>
-    public Spell GetSpell(string name)
+    private void DisableAllSlots()
     {
-        return Spells.Find(spell => spell.name == name);
+        slot1.SetActive(false);
+        slot2.SetActive(false);
+        slot3.SetActive(false);
     }
-
-    // TODO: Change this to another manager, either GameManager or UiManager
-    #region UI
-
-    //public void UpdateSpellDisplayCanvas()
-    //{
-    //    foreach (Spell spell in Player.Instance.EquipedSpells)
-    //        spellDisplayCanvas.GetComponentInChildren<Image>();
-    //}
-
-    #endregion
 }

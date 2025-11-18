@@ -5,6 +5,7 @@ public class HomingMissilesSpell : ProjectileSpell
 {
     public override void Cast(Vector3 position, Vector2 direction, Player player)
     {
+        Debug.Log("HomingMissilesSpell");
         if (SpellPrefab == null)
         {
             Debug.Log("Spell prefab is null in HomingMissilesSpell");

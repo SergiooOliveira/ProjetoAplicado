@@ -106162,7 +106162,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1924759768}
   - component: {fileID: 1924759767}
-  - component: {fileID: 1924759766}
   - component: {fileID: 1924759770}
   - component: {fileID: 1924759769}
   m_Layer: 0
@@ -106172,20 +106171,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1924759766
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1924759765}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87fd93abfe74cc64794f1ce745b144be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SpellManager
-  spellDisplayCanvas: {fileID: 0}
-  selectedSpell: {fileID: 0}
 --- !u!114 &1924759767
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106261,6 +106246,14 @@ PrefabInstance:
       propertyPath: spellReward
       value: 
       objectReference: {fileID: 11400000, guid: 669f032df5a50674290136ae68fff637, type: 2}
+    - target: {fileID: 3288258466330080081, guid: ba83de55d5070f44a8c63fd7a72775eb, type: 3}
+      propertyPath: chestData.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3288258466330080081, guid: ba83de55d5070f44a8c63fd7a72775eb, type: 3}
+      propertyPath: spellReward.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7783078003308098956, guid: ba83de55d5070f44a8c63fd7a72775eb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.4465785

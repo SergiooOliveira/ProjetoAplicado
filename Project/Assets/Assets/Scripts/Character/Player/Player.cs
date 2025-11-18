@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -28,8 +29,7 @@ public class Player : MonoBehaviour
     public void Initialize()
     {
         runTimePlayerData.CharacterHp.Initialize();
-        runTimePlayerData.CharacterMana.Initialize();
-        //runTimePlayerData.ClearSpellList();
+        runTimePlayerData.CharacterMana.Initialize();        
 
         // Initialize item list
         foreach (ItemEntry item in runTimePlayerData.CharacterInventory)
@@ -55,7 +55,7 @@ public class Player : MonoBehaviour
         }
 
         runTimePlayerData.EquipmentStats();
-        //runTimePlayerData.SeeAllSpells();
+
     }
 
     /// <summary>

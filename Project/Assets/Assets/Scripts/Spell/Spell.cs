@@ -22,10 +22,6 @@ public abstract class Spell : ScriptableObject, ISpell
     [System.NonSerialized] private float lastCastTime;
     [System.NonSerialized] private bool hasBeenCastOnce = false;
 
-    [Header("Conditions")]    
-    [SerializeField] private bool isSpellEquiped;
-    [SerializeField] private bool isSpellSelected;
-
     [Header("Status Effects")]
     [SerializeField] private bool spellHasCC;
     [SerializeField] private bool spellHasBuff;
@@ -48,9 +44,6 @@ public abstract class Spell : ScriptableObject, ISpell
     public int SpellCost => spellCost;
     public float SpellDuration => spellDuration;
 
-    public bool IsSpellEquiped => isSpellEquiped;
-    public bool IsSpellSelected => isSpellSelected;
-
     public bool SpellHasCC => spellHasCC;
     public bool SpellHasBuff => spellHasBuff;
     public bool SpellHasDebuff => spellHasDebuff;
@@ -61,15 +54,6 @@ public abstract class Spell : ScriptableObject, ISpell
     {
         if (player == null)
             Debug.Log("Player is null inside Cast in Spell.cs");
-
-        //GameObject instance = Instantiate(spellPrefab, position, Quaternion.identity);
-
-        //if (instance.TryGetComponent<SpellProjectile>(out SpellProjectile projectile))
-        //    projectile.Initialize(this, direction);
-        //else if (instance.TryGetComponent<SpellAoE>(out SpellAoE aoe))
-        //    aoe.Initialize(this);
-        //else if (instance.TryGetComponent<SpellBuff>(out SpellBuff buff))
-        //    buff.Initialize(this);
     }
 
     /// <summary>
@@ -89,32 +73,6 @@ public abstract class Spell : ScriptableObject, ISpell
     {
         lastCastTime = Time.time;
         hasBeenCastOnce = true;
-    }
-
-    public void Equip()
-    {
-        isSpellEquiped = true;
-    }
-
-    public void Unequip()
-    {
-        isSpellEquiped = false;
-    }
-
-    /// <summary>
-    /// Call this method to select this Spell
-    /// </summary>
-    public void Select()
-    {
-        isSpellSelected = true;
-    }
-
-    /// <summary>
-    /// Call this method to deselect this Spell
-    /// </summary>
-    public void Deselect()
-    {
-        isSpellSelected = false;
     }
 
     /// <summary>
