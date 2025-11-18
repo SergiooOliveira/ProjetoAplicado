@@ -10,6 +10,8 @@ public class SpellInventoryController : MonoBehaviour
     [SerializeField] private Transform slot2;
     [SerializeField] private Transform slot3;
 
+    [SerializeField] private SpellManager spellManager;
+
     private PlayerData player;
 
     private void Awake()
@@ -19,10 +21,6 @@ public class SpellInventoryController : MonoBehaviour
 
     private void OnEnable()
     {
-        /*
-         * Delete list
-         * Show playerData available spells and the equipped ones
-         */
         UpdateUI();
     }
 
@@ -53,17 +51,12 @@ public class SpellInventoryController : MonoBehaviour
         {
             Destroy(i.gameObject);
         }
-
-        //foreach (Transform i in spellEquippedList)
-        //{
-        //    Destroy(i.gameObject);
-        //}
     }
 
     public void UpdateUI()
     {
         DeleteList();
         SetAllSlot();
+        spellManager.SetAllSlots();
     }
-
 }

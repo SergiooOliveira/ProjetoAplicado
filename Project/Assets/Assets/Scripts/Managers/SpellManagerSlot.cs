@@ -14,10 +14,14 @@ public class SpellManagerSlot : MonoBehaviour, IPointerClickHandler
     private SpellEntry entry;
 
     private SpellInventoryController spellInventoryController;
-
+    
     private void Awake()
     {
-        playerData = GetComponentInParent<Player>().RunTimePlayerData;
+        playerData = GetComponentInParent<Player>().RunTimePlayerData;        
+    }
+
+    private void Start()
+    {
         spellInventoryController = GetComponentInParent<SpellInventoryController>();
     }
 
@@ -69,6 +73,7 @@ public class SpellManagerSlot : MonoBehaviour, IPointerClickHandler
 
             SeeAllSpells();
             spellInventoryController.UpdateUI();
+            //spellManager.SetAllSlots();
         }
     }
 

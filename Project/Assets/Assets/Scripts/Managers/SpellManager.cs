@@ -16,9 +16,7 @@ public class SpellManager : MonoBehaviour
     }
 
     public void SetAllSlots()
-    {
-        DisableAllSlots();
-        
+    {        
         SetSlot(0);
         SetSlot(1);
         SetSlot(2);        
@@ -41,7 +39,6 @@ public class SpellManager : MonoBehaviour
             Debug.LogWarning($"Everything ok for {index}");
         }
 
-
         SpellEntry entry = playerData.GetSlot(index);
 
         if (entry.spell != null)
@@ -50,6 +47,10 @@ public class SpellManager : MonoBehaviour
          
             img.enabled = true;
             img.sprite = entry.spell.SpellPrefab.GetComponent<SpriteRenderer>().sprite;
+            
+            if (entry.isSelected) img.color = Color.blue;
+            else img.color = Color.white;
+            
             tb.text = entry.spell.SpellName;
         }
         else
@@ -57,10 +58,5 @@ public class SpellManager : MonoBehaviour
             img.enabled = false;
             tb.text = "No spell equipped";
         }
-    }
-
-    private void DisableAllSlots()
-    {
-        
     }
 }
