@@ -109,7 +109,7 @@ public class EnemyData : ScriptableObject, IEnemy
     /// Do not use this method
     /// </summary>
     /// <exception cref="NotSupportedException">Not supported</exception>
-    public void UnequipSpell(Spell spell)
+    public void UnequipSpell(int slot)
     {
         throw new NotSupportedException("This class does not support removing spells");
     }

@@ -13,7 +13,6 @@ public class DebuffSpell : Spell
 
     public override void Cast(Vector3 position, Vector2 direction, Player player)
     {
-        Debug.Log("DebuffSpell");
         if (SpellPrefab == null)
         {
             Debug.LogWarning($"Spell prefab is null in {SpellName}");

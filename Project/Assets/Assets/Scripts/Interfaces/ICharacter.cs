@@ -33,7 +33,7 @@ public interface ICharacter
     #region Spell Methods
     void AddSpell(Spell spell); // To add a spell to the characterList
     void EquipSpell(Spell spell);
-    void UnequipSpell(Spell spell);
+    void UnequipSpell(int slot);
     void SwapSpell(Spell spellToRemove, Spell spellToAdd);
     #endregion
 

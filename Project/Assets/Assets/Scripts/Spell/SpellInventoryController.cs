@@ -6,6 +6,10 @@ public class SpellInventoryController : MonoBehaviour
     [SerializeField] private Transform spellEquippedList;
     [SerializeField] private GameObject spellSlot;
 
+    [SerializeField] private Transform slot1;
+    [SerializeField] private Transform slot2;
+    [SerializeField] private Transform slot3;
+
     private PlayerData player;
 
     private void Awake()
@@ -19,8 +23,7 @@ public class SpellInventoryController : MonoBehaviour
          * Delete list
          * Show playerData available spells and the equipped ones
          */
-        DeleteList();
-        SetAllSlot();
+        UpdateUI();
     }
 
     private void SetAllSlot()
@@ -34,12 +37,13 @@ public class SpellInventoryController : MonoBehaviour
                 sms.SetSlot(spell);
             }
 
-            for (int i = 0; i < player.CharacterEquippedSpells.Count; i++)
-            {
-                GameObject newSlot = Instantiate(spellSlot, spellEquippedList);
-                SpellManagerSlot sms = newSlot.GetComponent<SpellManagerSlot>();
-                sms.SetSlot(player.CharacterEquippedSpells[i]);
-            }
+            SpellManagerSlot s1 = slot1.GetComponent<SpellManagerSlot>();
+            SpellManagerSlot s2 = slot2.GetComponent<SpellManagerSlot>();
+            SpellManagerSlot s3 = slot3.GetComponent<SpellManagerSlot>();
+
+            s1.SetSlot(player.CharacterEquippedSpells[0]);
+            s2.SetSlot(player.CharacterEquippedSpells[1]);
+            s3.SetSlot(player.CharacterEquippedSpells[2]);
         }
     }
 
@@ -50,11 +54,16 @@ public class SpellInventoryController : MonoBehaviour
             Destroy(i.gameObject);
         }
 
-        foreach (Transform i in spellEquippedList)
-        {
-            Destroy(i.gameObject);
-        }
+        //foreach (Transform i in spellEquippedList)
+        //{
+        //    Destroy(i.gameObject);
+        //}
     }
 
+    public void UpdateUI()
+    {
+        DeleteList();
+        SetAllSlot();
+    }
 
 }

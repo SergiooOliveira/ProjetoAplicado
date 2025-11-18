@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -93,16 +94,28 @@ public class PlayerData : ScriptableObject, ICharacter
     /// <param name="spell">Spell to add</param>
     public void EquipSpell(Spell spell)
     {
-        // Find first empty slot
-        for (int i = 0; i < CharacterEquippedSpells.Count; i++)
+        bool alreadyEquipped = CharacterEquippedSpells.Any(s => s.spell != null && s.spell.SpellName == spell.SpellName);
+
+        // Check if spell is already equipped
+        if (alreadyEquipped)
         {
-            if (CharacterEquippedSpells[i].IsEmpty)
+            Debug.Log($"{spell.SpellName} is already equipped");
+            return;
+        }
+
+        // Find first empty slot
+        for (int i = 0; i < 3; i++)
+        {
+            if (SlotIsEmpty(i))
             {
-                // Fill slot
-                SpellEntry entry = CharacterEquippedSpells[i];
-                entry.spell = spell;
-                entry.isSelected = (i == 0);
-                CharacterEquippedSpells[i] = entry;
+                SpellEntry entry = new SpellEntry
+                {
+                    slot = i,
+                    spell = spell,
+                    isSelected = false
+                };
+
+                SetSlot(i, entry);
 
                 return;
             }
@@ -114,9 +127,17 @@ public class PlayerData : ScriptableObject, ICharacter
     /// </summary>
     /// <param name="slot">Spell slot in the player spell book</param>
     /// <param name="spell">Spell to remove</param>
-    public void UnequipSpell(Spell spell)
+    public void UnequipSpell(int slot)
     {
+        SpellEntry entry = GetSlot(slot);
 
+        if (entry.spell != null)
+        {
+            entry.spell = null;
+            entry.isSelected = false;
+
+            SetSlot(slot, entry);
+        }
     }
 
     /// <summary>
@@ -127,16 +148,8 @@ public class PlayerData : ScriptableObject, ICharacter
     /// <param name="spellToAdd">Spell to add</param>
     public void SwapSpell(Spell spellToRemove, Spell spellToAdd)
     {
-        UnequipSpell(spellToRemove);
-        AddSpell(spellToAdd);
-    }
-
-    public int GetActiveSpellIndex()
-    {
-        SpellEntry activeSpell = CharacterEquippedSpells.Find(s => s.isSelected == true);
-
-        if (activeSpell.spell != null) return activeSpell.slot;
-        else return -1;
+        //UnequipSpell(spellToRemove);
+        //AddSpell(spellToAdd);
     }
 
     public void SwapActiveSpell(SpellEntry activeSpell, SpellEntry newActiveSpell)
@@ -160,6 +173,31 @@ public class PlayerData : ScriptableObject, ICharacter
     {
         characterSpells = new List<Spell>();
     }
+
+    #region Auxiliary methods
+    public SpellEntry GetSlot(int slot)
+    {
+        return CharacterEquippedSpells[slot];
+    }
+
+    public void SetSlot(int slot, SpellEntry entry)
+    {
+        CharacterEquippedSpells[slot] = entry;
+    }
+
+    public bool SlotIsEmpty(int slot)
+    {
+        return CharacterEquippedSpells[slot].spell == null;
+    }
+
+    public int GetActiveSpellIndex()
+    {
+        SpellEntry activeSpell = CharacterEquippedSpells.Find(s => s.isSelected == true);
+
+        if (activeSpell.spell != null) return activeSpell.slot;
+        else return -1;
+    }
+    #endregion
     #endregion
 
     #region Inventory Methods
