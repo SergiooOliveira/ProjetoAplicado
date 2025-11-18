@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyAnimationEvents : MonoBehaviour
@@ -26,6 +27,17 @@ public class EnemyAnimationEvents : MonoBehaviour
         {
             enemy.OnDeathAnimationEnd();
         }
+    }
+
+    // Called by animation with a string parameter = hitbox name
+    public void EnableHitbox(string hitboxName)
+    {
+        enemy.EnableHitbox(hitboxName);
+    }
+
+    public void DisableHitbox(string hitboxName)
+    {
+        enemy.DisableHitbox(hitboxName);
     }
 
     #endregion

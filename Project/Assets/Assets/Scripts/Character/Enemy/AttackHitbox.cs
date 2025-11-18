@@ -1,25 +1,24 @@
 using UnityEngine;
 
-public class SpellAttack : MonoBehaviour
+public class AttackHitbox : MonoBehaviour
 {
-    #region Fields
-
     [HideInInspector] public Enemy enemy;
     private bool active = false;
 
     private Collider2D col;
 
-    #endregion
-
     private void Awake()
     {
         col = GetComponent<Collider2D>();
         col.isTrigger = true;
+
+        if (enemy == null)
+        {
+            enemy = GetComponentInParent<Enemy>();
+        }
     }
 
-    #region Animation Events
 
-    // This method will be called by the animation event
     public void EnableHitbox()
     {
         active = true;
@@ -53,26 +52,4 @@ public class SpellAttack : MonoBehaviour
             enemy.ApplyDamage(collision);
         }
     }
-
-    public void AttackEnd()
-    {
-        Destroy(gameObject);
-    }
-
-    #endregion
-
-    #region Gizmos
-
-    void OnDrawGizmos()
-    {
-        if (active)
-            Gizmos.color = Color.red;
-        else
-            Gizmos.color = Color.green;
-
-        if (col != null)
-            Gizmos.DrawWireCube(col.bounds.center, col.bounds.size);
-    }
-
-    #endregion
 }
