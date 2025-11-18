@@ -995,6 +995,7 @@ GameObject:
   - component: {fileID: 7203133891514572787}
   - component: {fileID: 7335400933571608863}
   - component: {fileID: 313564346540991587}
+  - component: {fileID: 808052536672017740}
   m_Layer: 5
   m_Name: SpellList
   m_TagString: Untagged
@@ -1016,10 +1017,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 7006418589364227240}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1000, y: 1000}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 500, y: -368.75}
+  m_SizeDelta: {x: 950, y: 650}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7335400933571608863
 CanvasRenderer:
@@ -1042,7 +1043,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 0.735849, g: 0.36445352, b: 0.36445352, a: 0.392}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1059,6 +1060,30 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &808052536672017740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1050542943349442646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 25
+    m_Right: 25
+    m_Top: 10
+    m_Bottom: 10
+  m_ChildAlignment: 0
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 120, y: 150}
+  m_Spacing: {x: 10, y: 10}
+  m_Constraint: 0
+  m_ConstraintCount: 2
 --- !u!1 &1058800776513015736
 GameObject:
   m_ObjectHideFlags: 0
@@ -1722,6 +1747,7 @@ GameObject:
   - component: {fileID: 5081082384725090243}
   - component: {fileID: 6401745299138283304}
   - component: {fileID: 6520694590286349093}
+  - component: {fileID: 3119190881803246229}
   m_Layer: 5
   m_Name: EquippedSpells
   m_TagString: Untagged
@@ -1743,10 +1769,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 7006418589364227240}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1000, y: 1000}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 500, y: -856.25}
+  m_SizeDelta: {x: 455.2389, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6401745299138283304
 CanvasRenderer:
@@ -1769,7 +1795,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 0.36488095, g: 0.23073156, b: 0.8018868, a: 0.392}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1786,6 +1812,32 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3119190881803246229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1660388718330708469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 25
+    m_Right: 25
+    m_Top: 25
+    m_Bottom: 25
+  m_ChildAlignment: 3
+  m_Spacing: 25
+  m_ChildForceExpandWidth: 0
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
 --- !u!1 &1747450761856290251
 GameObject:
   m_ObjectHideFlags: 0
@@ -5013,6 +5065,7 @@ GameObject:
   - component: {fileID: 7582872504845672103}
   - component: {fileID: 3712976938952762574}
   - component: {fileID: 4306548313041422546}
+  - component: {fileID: 4784383173511588587}
   m_Layer: 5
   m_Name: SwapSpellUI
   m_TagString: Untagged
@@ -5094,6 +5147,32 @@ MonoBehaviour:
   spellAvailableList: {fileID: 7203133891514572787}
   spellEquippedList: {fileID: 5081082384725090243}
   spellSlot: {fileID: 3452429740203318073, guid: f78fd0fddc6578848938bd3f6849ab56, type: 3}
+--- !u!114 &4784383173511588587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4386921943016176690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 25
+    m_Right: 25
+    m_Top: 25
+    m_Bottom: 25
+  m_ChildAlignment: 4
+  m_Spacing: 25
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
 --- !u!1 &4503258508449458913
 GameObject:
   m_ObjectHideFlags: 0
