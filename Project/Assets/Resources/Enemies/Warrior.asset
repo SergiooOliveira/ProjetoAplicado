@@ -18,6 +18,7 @@ MonoBehaviour:
   characterDescription: A mighty warrior destined to walk the land for all eternity
   characterType: 0
   characterSpawnLevel: 0
+  characterCategory: 0
   attacks:
   - triggerName: Attack1
     damage: 5
@@ -27,7 +28,7 @@ MonoBehaviour:
     damage: 10
     weight: 30
     attackType: 0
-  spawnCount: 1
+  spawnCount: 100
   distanceSpawn: 5
   respawnTime: 5
   respawnDistance: 10

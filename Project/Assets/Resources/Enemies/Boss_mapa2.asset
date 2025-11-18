@@ -10,36 +10,36 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fd632307590d5c54a966560ca3cc38c7, type: 3}
-  m_Name: CyclopeBat
+  m_Name: Boss_mapa2
   m_EditorClassIdentifier: 
-  characterName: Cyclope Bat
-  characterLevel: 2
-  characterPrefab: {fileID: 7057437063388147542, guid: b4f115b0e6ac9a84ca0ac442aafa1a23, type: 3}
-  characterDescription: A mighty warrior destined to walk the land for all eternity
+  characterName: Skyrath
+  characterLevel: 20
+  characterPrefab: {fileID: 7057437063388147542, guid: 3c05ca901b5e6ac4587c6c0d7e5db069, type: 3}
+  characterDescription: description
   characterType: 1
-  characterSpawnLevel: 0
-  characterCategory: 2
+  characterSpawnLevel: 1
+  characterCategory: 3
   attacks:
   - triggerName: Attack1
-    damage: 5
+    damage: 15
     weight: 100
     attackType: 1
-  spawnCount: 100
-  distanceSpawn: 5
+  spawnCount: 1
+  distanceSpawn: 10
   respawnTime: 5
-  respawnDistance: 10
+  respawnDistance: 1
   characterHp:
-    max: 100
+    max: 750
   characterXp:
     max: 0
   characterMana:
-    max: 100
-  characterMovementSpeed: 6
-  characterAttackSpeed: 6
-  characterAttackPower: 6
-  characterDefense: 6
+    max: 0
+  characterMovementSpeed: 10
+  characterAttackSpeed: 10
+  characterAttackPower: 10
+  characterDefense: 10
   characterResistances: []
   characterEquipedSpells: []
   characterInventory: []
   characterEquipedItems: []
-  characterGold: 10
+  characterGold: 200
