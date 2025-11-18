@@ -3,9 +3,6 @@ using UnityEngine;
 
 public class SpellManager : MonoBehaviour
 {
-    [SerializeField] GameObject slot1;
-    [SerializeField] GameObject slot2;
-    [SerializeField] GameObject slot3;
 
     private PlayerData playerData;
 
@@ -23,8 +20,6 @@ public class SpellManager : MonoBehaviour
 
     private void DisableAllSlots()
     {
-        slot1.SetActive(false);
-        slot2.SetActive(false);
-        slot3.SetActive(false);
+        
     }
 }

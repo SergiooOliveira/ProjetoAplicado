@@ -166,7 +166,7 @@ public class PlayerData : ScriptableObject, ICharacter
             Debug.Log($"Swaping {activeSpell.spell.SpellName} with {newActiveSpell.spell.SpellName}");
             activeSpell.Deselect();
             newActiveSpell.Select();
-        }    
+        }
     }
 
     public void ClearSpellList()
