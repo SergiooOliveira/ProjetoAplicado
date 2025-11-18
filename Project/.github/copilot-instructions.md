@@ -8,7 +8,7 @@
   - Layers:
     - Default, TransparentFX, Ignore Raycast, Player, Water, UI, Spell, Ground, Boss, Buff
 - Active game object:
-  - Name: Player(Clone)
-  - Tag: Player
-  - Layer: Player
+  - Name: Tilemap
+  - Tag: Untagged
+  - Layer: Ground
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->

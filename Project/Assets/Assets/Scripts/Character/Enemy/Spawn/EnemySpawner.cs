@@ -229,14 +229,38 @@ public class EnemySpawner : MonoBehaviour
             return; // normal enemies never use debugMode
 
         string bossKey = $"{enemy.RunTimeData.CharacterSpawnLevel}_{enemy.RunTimeData.CharacterName}";
+        string bossName = enemy.RunTimeData.CharacterName; // codigo para o mudar de mapa
 
         if (debugMode)
         {
             // Just blocks in session
             sessionDeadBosses.Add(bossKey);
             Debug.Log($"[DEBUG] Boss {enemy.RunTimeData.CharacterName} morto (somente na sess�o).");
+        
+            // codigo para o mudar de mapa
+            switch (bossName)
+            {
+                case "Bringer Of Death":
+                    TeleportToMap2();
+                    break;
 
-            TeleportToPoint();
+                case "Skyrath":
+                    TeleportToMap3();
+                    break;
+                
+                case "Bringer Of Undeath":
+                    TeleportToMap4();
+                    break;
+
+                case "Bringer Of God":
+                    // TeleportToMap5();
+                    break;
+
+                default:
+                    Debug.Log("Boss não encontrado");
+                    break;
+            }
+            
         }
         else
         {
@@ -250,10 +274,26 @@ public class EnemySpawner : MonoBehaviour
 
     #endregion
 
-    void TeleportToPoint()
+    void TeleportToMap2()
     {
         // Debug.Log(player.position);
         // Set the player's position to (201, -63, 0)
         player.transform.position = startMap2.transform.position;
     }
+
+    void TeleportToMap3()
+    {
+        // Debug.Log(player.position);
+        // Set the player's position to (201, -63, 0)
+        player.transform.position = startMap3.transform.position;
+    }
+
+    void TeleportToMap4()
+    {
+        // Debug.Log(player.position);
+        // Set the player's position to (201, -63, 0)
+        player.transform.position = startMap4.transform.position;
+    }
+
+
 }
