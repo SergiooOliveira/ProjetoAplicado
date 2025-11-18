@@ -4,7 +4,6 @@ using System.Collections;
 public class Projectile : MonoBehaviour
 {
     #region Fields / Inspector
-
     [Header("Projectile Settings")]
     public float speed = 5f;
     public int damage = 1;
@@ -14,11 +13,9 @@ public class Projectile : MonoBehaviour
     private Rigidbody2D rb;
     private Animator anim;
     private bool impactTriggered = false;
-
     #endregion
 
     #region Unity Callbacks
-
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -44,13 +41,12 @@ public class Projectile : MonoBehaviour
             anim.SetTrigger("Impact");
         }
     }
-
     #endregion
 
     #region Public Methods
-
     private IEnumerator LifetimeRoutine()
     {
+        Debug.Log("Starting IEnumerator");
         yield return new WaitForSeconds(lifetime);
         TriggerImpact();
     }
@@ -74,6 +70,5 @@ public class Projectile : MonoBehaviour
     {
         Destroy(gameObject);
     }
-
     #endregion
 }

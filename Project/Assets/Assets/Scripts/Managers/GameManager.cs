@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     {
         if (Instance != null) Destroy(gameObject);
         else Instance = this;
-        DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(gameObject);        
     }
 
     public void Start()
@@ -39,4 +39,4 @@ public class GameManager : MonoBehaviour
  * TODO: Define Items
  * TODO: Continue Interface (Maybe change it for 3 Scriptble Object)
  * TODO: Make an enemy interface (Scriptble Object as well)
- */
+*/

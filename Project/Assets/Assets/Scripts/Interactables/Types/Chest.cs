@@ -17,7 +17,6 @@ public class Chest : MonoBehaviour
             if (data.DropObject != null)
                 data.Initialize();
         }
-
     }
 
     /// <summary>
@@ -57,7 +56,7 @@ public class Chest : MonoBehaviour
         {
             // Chest will give a spell
             if (spell != null)
-            {
+            {                
                 playerData.AddSpell(spell);
                 Debug.Log($"Added spell {spell.SpellName} to player!");
             }

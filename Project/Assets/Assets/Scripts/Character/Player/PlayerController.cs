@@ -1,4 +1,5 @@
 using FishNet.Object;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -26,7 +27,7 @@ public class PlayerController : NetworkBehaviour
     [Header("Inventory")]
     private bool isInventoryOpen = false;
     public GameObject inventoryPanel;
-    private InventoryManagerUI inventoryManagerUI;
+    public GameObject spellInventoryPanel;
     #endregion
 
     #region Unity Methods
@@ -51,8 +52,6 @@ public class PlayerController : NetworkBehaviour
         if (playerData == null)
             Debug.Log("Player data is null");
 
-        // TODO: Not sure if we need this
-        inventoryManagerUI = inventoryPanel.GetComponent<InventoryManagerUI>();
     }
 
     private void Start()
@@ -78,12 +77,13 @@ public class PlayerController : NetworkBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == GameManager.Instance.grimoireTag)
-        {
-            //Debug.Log("Triggered with " + collision.name);
-            playerData.AddSpell(SpellManager.Instance.GetSpell(collision.name));
-            Destroy(collision.gameObject);
-        }
+        // TODO: Remake interactable object to add a spell
+        //if (collision.tag == GameManager.Instance.grimoireTag)
+        //{
+        //    //Debug.Log("Triggered with " + collision.name);
+        //    //playerData.AddSpell(SpellManager.GetSpell(collision.name));
+        //    Destroy(collision.gameObject);
+        //}
 
         // Cares about all the interactables
         if (collision.tag == GameManager.Instance.interactableTag)
@@ -165,20 +165,27 @@ public class PlayerController : NetworkBehaviour
     {
         // Each spell has different interactions
         // Check what is the selected spell first
-        // At the moment we only have fireball       
+        // At the moment we only have fireball
 
         // Debug.Log("Attacking");
 
         if (callbackContext.performed)
         {
-            //Instantiate(fireball, new Vector2(rb.position.x, rb.position.y), Quaternion.identity);            
-            //SpellManager.Instance.ShowEquippedSpells();
-            if (SpellManager.Instance.selectedSpell == null) return;
+            int index = playerData.GetActiveSpellIndex();
+
+            if (index == -1)
+            {
+                Debug.Log("No active spell");
+                return;
+            }
+
+            SpellEntry activeSpell = playerData.GetSlot(index);
 
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 castDirection = (mousePos - rb.position).normalized;
 
-            SpellManager.Instance.selectedSpell.Cast(rb.position, castDirection, player);
+            Debug.Log($"Attacking with: {activeSpell.spell.SpellName}");
+            activeSpell.spell.Cast(mousePos, castDirection, player);
         }
     }
 
@@ -199,26 +206,6 @@ public class PlayerController : NetworkBehaviour
     }
 
     /// <summary>
-    /// Call this method to select the next spell in the spell book
-    /// </summary>
-    /// <param name="callbackContext"></param>
-    public void NextSpell(InputAction.CallbackContext callbackContext)
-    {
-        for (int i = 0; i < playerData.CharacterEquipedSpells.Count; i++)
-        {
-            if (playerData.CharacterEquipedSpells[i].IsSpellSelected)
-            {
-                playerData.CharacterEquipedSpells[i].Deselect();
-
-                int nextIndex = (i + 1) % playerData.CharacterEquipedSpells.Count;
-                playerData.CharacterEquipedSpells[nextIndex].Select();
-
-                break;
-            }
-        }
-    }
-
-    /// <summary>
     /// Call this method to Open and Close the inventory
     /// </summary>
     /// <param name="callbackContext"></param>
@@ -231,6 +218,68 @@ public class PlayerController : NetworkBehaviour
             inventoryPanel.SetActive(!isInventoryOpen);
 
             // inventoryManagerUI.SetAllSlots();
+        }
+    }
+
+    public void OpenSpellInventory(InputAction.CallbackContext callbackContext)
+    {
+        if (callbackContext.performed)
+        {
+            spellInventoryPanel.SetActive(!spellInventoryPanel.activeSelf);
+        }
+    }
+
+    public void SelectSpell1(InputAction.CallbackContext callbackContext)
+    {
+        if (callbackContext.performed)
+        {
+            SpellEntry spell = playerData.CharacterEquippedSpells.Find(s => s.slot == 0);
+
+            if (spell.spell != null)
+            {
+                int index = playerData.GetActiveSpellIndex();
+
+                //Debug.LogWarning($"<Color=blue>Trying to swap Slot[{index}]</Color>");
+                //Debug.LogWarning($"<Color=Yellow>Equipped spell: {playerData.GetSlot(index).spell.SpellName}</Color>");
+                //Debug.LogWarning($"<Color=red>Trying to equip: {spell.spell.SpellName}</Color>");
+                playerData.SwapActiveSpell(playerData.GetSlot(index), spell);
+            }
+        }
+    }
+
+    public void SelectSpell2(InputAction.CallbackContext callbackContext)
+    {
+        if (callbackContext.performed)
+        {
+            SpellEntry spell = playerData.CharacterEquippedSpells.Find(s => s.slot == 1);
+
+            if (spell.spell != null)
+            {
+                int index = playerData.GetActiveSpellIndex();
+
+                //Debug.LogWarning($"<Color=blue>Trying to swap Slot[{index}]</Color>");
+                //Debug.LogWarning($"<Color=Yellow>Equipped spell: {playerData.GetSlot(index).spell.SpellName}</Color>");
+                //Debug.LogWarning($"<Color=red>Trying to equip: {spell.spell.SpellName}</Color>");
+                playerData.SwapActiveSpell(playerData.GetSlot(index), spell);
+            }
+        }
+    }
+
+    public void SelectSpell3(InputAction.CallbackContext callbackContext)
+    {
+        if (callbackContext.performed)
+        {
+            SpellEntry spell = playerData.CharacterEquippedSpells.Find(s => s.slot == 2);
+
+            if (spell.spell != null)
+            {
+                int index = playerData.GetActiveSpellIndex();
+
+                //Debug.LogWarning($"<Color=blue>Trying to swap Slot[{index}]</Color>");
+                //Debug.LogWarning($"<Color=Yellow>Equipped spell: {playerData.GetSlot(index).spell.SpellName}</Color>");
+                //Debug.LogWarning($"<Color=red>Trying to equip: {spell.spell.SpellName}</Color>");
+                playerData.SwapActiveSpell(playerData.GetSlot(index), spell);
+            }
         }
     }
     #endregion

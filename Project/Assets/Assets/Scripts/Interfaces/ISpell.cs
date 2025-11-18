@@ -25,11 +25,6 @@ public interface ISpell
     int SpellCost { get; }
     float SpellDuration { get; }
 
-    // *----- Conditions -----*
-    bool IsSpellUnlocked { get; }
-    bool IsSpellEquiped { get; }
-    bool IsSpellSelected { get; }
-
     // *----- Status Effects -----*
     bool SpellHasCC { get; }
     bool SpellHasBuff { get; }

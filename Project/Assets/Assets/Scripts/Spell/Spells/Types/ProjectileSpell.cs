@@ -18,7 +18,7 @@ public class ProjectileSpell : Spell
         }
 
         //Debug.Log($"[ProjectileSpell] Casting {SpellName} single projectile");
-        GameObject instance = Instantiate(SpellPrefab, position, Quaternion.identity);
+        GameObject instance = Instantiate(SpellPrefab, player.transform.position, Quaternion.identity);
 
         if (instance.TryGetComponent<SpellProjectile>(out SpellProjectile projectile))
             projectile.Initialize(this, direction, player);
