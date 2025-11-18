@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyAnimationEvents : MonoBehaviour
@@ -5,6 +6,7 @@ public class EnemyAnimationEvents : MonoBehaviour
     #region Fields
 
     [SerializeField] private Enemy enemy;
+    [SerializeField] private List<AttackHitbox> hitboxes = new List<AttackHitbox>();
 
     #endregion
 
@@ -25,6 +27,31 @@ public class EnemyAnimationEvents : MonoBehaviour
         if (enemy != null)
         {
             enemy.OnDeathAnimationEnd();
+        }
+    }
+
+    // Called by animation with a string parameter = hitbox name
+    public void EnableHitbox(string hitboxName)
+    {
+        foreach (var hb in hitboxes)
+        {
+            if (hb.name == hitboxName)
+            {
+                hb.EnableHitbox();
+                return;
+            }
+        }
+    }
+
+    public void DisableHitbox(string hitboxName)
+    {
+        foreach (var hb in hitboxes)
+        {
+            if (hb.name == hitboxName)
+            {
+                hb.DisableHitbox();
+                return;
+            }
         }
     }
 
