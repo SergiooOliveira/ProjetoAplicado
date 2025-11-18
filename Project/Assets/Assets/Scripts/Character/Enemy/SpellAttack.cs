@@ -11,11 +11,15 @@ public class SpellAttack : MonoBehaviour
 
     #endregion
 
+    #region Unity Callbacks
+
     private void Awake()
     {
         col = GetComponent<Collider2D>();
         col.isTrigger = true;
     }
+
+    #endregion
 
     #region Animation Events
 

@@ -170,4 +170,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78c4c46b76e2a9f409dd8b9e2ef372f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 20
+  enemy: {fileID: 0}

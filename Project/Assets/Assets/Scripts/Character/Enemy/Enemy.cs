@@ -359,8 +359,6 @@ public class Enemy : MonoBehaviour
 
         int totalDamage = Mathf.RoundToInt(runtimeData.CharacterAttackPower * (currentAttack.damage / 100f));
 
-        Debug.Log($"Damage: {totalDamage}");
-
         runTimePlayerData.CharacterHp.TakeDamage(totalDamage);
     }
 
