@@ -1,4 +1,5 @@
 using FishNet.Object;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -26,7 +27,7 @@ public class PlayerController : NetworkBehaviour
     [Header("Inventory")]
     private bool isInventoryOpen = false;
     public GameObject inventoryPanel;
-    private InventoryManagerUI inventoryManagerUI;
+    public GameObject spellInventoryPanel;
     #endregion
 
     #region Unity Methods
@@ -51,8 +52,6 @@ public class PlayerController : NetworkBehaviour
         if (playerData == null)
             Debug.Log("Player data is null");
 
-        // TODO: Not sure if we need this
-        inventoryManagerUI = inventoryPanel.GetComponent<InventoryManagerUI>();
     }
 
     private void Start()
@@ -172,9 +171,10 @@ public class PlayerController : NetworkBehaviour
 
         if (callbackContext.performed)
         {
-            Spell activeSpell = playerData.GetActiveSpell();
+            int index = playerData.GetActiveSpellIndex();
+            SpellEntry activeSpell = playerData.CharacterEquippedSpells.Find(s => s.slot == index);
 
-            if (activeSpell == null)
+            if (activeSpell.spell == null)
             {
                 Debug.Log("No active spell");
                 return;
@@ -183,7 +183,7 @@ public class PlayerController : NetworkBehaviour
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 castDirection = (mousePos - rb.position).normalized;
 
-            activeSpell.Cast(mousePos, castDirection, player);
+            activeSpell.spell.Cast(mousePos, castDirection, player);
         }
     }
 
@@ -204,26 +204,6 @@ public class PlayerController : NetworkBehaviour
     }
 
     /// <summary>
-    /// Call this method to select the next spell in the spell book
-    /// </summary>
-    /// <param name="callbackContext"></param>
-    public void NextSpell(InputAction.CallbackContext callbackContext)
-    {
-        for (int i = 0; i < playerData.CharacterSpells.Count; i++)
-        {
-            if (playerData.CharacterSpells[i].IsSpellSelected)
-            {
-                playerData.CharacterSpells[i].Deselect();
-
-                int nextIndex = (i + 1) % playerData.CharacterSpells.Count;
-                playerData.CharacterSpells[nextIndex].Select();
-
-                break;
-            }
-        }
-    }
-
-    /// <summary>
     /// Call this method to Open and Close the inventory
     /// </summary>
     /// <param name="callbackContext"></param>
@@ -236,6 +216,59 @@ public class PlayerController : NetworkBehaviour
             inventoryPanel.SetActive(!isInventoryOpen);
 
             // inventoryManagerUI.SetAllSlots();
+        }
+    }
+
+    public void OpenSpellInventory(InputAction.CallbackContext callbackContext)
+    {
+        if (callbackContext.performed)
+        {
+            spellInventoryPanel.SetActive(!spellInventoryPanel.activeSelf);
+        }
+    }
+
+    public void SelectSpell1(InputAction.CallbackContext callbackContext)
+    {
+        if (callbackContext.performed)
+        {
+            SpellEntry spell = playerData.CharacterEquippedSpells.Find(s => s.slot == 0);
+
+            if (spell.spell != null)
+            {
+                int index = playerData.GetActiveSpellIndex();
+
+                playerData.SwapActiveSpell(playerData.CharacterEquippedSpells.Find(s => s.slot == index), spell);
+            }
+        }
+    }
+
+    public void SelectSpell2(InputAction.CallbackContext callbackContext)
+    {
+        if (callbackContext.performed)
+        {
+            SpellEntry spell = playerData.CharacterEquippedSpells.Find(s => s.slot == 1);
+
+            if (spell.spell != null)
+            {
+                int index = playerData.GetActiveSpellIndex();
+
+                playerData.SwapActiveSpell(playerData.CharacterEquippedSpells.Find(s => s.slot == index), spell);
+            }
+        }
+    }
+
+    public void SelectSpell3(InputAction.CallbackContext callbackContext)
+    {
+        if (callbackContext.performed)
+        {
+            SpellEntry spell = playerData.CharacterEquippedSpells.Find(s => s.slot == 2);
+
+            if (spell.spell != null)
+            {
+                int index = playerData.GetActiveSpellIndex();
+
+                playerData.SwapActiveSpell(playerData.CharacterEquippedSpells.Find(s => s.slot == index), spell);
+            }
         }
     }
     #endregion
