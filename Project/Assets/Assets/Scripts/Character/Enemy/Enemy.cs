@@ -13,7 +13,12 @@ public class Enemy : MonoBehaviour
     [Header("Data")]
     public EnemyData enemyData;
     private EnemyData runtimeData;
+    private PlayerData runTimePlayerData;
     public EnemyData RunTimeData => runtimeData;
+
+    [Header("Hitboxes")]
+    [SerializeField] private List<AttackHitbox> hitboxes = new List<AttackHitbox>();
+    private Dictionary<string, AttackHitbox> hitboxMap;
 
     [Header("AI Senses")]
     [SerializeField] private LayerMask playerLayer;
@@ -56,6 +61,7 @@ public class Enemy : MonoBehaviour
         runtimeData = Instantiate(enemyData);
         Initialize();
         GiveStat();
+        SetupHitboxes();
 
         rb = GetComponent<Rigidbody2D>();
         if (animator == null) animator = GetComponentInChildren<Animator>();
@@ -101,6 +107,16 @@ public class Enemy : MonoBehaviour
         {
             if (equipment.equipment != null)
                 equipment.equipment.Initialize();
+        }
+    }
+
+    private void SetupHitboxes()
+    {
+        hitboxMap = new Dictionary<string, AttackHitbox>();
+
+        foreach (var hb in hitboxes)
+        {
+            hitboxMap.Add(hb.name, hb);
         }
     }
 
@@ -192,6 +208,18 @@ public class Enemy : MonoBehaviour
             movement.SetTarget(player);
     }
 
+    public void EnableHitbox(string name)
+    {
+        if (hitboxMap.TryGetValue(name, out var hb))
+            hb.EnableHitbox();
+    }
+
+    public void DisableHitbox(string name)
+    {
+        if (hitboxMap.TryGetValue(name, out var hb))
+            hb.DisableHitbox();
+    }
+
     public void AttackPlayer()
     {
         if (isAttacking) return;
@@ -204,7 +232,6 @@ public class Enemy : MonoBehaviour
         // Attack flow: Animation event should call ApplyAttackDamage() and reset isAttacking = false
     }
 
-    // Player Take Damage
     // Is Trigger by Animation Event
     // Using Script EnemyAnimationEvent
     public void ApplyAttackEffect()
@@ -217,9 +244,7 @@ public class Enemy : MonoBehaviour
 
         if (atk.attackType == AttackType.Melee)
         {
-            // TODO:
-            // Apply damage to player
-            //player.TakeDamage(atk.damage);
+            // Define different attacks for each melee enemy
         }
         else if (atk.attackType == AttackType.Ranged)
         {
@@ -241,6 +266,19 @@ public class Enemy : MonoBehaviour
         }
 
         isAttacking = false;
+    }
+
+    public void ApplyDamage(Collider2D other)
+    {
+        runTimePlayerData = other.GetComponent<Player>().RunTimePlayerData;
+
+        if (runTimePlayerData == null) return;
+
+        int totalDamage = Mathf.RoundToInt(runtimeData.CharacterAttackPower * (currentAttack.damage / 100f));
+
+        Debug.Log($"Damage: {totalDamage}");
+
+        runTimePlayerData.CharacterHp.TakeDamage(totalDamage);
     }
 
     #endregion

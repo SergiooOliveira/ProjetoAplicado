@@ -33,26 +33,12 @@ public class EnemyAnimationEvents : MonoBehaviour
     // Called by animation with a string parameter = hitbox name
     public void EnableHitbox(string hitboxName)
     {
-        foreach (var hb in hitboxes)
-        {
-            if (hb.name == hitboxName)
-            {
-                hb.EnableHitbox();
-                return;
-            }
-        }
+        enemy.EnableHitbox(hitboxName);
     }
 
     public void DisableHitbox(string hitboxName)
     {
-        foreach (var hb in hitboxes)
-        {
-            if (hb.name == hitboxName)
-            {
-                hb.DisableHitbox();
-                return;
-            }
-        }
+        enemy.DisableHitbox(hitboxName);
     }
 
     #endregion
