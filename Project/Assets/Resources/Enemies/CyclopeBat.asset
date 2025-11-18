@@ -36,7 +36,7 @@ MonoBehaviour:
     max: 100
   characterMovementSpeed: 6
   characterAttackSpeed: 6
-  characterAttackPower: 6
+  characterAttackPower: 100
   characterDefense: 6
   characterResistances: []
   characterEquipedSpells: []

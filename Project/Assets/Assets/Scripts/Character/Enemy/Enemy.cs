@@ -238,7 +238,6 @@ public class Enemy : MonoBehaviour
     {
         if (player == null) { isAttacking = false; return; }
 
-        // Pega o ataque atual que disparou a animação
         var atk = currentAttack;
         if (atk == null) { isAttacking = false; return; }
 
@@ -257,7 +256,9 @@ public class Enemy : MonoBehaviour
             }
             else if (runtimeData.CharacterCategory == EnemyCategory.Necromancer)
             {
-                // TODO: Attack Necromancer
+                Vector2 direction = (player.position - firePoint.position).normalized;
+                Player playerComponent = player.GetComponent<Player>();
+                UseSpell(firePoint.position, direction, playerComponent);
             }
             else if (runtimeData.CharacterCategory == EnemyCategory.Boss)
             {
@@ -268,25 +269,12 @@ public class Enemy : MonoBehaviour
         isAttacking = false;
     }
 
-    public void ApplyDamage(Collider2D other)
-    {
-        runTimePlayerData = other.GetComponent<Player>().RunTimePlayerData;
-
-        if (runTimePlayerData == null) return;
-
-        int totalDamage = Mathf.RoundToInt(runtimeData.CharacterAttackPower * (currentAttack.damage / 100f));
-
-        Debug.Log($"Damage: {totalDamage}");
-
-        runTimePlayerData.CharacterHp.TakeDamage(totalDamage);
-    }
-
     #endregion
 
     #region Attack / Spells
 
     /// <summary>
-    /// Call this method for Enemy to use the spell
+    /// Call this method for Enemy Fly to use the spell
     /// </summary>
     public void UseSpell(Vector3 position, Vector2 direction, Player player)
     {
@@ -296,8 +284,10 @@ public class Enemy : MonoBehaviour
         // Get the projectile script
         Projectile projectileScript = proj.GetComponent<Projectile>();
 
-        // Define direção
+        // Define direction
         projectileScript.direction = (player.transform.position - firePoint.position).normalized;
+
+        projectileScript.enemy = this;
 
         // Ignores collision with enemy that fired
         Collider2D enemyCollider = GetComponent<Collider2D>();
@@ -308,6 +298,9 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Call this method for Enemy Boss to use the spell
+    /// </summary>
     public void UseFallingHandSpell()
     {
         if (spellPrefab == null) return;
@@ -317,10 +310,25 @@ public class Enemy : MonoBehaviour
 
         // Instantiate the spell prefab
         GameObject spell = Instantiate(spellPrefab, spawnPos, Quaternion.identity);
+
+        SpellAttack spellAttack = spell.GetComponent<SpellAttack>();
+
+        spellAttack.enemy = this;
+
+        // Ignores collision with enemy that fired
+        Collider2D enemyCollider = GetComponent<Collider2D>();
+        Collider2D projectileCollider = spell.GetComponent<Collider2D>();
+        if (enemyCollider != null && projectileCollider != null)
+        {
+            Physics2D.IgnoreCollision(projectileCollider, enemyCollider);
+        }
+
     }
 
-    // Random Attacks
-    // Each Attack have difrent animation / damage / chances
+    /// <summary>
+    /// Random Attacks
+    /// Each Attack have difrent animation / damage / chances
+    /// </summary>
     private EnemyAttack GetRandomAttack()
     {
         float totalWeight = 0f;
@@ -338,6 +346,22 @@ public class Enemy : MonoBehaviour
         }
 
         return runtimeData.Attacks[0]; // Fallback
+    }
+
+    /// <summary>
+    /// Damage applied to the player
+    /// </summary>
+    public void ApplyDamage(Collider2D other)
+    {
+        runTimePlayerData = other.GetComponent<Player>().RunTimePlayerData;
+
+        if (runTimePlayerData == null) return;
+
+        int totalDamage = Mathf.RoundToInt(runtimeData.CharacterAttackPower * (currentAttack.damage / 100f));
+
+        Debug.Log($"Damage: {totalDamage}");
+
+        runTimePlayerData.CharacterHp.TakeDamage(totalDamage);
     }
 
     #endregion

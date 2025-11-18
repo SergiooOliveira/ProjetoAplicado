@@ -4,48 +4,54 @@ public class SpellAttack : MonoBehaviour
 {
     #region Fields
 
-    public int damage = 20;
-    private bool canDamage = false;
+    [HideInInspector] public Enemy enemy;
+    private bool active = false;
+
+    private Collider2D col;
 
     #endregion
+
+    private void Awake()
+    {
+        col = GetComponent<Collider2D>();
+        col.isTrigger = true;
+    }
 
     #region Animation Events
 
     // This method will be called by the animation event
-    public void EnableDamage()
+    public void EnableHitbox()
     {
-        canDamage = true;
+        active = true;
 
-        // Checks if the player is already inside the collider
-        Collider2D col = GetComponent<Collider2D>();
-        if (col != null)
+        Collider2D[] results = new Collider2D[5];
+        ContactFilter2D filter = new ContactFilter2D();
+        filter.NoFilter();
+
+        int count = col.Overlap(filter, results);
+
+        for (int i = 0; i < count; i++)
         {
-            // Create a filter that considers all colliders
-            ContactFilter2D filter = new ContactFilter2D();
-            filter.NoFilter(); // Or filter just "Player" if you wan
-
-            Collider2D[] results = new Collider2D[10];
-            int count = col.Overlap(filter, results); // Here we use the new Overlap
-
-            for (int i = 0; i < count; i++)
+            if (results[i].CompareTag("Player"))
             {
-                if (results[i].CompareTag("Player"))
-                {
-                    // Player is already in
-                    ApplyDamage(results[i]);
-                }
+                enemy.ApplyDamage(results[i]);
             }
         }
     }
 
-    private void ApplyDamage(Collider2D other)
+    public void DisableHitbox()
     {
-        // TODO: Apply Damage Palyer
+        active = false;
     }
 
-    public void DisableDamage()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        canDamage = false;
+        if (!active) return;
+
+        if (collision.CompareTag("Player"))
+        {
+            enemy.ApplyDamage(collision);
+        }
     }
 
     public void AttackEnd()
@@ -59,12 +65,11 @@ public class SpellAttack : MonoBehaviour
 
     void OnDrawGizmos()
     {
-        if (canDamage)
+        if (active)
             Gizmos.color = Color.red;
         else
             Gizmos.color = Color.green;
 
-        Collider2D col = GetComponent<Collider2D>();
         if (col != null)
             Gizmos.DrawWireCube(col.bounds.center, col.bounds.size);
     }

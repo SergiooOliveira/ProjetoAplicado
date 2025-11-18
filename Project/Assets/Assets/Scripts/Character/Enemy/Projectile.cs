@@ -5,9 +5,10 @@ public class Projectile : MonoBehaviour
 {
     #region Fields / Inspector
 
+    [HideInInspector] public Enemy enemy;
+
     [Header("Projectile Settings")]
     public float speed = 5f;
-    public int damage = 1;
     public Vector2 direction;
     public float lifetime = 5f;
 
@@ -31,15 +32,20 @@ public class Projectile : MonoBehaviour
         StartCoroutine(LifetimeRoutine());
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    public void OnIdleAnimationEnd()
     {
-        if (other.CompareTag("Player"))
+        anim.SetTrigger("Move");
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
         {
-            // TODO: apply damage to the player
             anim.SetTrigger("Impact");
+            enemy.ApplyDamage(collision);
         }
 
-        if (other.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             anim.SetTrigger("Impact");
         }

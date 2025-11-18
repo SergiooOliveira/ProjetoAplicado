@@ -6,7 +6,6 @@ public class EnemyAnimationEvents : MonoBehaviour
     #region Fields
 
     [SerializeField] private Enemy enemy;
-    [SerializeField] private List<AttackHitbox> hitboxes = new List<AttackHitbox>();
 
     #endregion
 

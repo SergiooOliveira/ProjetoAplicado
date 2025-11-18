@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class AttackHitbox : MonoBehaviour
 {
-    [HideInInspector] public Enemy owner;
+    [HideInInspector] public Enemy enemy;
     private bool active = false;
 
     private Collider2D col;
@@ -12,9 +12,9 @@ public class AttackHitbox : MonoBehaviour
         col = GetComponent<Collider2D>();
         col.isTrigger = true;
 
-        if (owner == null)
+        if (enemy == null)
         {
-            owner = GetComponentInParent<Enemy>();
+            enemy = GetComponentInParent<Enemy>();
         }
     }
 
@@ -33,7 +33,7 @@ public class AttackHitbox : MonoBehaviour
         {
             if (results[i].CompareTag("Player"))
             {
-                owner.ApplyDamage(results[i]);
+                enemy.ApplyDamage(results[i]);
             }
         }
     }
@@ -43,13 +43,13 @@ public class AttackHitbox : MonoBehaviour
         active = false;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!active) return;
 
-        if (other.CompareTag("Player"))
+        if (collision.CompareTag("Player"))
         {
-            owner.ApplyDamage(other);
+            enemy.ApplyDamage(collision);
         }
     }
 }

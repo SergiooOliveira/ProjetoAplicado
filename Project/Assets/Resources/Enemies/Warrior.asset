@@ -21,11 +21,11 @@ MonoBehaviour:
   characterCategory: 0
   attacks:
   - triggerName: Attack1
-    damage: 5
+    damage: 25
     weight: 70
     attackType: 0
   - triggerName: Attack2
-    damage: 10
+    damage: 45
     weight: 30
     attackType: 0
   spawnCount: 1
@@ -40,7 +40,7 @@ MonoBehaviour:
     max: 0
   characterMovementSpeed: 7
   characterAttackSpeed: 5
-  characterAttackPower: 6
+  characterAttackPower: 1000
   characterDefense: 10
   characterResistances: []
   characterEquipedSpells: []
