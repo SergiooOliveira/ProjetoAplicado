@@ -32,16 +32,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1bf4a273ae8da7b4987fc678f911c4b6, type: 2}
   - {fileID: 11400000, guid: 466dc667aa1bc594ca8096091bd53972, type: 2}
   - {fileID: 11400000, guid: 669f032df5a50674290136ae68fff637, type: 2}
-  characterEquippedSpells:
-  - spell: {fileID: 11400000, guid: 1bf4a273ae8da7b4987fc678f911c4b6, type: 2}
-    slot: 0
-    isSelected: 1
-  - spell: {fileID: 11400000, guid: 669f032df5a50674290136ae68fff637, type: 2}
-    slot: 1
-    isSelected: 1
-  - spell: {fileID: 11400000, guid: 466dc667aa1bc594ca8096091bd53972, type: 2}
-    slot: 2
-    isSelected: 1
+  characterEquippedSpells: []
   characterInventory:
   - item: {fileID: 7362672995192851571, guid: 0c58a3701768c7147a2732ac37b4d9e8, type: 3}
     quantity: 10

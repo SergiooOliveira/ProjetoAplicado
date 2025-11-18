@@ -103,6 +103,8 @@ public class PlayerData : ScriptableObject, ICharacter
             return;
         }
 
+        bool hasAnyEquipped = CharacterEquippedSpells.Any(s => s.spell != null);
+
         // Find first empty slot
         for (int i = 0; i < 3; i++)
         {
@@ -112,7 +114,7 @@ public class PlayerData : ScriptableObject, ICharacter
                 {
                     slot = i,
                     spell = spell,
-                    isSelected = false
+                    isSelected = !hasAnyEquipped
                 };
 
                 SetSlot(i, entry);
@@ -131,13 +133,16 @@ public class PlayerData : ScriptableObject, ICharacter
     {
         SpellEntry entry = GetSlot(slot);
 
-        if (entry.spell != null)
-        {
-            entry.spell = null;
-            entry.isSelected = false;
+        if (entry.spell == null)
+            return;
 
-            SetSlot(slot, entry);
-        }
+        bool wasSelected = entry.isSelected;
+
+        entry.spell = null;
+        entry.isSelected = false;
+        SetSlot(slot, entry);
+
+        if (wasSelected) SelectNextAvailableSpell();
     }
 
     /// <summary>
@@ -163,9 +168,19 @@ public class PlayerData : ScriptableObject, ICharacter
             Debug.Log("New active Spell is null");
         } else
         {
-            Debug.Log($"Swaping {activeSpell.spell.SpellName} with {newActiveSpell.spell.SpellName}");
+            Debug.LogWarning($"Swaping {activeSpell.spell.SpellName} with {newActiveSpell.spell.SpellName}");            
             activeSpell.Deselect();
             newActiveSpell.Select();
+
+            SetSlot(activeSpell.slot, activeSpell);
+            SetSlot(newActiveSpell.slot, newActiveSpell);
+
+            foreach(SpellEntry entry in CharacterEquippedSpells)
+            {
+                if (entry.spell  != null)
+                    Debug.Log($"<Color=green>{entry.spell.SpellName}: {entry.isSelected}</Color>");
+            }
+            // TODO: Update Spell bar
         }
     }
 
@@ -177,6 +192,7 @@ public class PlayerData : ScriptableObject, ICharacter
     #region Auxiliary methods
     public SpellEntry GetSlot(int slot)
     {
+        //Debug.LogWarning($"CharacterEquippedSpells[{slot}].IsEmpty: {CharacterEquippedSpells[slot].IsEmpty}");
         return CharacterEquippedSpells[slot];
     }
 
@@ -196,6 +212,21 @@ public class PlayerData : ScriptableObject, ICharacter
 
         if (activeSpell.spell != null) return activeSpell.slot;
         else return -1;
+    }
+
+    private void SelectNextAvailableSpell()
+    {
+        for (int i = 0; i < CharacterEquippedSpells.Count; i++)
+        {
+            SpellEntry entry = GetSlot(i);
+
+            if (entry.spell != null)
+            {
+                entry.isSelected = true;
+                SetSlot(i, entry);
+                return;
+            }
+        }
     }
     #endregion
     #endregion

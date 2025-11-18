@@ -55,7 +55,7 @@ public class Player : MonoBehaviour
         }
 
         runTimePlayerData.EquipmentStats();
-
+        runTimePlayerData.InitializeSpells();
     }
 
     /// <summary>

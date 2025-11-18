@@ -172,17 +172,19 @@ public class PlayerController : NetworkBehaviour
         if (callbackContext.performed)
         {
             int index = playerData.GetActiveSpellIndex();
-            SpellEntry activeSpell = playerData.CharacterEquippedSpells.Find(s => s.slot == index);
 
-            if (activeSpell.spell == null)
+            if (index == -1)
             {
                 Debug.Log("No active spell");
                 return;
             }
 
+            SpellEntry activeSpell = playerData.GetSlot(index);
+
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 castDirection = (mousePos - rb.position).normalized;
 
+            Debug.Log($"Attacking with: {activeSpell.spell.SpellName}");
             activeSpell.spell.Cast(mousePos, castDirection, player);
         }
     }
@@ -237,7 +239,10 @@ public class PlayerController : NetworkBehaviour
             {
                 int index = playerData.GetActiveSpellIndex();
 
-                playerData.SwapActiveSpell(playerData.CharacterEquippedSpells.Find(s => s.slot == index), spell);
+                //Debug.LogWarning($"<Color=blue>Trying to swap Slot[{index}]</Color>");
+                //Debug.LogWarning($"<Color=Yellow>Equipped spell: {playerData.GetSlot(index).spell.SpellName}</Color>");
+                //Debug.LogWarning($"<Color=red>Trying to equip: {spell.spell.SpellName}</Color>");
+                playerData.SwapActiveSpell(playerData.GetSlot(index), spell);
             }
         }
     }
@@ -252,7 +257,10 @@ public class PlayerController : NetworkBehaviour
             {
                 int index = playerData.GetActiveSpellIndex();
 
-                playerData.SwapActiveSpell(playerData.CharacterEquippedSpells.Find(s => s.slot == index), spell);
+                //Debug.LogWarning($"<Color=blue>Trying to swap Slot[{index}]</Color>");
+                //Debug.LogWarning($"<Color=Yellow>Equipped spell: {playerData.GetSlot(index).spell.SpellName}</Color>");
+                //Debug.LogWarning($"<Color=red>Trying to equip: {spell.spell.SpellName}</Color>");
+                playerData.SwapActiveSpell(playerData.GetSlot(index), spell);
             }
         }
     }
@@ -267,7 +275,10 @@ public class PlayerController : NetworkBehaviour
             {
                 int index = playerData.GetActiveSpellIndex();
 
-                playerData.SwapActiveSpell(playerData.CharacterEquippedSpells.Find(s => s.slot == index), spell);
+                //Debug.LogWarning($"<Color=blue>Trying to swap Slot[{index}]</Color>");
+                //Debug.LogWarning($"<Color=Yellow>Equipped spell: {playerData.GetSlot(index).spell.SpellName}</Color>");
+                //Debug.LogWarning($"<Color=red>Trying to equip: {spell.spell.SpellName}</Color>");
+                playerData.SwapActiveSpell(playerData.GetSlot(index), spell);
             }
         }
     }
