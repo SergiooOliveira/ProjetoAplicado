@@ -1,59 +1,31 @@
 using UnityEngine;
 
-
 public class SpellProjectile : MonoBehaviour
 {
-    // TODO: Explore Spell Fusion
-    protected ProjectileSpell spellData;
-    protected Rigidbody2D rb;
-    private Player playerData;
+    private Spell spellData;
+    private Player caster;
+    private Rigidbody2D rb;
 
-    public virtual void Initialize(ProjectileSpell spell, Vector2 direction, Player player)
+    public void Initialize(Spell spell, Vector2 dir, Player caster)
     {
-        this.playerData = player;
+        this.spellData = spell;
+        this.caster = caster;
 
-        spellData = spell;
-        rb = GetComponent<Rigidbody2D>();
+        rb.GetComponent<Rigidbody2D>();
+        rb.linearVelocity = dir.normalized * spell.SpellProjectileSpeed;
 
-        if (rb != null)
-            rb.linearVelocity = direction.normalized * spellData.SpellTravelSpeed;
-
-        if (spellData.SpellTravelSpeed > 0f && spellData.SpellRange > 0f )
-            Destroy(gameObject, spellData.SpellRange / spellData.SpellTravelSpeed);
-        else
-            Destroy(gameObject, spellData.SpellRange);
+        Destroy(gameObject, spell.SpellRange / spell.SpellProjectileSpeed);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player")) return;
-        if (collision.CompareTag("Grid")) return;
+        if (collision.CompareTag(GameManager.Instance.playerTag)) return;
 
-        // Debug.Log($"Triggered with {collision.name}");
-
-        switch (spellData.SpellProjectileType)
+        if (collision.TryGetComponent<Enemy>(out Enemy enemy))
         {
-            case SpellProjectileType.Normal:
-                NormalSpellProjectile(collision);
-                break;
-            case SpellProjectileType.Pierce:
-                break;
-            case SpellProjectileType.Explosive:
-                break;
-            case SpellProjectileType.Chain:
-                break;
-
-            default:
-                Debug.Log("No Spell projectile type selected");
-                break;
+            enemy.CalculateDamage(caster, spellData);
         }
 
         Destroy(gameObject);
-    }
-
-    private void NormalSpellProjectile(Collider2D collision)
-    {
-        if (collision.TryGetComponent<Enemy>(out Enemy enemy))
-            enemy.CalculateDamage(playerData, spellData);
     }
 }

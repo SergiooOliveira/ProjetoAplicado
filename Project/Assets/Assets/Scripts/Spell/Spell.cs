@@ -1,105 +1,88 @@
 using UnityEngine;
 
+[CreateAssetMenu(menuName = "Spells/Spell")]
 public abstract class Spell : ScriptableObject, ISpell
 {
     #region Serialized Fields
     [Header("Identity")]
     [SerializeField] private string spellName;
-    [SerializeField] private string spellDescription;
-    [SerializeField] private SpellTag spellTag;
+    [SerializeField] private string spellDescription;    
     [SerializeField] private GameObject spellPrefab;
+    [SerializeField] private SpellTag spellTag;
     [SerializeField] private SpellAffinity spellAfinity;
-    [SerializeField] private SpellProjectileType spellProjectileType;
 
     [Header("Mechanics")]
-    [SerializeField] private int spellDamage;
-    [SerializeField] private int spellRange;
-    [SerializeField] private float spellTravelSpeed;
-    [SerializeField] private float spellCooldown;
-    [SerializeField] private float spellCastSpeed;
+    [SerializeField] private float spellCooldown;    
     [SerializeField] private int spellCost;
-    [SerializeField] private float spellDuration;
-    [System.NonSerialized] private float lastCastTime;
-    [System.NonSerialized] private bool hasBeenCastOnce = false;
+    [SerializeField] private float spellCastTime;
 
-    [Header("Status Effects")]
-    [SerializeField] private bool spellHasCC;
-    [SerializeField] private bool spellHasBuff;
-    [SerializeField] private bool spellHasDebuff;
+    [Header("Behaviour")]
+    [SerializeField] private SpellCastType spellCastType;
+    [SerializeField] private SpellImpactType spellImpactType;
+
+    [Header("Damage Settings")]
+    [SerializeField] private float spellDamage;
+    [SerializeField] private float spellRange;
+    [SerializeField] private float spellProjectileSpeed;
     #endregion
 
     #region Property implementation
-    // Property implementations
+    // *----- Identity -----*
     public string SpellName => spellName;
-    public string SpellDescription => spellDescription;
-    public SpellTag SpellTag => spellTag;
+    public string SpellDescription => spellDescription;    
     public GameObject SpellPrefab => spellPrefab;
+    public SpellTag SpellTag => spellTag;
     public SpellAffinity SpellAfinity => spellAfinity;
-    public SpellProjectileType SpellProjectileType => spellProjectileType;
-    public int SpellDamage => spellDamage;
-    public int SpellRange => spellRange;
-    public float SpellTravelSpeed => spellTravelSpeed;
-    public float SpellCooldown => spellCooldown;
-    public float SpellCastSpeed => spellCastSpeed;
-    public int SpellCost => spellCost;
-    public float SpellDuration => spellDuration;
 
-    public bool SpellHasCC => spellHasCC;
-    public bool SpellHasBuff => spellHasBuff;
-    public bool SpellHasDebuff => spellHasDebuff;
+    // *----- Mechanics -----*
+    public float SpellCooldown => spellCooldown;
+    public int SpellCost => spellCost;
+    public float SpellCastTime => spellCastTime;
+
+    // *----- Behaviour -----*
+    public SpellCastType SpellCastType => spellCastType;
+    public SpellImpactType SpellImpactType => spellImpactType;
+
+    // *----- Damage Settings -----*
+    public float SpellDamage => spellDamage;
+    public float SpellRange => spellRange;
+    public float SpellProjectileSpeed => spellProjectileSpeed;
+
     #endregion
 
     #region Methods
-    public virtual void Cast(Vector3 position, Vector2 direction, Player player)
+    public void Cast(Player caster, Vector2 direction)
     {
-        if (player == null)
-            Debug.Log("Player is null inside Cast in Spell.cs");
-    }
-
-    /// <summary>
-    /// Checks if the spell is ready to be cast
-    /// </summary>
-    public bool IsReadyToCast()
-    {
-        if (!hasBeenCastOnce) return true;
-
-        return Time.time >= lastCastTime + spellCooldown;
-    }
-
-    /// <summary>
-    /// Registers the spell cast
-    /// </summary>
-    public void RegisterCast()
-    {
-        lastCastTime = Time.time;
-        hasBeenCastOnce = true;
-    }
-
-    /// <summary>
-    /// Call this method to check what the resistance percentile is
-    /// </summary>
-    /// <param name="attacker">Attacker Spell</param>
-    /// <param name="defender">Defender Spell</param>
-    public float ResistanceCheck(Spell attacker, Spell defender)
-    {
-        float resistance = 1f;
-
-        switch (attacker.SpellAfinity)
+        switch (SpellCastType)
         {
-            case SpellAffinity.Fire:
-                if (defender.SpellAfinity == SpellAffinity.Ice) resistance = 2f;
+            case SpellCastType.Projectile:
+                CastProjectile(caster, direction);
                 break;
-            case SpellAffinity.Ice:
+            case SpellCastType.Area:
+                CastArea(caster, direction);
                 break;
-            case SpellAffinity.Wind:
-                break;
-            case SpellAffinity.Light:
-                break;
-            case SpellAffinity.Dark:
+            case SpellCastType.Self:
+                CastSelf(caster);
                 break;
         }
+    }
 
-        return resistance;
+    private void CastProjectile(Player caster, Vector2 direction)
+    {
+        GameObject instance = Instantiate(SpellPrefab, caster.transform.position, Quaternion.identity);
+
+        if (instance.TryGetComponent<SpellProjectile>(out SpellProjectile projectile))
+            projectile.Initialize(this, direction, caster);
+    }
+
+    private void CastArea(Player caster, Vector2 direction)
+    {
+        Debug.Log($"{SpellName} cast as area effect");
+    }
+
+    private void CastSelf(Player caster)
+    {
+        Debug.Log($"{SpellName} cast as self");
     }
     #endregion
 }
