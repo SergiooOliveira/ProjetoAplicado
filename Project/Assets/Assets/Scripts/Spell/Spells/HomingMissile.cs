@@ -1,65 +1,66 @@
-﻿using UnityEngine;
+﻿using GameKit.Dependencies.Utilities.Types;
+using UnityEngine;
 
-public class HomingMissile : SpellProjectile
+public class HomingMissile : MonoBehaviour
 {
-    private Transform target;
-
-    // How fast it curves
-    // [SerializeField] private float initialTurnSpeed = 100f;
-    [SerializeField] private float turnSpeed = 200f;
-
-    // Max distance to find enemies
+    [SerializeField] private float speed;
+    [SerializeField] private float rotateSpeed;
     [SerializeField] private float targetSearchRadious = 10f;
+    private Transform target;
+    private Spell spellData;
+    private Player caster;
+    private Rigidbody2D rb;
+    private Vector2 initialDirection;
+    private float lifetime;
 
-    public override void Initialize(ProjectileSpell spell, Vector2 initialDir, Player player)
+    public float TargetSearchRadious => targetSearchRadious;
+
+    public void Initialize(Spell spell, Player caster, Vector2 initialDir, Transform target)
     {
-        base.Initialize(spell, initialDir, player);
-        // Pick nearest enemy
-        target = FindNearestEnemy();
+        this.spellData = spell;
+        this.caster = caster;        
+        this.target = target;
+        this.initialDirection = initialDir;
+
+        rb = GetComponent<Rigidbody2D>();
+
+        rb.linearVelocity = initialDirection.normalized * speed;
+        transform.right = initialDirection;
+
+        if (spell.SpellProjectileSpeed > 0f && spell.SpellRange > 0f)
+            lifetime = spell.SpellRange / spell.SpellProjectileSpeed;
+        else if (spell.SpellRange > 0f)
+            lifetime = spell.SpellRange;
+        else
+            lifetime = 10f;
+
+        Destroy(gameObject, lifetime);
     }
 
     // TODO: Make so the spell has a slower speed in the begining and goes faster once x seconds pass
     private void FixedUpdate()
     {
-        if (rb == null || target  == null) return;
+        if (rb == null || target == null) return;        
 
         // Direction missile should move toward
         Vector2 direction = ((Vector2)target.position - rb.position).normalized;
 
-        // Current facing direction
         Vector2 currentDir = rb.linearVelocity.normalized;
 
-        // Angle difference in degrees
         float angle = Vector2.SignedAngle(currentDir, direction);
-
-        // Clamp rotation per frame by turnSpeed
-        float rotateStep = Mathf.Clamp(angle, -turnSpeed * Time.fixedDeltaTime, turnSpeed * Time.fixedDeltaTime);
-
-        // Rotate the current direction
+        float rotateStep = Mathf.Clamp(angle, -rotateSpeed * Time.fixedDeltaTime, rotateSpeed * Time.fixedDeltaTime);
         Vector2 newDir = Quaternion.Euler(0, 0, rotateStep) * currentDir;
 
-        // Apply new velocity
-        rb.linearVelocity = newDir.normalized * spellData.SpellTravelSpeed;
+        rb.linearVelocity = newDir.normalized * speed;
     }
 
-    private Transform FindNearestEnemy()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        Transform nearest = null;
-        float minDist = Mathf.Infinity;
+        if (collision.CompareTag(GameManager.Instance.playerTag)) return;
+        if (!collision.TryGetComponent<Enemy>(out Enemy enemy)) return;
 
-        foreach (GameObject enemy in enemies)
-        {
-            float dist = Vector2.Distance(transform.position, enemy.transform.position);
-            if (dist < minDist && dist <= targetSearchRadious)
-            {
-                minDist = dist;
-                nearest = enemy.transform;
-                //Debug.Log($"Found an enemy at {nearest.position}");
-            }
-        }
-
-        return nearest;
+        spellData.OnHit(caster, collision);
+        Destroy(gameObject);
     }
 
     void OnDrawGizmos()
