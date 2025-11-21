@@ -186,8 +186,7 @@ public class PlayerController : NetworkBehaviour
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 castDirection = (mousePos - rb.position).normalized;
 
-            Debug.Log($"Attacking with: {activeSpell.spell.SpellName}");
-            activeSpell.spell.Cast(mousePos, castDirection, player);
+            activeSpell.spell.Cast(player, castDirection);
         }
     }
 

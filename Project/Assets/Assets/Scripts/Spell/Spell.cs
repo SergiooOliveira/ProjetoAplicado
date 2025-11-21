@@ -1,7 +1,8 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Spells/Spell")]
-public abstract class Spell : ScriptableObject, ISpell
+public class Spell : ScriptableObject, ISpell
 {
     #region Serialized Fields
     [Header("Identity")]
@@ -19,6 +20,9 @@ public abstract class Spell : ScriptableObject, ISpell
     [Header("Behaviour")]
     [SerializeField] private SpellCastType spellCastType;
     [SerializeField] private SpellImpactType spellImpactType;
+
+    [Header("Effects")]
+    [SerializeField] private List<ScriptableObject> spellEffects;
 
     [Header("Damage Settings")]
     [SerializeField] private float spellDamage;
@@ -43,6 +47,9 @@ public abstract class Spell : ScriptableObject, ISpell
     public SpellCastType SpellCastType => spellCastType;
     public SpellImpactType SpellImpactType => spellImpactType;
 
+    // *----- Effects -----*
+    public IReadOnlyList<ScriptableObject> SpellEffects => spellEffects;
+
     // *----- Damage Settings -----*
     public float SpellDamage => spellDamage;
     public float SpellRange => spellRange;
@@ -57,6 +64,9 @@ public abstract class Spell : ScriptableObject, ISpell
         {
             case SpellCastType.Projectile:
                 CastProjectile(caster, direction);
+                break;
+            case SpellCastType.Homing:
+                CastHoming(caster, direction);
                 break;
             case SpellCastType.Area:
                 CastArea(caster, direction);
@@ -73,6 +83,32 @@ public abstract class Spell : ScriptableObject, ISpell
 
         if (instance.TryGetComponent<SpellProjectile>(out SpellProjectile projectile))
             projectile.Initialize(this, direction, caster);
+        else
+            Debug.Log($"{SpellName} is missing SpellPorjectile component");
+    }
+
+    private void CastHoming(Player caster, Vector2 direction)
+    {
+        Vector2[] compassDir = new Vector2[] {
+            Vector2.right,
+            new Vector2(1, 1).normalized,
+            Vector2.up,
+            new Vector2(-1, 1).normalized,
+            Vector2.left
+        };
+
+        foreach (Vector2 dir in compassDir)
+        {
+            Vector3 spawnPos = caster.transform.position + (Vector3)dir * 0.5f;
+            GameObject instance = Instantiate(SpellPrefab, spawnPos, Quaternion.identity);
+            
+            if (instance.TryGetComponent<HomingMissile>(out HomingMissile projectile))
+            {
+                Enemy target = FindNearestEnemy(spawnPos, projectile.TargetSearchRadious);
+                //if (target == null) return;
+                projectile.Initialize(this, caster, dir, target != null ? target.transform : null);
+            }
+        }
     }
 
     private void CastArea(Player caster, Vector2 direction)
@@ -85,4 +121,32 @@ public abstract class Spell : ScriptableObject, ISpell
         Debug.Log($"{SpellName} cast as self");
     }
     #endregion
+
+    public void OnHit(Player caster, Collider2D target)
+    {
+        foreach (SpellEffect effect in SpellEffects)
+        {
+            effect.Apply(caster, target);
+        }
+    }
+
+    private Enemy FindNearestEnemy(Vector2 origin, float targetSearchRadious)
+    {
+        Enemy[] enemies = Enemy.FindObjectsOfType<Enemy>();
+        Enemy nearest = null;
+        float minDist = Mathf.Infinity;
+
+        foreach (Enemy enemy in enemies)
+        {
+            float dist = Vector2.Distance(origin, enemy.transform.position);
+            if (dist < minDist && dist <= targetSearchRadious)
+            {
+                minDist = dist;
+                nearest = enemy;
+                //Debug.LogWarning($"Found an enemy at {nearest.transform.position}");
+            }
+        }
+
+        return nearest;
+    }
 }

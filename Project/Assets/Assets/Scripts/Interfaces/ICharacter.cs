@@ -19,8 +19,8 @@ public interface ICharacter
     // *----- Attributes -----*
     float CharacterMovementSpeed { get; }
     float CharacterAttackSpeed { get; }
-    int CharacterAttackPower { get; }
-    int CharacterDefense { get; }
+    float CharacterAttackPower { get; }
+    float CharacterDefense { get; }
     List<Resistance> CharacterResistances { get; }
 
     // *----- Equipables and Inventory -----*
