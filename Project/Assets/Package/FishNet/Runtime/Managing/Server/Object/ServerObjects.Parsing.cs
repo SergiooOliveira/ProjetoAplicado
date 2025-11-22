@@ -7,12 +7,23 @@ using FishNet.Managing.Utility;
 using FishNet.Object;
 using FishNet.Serializing;
 using FishNet.Transporting;
+using System;
 using System.Runtime.CompilerServices;
 
 namespace FishNet.Managing.Server
 {
     public partial class ServerObjects : ManagedObjects
     {
+        public void Despawn(NetworkObject firstObject)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Spawn(NetworkObject firstObject, NetworkConnection conn)
+        {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// Parses a ServerRpc.
         /// </summary>
