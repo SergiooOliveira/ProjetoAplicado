@@ -5185,6 +5185,7 @@ MonoBehaviour:
   slot1: {fileID: 6978433247853276028}
   slot2: {fileID: 6705947021873954082}
   slot3: {fileID: 5808469008664357733}
+  spellManager: {fileID: 4851644050842421568}
 --- !u!114 &4784383173511588587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10835,6 +10836,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpellSlot (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3913532493028032342, guid: f78fd0fddc6578848938bd3f6849ab56, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3913532493028032342, guid: f78fd0fddc6578848938bd3f6849ab56, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3913532493028032342, guid: f78fd0fddc6578848938bd3f6849ab56, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3913532493028032342, guid: f78fd0fddc6578848938bd3f6849ab56, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5356242857389295175, guid: f78fd0fddc6578848938bd3f6849ab56, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -10851,6 +10868,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -132.5
       objectReference: {fileID: 0}
+    - target: {fileID: 7491411255984442252, guid: f78fd0fddc6578848938bd3f6849ab56, type: 3}
+      propertyPath: sm
+      value: 
+      objectReference: {fileID: 117848514204269240}
     - target: {fileID: 7789082029628513076, guid: f78fd0fddc6578848938bd3f6849ab56, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -11103,6 +11124,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpellSlot (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 3913532493028032342, guid: f78fd0fddc6578848938bd3f6849ab56, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3913532493028032342, guid: f78fd0fddc6578848938bd3f6849ab56, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3913532493028032342, guid: f78fd0fddc6578848938bd3f6849ab56, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3913532493028032342, guid: f78fd0fddc6578848938bd3f6849ab56, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5356242857389295175, guid: f78fd0fddc6578848938bd3f6849ab56, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -11119,6 +11156,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -132.5
       objectReference: {fileID: 0}
+    - target: {fileID: 7491411255984442252, guid: f78fd0fddc6578848938bd3f6849ab56, type: 3}
+      propertyPath: sm
+      value: 
+      objectReference: {fileID: 117848514204269240}
     - target: {fileID: 7789082029628513076, guid: f78fd0fddc6578848938bd3f6849ab56, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -11237,6 +11278,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpellSlot
       objectReference: {fileID: 0}
+    - target: {fileID: 3913532493028032342, guid: f78fd0fddc6578848938bd3f6849ab56, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3913532493028032342, guid: f78fd0fddc6578848938bd3f6849ab56, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3913532493028032342, guid: f78fd0fddc6578848938bd3f6849ab56, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3913532493028032342, guid: f78fd0fddc6578848938bd3f6849ab56, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5356242857389295175, guid: f78fd0fddc6578848938bd3f6849ab56, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -11253,6 +11310,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -132.5
       objectReference: {fileID: 0}
+    - target: {fileID: 7491411255984442252, guid: f78fd0fddc6578848938bd3f6849ab56, type: 3}
+      propertyPath: sm
+      value: 
+      objectReference: {fileID: 117848514204269240}
     - target: {fileID: 7789082029628513076, guid: f78fd0fddc6578848938bd3f6849ab56, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1

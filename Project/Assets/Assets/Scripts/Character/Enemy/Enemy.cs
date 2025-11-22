@@ -416,9 +416,9 @@ public class Enemy : MonoBehaviour
             .Where(r => r.SpellAfinity == spell.SpellAfinity)
             .Sum(r => r.Amount);
 
-        float resistanceMultiplier = 1f - (GetResistance(spell.SpellAfinity) / 100f) + (resistanceDamage / 100f);
+        //float resistanceMultiplier = 1f - (GetResistance(spell.SpellAfinity) / 100f) + (resistanceDamage / 100f);
 
-        baseDamage *= resistanceMultiplier;
+        //baseDamage *= resistanceMultiplier;
 
         // Step 3: Level disadvantage penalties
         int levelDifference = runtimeData.CharacterLevel - player.GetPlayerLevel();
@@ -435,25 +435,26 @@ public class Enemy : MonoBehaviour
         if (runtimeData.CharacterHp.Current <= 0) Die(player);
     }
 
+    public void TakeDamage(DamageContext context)
+    {
+        float finalDamage = ApplyDefense(context.baseDamage);
+        finalDamage = ApplyAffinity(finalDamage, context);
+        finalDamage = ApplyLevelScaling(finalDamage, context);
+
+        runtimeData.CharacterHp.TakeDamage(Mathf.CeilToInt(finalDamage));
+    }
+
     /// <summary>
     /// Call this method to retrieve the resistance value if aplicable
     /// </summary>
     /// <param name="spellAfinity">Attack spell</param>
     /// <returns></returns>
-    private float GetResistance(SpellAffinity spellAfinity)
+    public List<float> GetResistance(SpellAffinity spellAfinity)
     {
-        SpellAffinity resistanceAfinity = Resistance.weaknessChart.ContainsKey(spellAfinity) ? Resistance.weaknessChart[spellAfinity] : spellAfinity;
-
-        foreach (Resistance r in runtimeData.CharacterResistances)
-        {
-            if (r.SpellAfinity == resistanceAfinity)
-            {
-                // Debug.Log($"{r.SpellAfinity} is {r.Amount}% resistant to {spellAfinity}");
-                return r.Amount;
-            }
-        }
-
-        return 0f;
+        return runtimeData.CharacterResistances
+            .Where(r => r.SpellAfinity == spellAfinity)
+            .Select(r => r.Amount)
+            .ToList();
     }
 
     /// <summary>
@@ -585,6 +586,30 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject);
     }
 
+    #region Auxiliary methods
+    private float ApplyDefense(float damage)
+    {
+        return damage * (100f / (100f + runtimeData.CharacterDefense));
+    }
+
+    private float ApplyAffinity (float damage, DamageContext context)
+    {
+        float bonusPercent = context.casterAffinityBonuses.Sum() / 100f;
+        float resistancePercent = context.targetAffinityResistances.Sum() / 100f;
+
+        return damage * (1- resistancePercent + bonusPercent);
+    }
+
+    private float ApplyLevelScaling(float damage, DamageContext context)
+    {
+        int dif = runtimeData.CharacterLevel - context.caster.GetPlayerLevel();
+
+        if (dif >= 5) return damage * 0.75f;
+        if (dif >= 3) return damage * 0.90f;
+
+        return damage;
+    }
+    #endregion
     #endregion
 
     #region Stats / Equipment Bonuses

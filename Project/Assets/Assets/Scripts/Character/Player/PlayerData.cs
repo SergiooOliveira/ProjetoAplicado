@@ -20,8 +20,8 @@ public class PlayerData : ScriptableObject, ICharacter
     [Header("Attributes")]
     [SerializeField] private float characterMovementSpeed;          // Character Movement Speed
     [SerializeField] private float characterAttackSpeed;            // Character Attack Speed
-    [SerializeField] private int characterAttackPower;              // Character Attack Power
-    [SerializeField] private int characterDefense;                  // Character Defense
+    [SerializeField] private float characterAttackPower;              // Character Attack Power
+    [SerializeField] private float characterDefense;                  // Character Defense
     [SerializeField] private List<Resistance> characterResistances; // Character Resistances
 
     [Header("Spells and Inventory")]
@@ -47,8 +47,8 @@ public class PlayerData : ScriptableObject, ICharacter
     // *----- Attributes -----*
     public float CharacterMovementSpeed => characterMovementSpeed * (1 + totalMovementSpeedBonus / 100f);
     public float CharacterAttackSpeed => characterAttackSpeed * (1 + totalAttackSpeedBonus / 100f);
-    public int CharacterAttackPower => characterAttackPower;
-    public int CharacterDefense => characterDefense;
+    public float CharacterAttackPower => characterAttackPower;
+    public float CharacterDefense => characterDefense;
     public List<Resistance> CharacterResistances => characterResistances;
 
     // *----- Spells and Inventory -----*

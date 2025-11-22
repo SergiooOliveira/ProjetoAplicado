@@ -2,35 +2,27 @@ using UnityEngine;
 
 public enum SpellTag { Damage, Buff, Debuff }
 public enum SpellAffinity { Fire, Wind, Ice, Light, Dark }
-public enum SpellProjectileType { Normal, Explosive, Chain, Pierce }
-public enum DebuffType { Slow }
-public enum BuffType { ArmorBreaker }
+public enum SpellCastType { Self, Projectile, Homing, Area, Targeted }
+public enum SpellImpactType { Damage, Buff, Debuff, Heal, Utility };
 
 public interface ISpell
 {
     // *----- Identity -----*
     string SpellName { get; }
     string SpellDescription { get; }
-    SpellTag SpellTag { get; }
     GameObject SpellPrefab { get; }
+    SpellTag SpellTag { get; }
     SpellAffinity SpellAfinity { get; }
-    SpellProjectileType SpellProjectileType { get; }
 
     // *----- Mechanics -----*
-    int SpellDamage { get; }
-    int SpellRange { get; }
-    float SpellTravelSpeed { get; }
     float SpellCooldown { get; }
-    float SpellCastSpeed { get; }
     int SpellCost { get; }
-    float SpellDuration { get; }
+    float SpellCastTime { get; }
 
-    // *----- Status Effects -----*
-    bool SpellHasCC { get; }
-    bool SpellHasBuff { get; }
-    bool SpellHasDebuff { get; }
-
+    SpellCastType SpellCastType { get; }
+    SpellImpactType SpellImpactType { get; }
+    
     #region Methods
-    void Cast(Vector3 position, Vector2 direction, Player player);
+    void Cast(Player caster, Vector2 direction);
     #endregion
 }

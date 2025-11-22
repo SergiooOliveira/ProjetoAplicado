@@ -71,8 +71,8 @@ public class EnemyData : ScriptableObject, IEnemy
     // *----- Attributes -----*
     public float CharacterMovementSpeed => characterMovementSpeed * (1 + totalMovementSpeedBonus / 100f);
     public float CharacterAttackSpeed => characterAttackSpeed * (1 + totalAttackSpeedBonus / 100f);
-    public int CharacterAttackPower => characterAttackPower;
-    public int CharacterDefense => characterDefense;
+    public float CharacterAttackPower => characterAttackPower * (1 + totalAttackPower / 100f);
+    public float CharacterDefense => characterDefense * (1 + totalDefense / 100f);
     public List<Resistance> CharacterResistances => characterResistances;
 
     // *----- Equipables and Inventory -----*
@@ -84,6 +84,8 @@ public class EnemyData : ScriptableObject, IEnemy
     // *----- Internal runtime modifiers -----*
     private float totalAttackSpeedBonus;                            // Character attack speed modifiers
     private float totalMovementSpeedBonus;                          // Character movement speed modifiers
+    private float totalAttackPower;                                   // Character attack power modifiers
+    private float totalDefense;                                       // Character defense modifiers
     #endregion
 
     #region Spell Methods (not supported)
@@ -284,7 +286,7 @@ public class EnemyData : ScriptableObject, IEnemy
     {
         if (amount == 0) return;
 
-        characterAttackPower += amount;
+        totalAttackPower += amount;
     }
 
     /// <summary>
@@ -307,7 +309,7 @@ public class EnemyData : ScriptableObject, IEnemy
     {
         if (amount == 0) return;
 
-        characterDefense += amount;
+        totalDefense += amount;
     }
 
     /// <summary>

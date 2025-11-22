@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Data;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -81,4 +83,18 @@ public class Player : MonoBehaviour
         Destroy(newNotificationSlot, 2f);
     }
     #endregion
+
+    public List<float> GetAffinityBonuses(SpellAffinity spellAffinity)
+    {
+        return RunTimePlayerData.CharacterEquipedEquipment
+            .Where(entry => 
+                entry.isEquipped &&
+                entry.equipment != null &&
+                entry.equipment.RunTimeEquipmentData != null &&
+                entry.equipment.RunTimeEquipmentData.ItemDamageAffinity != null)
+            .SelectMany(entry => entry.equipment.RunTimeEquipmentData.ItemDamageAffinity)
+            .Where(ida => ida.SpellAfinity == spellAffinity)
+            .Select(ida => ida.Amount)
+            .ToList();
+    }
 }

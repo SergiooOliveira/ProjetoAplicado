@@ -28,6 +28,7 @@ public class PlayerController : NetworkBehaviour
     private bool isInventoryOpen = false;
     public GameObject inventoryPanel;
     public GameObject spellInventoryPanel;
+    private SpellManager spellManager;
     #endregion
 
     #region Unity Methods
@@ -48,6 +49,7 @@ public class PlayerController : NetworkBehaviour
         animator = GetComponent<Animator>();
         player = GetComponent<Player>();
         playerData = player.RunTimePlayerData;
+        spellManager = GetComponentInChildren<SpellManager>();
 
         if (playerData == null)
             Debug.Log("Player data is null");
@@ -184,8 +186,7 @@ public class PlayerController : NetworkBehaviour
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 castDirection = (mousePos - rb.position).normalized;
 
-            Debug.Log($"Attacking with: {activeSpell.spell.SpellName}");
-            activeSpell.spell.Cast(mousePos, castDirection, player);
+            activeSpell.spell.Cast(player, castDirection);
         }
     }
 
@@ -243,6 +244,7 @@ public class PlayerController : NetworkBehaviour
                 //Debug.LogWarning($"<Color=Yellow>Equipped spell: {playerData.GetSlot(index).spell.SpellName}</Color>");
                 //Debug.LogWarning($"<Color=red>Trying to equip: {spell.spell.SpellName}</Color>");
                 playerData.SwapActiveSpell(playerData.GetSlot(index), spell);
+                spellManager.SetAllSlots();
             }
         }
     }
@@ -261,6 +263,7 @@ public class PlayerController : NetworkBehaviour
                 //Debug.LogWarning($"<Color=Yellow>Equipped spell: {playerData.GetSlot(index).spell.SpellName}</Color>");
                 //Debug.LogWarning($"<Color=red>Trying to equip: {spell.spell.SpellName}</Color>");
                 playerData.SwapActiveSpell(playerData.GetSlot(index), spell);
+                spellManager.SetAllSlots();
             }
         }
     }
@@ -279,6 +282,7 @@ public class PlayerController : NetworkBehaviour
                 //Debug.LogWarning($"<Color=Yellow>Equipped spell: {playerData.GetSlot(index).spell.SpellName}</Color>");
                 //Debug.LogWarning($"<Color=red>Trying to equip: {spell.spell.SpellName}</Color>");
                 playerData.SwapActiveSpell(playerData.GetSlot(index), spell);
+                spellManager.SetAllSlots();
             }
         }
     }
