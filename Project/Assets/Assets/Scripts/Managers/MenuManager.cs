@@ -1,12 +1,26 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class MenuManager: MonoBehaviour
+public class MenuManager : MonoBehaviour
 {
+    #region Fields
+
+    private bool isLoading = false;
+
+    #endregion
+
+    #region Methods
+
     public void PlayButton()
     {
-        Debug.Log("Swapping scene");
-        SceneManager.LoadScene("Tutorial");
+        if (isLoading)
+            return;
+
+        isLoading = true;
+
+        TSceneManager sm = GameObject.FindFirstObjectByType<TSceneManager>();
+
+        // First load the Loading screen
+        sm.LoadLoadingThenMap("Map1_Part1");
     }
 
     public void QuitGame()
@@ -14,13 +28,5 @@ public class MenuManager: MonoBehaviour
         Application.Quit();
     }
 
-    public void BackButton()
-    {
-        SceneManager.LoadScene("StartMenu");
-    }
-    
-    public void Skip()
-    {
-        SceneManager.LoadScene("Map1_Part1");
-    }
+    #endregion
 }

@@ -53,7 +53,6 @@ public class Projectile : MonoBehaviour
     #region Public Methods
     private IEnumerator LifetimeRoutine()
     {
-        Debug.Log("Starting IEnumerator");
         yield return new WaitForSeconds(lifetime);
         TriggerImpact();
     }
