@@ -10,18 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f43ff49d62b57614e9ca7d326c2a7ad5, type: 3}
-  m_Name: Firebolt
+  m_Name: Homing missiles
   m_EditorClassIdentifier: 
-  spellName: Firebolt
-  spellDescription: Firebolt description
-  spellPrefab: {fileID: 6022871407546440100, guid: 93f57672454b57840b5f0e1d0638ea91, type: 3}
+  spellName: Homing
+  spellDescription: Homing description
+  spellPrefab: {fileID: 244863705734144963, guid: 3668d21d8ded15f4d9242d9dd61400e8, type: 3}
   spellTag: 0
-  spellAfinity: 0
-  spellCooldown: 0
-  spellCost: 0
-  spellCastTime: 0
-  spellCastType: 1
+  spellAfinity: 2
+  spellCooldown: 2
+  spellCost: 4
+  spellCastTime: 1
+  spellCastType: 2
   spellImpactType: 0
   spellEffects:
-  - {fileID: 11400000, guid: 1a69f9ea73c7c314598b87d2f675efc2, type: 2}
-  - {fileID: 11400000, guid: 61ee28e95f45af04cb102bfbf5f287f4, type: 2}
+  - {fileID: 11400000, guid: 42c81345a8fb7ef45b8229d9deb932cb, type: 2}

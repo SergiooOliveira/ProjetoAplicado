@@ -10,19 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f43ff49d62b57614e9ca7d326c2a7ad5, type: 3}
-  m_Name: Homing missiles
+  m_Name: Hydro Cannon
   m_EditorClassIdentifier: 
-  spellName: Homing
-  spellDescription: Homing description
-  spellPrefab: {fileID: 244863705734144963, guid: 3668d21d8ded15f4d9242d9dd61400e8, type: 3}
+  spellName: Hydro Cannon
+  spellDescription: Hydro Cannon description
+  spellPrefab: {fileID: 244863705734144963, guid: bdb58c44bce11674193227086c3514c4, type: 3}
   spellTag: 0
   spellAfinity: 2
-  spellCooldown: 1
-  spellCost: 10
-  spellCastTime: 1
-  spellCastType: 2
+  spellCooldown: 10
+  spellCost: 20
+  spellCastTime: 10
+  spellCastType: 1
   spellImpactType: 0
-  spellEffects: []
-  spellDamage: 10
-  spellRange: 10
-  spellProjectileSpeed: 10
+  spellEffects:
+  - {fileID: 11400000, guid: 1a69f9ea73c7c314598b87d2f675efc2, type: 2}

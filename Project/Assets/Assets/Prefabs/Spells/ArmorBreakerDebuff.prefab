@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5860827059549771783}
   - component: {fileID: 1997535066481531519}
   m_Layer: 9
-  m_Name: ArmorBreakerBuff
+  m_Name: ArmorBreakerDebuff
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
