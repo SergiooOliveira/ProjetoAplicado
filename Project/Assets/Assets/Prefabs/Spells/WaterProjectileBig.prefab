@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8987674780632977613}
   - component: {fileID: 8795144229202004397}
   m_Layer: 6
-  m_Name: WaterCannon
+  m_Name: WaterProjectileBig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
