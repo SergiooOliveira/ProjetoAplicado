@@ -46,7 +46,7 @@ MonoBehaviour:
     isEquipped: 1
   - equipment: {fileID: 549791756682562146, guid: be0fc2a3546714c46942d89fdb6af273, type: 3}
     quantity: 1
-    isEquipped: 1
+    isEquipped: 0
   - equipment: {fileID: 7012709423314061630, guid: 7c35d40e41de38b4881f89869bbc8ef4, type: 3}
     quantity: 1
     isEquipped: 0
