@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6022871407546440100
+--- !u!1 &244863705734144963
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,40 +8,40 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5265301325402277489}
-  - component: {fileID: 6942391965615297955}
-  - component: {fileID: 1028217103593400989}
-  - component: {fileID: 379097881706781737}
-  - component: {fileID: -6676662803172485165}
-  m_Layer: 0
-  m_Name: Fireball
+  - component: {fileID: 1020584598921066751}
+  - component: {fileID: 4419351622565259760}
+  - component: {fileID: -8520651402304079374}
+  - component: {fileID: 8987674780632977613}
+  - component: {fileID: 6574095398641375174}
+  m_Layer: 6
+  m_Name: WaterMissile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5265301325402277489
+--- !u!4 &1020584598921066751
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6022871407546440100}
+  m_GameObject: {fileID: 244863705734144963}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.153, y: -1.107, z: 0}
-  m_LocalScale: {x: 0.03, y: 0.03, z: 0.03}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: -0.34, y: -1.07, z: 0}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &6942391965615297955
+--- !u!212 &4419351622565259760
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6022871407546440100}
+  m_GameObject: {fileID: 244863705734144963}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -79,25 +79,25 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -6607481912129624618, guid: 8a0f2517c928eed41a9717616331775c, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Color: {r: 0, g: 0.80679727, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 11.52, y: 10.4}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!50 &1028217103593400989
+--- !u!50 &-8520651402304079374
 Rigidbody2D:
   serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6022871407546440100}
+  m_GameObject: {fileID: 244863705734144963}
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -117,13 +117,13 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &379097881706781737
+--- !u!58 &8987674780632977613
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6022871407546440100}
+  m_GameObject: {fileID: 244863705734144963}
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
@@ -152,16 +152,19 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 5.76
---- !u!114 &-6676662803172485165
+  m_Radius: 0.5
+--- !u!114 &6574095398641375174
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6022871407546440100}
+  m_GameObject: {fileID: 244863705734144963}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5cd4e7dbbf4fba94db6aed8917cb0e9c, type: 3}
+  m_Script: {fileID: 11500000, guid: abdc52e49076ab54c88583869d832e8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 10
+  rotateSpeed: 500
+  targetSearchRadious: 10
