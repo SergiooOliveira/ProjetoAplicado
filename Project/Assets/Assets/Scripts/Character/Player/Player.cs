@@ -84,17 +84,14 @@ public class Player : MonoBehaviour
     }
     #endregion
 
-    public List<float> GetAffinityBonuses(SpellAffinity spellAffinity)
+    public float GetAffinityBonuses(SpellAffinity spellAffinity)
     {
-        return RunTimePlayerData.CharacterEquipedEquipment
-            .Where(entry => 
-                entry.isEquipped &&
-                entry.equipment != null &&
-                entry.equipment.RunTimeEquipmentData != null &&
-                entry.equipment.RunTimeEquipmentData.ItemDamageAffinity != null)
+        float totalBonus = RunTimePlayerData.CharacterEquipedEquipment
+            .Where(entry => entry.isEquipped && entry.equipment?.RunTimeEquipmentData?.ItemDamageAffinity != null)
             .SelectMany(entry => entry.equipment.RunTimeEquipmentData.ItemDamageAffinity)
             .Where(ida => ida.SpellAfinity == spellAffinity)
-            .Select(ida => ida.Amount)
-            .ToList();
+            .Sum(ida => ida.Amount);
+
+        return 1f + (totalBonus / 100f);
     }
 }

@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 [RequireComponent (typeof(Rigidbody2D), typeof(Collider2D))]
@@ -13,14 +14,19 @@ public class SpellProjectile : MonoBehaviour
         this.spellData = spell;
         this.caster = caster;
 
+        DamageEffect dmg = spell.SpellEffects.OfType<DamageEffect>().FirstOrDefault();
+
+        float speed = dmg?.SpellProjectileSpeed ?? 10f;
+        float range = dmg?.SpellRange ?? 10f;
+
         rb = GetComponent<Rigidbody2D>();
         if (rb != null)
-            rb.linearVelocity = dir.normalized * spell.SpellProjectileSpeed;
+            rb.linearVelocity = dir.normalized * speed;
 
-        if (spell.SpellProjectileSpeed > 0f && spell.SpellRange > 0f)
-            lifetime = spell.SpellRange / spell.SpellProjectileSpeed;
-        else if (spell.SpellRange > 0f)
-            lifetime = spell.SpellRange;
+        if (speed > 0f && range > 0f)
+            lifetime = range / speed;
+        else if (range > 0f)
+            lifetime = range;
         else
             lifetime = 10f;
 

@@ -23,7 +23,5 @@ MonoBehaviour:
   spellCastType: 1
   spellImpactType: 0
   spellEffects:
+  - {fileID: 11400000, guid: 1a69f9ea73c7c314598b87d2f675efc2, type: 2}
   - {fileID: 11400000, guid: 61ee28e95f45af04cb102bfbf5f287f4, type: 2}
-  spellDamage: 25
-  spellRange: 15
-  spellProjectileSpeed: 12

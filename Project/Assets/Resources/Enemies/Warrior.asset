@@ -41,7 +41,7 @@ MonoBehaviour:
   characterMovementSpeed: 7
   characterAttackSpeed: 5
   characterAttackPower: 1000
-  characterDefense: 10
+  characterDefense: 100
   characterResistances: []
   characterEquipedSpells: []
   characterInventory:

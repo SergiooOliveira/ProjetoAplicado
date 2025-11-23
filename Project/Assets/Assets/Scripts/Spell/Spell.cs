@@ -24,10 +24,10 @@ public class Spell : ScriptableObject, ISpell
     [Header("Effects")]
     [SerializeField] private List<ScriptableObject> spellEffects;
 
-    [Header("Damage Settings")]
-    [SerializeField] private float spellDamage;
-    [SerializeField] private float spellRange;
-    [SerializeField] private float spellProjectileSpeed;
+    //[Header("Damage Settings")]
+    //[SerializeField] private float spellDamage;
+    //[SerializeField] private float spellRange;
+    //[SerializeField] private float spellProjectileSpeed;
     #endregion
 
     #region Property implementation
@@ -51,9 +51,9 @@ public class Spell : ScriptableObject, ISpell
     public IReadOnlyList<ScriptableObject> SpellEffects => spellEffects;
 
     // *----- Damage Settings -----*
-    public float SpellDamage => spellDamage;
-    public float SpellRange => spellRange;
-    public float SpellProjectileSpeed => spellProjectileSpeed;
+    //public float SpellDamage => spellDamage;
+    //public float SpellRange => spellRange;
+    //public float SpellProjectileSpeed => spellProjectileSpeed;
 
     #endregion
 
@@ -126,6 +126,7 @@ public class Spell : ScriptableObject, ISpell
     {
         foreach (SpellEffect effect in SpellEffects)
         {
+            //Debug.Log($"OnHit effect: {effect}");
             effect.Apply(caster, target);
         }
     }

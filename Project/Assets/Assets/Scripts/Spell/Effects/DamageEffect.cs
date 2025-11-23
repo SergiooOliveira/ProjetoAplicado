@@ -3,7 +3,13 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Spells/Effects/Damage")]
 public class DamageEffect : SpellEffect
 {
-    [SerializeField] private float baseDamage;
+    [SerializeField] private float spellDamage;
+    [SerializeField] private float spellRange;
+    [SerializeField] private float spellProjectileSpeed;
+
+    public float SpellDamage => spellDamage;
+    public float SpellRange => spellRange;
+    public float SpellProjectileSpeed => spellProjectileSpeed;
 
     public override void Apply(Player caster, Collider2D target)
     {
@@ -13,11 +19,9 @@ public class DamageEffect : SpellEffect
 
         DamageContext context = new DamageContext
         {
-            baseDamage = baseDamage,
+            baseDamage = spellDamage,
             caster = caster,
             spell = spell,
-            casterAffinityBonuses = caster.GetAffinityBonuses(spell.SpellAfinity),
-            targetAffinityResistances = enemy.GetResistance(spell.SpellAfinity)
         };
 
         enemy.TakeDamage(context);
