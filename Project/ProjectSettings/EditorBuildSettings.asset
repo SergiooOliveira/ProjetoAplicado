@@ -6,11 +6,29 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/PersistentScene.unity
+    guid: 91cda2b19a566fb46a8ded9761518bda
+  - enabled: 1
     path: Assets/Scenes/StartMenu.unity
     guid: 6d13f8ba883dc71439c6a2d01fdc8edc
   - enabled: 1
+    path: Assets/Scenes/Loading.unity
+    guid: 794976f1f4ef997438f8340d00eae5ac
+  - enabled: 1
     path: Assets/Scenes/Map1_Part1.unity
     guid: 263be8aba102afe46accb24bbf9f43ad
+  - enabled: 1
+    path: Assets/Scenes/Map2_cloud.unity
+    guid: 7596aa6e93820024cb5ad62021432339
+  - enabled: 1
+    path: Assets/Scenes/Map3_ice.unity
+    guid: 91ac6699de20e11479742ce56c8b05f8
+  - enabled: 1
+    path: Assets/Scenes/Map4_light.unity
+    guid: 7ff5b2f9ac63a0b40ba6de1af29e7ed5
+  - enabled: 1
+    path: Assets/Scenes/SelectMap.unity
+    guid: de7abe6b81e312c43b65b939993f21c3
   - enabled: 1
     path: Assets/Scenes/EndScreen.unity
     guid: 93e5812c866e7d34ba205ffd33591f0c

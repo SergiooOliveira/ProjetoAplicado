@@ -15,6 +15,7 @@ namespace FishNet.Managing.Server
 {
     public sealed partial class ServerManager : MonoBehaviour
     {
+        public bool IsStarted { get; set; }
         #region Public.
         /// <summary>
         /// Called when a client is removed from the server using Kick. This is invoked before the client is disconnected.

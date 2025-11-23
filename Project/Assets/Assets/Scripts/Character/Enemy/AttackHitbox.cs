@@ -2,10 +2,16 @@ using UnityEngine;
 
 public class AttackHitbox : MonoBehaviour
 {
+    #region Fields
+
     [HideInInspector] public Enemy enemy;
     private bool active = false;
 
     private Collider2D col;
+
+    #endregion
+
+    #region Unity Callbacks
 
     private void Awake()
     {
@@ -18,6 +24,9 @@ public class AttackHitbox : MonoBehaviour
         }
     }
 
+    #endregion
+
+    #region Animation Events
 
     public void EnableHitbox()
     {
@@ -52,4 +61,6 @@ public class AttackHitbox : MonoBehaviour
             enemy.ApplyDamage(collision);
         }
     }
+
+    #endregion
 }
