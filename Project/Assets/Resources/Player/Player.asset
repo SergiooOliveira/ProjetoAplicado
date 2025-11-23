@@ -28,19 +28,14 @@ MonoBehaviour:
   characterResistances:
   - spellAfinity: 1
     amount: 20
-  characterSpells: []
+  characterSpells:
+  - {fileID: 11400000, guid: 4c4bd98d78c44a149935435ced6b7300, type: 2}
   characterEquippedSpells: []
-  characterInventory:
-  - item: {fileID: 7362672995192851571, guid: 0c58a3701768c7147a2732ac37b4d9e8, type: 3}
-    quantity: 10
-    isGuarantee: 0
-  - item: {fileID: 791059958512238194, guid: 5370bea0216ae494c9a334486a90260a, type: 3}
-    quantity: 10
-    isGuarantee: 0
+  characterInventory: []
   characterEquipment:
   - equipment: {fileID: 1415593202068403262, guid: 65a606b9c6e0bb94e8830406e3685d1a, type: 3}
     quantity: 1
-    isEquipped: 1
+    isEquipped: 0
   - equipment: {fileID: 549791756682562146, guid: be0fc2a3546714c46942d89fdb6af273, type: 3}
     quantity: 1
     isEquipped: 1

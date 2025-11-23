@@ -28,7 +28,7 @@ MonoBehaviour:
   itemManaBonus: 0
   itemMovementSpeedBonus: 0
   itemResistanceBonus:
-  - spellAfinity: 0
+  - spellAfinity: 2
     amount: 40
   - spellAfinity: 1
     amount: -15
