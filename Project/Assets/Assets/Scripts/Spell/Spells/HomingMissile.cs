@@ -1,4 +1,5 @@
 ﻿using GameKit.Dependencies.Utilities.Types;
+using System.Linq;
 using UnityEngine;
 
 public class HomingMissile : MonoBehaviour
@@ -22,15 +23,20 @@ public class HomingMissile : MonoBehaviour
         this.target = target;
         this.initialDirection = initialDir;
 
+        DamageEffect dmg = spell.SpellEffects.OfType<DamageEffect>().FirstOrDefault();
+
+        float spellSpeed = dmg?.SpellProjectileSpeed ?? 10f;
+        float spellRange = dmg?.SpellRange ?? 10f;
+
         rb = GetComponent<Rigidbody2D>();
 
         rb.linearVelocity = initialDirection.normalized * speed;
         transform.right = initialDirection;
 
-        if (spell.SpellProjectileSpeed > 0f && spell.SpellRange > 0f)
-            lifetime = spell.SpellRange / spell.SpellProjectileSpeed;
-        else if (spell.SpellRange > 0f)
-            lifetime = spell.SpellRange;
+        if (spellSpeed > 0f && spellRange > 0f)
+            lifetime = spellRange / spellSpeed;
+        else if (spellRange > 0f)
+            lifetime = spellRange;
         else
             lifetime = 10f;
 

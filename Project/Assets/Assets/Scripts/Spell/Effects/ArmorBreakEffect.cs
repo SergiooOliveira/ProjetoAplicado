@@ -8,17 +8,20 @@ public class ArmorBreakEffect : SpellEffect
     [SerializeField] private int armorReduce;
     [SerializeField] private int duration;
 
-    private bool isEffectApplied = false;
-
     public override void Apply(Player caster, Collider2D target)
     {
         if (target == null) return;
 
-        if (target.TryGetComponent<Enemy>(out Enemy enemy) && !isEffectApplied)
+        if (!target.TryGetComponent<Enemy>(out Enemy enemy)) return;
+        if (enemy.appliedEffects.Contains(this))
         {
-            isEffectApplied = true;
-            enemy.StartCoroutine(ApplyDefenseBreak(enemy));
-        }            
+            Debug.Log("Defense break already applied");
+            return;
+        }
+
+        Debug.Log($"Applying defense break to {enemy.RunTimeData.CharacterName}");
+        enemy.appliedEffects.Add(this);
+        enemy.StartCoroutine(ApplyDefenseBreak(enemy));        
     }
 
     public IEnumerator ApplyDefenseBreak(Enemy enemy)
@@ -30,6 +33,7 @@ public class ArmorBreakEffect : SpellEffect
 
         enemy.RunTimeData.AddBonusDefense(armorReduce);
         Debug.Log($"Reducing defense <Color=lime>{enemy.RunTimeData.CharacterDefense}</Color>");
-        isEffectApplied = false;
+
+        enemy.appliedEffects.Remove(this);
     }
 }

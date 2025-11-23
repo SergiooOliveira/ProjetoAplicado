@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour
     public EnemyData enemyData;
     private EnemyData runtimeData;
     private PlayerData runTimePlayerData;
+    public HashSet<SpellEffect> appliedEffects = new HashSet<SpellEffect>();
     public EnemyData RunTimeData => runtimeData;
 
     [Header("Hitboxes")]
@@ -59,8 +60,7 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         runtimeData = Instantiate(enemyData);
-        Initialize();
-        GiveStat();
+        Initialize();        
         SetupHitboxes();
 
         rb = GetComponent<Rigidbody2D>();
@@ -108,6 +108,8 @@ public class Enemy : MonoBehaviour
             if (equipment.equipment != null)
                 equipment.equipment.Initialize();
         }
+
+        runtimeData.EquipmentStats();
     }
 
     private void SetupHitboxes()
@@ -359,7 +361,7 @@ public class Enemy : MonoBehaviour
 
         int totalDamage = Mathf.RoundToInt(runtimeData.CharacterAttackPower * (currentAttack.damage / 100f));
 
-        Debug.Log($"Damage: {totalDamage}");
+        //Debug.Log($"Damage: {totalDamage}");
 
         runTimePlayerData.CharacterHp.TakeDamage(totalDamage);
     }
@@ -367,83 +369,16 @@ public class Enemy : MonoBehaviour
     #endregion
 
     #region Take Damage / Death
-
-    /// <summary>
-    /// Call this method to give damage to the enemy
-    /// </summary>
-    /// <param name="damageReceived">Damage Received</param>
-    public void CalculateDamage(Player player, Spell spell)
-    {
-        #region Null checks
-        if (enemyData == null)
-        {
-            Debug.Log("Enemy Data is null");
-            return;
-        }
-
-        if (spell == null)
-        {
-            Debug.Log("Spell is null");
-            return;
-        }
-
-        if (player == null)
-        {
-            Debug.Log("Player is null");
-            return;
-        }
-        #endregion
-
-        // Step 1: Percentile defense reduction
-        float defenseMultiplier = 100f / (100f + runtimeData.CharacterDefense);
-        float baseDamage = spell.SpellDamage * defenseMultiplier;
-
-        /* Result between the Spell Afinity and the Enemy Resistance
-         * But Player can have an Equipment to add damage to said Resistance
-         */
-
-        // Player equips that match the afinity
-        List<EquipmentEntry> playerEquips = player.RunTimePlayerData.CharacterEquipment
-            .FindAll(entry =>
-                entry.isEquipped &&
-                entry.equipment != null &&
-                entry.equipment.RunTimeEquipmentData != null &&
-                entry.equipment.RunTimeEquipmentData.ItemDamageAffinity != null &&
-                entry.equipment.RunTimeEquipmentData.ItemDamageAffinity
-                    .Any(ida => ida.SpellAfinity == spell.SpellAfinity));
-
-        // Sum all the damage bonus to that resistance
-        float resistanceDamage = playerEquips
-            .SelectMany(entry => entry.equipment.RunTimeEquipmentData.ItemDamageAffinity)
-            .Where(r => r.SpellAfinity == spell.SpellAfinity)
-            .Sum(r => r.Amount);
-
-        //float resistanceMultiplier = 1f - (GetResistance(spell.SpellAfinity) / 100f) + (resistanceDamage / 100f);
-
-        //baseDamage *= resistanceMultiplier;
-
-        // Step 3: Level disadvantage penalties
-        int levelDifference = runtimeData.CharacterLevel - player.GetPlayerLevel();
-        if (levelDifference >= 5) baseDamage *= 0.75f;          // -25%
-        else if (levelDifference >= 3) baseDamage *= 0.90f;     // -10%
-
-        // Step 4: Clamp damage and apply
-        int finalDamage = Mathf.Max(1, Mathf.RoundToInt(baseDamage));
-
-        runtimeData.CharacterHp.TakeDamage(finalDamage);
-
-        //Debug.Log($"{player.RunTimePlayerData.CharacterName} did {finalDamage} damage - Enemy hp: {runtimeData.CharacterHp.Current}");
-
-        if (runtimeData.CharacterHp.Current <= 0) Die(player);
-    }
-
     public void TakeDamage(DamageContext context)
     {
-        float finalDamage = ApplyDefense(context.baseDamage);
+        float finalDamage = ApplyDefense(context.baseDamage);   
         finalDamage = ApplyAffinity(finalDamage, context);
         finalDamage = ApplyLevelScaling(finalDamage, context);
 
         runtimeData.CharacterHp.TakeDamage(Mathf.CeilToInt(finalDamage));
+        Debug.Log($"Final damage: <Color=orange>{Mathf.CeilToInt(finalDamage)}</Color>, leaving enemy with: {runtimeData.CharacterHp.Current}");
+
+        if (runtimeData.CharacterHp.Current <= 0) Die(context.caster);
     }
 
     /// <summary>
@@ -451,12 +386,18 @@ public class Enemy : MonoBehaviour
     /// </summary>
     /// <param name="spellAfinity">Attack spell</param>
     /// <returns></returns>
-    public List<float> GetResistance(SpellAffinity spellAfinity)
+    public float GetResistance(SpellAffinity spellAffinity)
     {
-        return runtimeData.CharacterResistances
-            .Where(r => r.SpellAfinity == spellAfinity)
-            .Select(r => r.Amount)
-            .ToList();
+        if (runtimeData?.CharacterResistances == null || runtimeData.CharacterResistances.Count == 0)
+            return 1f;
+
+        float totalResistances = runtimeData.CharacterResistances
+            .Where(r => r.SpellAfinity == spellAffinity)
+            .Sum(r => r.Amount);
+
+        Debug.Log($"<Color=green>GetResistance: {totalResistances}</Color>");
+
+        return 1f + (totalResistances / 100f);
     }
 
     /// <summary>
@@ -591,59 +532,56 @@ public class Enemy : MonoBehaviour
     #region Auxiliary methods
     private float ApplyDefense(float damage)
     {
-        return damage * (100f / (100f + runtimeData.CharacterDefense));
+        float baseFactor = 0.95f;
+        float scale = 0.04f;
+        float minPercent = 0.2f;
+
+        float reduction = Mathf.Pow(baseFactor, runtimeData.CharacterDefense * scale);
+        float finalPercent = Mathf.Max(reduction, minPercent);
+
+        Debug.Log($"ApplyDefense damage: {damage * finalPercent} with {runtimeData.CharacterDefense}");
+        return damage * finalPercent;
     }
 
     private float ApplyAffinity (float damage, DamageContext context)
     {
-        float bonusPercent = context.casterAffinityBonuses.Sum() / 100f;
-        float resistancePercent = context.targetAffinityResistances.Sum() / 100f;
+        float bonusPercent = context.caster.GetAffinityBonuses(context.spell.SpellAfinity);
+        float resistancePercent = this.GetResistance(context.spell.SpellAfinity);
+        //float weakness = GetWeaknessMultiplier(context.spell);
 
-        return damage * (1- resistancePercent + bonusPercent);
+        Debug.Log($"ApplyAffinity damage: {damage * bonusPercent / resistancePercent} with bonusPercent: {bonusPercent} and resistancePercent: {resistancePercent}");
+        return damage * (bonusPercent / resistancePercent);   
     }
 
     private float ApplyLevelScaling(float damage, DamageContext context)
     {
         int dif = runtimeData.CharacterLevel - context.caster.GetPlayerLevel();
 
-        if (dif >= 5) return damage * 0.75f;
-        if (dif >= 3) return damage * 0.90f;
+        if (dif >= 5)
+        {
+            Debug.Log($"ApplyLevelScaling: {damage * 0.75f} with dif: {dif}");
+            return damage * 0.75f;
+        }
+        if (dif >= 3)
+        {
+            Debug.Log($"ApplyLevelScaling: {damage * 0.90f} with dif: {dif}");
+            return damage * 0.90f;
+        }
 
+        Debug.Log($"ApplyLevelScaling: {damage} with dif: {dif}");
         return damage;
     }
-    #endregion
-    #endregion
 
-    #region Stats / Equipment Bonuses
-
-    /// <summary>
-    /// Call this method to apply the equipment bonus
-    /// </summary>
-    private void GiveStat()
+    public float GetWeaknessMultiplier(SpellAffinity spell, Enemy enemy)
     {
-        foreach (EquipmentEntry equipment in enemyData.CharacterEquipment)
-        {
-            Equipment iterationEquipment = equipment.equipment;
+        if (!Resistance.weaknessChart.TryGetValue(spell, out SpellAffinity weakAgainst)) return 1f;
 
-            if (equipment.isEquipped)
-            {
-                // Int and floats
-                runtimeData.AddBonusHp(iterationEquipment.RunTimeEquipmentData.ItemHpBonus);
-                runtimeData.AddBonusAttack(iterationEquipment.RunTimeEquipmentData.ItemAttackBonus);
-                runtimeData.AddBonusAttackSpeed(iterationEquipment.RunTimeEquipmentData.ItemAttackSpeedBonus);
-                runtimeData.AddBonusDefense(iterationEquipment.RunTimeEquipmentData.ItemDefenseBonus);
-                runtimeData.AddBonusMana(iterationEquipment.RunTimeEquipmentData.ItemManaBonus);
-                runtimeData.AddBonusMovementSpeed(iterationEquipment.RunTimeEquipmentData.ItemMovementSpeedBonus);
+        bool enemyHasAffinity = enemy.runtimeData.CharacterResistances
+            .Any(r => r.SpellAfinity == weakAgainst);
 
-                // Resistances
-                foreach (Resistance resistance in iterationEquipment.RunTimeEquipmentData.ItemResistanceBonus)
-                {
-                    runtimeData.AddResistance(resistance);
-                }
-            }
-        }
+        return enemyHasAffinity ? 1.5f : 1f;
     }
-
+    #endregion
     #endregion
 
     #region Animator helper

@@ -81,11 +81,14 @@ public class EnemyData : ScriptableObject, IEnemy
     public List<EquipmentEntry> CharacterEquipment => characterEquipedItems;
     public int CharacterGold => characterGold;
 
+    // *----- Effects applied -----*
+    
+
     // *----- Internal runtime modifiers -----*
-    private float totalAttackSpeedBonus;                            // Character attack speed modifiers
-    private float totalMovementSpeedBonus;                          // Character movement speed modifiers
-    private float totalAttackPower;                                   // Character attack power modifiers
-    private float totalDefense;                                       // Character defense modifiers
+    private float totalAttackSpeedBonus;                                // Character attack speed modifiers
+    private float totalMovementSpeedBonus;                              // Character movement speed modifiers
+    private float totalAttackPower;                                     // Character attack power modifiers
+    private float totalDefense;                                         // Character defense modifiers
     #endregion
 
     #region Spell Methods (not supported)

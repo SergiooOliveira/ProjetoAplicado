@@ -8,21 +8,21 @@ public class PlayerData : ScriptableObject, ICharacter
 {
     #region Serialized Fields
     [Header("Identity")]
-    [SerializeField] private string characterName;                  // Character Name
-    [SerializeField] private int characterLevel;                    // Character Level
-    [SerializeField] private GameObject characterPrefab;            // Character Prefab
+    [SerializeField] private string characterName;                              // Character Name
+    [SerializeField] private int characterLevel;                                // Character Level
+    [SerializeField] private GameObject characterPrefab;                        // Character Prefab
 
     [Header("Stats")]
-    [SerializeField] private Stat characterHp;                      // Character Hp
-    [SerializeField] private Stat characterXp;                      // Character Xp
-    [SerializeField] private Stat characterMana;                    // Character Mana
+    [SerializeField] private Stat characterHp;                                  // Character Hp
+    [SerializeField] private Stat characterXp;                                  // Character Xp
+    [SerializeField] private Stat characterMana;                                // Character Mana
 
     [Header("Attributes")]
-    [SerializeField] private float characterMovementSpeed;          // Character Movement Speed
-    [SerializeField] private float characterAttackSpeed;            // Character Attack Speed
-    [SerializeField] private float characterAttackPower;              // Character Attack Power
-    [SerializeField] private float characterDefense;                  // Character Defense
-    [SerializeField] private List<Resistance> characterResistances; // Character Resistances
+    [SerializeField] private float characterMovementSpeed;                      // Character Movement Speed
+    [SerializeField] private float characterAttackSpeed;                        // Character Attack Speed
+    [SerializeField] private float characterAttackPower;                        // Character Attack Power
+    [SerializeField] private float characterDefense;                            // Character Defense
+    [SerializeField] private List<Resistance> characterResistances;             // Character Resistances
 
     [Header("Spells and Inventory")]
     [SerializeField] private List<Spell> characterSpells;                       // Character learned Spells
@@ -76,7 +76,6 @@ public class PlayerData : ScriptableObject, ICharacter
 
     /// <summary>
     /// Call this method to add a Spell to the player spell book
-    /// TODO: Change this to add an int with the slot to place said spell
     /// </summary>
     /// <param name="newSpell"></param>
     public void AddSpell(Spell spell)

@@ -7,7 +7,7 @@ public struct DamageContext
     public Spell spell;
     public Player caster;
 
-    public List<float> casterAffinityBonuses;
-    public List<float> targetAffinityResistances;
+    public float casterAffinityBonuses;
+    public float targetAffinityResistances;
     public List<float> temporaryModifiers;
 }
