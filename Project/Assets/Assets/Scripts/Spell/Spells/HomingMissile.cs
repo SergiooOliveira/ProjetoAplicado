@@ -3,10 +3,11 @@ using System.Linq;
 using UnityEngine;
 
 public class HomingMissile : MonoBehaviour
-{
-    [SerializeField] private float speed;
+{    
     [SerializeField] private float rotateSpeed;
     [SerializeField] private float targetSearchRadious = 10f;
+    private float spellSpeed;
+
     private Transform target;
     private Spell spellData;
     private Player caster;
@@ -25,12 +26,12 @@ public class HomingMissile : MonoBehaviour
 
         DamageEffect dmg = spell.SpellEffects.OfType<DamageEffect>().FirstOrDefault();
 
-        float spellSpeed = dmg?.SpellProjectileSpeed ?? 10f;
+        spellSpeed = dmg?.SpellProjectileSpeed ?? 10f;
         float spellRange = dmg?.SpellRange ?? 10f;
 
         rb = GetComponent<Rigidbody2D>();
 
-        rb.linearVelocity = initialDirection.normalized * speed;
+        rb.linearVelocity = initialDirection.normalized * this.spellSpeed;
         transform.right = initialDirection;
 
         if (spellSpeed > 0f && spellRange > 0f)
@@ -57,7 +58,7 @@ public class HomingMissile : MonoBehaviour
         float rotateStep = Mathf.Clamp(angle, -rotateSpeed * Time.fixedDeltaTime, rotateSpeed * Time.fixedDeltaTime);
         Vector2 newDir = Quaternion.Euler(0, 0, rotateStep) * currentDir;
 
-        rb.linearVelocity = newDir.normalized * speed;
+        rb.linearVelocity = newDir.normalized * spellSpeed;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
