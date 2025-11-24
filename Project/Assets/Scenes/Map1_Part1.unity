@@ -100865,7 +100865,7 @@ MonoBehaviour:
   hasEnemy: 0
   currentEnemy: {fileID: 0}
   isRespawning: 0
-  isActiveSpawnPoint: 0
+  isActiveSpawnPoint: 1
   enemyTypeData: {fileID: 0}
 --- !u!1001 &866661483
 PrefabInstance:

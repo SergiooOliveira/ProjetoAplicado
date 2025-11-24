@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 208713140345046972}
   - component: {fileID: 1633390038363975547}
   - component: {fileID: 5903974475915708647}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SpellBoss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
