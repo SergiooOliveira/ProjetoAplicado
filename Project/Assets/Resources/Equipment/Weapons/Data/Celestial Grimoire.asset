@@ -18,14 +18,16 @@ MonoBehaviour:
   itemType: 3
   itemRarity: 3
   isItemSellable: 1
-  itemSellValue: 100
+  itemSellValue: 3000
   itemSlot: 3
   itemSet: 3
   itemHpBonus: 150
-  itemAttackBonus: 20
+  itemAttackBonus: 0
   itemAttackSpeedBonus: 0
   itemDefenseBonus: 0
   itemManaBonus: 30
   itemMovementSpeedBonus: 0
   itemResistanceBonus: []
-  itemDamageAffinity: []
+  itemDamageAffinity:
+  - spellAfinity: 1
+    amount: 30

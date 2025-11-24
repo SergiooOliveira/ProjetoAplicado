@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd632307590d5c54a966560ca3cc38c7, type: 3}
+  m_Name: M_W_4
+  m_EditorClassIdentifier: 
+  characterName: Bone warrior
+  characterLevel: 30
+  characterPrefab: {fileID: 7768565000175433650, guid: 256603a627bdeb34e8925620fd996a20, type: 3}
+  characterDescription: A mighty warrior destined to walk the land for all eternity
+  characterType: 0
+  characterSpawnLevel: 0
+  characterCategory: 0
+  attacks:
+  - triggerName: Attack1
+    damage: 50
+    weight: 70
+    attackType: 0
+  - triggerName: Attack2
+    damage: 90
+    weight: 30
+    attackType: 0
+  spawnCount: 10
+  distanceSpawn: 5
+  respawnTime: 50
+  respawnDistance: 10
+  characterHp:
+    max: 400
+  characterXp:
+    max: 0
+  characterMana:
+    max: 0
+  characterMovementSpeed: 7
+  characterAttackSpeed: 5
+  characterAttackPower: 100
+  characterDefense: 50
+  characterResistances:
+  - spellAfinity: 2
+    amount: 40
+  - spellAfinity: 0
+    amount: 40
+  - spellAfinity: 1
+    amount: 40
+  characterEquipedSpells: []
+  characterInventory:
+  - item: {fileID: 7362672995192851571, guid: 0c58a3701768c7147a2732ac37b4d9e8, type: 3}
+    quantity: 7
+    isGuarantee: 1
+  - item: {fileID: 7362672995192851571, guid: 0c58a3701768c7147a2732ac37b4d9e8, type: 3}
+    quantity: 5
+    isGuarantee: 0
+  characterEquipedItems: []
+  characterGold: 50

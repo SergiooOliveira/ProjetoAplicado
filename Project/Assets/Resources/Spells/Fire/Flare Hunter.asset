@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f43ff49d62b57614e9ca7d326c2a7ad5, type: 3}
+  m_Name: Flare Hunter
+  m_EditorClassIdentifier: 
+  spellName: Flare Hunter
+  spellDescription: Flare Hunter description
+  spellPrefab: {fileID: 244863705734144963, guid: f9ee2608c627e7c4cbef227637aaa45a, type: 3}
+  spellTag: 0
+  spellAfinity: 0
+  spellCooldown: 2
+  spellCost: 4
+  spellCastTime: 1
+  spellCastType: 2
+  spellImpactType: 0
+  spellEffects:
+  - {fileID: 11400000, guid: 42c81345a8fb7ef45b8229d9deb932cb, type: 2}
