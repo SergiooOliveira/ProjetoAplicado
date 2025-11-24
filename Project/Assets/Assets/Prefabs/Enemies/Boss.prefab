@@ -362,7 +362,7 @@ GameObject:
   - component: {fileID: 8070497762833507635}
   - component: {fileID: 3990011674222629079}
   - component: {fileID: 2199388008791737021}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Atk1Hitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}

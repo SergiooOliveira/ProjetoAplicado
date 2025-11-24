@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1843796575298919164}
   - component: {fileID: 208958332317436163}
   - component: {fileID: -4762395687135589791}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: FlyEnemyProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -188,9 +188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c06103e5d0543ec48b51025da0b8678f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy: {fileID: 0}
   speed: 5
-  damage: 1
   direction: {x: 0, y: 0}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 128
+  lifetime: 5

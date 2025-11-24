@@ -28,7 +28,7 @@ MonoBehaviour:
     damage: 45
     weight: 30
     attackType: 0
-  spawnCount: 10
+  spawnCount: 15
   distanceSpawn: 10
   respawnTime: 5
   respawnDistance: 10
