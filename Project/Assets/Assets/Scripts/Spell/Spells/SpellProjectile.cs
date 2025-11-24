@@ -36,7 +36,8 @@ public class SpellProjectile : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag(GameManager.Instance.playerTag)) return;
-        if (collision.CompareTag("Grid")) return;
+        if (collision.CompareTag(GameManager.Instance.gridTag)) return;
+        if (collision.CompareTag(GameManager.Instance.interactableTag)) return;
 
         spellData.OnHit(caster, collision);
         
