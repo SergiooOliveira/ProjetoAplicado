@@ -1342,7 +1342,11 @@ PrefabInstance:
     - target: {fileID: 8271270082612654025, guid: 28961f88c1d287c4d9750bb9ee8f3ca7, type: 3}
       propertyPath: npcData
       value: 
+<<<<<<< HEAD
       objectReference: {fileID: 11400000, guid: c042ab84cc865c44b8bf2b8b48bd0cb8, type: 2}
+=======
+      objectReference: {fileID: 11400000, guid: ba3001d6c840c5e4bb4fd45f7dc2731f, type: 2}
+>>>>>>> main
     - target: {fileID: 8854129655483748159, guid: 28961f88c1d287c4d9750bb9ee8f3ca7, type: 3}
       propertyPath: m_VerticalScrollbarVisibility
       value: 0
@@ -109583,6 +109587,9 @@ SceneRoots:
   - {fileID: 1924759768}
   - {fileID: 1059564258}
   - {fileID: 1620711179}
-  - {fileID: 1209469842}
-  - {fileID: 1576723878}
-  - {fileID: 1311538248}
+  - {fileID: 344105489}
+  - {fileID: 507243142}
+  - {fileID: 143298740}
+  - {fileID: 1923755614}
+  - {fileID: 1714573112}
+  - {fileID: 772214566}
