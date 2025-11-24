@@ -10,40 +10,42 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fd632307590d5c54a966560ca3cc38c7, type: 3}
-  m_Name: Boss_mapa4
+  m_Name: R_N_4
   m_EditorClassIdentifier: 
-  characterName: Bringer Of God
-  characterLevel: 40
-  characterPrefab: {fileID: 2872877578539829835, guid: 621a7dfadd843714ca7583a804b9942c, type: 3}
+  characterName: Necromancer
+  characterLevel: 5
+  characterPrefab: {fileID: 4187340211508186756, guid: 9e22506273d82574182da7aa1d182f85, type: 3}
   characterDescription: A mighty warrior destined to walk the land for all eternity
-  characterType: 0
-  characterSpawnLevel: 3
-  characterCategory: 3
+  characterType: 2
+  characterSpawnLevel: 0
+  characterCategory: 1
   attacks:
   - triggerName: Attack1
-    damage: 50
-    weight: 75
-    attackType: 0
-  - triggerName: Attack2
-    damage: 50
-    weight: 25
+    damage: 30
+    weight: 100
     attackType: 1
-  spawnCount: 1
-  distanceSpawn: 15
-  respawnTime: 5
-  respawnDistance: 1
+  spawnCount: 3
+  distanceSpawn: 5
+  respawnTime: 500
+  respawnDistance: 10
   characterHp:
-    max: 2500
+    max: 600
   characterXp:
     max: 0
   characterMana:
-    max: 1000
+    max: 100
   characterMovementSpeed: 6
   characterAttackSpeed: 6
-  characterAttackPower: 10
-  characterDefense: 20
-  characterResistances: []
+  characterAttackPower: 6
+  characterDefense: 6
+  characterResistances:
+  - spellAfinity: 2
+    amount: 40
+  - spellAfinity: 0
+    amount: 40
+  - spellAfinity: 1
+    amount: 40
   characterEquipedSpells: []
   characterInventory: []
   characterEquipedItems: []
-  characterGold: 400
+  characterGold: 10

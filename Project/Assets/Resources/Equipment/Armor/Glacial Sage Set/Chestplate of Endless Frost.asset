@@ -18,7 +18,7 @@ MonoBehaviour:
   itemType: 3
   itemRarity: 3
   isItemSellable: 0
-  itemSellValue: 0
+  itemSellValue: 1500
   itemSlot: 1
   itemSet: 1
   itemHpBonus: 200

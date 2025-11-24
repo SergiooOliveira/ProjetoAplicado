@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f43ff49d62b57614e9ca7d326c2a7ad5, type: 3}
   m_Name: Homing missiles
   m_EditorClassIdentifier: 
-  spellName: Homing
-  spellDescription: Homing description
+  spellName: Homing Missile
+  spellDescription: Homing Missile description
   spellPrefab: {fileID: 244863705734144963, guid: 3668d21d8ded15f4d9242d9dd61400e8, type: 3}
   spellTag: 0
   spellAfinity: 2
@@ -23,4 +23,4 @@ MonoBehaviour:
   spellCastType: 2
   spellImpactType: 0
   spellEffects:
-  - {fileID: 11400000, guid: 42c81345a8fb7ef45b8229d9deb932cb, type: 2}
+  - {fileID: 11400000, guid: 7e2ca9e7649f87f49b54c835519d8b3c, type: 2}

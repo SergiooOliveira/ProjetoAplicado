@@ -19,7 +19,7 @@ MonoBehaviour:
   spellAfinity: 4
   spellCooldown: 30
   spellCost: 10
-  spellCastTime: 3
+  spellCastTime: 0
   spellCastType: 1
   spellImpactType: 2
   spellEffects:

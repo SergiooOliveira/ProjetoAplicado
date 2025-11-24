@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd632307590d5c54a966560ca3cc38c7, type: 3}
+  m_Name: R_F_2
+  m_EditorClassIdentifier: 
+  characterName: Cyclope Bat
+  characterLevel: 2
+  characterPrefab: {fileID: 7057437063388147542, guid: ba819c309d89383468f3bc3eb5925314, type: 3}
+  characterDescription: A mighty warrior destined to walk the land for all eternity
+  characterType: 1
+  characterSpawnLevel: 0
+  characterCategory: 2
+  attacks:
+  - triggerName: Attack1
+    damage: 5
+    weight: 100
+    attackType: 1
+  spawnCount: 15
+  distanceSpawn: 5
+  respawnTime: 15
+  respawnDistance: 10
+  characterHp:
+    max: 150
+  characterXp:
+    max: 0
+  characterMana:
+    max: 100
+  characterMovementSpeed: 6
+  characterAttackSpeed: 6
+  characterAttackPower: 100
+  characterDefense: 6
+  characterResistances:
+  - spellAfinity: 2
+    amount: 500
+  characterEquipedSpells: []
+  characterInventory: []
+  characterEquipedItems: []
+  characterGold: 10

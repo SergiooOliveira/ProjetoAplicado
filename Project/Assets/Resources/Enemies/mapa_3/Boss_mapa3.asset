@@ -10,36 +10,44 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fd632307590d5c54a966560ca3cc38c7, type: 3}
-  m_Name: Boss_mapa2
+  m_Name: Boss_mapa3
   m_EditorClassIdentifier: 
-  characterName: Skyrath
-  characterLevel: 20
-  characterPrefab: {fileID: 7057437063388147542, guid: 3c05ca901b5e6ac4587c6c0d7e5db069, type: 3}
-  characterDescription: description
-  characterType: 1
-  characterSpawnLevel: 1
+  characterName: Bringer Of Undeath
+  characterLevel: 30
+  characterPrefab: {fileID: 2872877578539829835, guid: f0c32636c59af50448db98968cb44a20, type: 3}
+  characterDescription: A mighty warrior destined to walk the land for all eternity
+  characterType: 0
+  characterSpawnLevel: 2
   characterCategory: 3
   attacks:
   - triggerName: Attack1
-    damage: 15
-    weight: 100
+    damage: 50
+    weight: 75
+    attackType: 0
+  - triggerName: Attack2
+    damage: 50
+    weight: 25
     attackType: 1
   spawnCount: 1
-  distanceSpawn: 10
+  distanceSpawn: 15
   respawnTime: 5
   respawnDistance: 1
   characterHp:
-    max: 750
+    max: 1500
   characterXp:
     max: 0
   characterMana:
-    max: 0
-  characterMovementSpeed: 10
-  characterAttackSpeed: 10
+    max: 1000
+  characterMovementSpeed: 6
+  characterAttackSpeed: 6
   characterAttackPower: 10
-  characterDefense: 10
-  characterResistances: []
+  characterDefense: 20
+  characterResistances:
+  - spellAfinity: 2
+    amount: 500
+  - spellAfinity: 0
+    amount: 500
   characterEquipedSpells: []
   characterInventory: []
   characterEquipedItems: []
-  characterGold: 200
+  characterGold: 3000
