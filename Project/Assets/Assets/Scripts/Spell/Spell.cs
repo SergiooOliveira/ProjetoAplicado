@@ -127,7 +127,8 @@ public class Spell : ScriptableObject, ISpell
         foreach (SpellEffect effect in SpellEffects)
         {
             //Debug.Log($"OnHit effect: {effect}");
-            effect.Apply(caster, target);
+            if (effect != null)
+                effect.Apply(caster, target);
         }
     }
 
