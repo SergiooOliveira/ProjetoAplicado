@@ -19,7 +19,7 @@ public class LobbyClientUI : MonoBehaviour
 
     [Header("IP Settings")]
     public TMP_InputField ipInput;
-    public ushort port = 7770;
+    public ushort port = 7777;
 
     private string currentRoomCode;
 

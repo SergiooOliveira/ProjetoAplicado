@@ -121,12 +121,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stopSocketsOnThread: 0
   _dontRoute: 0
-  _reuseAddress: 0
+  _reuseAddress: 1
   _unreliableMtu: 1023
   _ipv4BindAddress: 
-  _enableIpv6: 1
+  _enableIpv6: 0
   _ipv6BindAddress: 
-  _port: 7770
+  _port: 7777
   _maximumClients: 10
   _clientAddress: localhost
 --- !u!1001 &2130063410
