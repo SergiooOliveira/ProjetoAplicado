@@ -1,7 +1,6 @@
 using FishNet;
 using FishNet.Connection;
 using FishNet.Managing.Scened;
-using NUnit.Framework;
 using System.Collections;
 using System.Linq;
 using UnityEngine;
@@ -140,7 +139,7 @@ public class TSceneManager : MonoBehaviour
         spawner.spawnPoints = markers.Select(s => s.transform).ToArray();
 
         // Spawn players
-        StartCoroutine(SpawnPlayersThenCloseLoading());
+        StartCoroutine(FinishLoadAndSpawn());
     }
 
     #endregion
@@ -180,28 +179,65 @@ public class TSceneManager : MonoBehaviour
 
     #region Spawn Players
 
-    private IEnumerator SpawnPlayersThenCloseLoading()
+    private void MovePlayerToSpawnPoint(NetworkConnection conn)
     {
-        yield return null; // wait 1 frame
+        var player = conn.FirstObject;
+        if (player == null)
+        {
+            Debug.LogError("MovePlayerToSpawnPoint: player não encontrado!");
+            return;
+        }
+
+        // If there are no spawnpoints on the map, nothing changes
+        if (spawner.spawnPoints == null || spawner.spawnPoints.Length == 0)
+        {
+            Debug.LogWarning("Nenhum spawnpoint encontrado neste mapa!");
+            return;
+        }
+
+        // For now let's choose a random spawn (same as PlayerSpawner)
+        int index = Random.Range(0, spawner.spawnPoints.Length);
+        Transform spawn = spawner.spawnPoints[index];
+
+        player.transform.position = spawn.position;
+        player.transform.rotation = spawn.rotation;
+
+        Debug.Log($"Player movido para spawnpoint {index}: {spawn.position}");
+    }
+
+    private IEnumerator FinishLoadAndSpawn()
+    {
+        yield return null;
+
+        // Update map spawnpoints
+        spawner.spawnPoints = GameObject.FindObjectsByType<SpawnPointMarker>(FindObjectsSortMode.None)
+                                         .Select(s => s.transform)
+                                         .ToArray();
 
         foreach (NetworkConnection conn in InstanceFinder.ServerManager.Clients.Values)
         {
-            if (conn.FirstObject != null)
-                InstanceFinder.ServerManager.Objects.Despawn(conn.FirstObject);
-
+            // Create the player only if it doesn't already exist
             spawner.SpawnPlayer(conn);
+
+            // Move player to map spawn
+            MovePlayerToSpawnPoint(conn);
         }
 
+        // Remove LOADING
         yield return new WaitForSeconds(0.1f);
+        UnloadLoading();
+    }
 
-        // Now unload the Loading scene
-        if (UnityEngine.SceneManagement.SceneManager.GetSceneByName("Loading").isLoaded)
+    private void UnloadLoading()
+    {
+        var loadingScene = UnityEngine.SceneManagement.SceneManager.GetSceneByName("Loading");
+
+        if (loadingScene.isLoaded)
         {
-            InstanceFinder.SceneManager.UnloadGlobalScenes(new SceneUnloadData("Loading")); // ideal / correct but it doesn't work
-            UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("Loading"); // TODO: you shouldn't use this but it's the only way that works
+            InstanceFinder.SceneManager.UnloadGlobalScenes(new SceneUnloadData("Loading"));
+            UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("Loading");
+            Debug.Log("[TSceneManager] Loading removida.");
         }
-
-        Debug.Log("[TSceneManager] Loading removida.");
     }
 
     #endregion

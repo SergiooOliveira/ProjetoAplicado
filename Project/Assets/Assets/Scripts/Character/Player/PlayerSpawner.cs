@@ -24,28 +24,20 @@ public class PlayerSpawner : MonoBehaviour
     /// </summary>
     public void SpawnPlayer(NetworkConnection conn)
     {
-        if (playerPrefab == null || spawnPoints.Length == 0)
+        if (conn.FirstObject != null)
         {
-            Debug.LogError("PlayerPrefab ou SpawnPoints não configurados!");
+            Debug.Log("Player já existe — não será respawnado.");
             return;
         }
 
-        // Choose random spawn point (can change to sequential)
-        int spawnIndex = Random.Range(0, spawnPoints.Length);
+        var persistentScene = UnityEngine.SceneManagement.SceneManager.GetSceneByName("PersistentScene");
 
-        // Avoid repeating the same spawn consecutively
-        if (spawnPoints.Length > 1 && spawnIndex == lastSpawnIndex)
-        {
-            spawnIndex = (spawnIndex + 1) % spawnPoints.Length;
-        }
+        NetworkObject player = Instantiate(playerPrefab);
 
-        lastSpawnIndex = spawnIndex;
-        Transform spawnPoint = spawnPoints[spawnIndex];
+        // Move player to persistent scene
+        UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(player.gameObject, persistentScene);
 
-        // Instantiates the player on the server
-        NetworkObject playerInstance = Instantiate(playerPrefab, spawnPoint.position, spawnPoint.rotation);
-        InstanceFinder.ServerManager.Spawn(playerInstance, conn);
-        Debug.Log($"Player spawned para {conn.ClientId} em {spawnPoint.position}");
+        InstanceFinder.ServerManager.Spawn(player, conn);
     }
 
     #endregion
