@@ -19,7 +19,7 @@ public class LobbyClientUI : MonoBehaviour
 
     [Header("IP Settings")]
     public TMP_InputField ipInput;
-    public ushort port = 7777;
+    public ushort port = 7770;
 
     private string currentRoomCode;
 
@@ -45,6 +45,11 @@ public class LobbyClientUI : MonoBehaviour
 
     private void OnServerStarted(ServerConnectionStateArgs args)
     {
+        InstanceFinder.ServerManager.OnServerConnectionState += (args) =>
+        {
+            Debug.Log("Server Connection State: " + args.ConnectionState);
+        };
+
         if (args.ConnectionState == LocalConnectionState.Started)
         {
             Debug.Log("Servidor iniciado. Procurando conexão do host...");
