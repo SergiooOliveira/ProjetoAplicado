@@ -1,6 +1,12 @@
 using FishNet;
+using FishNet.Connection;
+using FishNet.Managing;
+using FishNet.Managing.Client;
+using FishNet.Managing.Server;
+using FishNet.Transporting;
+using System.Collections.Generic;
+using System.Linq;
 using TMPro;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class LobbyClientUI : MonoBehaviour
@@ -9,62 +15,136 @@ public class LobbyClientUI : MonoBehaviour
     public TMP_Text roomCodeText;
     public TMP_InputField joinInput;
     public TMP_Text feedbackText;
+    public TMP_Text playerListText;
 
     [Header("IP Settings")]
     public TMP_InputField ipInput;
     public ushort port = 7777;
 
-    private bool registered = false;
-
-    private void Awake()
-    {
-        // Evita dupla inscrição de callbacks ao carregar a UI mais de uma vez
-        if (!registered)
-        {
-            RegisterClientMessages();
-            registered = true;
-        }
-    }
+    private string currentRoomCode;
 
     private void Start()
     {
-        // Se for host
-        if (LobbyManager.Instance.IsHost(InstanceFinder.ClientManager.Connection))
+        var client = InstanceFinder.ClientManager;
+
+        client.OnClientConnectionState += OnClientConnectionStateChanged;
+        InstanceFinder.ServerManager.OnServerConnectionState += OnServerStarted;
+
+        RegisterClientMessages();
+
+        // Se este cliente for host local (rodando server + client), passamos a conexão do client.
+        // Em hosts, a Connection do ClientManager representa a conexão local do cliente.
+        NetworkConnection myClientConn = InstanceFinder.ClientManager.Connection;
+        if (myClientConn != null && LobbyManager.Instance.IsHost(myClientConn))
         {
-            CreateRoom(); // cria sala automaticamente
+            // Host cria a sala automaticamente — passamos a conexão do cliente (para identificação local)
+            // Caso prefira a conexão server-side, CreateRoomUIForHost() também tenta recuperar server-side se receber null.
+            CreateRoomUIForHost(myClientConn);
         }
+    }
+
+    private void OnServerStarted(ServerConnectionStateArgs args)
+    {
+        if (args.ConnectionState == LocalConnectionState.Started)
+        {
+            Debug.Log("Servidor iniciado. Procurando conexão do host...");
+
+            // CORREÇÃO: pegar apenas os valores (NetworkConnection) da coleção Clients
+            NetworkConnection hostConn = InstanceFinder.ServerManager.Clients.Values.FirstOrDefault();
+
+            if (hostConn == null)
+            {
+                Debug.LogWarning("Nenhum host conectado ainda.");
+                return;
+            }
+
+            CreateRoomUIForHost(hostConn);
+        }
+    }
+
+    public void StartAsHost()
+    {
+        // Iniciar o servidor
+        InstanceFinder.ServerManager.StartConnection();
+
+        // Iniciar o CLIENTE LOCAL automaticamente
+        InstanceFinder.ClientManager.StartConnection("localhost", port);
+
+        Debug.Log("Iniciando como HOST!");
     }
 
     private void RegisterClientMessages()
     {
         var client = InstanceFinder.ClientManager;
 
-        // Resposta ao criar sala
         client.RegisterBroadcast<CreateRoomResponse>((msg, channel) =>
         {
+            currentRoomCode = msg.code;
             roomCodeText.text = "Código da sala: " + msg.code;
             feedbackText.text = "Sala criada!";
+            UpdatePlayerList();
         });
 
-        // Resposta ao entrar na sala
         client.RegisterBroadcast<JoinRoomResponse>((msg, channel) =>
         {
             if (msg.success)
             {
                 feedbackText.text = "Entrou na sala!";
                 joinInput.text = "";
+                UpdatePlayerList();
             }
             else
             {
                 feedbackText.text = "Código inválido!";
             }
         });
+
+        client.RegisterBroadcast<PlayerListUpdate>((msg, channel) =>
+        {
+            playerListText.text = string.Join("\n", msg.playerIds);
+        });
     }
 
-    public void CreateRoom()
+    public void CreateRoomAsHost()
     {
-        feedbackText.text = "A criar sala...";
-        InstanceFinder.ClientManager.Broadcast(new CreateRoomRequest());
+        // Pega a conexão do host automaticamente
+        NetworkConnection hostConn = InstanceFinder.ClientManager.Connection;
+
+        if (hostConn == null)
+            hostConn = InstanceFinder.ServerManager.Clients.Values.FirstOrDefault();
+
+        CreateRoomUIForHost(hostConn);
+    }
+
+    // Agora obrigamos a passagem de uma NetworkConnection.
+    // Também tornamos a função tolerante a null (tenta resolver automaticamente).
+    private void CreateRoomUIForHost(NetworkConnection hostConn)
+    {
+        // Se caller passou null, tentamos recuperar a conexão server-side (caso este processo seja host/server)
+        if (hostConn == null)
+        {
+            hostConn = InstanceFinder.ServerManager.Clients.Values.FirstOrDefault();
+        }
+
+        if (hostConn == null)
+        {
+            Debug.LogWarning("Não foi possível obter a conexão do host para criar a sala.");
+            feedbackText.text = "Erro ao criar sala. Sem conexão do host.";
+            return;
+        }
+
+        string code = LobbyManager.Instance.CreateRoom(hostConn);
+        roomCodeText.text = "Código da sala: " + code;
+        feedbackText.text = "Sala criada!";
+
+        PlayerListUpdate updateMsg = new PlayerListUpdate
+        {
+            playerIds = LobbyManager.Instance.GetRoom(code)
+                    .players
+                    .Select(p => $"Player {p.ClientId}")
+                    .ToList()
+        };
+        playerListText.text = string.Join("\n", updateMsg.playerIds);
     }
 
     public void JoinRoom()
@@ -75,14 +155,14 @@ public class LobbyClientUI : MonoBehaviour
             return;
         }
 
+        currentRoomCode = joinInput.text.Trim();
         feedbackText.text = "A entrar...";
-        InstanceFinder.ClientManager.Broadcast(new JoinRoomRequest { code = joinInput.text });
+        InstanceFinder.ClientManager.Broadcast(new JoinRoomRequest { code = currentRoomCode });
     }
 
     public void ConnectToHost()
     {
         string hostIP = ipInput.text.Trim();
-
         if (string.IsNullOrEmpty(hostIP))
         {
             feedbackText.text = "Insira o IP do host!";
@@ -91,5 +171,36 @@ public class LobbyClientUI : MonoBehaviour
 
         feedbackText.text = "A conectar ao host...";
         InstanceFinder.ClientManager.StartConnection(hostIP, port);
+    }
+
+    private void OnClientConnectionStateChanged(ClientConnectionStateArgs args)
+    {
+        switch (args.ConnectionState)
+        {
+            case LocalConnectionState.Starting:
+                feedbackText.text = "Conectando ao host...";
+                break;
+
+            case LocalConnectionState.Started:
+                feedbackText.text = "Conectado ao host!";
+                Debug.Log("Cliente conectado com sucesso!");
+                break;
+
+            case LocalConnectionState.Stopping:
+                feedbackText.text = "Desconectando...";
+                break;
+
+            case LocalConnectionState.Stopped:
+                feedbackText.text = "Desconectado do host!";
+                Debug.Log("Cliente desconectado!");
+                break;
+        }
+    }
+
+    private void UpdatePlayerList()
+    {
+        if (string.IsNullOrEmpty(currentRoomCode)) return;
+
+        playerListText.text = LobbyManager.Instance.GetPlayerIds(currentRoomCode);
     }
 }

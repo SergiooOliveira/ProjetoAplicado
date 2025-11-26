@@ -6,7 +6,6 @@ public class LobbyManager : MonoBehaviour
 {
     public static LobbyManager Instance;
 
-    // Salas abertas
     private Dictionary<string, LobbyRoom> rooms = new();
 
     private void Awake()
@@ -25,13 +24,11 @@ public class LobbyManager : MonoBehaviour
     public string CreateRoom(NetworkConnection hostConn)
     {
         string code = GenerateCode(6);
-
         rooms[code] = new LobbyRoom
         {
             host = hostConn,
             players = new List<NetworkConnection> { hostConn }
         };
-
         return code;
     }
 
@@ -48,7 +45,6 @@ public class LobbyManager : MonoBehaviour
     {
         if (rooms.TryGetValue(code, out LobbyRoom room))
             return room;
-
         return null;
     }
 
@@ -58,8 +54,16 @@ public class LobbyManager : MonoBehaviour
         string code = "";
         for (int i = 0; i < len; i++)
             code += chars[Random.Range(0, chars.Length)];
-
         return code;
+    }
+
+    public string GetPlayerIds(string code)
+    {
+        if (!rooms.ContainsKey(code)) return "";
+        string ids = "";
+        foreach (var p in rooms[code].players)
+            ids += $"Player {p.ClientId}\n";
+        return ids;
     }
 
     public bool IsHost(NetworkConnection conn)
@@ -67,7 +71,7 @@ public class LobbyManager : MonoBehaviour
         foreach (var room in rooms.Values)
         {
             if (room.host == conn)
-                return true; // é o host dessa sala
+                return true;
         }
         return false;
     }
