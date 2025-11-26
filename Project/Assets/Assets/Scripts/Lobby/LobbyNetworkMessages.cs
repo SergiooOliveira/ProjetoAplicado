@@ -1,8 +1,20 @@
-using FishNet.Transporting;
-using FishNet.Managing;
+using FishNet.Broadcast;
 
-public struct CreateRoomRequest { }
-public struct CreateRoomResponse { public string code; }
+public struct CreateRoomRequest : IBroadcast
+{
+}
 
-public struct JoinRoomRequest { public string code; }
-public struct JoinRoomResponse { public bool success; }
+public struct CreateRoomResponse : IBroadcast
+{
+    public string code;
+}
+
+public struct JoinRoomRequest : IBroadcast
+{
+    public string code;
+}
+
+public struct JoinRoomResponse : IBroadcast
+{
+    public bool success;
+}

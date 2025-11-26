@@ -23,6 +23,19 @@ public class MenuManager : MonoBehaviour
         sm.LoadLoadingThenMap("Map1_Part1");
     }
 
+    public void Multiplayer()
+    {
+        if (isLoading)
+            return;
+
+        isLoading = true;
+
+        TSceneManager sm = GameObject.FindFirstObjectByType<TSceneManager>();
+
+        // First load the Loading screen
+        sm.LoadLoadingThenMap("Lobby");
+    }
+
     public void QuitGame()
     {
         Application.Quit();

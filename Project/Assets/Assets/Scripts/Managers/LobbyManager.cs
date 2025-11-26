@@ -61,6 +61,16 @@ public class LobbyManager : MonoBehaviour
 
         return code;
     }
+
+    public bool IsHost(NetworkConnection conn)
+    {
+        foreach (var room in rooms.Values)
+        {
+            if (room.host == conn)
+                return true; // é o host dessa sala
+        }
+        return false;
+    }
 }
 
 public class LobbyRoom
