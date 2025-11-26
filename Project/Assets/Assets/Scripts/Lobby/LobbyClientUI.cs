@@ -69,13 +69,13 @@ public class LobbyClientUI : MonoBehaviour
 
     public void StartAsHost()
     {
-        // Iniciar o servidor
+        // Start server
         InstanceFinder.ServerManager.StartConnection();
 
-        string lanIP = GetLocalIPAddress();
-        InstanceFinder.ClientManager.StartConnection(lanIP, port);
+        // Start LOCAL client using LOCALHOST (OBRIGATÓRIO)
+        InstanceFinder.ClientManager.StartConnection("localhost", port);
 
-        Debug.Log("Host iniciado em: " + lanIP);
+        Debug.Log("Host iniciado!");
     }
 
     private string GetLocalIPAddress()
