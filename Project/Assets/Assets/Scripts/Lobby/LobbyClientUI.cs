@@ -72,10 +72,28 @@ public class LobbyClientUI : MonoBehaviour
         // Iniciar o servidor
         InstanceFinder.ServerManager.StartConnection();
 
-        // Iniciar o CLIENTE LOCAL automaticamente
-        InstanceFinder.ClientManager.StartConnection("localhost", port);
+        string lanIP = GetLocalIPAddress();
+        InstanceFinder.ClientManager.StartConnection(lanIP, port);
 
-        Debug.Log("Iniciando como HOST!");
+        Debug.Log("Host iniciado em: " + lanIP);
+    }
+
+    private string GetLocalIPAddress()
+    {
+        foreach (var ni in System.Net.NetworkInformation.NetworkInterface.GetAllNetworkInterfaces())
+        {
+            var ipProps = ni.GetIPProperties();
+
+            foreach (var addr in ipProps.UnicastAddresses)
+            {
+                if (addr.Address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork &&
+                    !addr.Address.ToString().StartsWith("169.254"))
+                {
+                    return addr.Address.ToString();
+                }
+            }
+        }
+        return "127.0.0.1";
     }
 
     private void RegisterClientMessages()
