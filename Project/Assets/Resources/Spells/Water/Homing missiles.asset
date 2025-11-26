@@ -23,4 +23,4 @@ MonoBehaviour:
   spellCastType: 2
   spellImpactType: 0
   spellEffects:
-  - {fileID: 11400000, guid: 7e2ca9e7649f87f49b54c835519d8b3c, type: 2}
+  - {fileID: 11400000, guid: 0f59993b5bb758840a805dc49876e5ac, type: 2}

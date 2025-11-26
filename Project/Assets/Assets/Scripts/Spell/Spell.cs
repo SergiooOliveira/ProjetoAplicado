@@ -102,7 +102,7 @@ public class Spell : ScriptableObject, ISpell
             Vector3 spawnPos = caster.transform.position + (Vector3)dir * 0.5f;
             GameObject instance = Instantiate(SpellPrefab, spawnPos, Quaternion.identity);
             
-            if (instance.TryGetComponent<HomingMissile>(out HomingMissile projectile))
+            if (instance.TryGetComponent<SpellHomingMissile>(out SpellHomingMissile projectile))
             {
                 Enemy target = FindNearestEnemy(spawnPos, projectile.TargetSearchRadious);
                 //if (target == null) return;
@@ -118,7 +118,12 @@ public class Spell : ScriptableObject, ISpell
 
     private void CastSelf(Player caster)
     {
-        Debug.Log($"{SpellName} cast as self");
+        GameObject instance = Instantiate(SpellPrefab, caster.transform.position, Quaternion.identity);
+
+        if (instance.TryGetComponent<SelfSpell>(out SelfSpell self))
+            self.Initialize(this, caster, caster.transform);
+        else
+            Debug.Log($"{SpellName} is missing SelfSpell component");
     }
     #endregion
 

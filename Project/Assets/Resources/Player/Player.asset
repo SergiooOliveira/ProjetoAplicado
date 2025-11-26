@@ -28,7 +28,8 @@ MonoBehaviour:
   characterResistances:
   - spellAfinity: 1
     amount: 20
-  characterSpells: []
+  characterSpells:
+  - {fileID: 11400000, guid: b48eb3a1dc703fd45a2d4b768e2e3d90, type: 2}
   characterEquippedSpells: []
   characterInventory: []
   characterEquipment:
