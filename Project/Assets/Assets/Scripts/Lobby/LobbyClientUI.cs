@@ -1,6 +1,7 @@
 using FishNet;
-using UnityEngine;
 using TMPro;
+using UnityEditor.Experimental.GraphView;
+using UnityEngine;
 
 public class LobbyClientUI : MonoBehaviour
 {
@@ -8,6 +9,10 @@ public class LobbyClientUI : MonoBehaviour
     public TMP_Text roomCodeText;
     public TMP_InputField joinInput;
     public TMP_Text feedbackText;
+
+    [Header("IP Settings")]
+    public TMP_InputField ipInput;
+    public ushort port = 7777;
 
     private bool registered = false;
 
@@ -72,5 +77,19 @@ public class LobbyClientUI : MonoBehaviour
 
         feedbackText.text = "A entrar...";
         InstanceFinder.ClientManager.Broadcast(new JoinRoomRequest { code = joinInput.text });
+    }
+
+    public void ConnectToHost()
+    {
+        string hostIP = ipInput.text.Trim();
+
+        if (string.IsNullOrEmpty(hostIP))
+        {
+            feedbackText.text = "Insira o IP do host!";
+            return;
+        }
+
+        feedbackText.text = "A conectar ao host...";
+        InstanceFinder.ClientManager.StartConnection(hostIP, port);
     }
 }
