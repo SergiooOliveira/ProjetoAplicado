@@ -193,6 +193,7 @@ public class LobbyClientUI : MonoBehaviour
         }
 
         feedbackText.text = "A conectar ao host...";
+        Debug.Log($"A conectar ao host: {hostIP}");
         InstanceFinder.ClientManager.StartConnection(hostIP, port);
     }
 
