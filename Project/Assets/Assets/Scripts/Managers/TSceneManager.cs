@@ -5,6 +5,7 @@ using NUnit.Framework;
 using System.Collections;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TSceneManager : MonoBehaviour
 {
@@ -153,26 +154,28 @@ public class TSceneManager : MonoBehaviour
 
     private IEnumerator LoadLoadingThenMapRoutine(string targetMap)
     {
-        // 1. Unload StartMenu if it is loaded
-        var startMenuScene = UnityEngine.SceneManagement.SceneManager.GetSceneByName("StartMenu");
-        if (startMenuScene.isLoaded)
+        // 1. Descarrega StartMenu e Lobby, se estiverem carregadas
+        string[] scenesToUnload = { "StartMenu", "Lobby" };
+        foreach (var sceneName in scenesToUnload)
         {
-            InstanceFinder.SceneManager.UnloadGlobalScenes(new SceneUnloadData("StartMenu")); // ideal / correct but it doesn't work
-            UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("StartMenu"); // TODO: You shouldn't use this but it's the only way that works
-
-            // espera descarregar
-            yield return new WaitUntil(() => !UnityEngine.SceneManagement.SceneManager.GetSceneByName("StartMenu").isLoaded);
+            Scene scene = UnityEngine.SceneManagement.SceneManager.GetSceneByName(sceneName);
+            if (scene.isLoaded)
+            {
+                AsyncOperation unloadOp = UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(scene);
+                // Espera o unload completar
+                yield return new WaitUntil(() => unloadOp.isDone);
+            }
         }
 
-        // 2. Load LOADING scene
+        // 2. Carrega a cena de Loading
         SceneLoadData loadLoading = new SceneLoadData("Loading");
         InstanceFinder.SceneManager.LoadGlobalScenes(loadLoading);
-
         yield return new WaitUntil(() => UnityEngine.SceneManagement.SceneManager.GetSceneByName("Loading").isLoaded);
 
-        // 3. Load the actual map
+        // 3. Carrega o mapa final
         SceneLoadData loadMap = new SceneLoadData(targetMap);
         InstanceFinder.SceneManager.LoadGlobalScenes(loadMap);
+        yield return new WaitUntil(() => UnityEngine.SceneManagement.SceneManager.GetSceneByName(targetMap).isLoaded);
     }
 
     #endregion
