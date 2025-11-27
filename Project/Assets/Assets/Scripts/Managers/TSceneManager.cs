@@ -1,12 +1,12 @@
 using FishNet;
 using FishNet.Connection;
 using FishNet.Managing.Scened;
-using NUnit.Framework;
 using System.Collections;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
+// Evita ambiguidade: usa o nome completo quando precisares do SceneManager da Unity
+// (não há alias usando-directive aqui para manter claro)
 public class TSceneManager : MonoBehaviour
 {
     #region Serialized Fields
@@ -25,7 +25,10 @@ public class TSceneManager : MonoBehaviour
     {
         Instance = this;
         DontDestroyOnLoad(gameObject);
-        InstanceFinder.SceneManager.OnLoadEnd += OnScenesLoaded;
+
+        // Regista apenas os eventos do FishNet SceneManager necessários
+        if (InstanceFinder.SceneManager != null)
+            InstanceFinder.SceneManager.OnLoadEnd += OnScenesLoaded;
     }
 
     private void Start()
@@ -34,7 +37,7 @@ public class TSceneManager : MonoBehaviour
             spawner = GameObject.FindFirstObjectByType<PlayerSpawner>();
 
         if (spawner == null)
-            Debug.LogError("PlayerSpawner não encontrado na cena!");
+            Debug.LogError("[TSceneManager] PlayerSpawner não encontrado na cena!");
 
         // Only loads the StartMenu once
         if (!startMenuLoadedOnce)
@@ -47,9 +50,7 @@ public class TSceneManager : MonoBehaviour
     private void OnDestroy()
     {
         if (InstanceFinder.SceneManager != null)
-        {
             InstanceFinder.SceneManager.OnLoadEnd -= OnScenesLoaded;
-        }
     }
 
     #endregion
@@ -59,11 +60,6 @@ public class TSceneManager : MonoBehaviour
     private IEnumerator WaitServerAndMaybeLoadStartMenu()
     {
         yield return null;
-
-        // Wait until the Server is started (avoid using IsServer at startup)
-        //Debug.Log("[TSceneManager] Aguardando servidor iniciar...");
-        //yield return new WaitUntil(() => InstanceFinder.IsServerStarted);
-
 
         // If StartMenu is already loaded, it does nothing
         if (UnityEngine.SceneManagement.SceneManager.GetSceneByName("StartMenu").isLoaded)
@@ -94,20 +90,26 @@ public class TSceneManager : MonoBehaviour
     {
         if (!InstanceFinder.IsServerStarted)
         {
-            Debug.LogWarning("Apenas o servidor pode carregar cenas!");
+            Debug.LogWarning("[TSceneManager] Apenas o servidor pode carregar cenas!");
             return;
         }
 
-        // Unload all active scenes except PersistentScene
+        // Unload all active scenes except PersistentScene using FishNet
         string currentScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
         if (currentScene != "PersistentScene")
         {
-            InstanceFinder.SceneManager.UnloadGlobalScenes(new SceneUnloadData(currentScene)); // ideal / correct but it doesn't work
-            UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(currentScene); // TODO: you shouldn't use this but it's the only way that works
+            // Use UnloadGlobalScenes (FishNet) — do not call Unity's UnloadSceneAsync here
+            InstanceFinder.SceneManager.UnloadGlobalScenes(new SceneUnloadData(currentScene));
         }
 
-        // Load the new scene
-        SceneLoadData sld = new SceneLoadData(sceneToLoad);
+        // Load the new scene as GLOBAL (so clients will also load it)
+        SceneLoadData sld = new SceneLoadData(sceneToLoad)
+        {
+            // ReplaceOption.All ensures old scenes are removed if needed (adjust if you want different behavior)
+            ReplaceScenes = ReplaceOption.All
+        };
+
+        Debug.Log($"[TSceneManager] Carregando cena global: {sceneToLoad}");
         InstanceFinder.SceneManager.LoadGlobalScenes(sld);
     }
 
@@ -115,71 +117,59 @@ public class TSceneManager : MonoBehaviour
 
     #region Load Scenes
 
-    //private void OnScenesLoaded(SceneLoadEndEventArgs args)
-    //{
-    //    if (!InstanceFinder.IsServerStarted)
-    //        return;
-
-    //    if (args.LoadedScenes == null || args.LoadedScenes.Count() == 0)
-    //        return;
-
-    //    string sceneName = args.LoadedScenes[0].name;
-
-    //    if (sceneName == "Loading" || sceneName == "StartMenu" || sceneName == "Lobby")
-    //        return; // menu does not spawn players
-
-    //    var newScene = UnityEngine.SceneManagement.SceneManager.GetSceneByName(sceneName);
-    //    if (newScene.IsValid())
-    //    {
-    //        UnityEngine.SceneManagement.SceneManager.SetActiveScene(newScene);
-    //        Debug.Log("[TSceneManager] ActiveScene set to: " + sceneName);
-    //    }
-
-    //    Debug.Log("[TSceneManager] Mapa carregado: " + sceneName);
-
-    //    // Update spawn points
-    //    SpawnPointMarker[] markers = GameObject.FindObjectsByType<SpawnPointMarker>(FindObjectsSortMode.None);
-    //    spawner.spawnPoints = markers.Select(s => s.transform).ToArray();
-
-    //    // Spawn players
-    //    StartCoroutine(SpawnPlayersThenCloseLoading());
-    //}
-
+    /// <summary>
+    /// Called when FishNet finishes loading scenes. On the server this fires after clients loaded scenes too.
+    /// </summary>
     private void OnScenesLoaded(SceneLoadEndEventArgs args)
     {
+        // Only run server side logic here (spawning should be server-side).
         if (!InstanceFinder.IsServerStarted)
             return;
 
         if (args.LoadedScenes == null || args.LoadedScenes.Count() == 0)
             return;
 
+        // NOTE: LoadedScenes can contain multiple scenes; take the first meaningful one.
         string sceneName = args.LoadedScenes[0].name;
+        Debug.Log($"[TSceneManager] OnScenesLoaded fired. Scene: {sceneName}");
 
-        // Não spawna no Loading/Lobby/StartMenu
+        // Do not spawn players for menus
         if (sceneName == "Loading" || sceneName == "StartMenu" || sceneName == "Lobby")
             return;
 
-        // Define a active scene
+        // Set active scene on the server for proper Instantiate behaviour
         var newScene = UnityEngine.SceneManagement.SceneManager.GetSceneByName(sceneName);
         if (newScene.IsValid())
+        {
             UnityEngine.SceneManagement.SceneManager.SetActiveScene(newScene);
+            Debug.Log($"[TSceneManager] ActiveScene set to: {sceneName}");
+        }
 
-        // Atualiza spawn points
+        Debug.Log($"[TSceneManager] Mapa carregado: {sceneName}");
+
+        // Update spawn points (scene objects must be present now)
         SpawnPointMarker[] markers = GameObject.FindObjectsByType<SpawnPointMarker>(FindObjectsSortMode.None);
         spawner.spawnPoints = markers.Select(s => s.transform).ToArray();
 
-        // Spawna players (todos os clientes já carregaram nesta altura)
+        // SPAWN: spawn players now that FishNet has finished loading the scenes (clients are synchronized)
         foreach (NetworkConnection conn in InstanceFinder.ServerManager.Clients.Values)
         {
+            // If there's already a first object, optionally despawn it to avoid duplicates.
+            // If you want to preserve existing FirstObject for hot-join or reconnect, adjust logic.
             if (conn.FirstObject != null)
+            {
+                Debug.Log($"[TSceneManager] Despawn FirstObject for Conn {conn.ClientId}");
                 InstanceFinder.ServerManager.Objects.Despawn(conn.FirstObject);
+            }
 
+            // Spawn the player for that connection
             spawner.SpawnPlayer(conn);
         }
 
-        // Finalmente descarrega a Loading
+        // Remove Loading scene via FishNet API (do not call Unity unload directly)
         if (UnityEngine.SceneManagement.SceneManager.GetSceneByName("Loading").isLoaded)
         {
+            Debug.Log("[TSceneManager] Unloading Loading scene via FishNet");
             InstanceFinder.SceneManager.UnloadGlobalScenes(new SceneUnloadData("Loading"));
         }
     }
@@ -193,93 +183,66 @@ public class TSceneManager : MonoBehaviour
         StartCoroutine(LoadLoadingThenMapRoutine(targetMap));
     }
 
-    //private IEnumerator LoadLoadingThenMapRoutine(string targetMap)
-    //{
-    //    // 1. Descarrega StartMenu e Lobby, se estiverem carregadas
-    //    string[] scenesToUnload = { "StartMenu", "Lobby" };
-    //    foreach (var sceneName in scenesToUnload)
-    //    {
-    //        Scene scene = UnityEngine.SceneManagement.SceneManager.GetSceneByName(sceneName);
-    //        if (scene.isLoaded)
-    //        {
-    //            AsyncOperation unloadOp = UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(scene);
-    //            // Espera o unload completar
-    //            yield return new WaitUntil(() => unloadOp.isDone);
-    //        }
-    //    }
-
-    //    // 2. Carrega a cena de Loading
-    //    SceneLoadData loadLoading = new SceneLoadData("Loading");
-    //    InstanceFinder.SceneManager.LoadGlobalScenes(loadLoading);
-    //    yield return new WaitUntil(() => UnityEngine.SceneManagement.SceneManager.GetSceneByName("Loading").isLoaded);
-
-    //    // 3. Carrega o mapa final
-    //    SceneLoadData loadMap = new SceneLoadData(targetMap);
-    //    InstanceFinder.SceneManager.LoadGlobalScenes(loadMap);
-    //    yield return new WaitUntil(() => UnityEngine.SceneManagement.SceneManager.GetSceneByName(targetMap).isLoaded);
-    //}
-
     private IEnumerator LoadLoadingThenMapRoutine(string targetMap)
-{
+    {
         if (!InstanceFinder.IsServerStarted)
+        {
+            Debug.LogWarning("[TSceneManager] LoadLoadingThenMapRoutine called but server not started.");
             yield break;
+        }
 
-        // Unload cenas antigas
+        // 1) Unload old menu scenes (if any) using FishNet
         string[] scenesToUnload = { "StartMenu", "Lobby" };
         foreach (var sceneName in scenesToUnload)
         {
             if (UnityEngine.SceneManagement.SceneManager.GetSceneByName(sceneName).isLoaded)
+            {
+                Debug.Log($"[TSceneManager] Unloading old scene: {sceneName}");
                 InstanceFinder.SceneManager.UnloadGlobalScenes(new SceneUnloadData(sceneName));
+            }
         }
 
-        // Carrega Loading
-        InstanceFinder.SceneManager.LoadGlobalScenes(new SceneLoadData("Loading"));
+        // 2) Load Loading as a global scene for everyone
+        Debug.Log("[TSceneManager] Loading 'Loading' scene (global)...");
+        SceneLoadData sldLoading = new SceneLoadData("Loading")
+        {
+            ReplaceScenes = ReplaceOption.None
+        };
+        InstanceFinder.SceneManager.LoadGlobalScenes(sldLoading);
+
+        // Wait until Unity reports the Loading scene as loaded
         yield return new WaitUntil(() =>
             UnityEngine.SceneManagement.SceneManager.GetSceneByName("Loading").isLoaded
         );
 
-        // Carrega target
-        InstanceFinder.SceneManager.LoadGlobalScenes(new SceneLoadData(targetMap));
+        // 3) Load the target map as a global scene and replace previous scenes
+        Debug.Log($"[TSceneManager] Loading target map '{targetMap}' (global)...");
+        SceneLoadData sldMap = new SceneLoadData(targetMap)
+        {
+            ReplaceScenes = ReplaceOption.All
+        };
+        InstanceFinder.SceneManager.LoadGlobalScenes(sldMap);
+
+        // Wait until Unity reports the target map is loaded
         yield return new WaitUntil(() =>
             UnityEngine.SceneManagement.SceneManager.GetSceneByName(targetMap).isLoaded
         );
 
-        // Remove Loading
+        // 4) Unload Loading via FishNet (do not call Unity unload)
         if (UnityEngine.SceneManagement.SceneManager.GetSceneByName("Loading").isLoaded)
         {
+            Debug.Log("[TSceneManager] Unloading 'Loading' (via FishNet)...");
             InstanceFinder.SceneManager.UnloadGlobalScenes(new SceneUnloadData("Loading"));
-            UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("Loading");
         }
-            
+
+        Debug.Log($"[TSceneManager] LoadLoadingThenMapRoutine finished for {targetMap}");
     }
 
     #endregion
 
-    #region Spawn Players
+    #region Spawn Helpers (kept empty here but can add logic)
 
-    //private IEnumerator SpawnPlayersThenCloseLoading()
-    //{
-    //    yield return null; // wait 1 frame
-
-    //    foreach (NetworkConnection conn in InstanceFinder.ServerManager.Clients.Values)
-    //    {
-    //        if (conn.FirstObject != null)
-    //            InstanceFinder.ServerManager.Objects.Despawn(conn.FirstObject);
-
-    //        spawner.SpawnPlayer(conn);
-    //    }
-
-    //    yield return new WaitForSeconds(0.1f);
-
-    //    // Now unload the Loading scene
-    //    if (UnityEngine.SceneManagement.SceneManager.GetSceneByName("Loading").isLoaded)
-    //    {
-    //        InstanceFinder.SceneManager.UnloadGlobalScenes(new SceneUnloadData("Loading")); // ideal / correct but it doesn't work
-    //        UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("Loading"); // TODO: you shouldn't use this but it's the only way that works
-    //    }
-
-    //    Debug.Log("[TSceneManager] Loading removida.");
-    //}
+    // Note: spawning logic is inside OnScenesLoaded so no additional coroutine is required.
 
     #endregion
 }
