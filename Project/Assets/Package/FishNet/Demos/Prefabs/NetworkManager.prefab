@@ -123,7 +123,7 @@ MonoBehaviour:
   _dontRoute: 0
   _reuseAddress: 1
   _unreliableMtu: 1023
-  _ipv4BindAddress: 
+  _ipv4BindAddress: 0.0.0.0
   _enableIpv6: 0
   _ipv6BindAddress: 
   _port: 7777
