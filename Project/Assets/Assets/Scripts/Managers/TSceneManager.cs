@@ -5,7 +5,6 @@ using System.Collections;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using SceneManager = UnityEngine.SceneManagement.SceneManager;
 
 public class TSceneManager : MonoBehaviour
 {
@@ -104,7 +103,8 @@ public class TSceneManager : MonoBehaviour
 
         // Load the new scene
         SceneLoadData sld = new SceneLoadData(sceneToLoad);
-        InstanceFinder.SceneManager.LoadGlobalScenes(sld);
+        //InstanceFinder.SceneManager.LoadGlobalScenes(sld);
+        InstanceFinder.SceneManager.LoadConnectionScenes(sld);
     }
 
     #endregion
@@ -139,7 +139,10 @@ public class TSceneManager : MonoBehaviour
         spawner.spawnPoints = markers.Select(s => s.transform).ToArray();
 
         // Spawn players
-        StartCoroutine(FinishLoadAndSpawn());
+        if (InstanceFinder.IsServerStarted)
+        {
+            StartCoroutine(FinishLoadAndSpawn());
+        }
     }
 
     #endregion
@@ -215,11 +218,11 @@ public class TSceneManager : MonoBehaviour
         if (player == null) return;
 
         Scene currentScene = player.gameObject.scene;
-        Scene targetScene = SceneManager.GetActiveScene();
+        Scene targetScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
 
         // Se o player estiver na cena errada, move ele pra cena certa
         if (currentScene != targetScene)
-            SceneManager.MoveGameObjectToScene(player.gameObject, targetScene);
+            UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(player.gameObject, targetScene);
 
         // Depois posiciona no spawn
         int index = Random.Range(0, spawner.spawnPoints.Length);
