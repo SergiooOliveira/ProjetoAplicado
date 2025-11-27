@@ -26,6 +26,7 @@ public class TSceneManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
         InstanceFinder.SceneManager.OnLoadEnd += OnScenesLoaded;
+        InstanceFinder.SceneManager.OnClientLoadedStartScenes += OnClientLoadedStartScenes;
     }
 
     private void Start()
@@ -47,7 +48,27 @@ public class TSceneManager : MonoBehaviour
     private void OnDestroy()
     {
         if (InstanceFinder.SceneManager != null)
+        {
             InstanceFinder.SceneManager.OnLoadEnd -= OnScenesLoaded;
+            InstanceFinder.SceneManager.OnClientLoadedStartScenes -= OnClientLoadedStartScenes;
+        }
+    }
+
+    private void OnClientLoadedStartScenes(FishNet.Connection.NetworkConnection conn, bool asServer)
+    {
+        // Só o servidor deve executar isto
+        if (!InstanceFinder.IsServerStarted)
+            return;
+
+        // Se preferires, verifica se o cliente está realmente na cena correta antes de spawnar.
+        // Ex.: string sceneName = SceneManager.GetActiveScene().name;
+        // Se quiseres spawnar apenas depois do mapa final, compara com target map.
+
+        // Evita voltar a spawnar se o jogador já tiver um FirstObject
+        if (conn.FirstObject != null)
+            InstanceFinder.ServerManager.Objects.Despawn(conn.FirstObject);
+
+        spawner.SpawnPlayer(conn);
     }
 
     #endregion
@@ -182,7 +203,7 @@ public class TSceneManager : MonoBehaviour
     {
         bool isHost = InstanceFinder.NetworkManager.IsHostStarted;
 
-        // 1. UNLOAD cenas antigas (somente usando FishNet)
+        // 1. Unload cenas antigas (Host apenas)
         if (isHost)
         {
             string[] scenesToUnload = { "StartMenu", "Lobby" };
@@ -194,28 +215,30 @@ public class TSceneManager : MonoBehaviour
             }
         }
 
-        // 2. Load da cena de loading (sincronizada automaticamente para clientes)
+        // 2. Carrega a cena Loading
         SceneLoadData loadLoading = new SceneLoadData("Loading");
         InstanceFinder.SceneManager.LoadConnectionScenes(loadLoading);
 
-        // 3. Esperar a Loading
+        // Esperar Loading carregar
         yield return new WaitUntil(() =>
             UnityEngine.SceneManagement.SceneManager.GetSceneByName("Loading").isLoaded
         );
 
-        // 4. Load final do mapa
+        // 3. Carregar o mapa final
         SceneLoadData loadMap = new SceneLoadData(targetMap);
-
-        // ConnectionScenes -> sincronizado entre host e clientes
         InstanceFinder.SceneManager.LoadConnectionScenes(loadMap);
 
-        // GlobalScenes -> se realmente precisa ser Global
-        // (só usa isto se a cena é *sempre carregada* para todos os jogadores)
-        // InstanceFinder.SceneManager.LoadGlobalScenes(loadMap);
-
+        // Esperar mapa carregar
         yield return new WaitUntil(() =>
             UnityEngine.SceneManagement.SceneManager.GetSceneByName(targetMap).isLoaded
         );
+
+        // 4. Unload da Loading (somente se estiver carregada)
+        if (UnityEngine.SceneManagement.SceneManager.GetSceneByName("Loading").isLoaded)
+        {
+            SceneUnloadData unloadLoading = new SceneUnloadData("Loading");
+            InstanceFinder.SceneManager.UnloadConnectionScenes(unloadLoading);
+        }
     }
 
     #endregion
