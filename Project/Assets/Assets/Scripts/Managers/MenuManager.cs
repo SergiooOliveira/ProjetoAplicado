@@ -33,7 +33,7 @@ public class MenuManager : MonoBehaviour
         TSceneManager sm = GameObject.FindFirstObjectByType<TSceneManager>();
 
         // First load the Loading screen
-        sm.LoadLoadingThenMap("Lobby");
+        sm.LoadMapByName("Lobby");
     }
 
     public void QuitGame()
