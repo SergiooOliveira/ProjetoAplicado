@@ -55,9 +55,11 @@ public class TSceneManager : MonoBehaviour
 
     private IEnumerator WaitServerAndMaybeLoadStartMenu()
     {
+        yield return null;
+
         // Wait until the Server is started (avoid using IsServer at startup)
-        Debug.Log("[TSceneManager] Aguardando servidor iniciar...");
-        yield return new WaitUntil(() => InstanceFinder.IsServerStarted);
+        //Debug.Log("[TSceneManager] Aguardando servidor iniciar...");
+        //yield return new WaitUntil(() => InstanceFinder.IsServerStarted);
 
 
         // If StartMenu is already loaded, it does nothing
@@ -120,10 +122,7 @@ public class TSceneManager : MonoBehaviour
 
         string sceneName = args.LoadedScenes[0].name;
 
-        if (sceneName == "Loading")
-            return; // does nothing
-
-        if (sceneName == "StartMenu")
+        if (sceneName == "Loading" || sceneName == "StartMenu" || sceneName == "Lobby")
             return; // menu does not spawn players
 
         var newScene = UnityEngine.SceneManagement.SceneManager.GetSceneByName(sceneName);
