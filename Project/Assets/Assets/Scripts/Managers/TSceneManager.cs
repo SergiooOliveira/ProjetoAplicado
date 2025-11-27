@@ -182,41 +182,37 @@ public class TSceneManager : MonoBehaviour
     {
         bool isHost = InstanceFinder.NetworkManager.IsHostStarted;
 
-        // 1. UNLOAD cenas antigas (host apenas)
+        // 1. UNLOAD cenas antigas (somente usando FishNet)
         if (isHost)
         {
             string[] scenesToUnload = { "StartMenu", "Lobby" };
 
             foreach (var sceneName in scenesToUnload)
             {
-                Scene scene = UnityEngine.SceneManagement.SceneManager.GetSceneByName(sceneName);
-
-                if (scene.isLoaded)
-                {
-                    SceneUnloadData unloadData = new SceneUnloadData(sceneName);
-                    InstanceFinder.SceneManager.UnloadConnectionScenes(unloadData);
-                    UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(sceneName);
-                }
+                SceneUnloadData unloadData = new SceneUnloadData(sceneName);
+                InstanceFinder.SceneManager.UnloadConnectionScenes(unloadData);
             }
         }
 
-        // 2. Load Loading (host sincroniza)
+        // 2. Load da cena de loading (sincronizada automaticamente para clientes)
         SceneLoadData loadLoading = new SceneLoadData("Loading");
+        InstanceFinder.SceneManager.LoadConnectionScenes(loadLoading);
 
-        if (isHost)
-            InstanceFinder.SceneManager.LoadConnectionScenes(loadLoading);
-        else
-            yield break; // cliente não deve executar mais nada
-
-        // espera o loading carregar no host
+        // 3. Esperar a Loading
         yield return new WaitUntil(() =>
             UnityEngine.SceneManagement.SceneManager.GetSceneByName("Loading").isLoaded
         );
 
-        // 3. Load mapa final
+        // 4. Load final do mapa
         SceneLoadData loadMap = new SceneLoadData(targetMap);
+
+        // ConnectionScenes -> sincronizado entre host e clientes
         InstanceFinder.SceneManager.LoadConnectionScenes(loadMap);
-        InstanceFinder.SceneManager.LoadGlobalScenes(loadMap);
+
+        // GlobalScenes -> se realmente precisa ser Global
+        // (só usa isto se a cena é *sempre carregada* para todos os jogadores)
+        // InstanceFinder.SceneManager.LoadGlobalScenes(loadMap);
+
         yield return new WaitUntil(() =>
             UnityEngine.SceneManagement.SceneManager.GetSceneByName(targetMap).isLoaded
         );
