@@ -5,6 +5,7 @@ using System.Collections;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using SceneManager = UnityEngine.SceneManagement.SceneManager;
 
 public class TSceneManager : MonoBehaviour
 {
@@ -182,30 +183,50 @@ public class TSceneManager : MonoBehaviour
 
     #region Spawn Players
 
+    //private void MovePlayerToSpawnPoint(NetworkConnection conn)
+    //{
+    //    var player = conn.FirstObject;
+    //    if (player == null)
+    //    {
+    //        Debug.LogError("MovePlayerToSpawnPoint: player não encontrado!");
+    //        return;
+    //    }
+
+    //    // If there are no spawnpoints on the map, nothing changes
+    //    if (spawner.spawnPoints == null || spawner.spawnPoints.Length == 0)
+    //    {
+    //        Debug.LogWarning("Nenhum spawnpoint encontrado neste mapa!");
+    //        return;
+    //    }
+
+    //    // For now let's choose a random spawn (same as PlayerSpawner)
+    //    int index = Random.Range(0, spawner.spawnPoints.Length);
+    //    Transform spawn = spawner.spawnPoints[index];
+
+    //    player.transform.position = spawn.position;
+    //    player.transform.rotation = spawn.rotation;
+
+    //    Debug.Log($"Player movido para spawnpoint {index}: {spawn.position}");
+    //}
+
     private void MovePlayerToSpawnPoint(NetworkConnection conn)
     {
         var player = conn.FirstObject;
-        if (player == null)
-        {
-            Debug.LogError("MovePlayerToSpawnPoint: player não encontrado!");
-            return;
-        }
+        if (player == null) return;
 
-        // If there are no spawnpoints on the map, nothing changes
-        if (spawner.spawnPoints == null || spawner.spawnPoints.Length == 0)
-        {
-            Debug.LogWarning("Nenhum spawnpoint encontrado neste mapa!");
-            return;
-        }
+        Scene currentScene = player.gameObject.scene;
+        Scene targetScene = SceneManager.GetActiveScene();
 
-        // For now let's choose a random spawn (same as PlayerSpawner)
+        // Se o player estiver na cena errada, move ele pra cena certa
+        if (currentScene != targetScene)
+            SceneManager.MoveGameObjectToScene(player.gameObject, targetScene);
+
+        // Depois posiciona no spawn
         int index = Random.Range(0, spawner.spawnPoints.Length);
         Transform spawn = spawner.spawnPoints[index];
 
         player.transform.position = spawn.position;
         player.transform.rotation = spawn.rotation;
-
-        Debug.Log($"Player movido para spawnpoint {index}: {spawn.position}");
     }
 
     private IEnumerator FinishLoadAndSpawn()
