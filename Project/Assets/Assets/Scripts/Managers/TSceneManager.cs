@@ -103,8 +103,7 @@ public class TSceneManager : MonoBehaviour
 
         // Load the new scene
         SceneLoadData sld = new SceneLoadData(sceneToLoad);
-        //InstanceFinder.SceneManager.LoadGlobalScenes(sld);
-        InstanceFinder.SceneManager.LoadConnectionScenes(sld);
+        InstanceFinder.SceneManager.LoadGlobalScenes(sld);
     }
 
     #endregion
@@ -139,10 +138,7 @@ public class TSceneManager : MonoBehaviour
         spawner.spawnPoints = markers.Select(s => s.transform).ToArray();
 
         // Spawn players
-        if (InstanceFinder.IsServerStarted)
-        {
-            StartCoroutine(FinishLoadAndSpawn());
-        }
+        StartCoroutine(FinishLoadAndSpawn());
     }
 
     #endregion
@@ -171,14 +167,12 @@ public class TSceneManager : MonoBehaviour
 
         // 2. Carrega a cena de Loading
         SceneLoadData loadLoading = new SceneLoadData("Loading");
-        //InstanceFinder.SceneManager.LoadGlobalScenes(loadLoading);
-        InstanceFinder.SceneManager.LoadConnectionScenes(loadLoading);
+        InstanceFinder.SceneManager.LoadGlobalScenes(loadLoading);
         yield return new WaitUntil(() => UnityEngine.SceneManagement.SceneManager.GetSceneByName("Loading").isLoaded);
 
         // 3. Carrega o mapa final
         SceneLoadData loadMap = new SceneLoadData(targetMap);
-        //InstanceFinder.SceneManager.LoadGlobalScenes(loadMap);
-        InstanceFinder.SceneManager.LoadConnectionScenes(loadMap);
+        InstanceFinder.SceneManager.LoadGlobalScenes(loadMap);
         yield return new WaitUntil(() => UnityEngine.SceneManagement.SceneManager.GetSceneByName(targetMap).isLoaded);
     }
 
@@ -186,50 +180,30 @@ public class TSceneManager : MonoBehaviour
 
     #region Spawn Players
 
-    //private void MovePlayerToSpawnPoint(NetworkConnection conn)
-    //{
-    //    var player = conn.FirstObject;
-    //    if (player == null)
-    //    {
-    //        Debug.LogError("MovePlayerToSpawnPoint: player não encontrado!");
-    //        return;
-    //    }
-
-    //    // If there are no spawnpoints on the map, nothing changes
-    //    if (spawner.spawnPoints == null || spawner.spawnPoints.Length == 0)
-    //    {
-    //        Debug.LogWarning("Nenhum spawnpoint encontrado neste mapa!");
-    //        return;
-    //    }
-
-    //    // For now let's choose a random spawn (same as PlayerSpawner)
-    //    int index = Random.Range(0, spawner.spawnPoints.Length);
-    //    Transform spawn = spawner.spawnPoints[index];
-
-    //    player.transform.position = spawn.position;
-    //    player.transform.rotation = spawn.rotation;
-
-    //    Debug.Log($"Player movido para spawnpoint {index}: {spawn.position}");
-    //}
-
     private void MovePlayerToSpawnPoint(NetworkConnection conn)
     {
         var player = conn.FirstObject;
-        if (player == null) return;
+        if (player == null)
+        {
+            Debug.LogError("MovePlayerToSpawnPoint: player não encontrado!");
+            return;
+        }
 
-        Scene currentScene = player.gameObject.scene;
-        Scene targetScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
+        // If there are no spawnpoints on the map, nothing changes
+        if (spawner.spawnPoints == null || spawner.spawnPoints.Length == 0)
+        {
+            Debug.LogWarning("Nenhum spawnpoint encontrado neste mapa!");
+            return;
+        }
 
-        // Se o player estiver na cena errada, move ele pra cena certa
-        if (currentScene != targetScene)
-            UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(player.gameObject, targetScene);
-
-        // Depois posiciona no spawn
+        // For now let's choose a random spawn (same as PlayerSpawner)
         int index = Random.Range(0, spawner.spawnPoints.Length);
         Transform spawn = spawner.spawnPoints[index];
 
         player.transform.position = spawn.position;
         player.transform.rotation = spawn.rotation;
+
+        Debug.Log($"Player movido para spawnpoint {index}: {spawn.position}");
     }
 
     private IEnumerator FinishLoadAndSpawn()
