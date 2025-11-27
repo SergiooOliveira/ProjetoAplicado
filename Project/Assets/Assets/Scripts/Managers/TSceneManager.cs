@@ -152,29 +152,79 @@ public class TSceneManager : MonoBehaviour
         StartCoroutine(LoadLoadingThenMapRoutine(targetMap));
     }
 
+    //private IEnumerator LoadLoadingThenMapRoutine(string targetMap)
+    //{
+    //    // 1. Descarrega StartMenu e Lobby, se estiverem carregadas
+    //    string[] scenesToUnload = { "StartMenu", "Lobby" };
+    //    foreach (var sceneName in scenesToUnload)
+    //    {
+    //        Scene scene = UnityEngine.SceneManagement.SceneManager.GetSceneByName(sceneName);
+    //        if (scene.isLoaded)
+    //        {
+    //            AsyncOperation unloadOp = UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(scene);
+    //            // Espera o unload completar
+    //            yield return new WaitUntil(() => unloadOp.isDone);
+    //        }
+    //    }
+
+    //    // 2. Carrega a cena de Loading
+    //    SceneLoadData loadLoading = new SceneLoadData("Loading");
+    //    InstanceFinder.SceneManager.LoadGlobalScenes(loadLoading);
+    //    yield return new WaitUntil(() => UnityEngine.SceneManagement.SceneManager.GetSceneByName("Loading").isLoaded);
+
+    //    // 3. Carrega o mapa final
+    //    SceneLoadData loadMap = new SceneLoadData(targetMap);
+    //    InstanceFinder.SceneManager.LoadGlobalScenes(loadMap);
+    //    yield return new WaitUntil(() => UnityEngine.SceneManagement.SceneManager.GetSceneByName(targetMap).isLoaded);
+    //}
+
     private IEnumerator LoadLoadingThenMapRoutine(string targetMap)
     {
-        // 1. Descarrega StartMenu e Lobby, se estiverem carregadas
+        // 1. Descarrega StartMenu e Lobby (somente no host)
         string[] scenesToUnload = { "StartMenu", "Lobby" };
         foreach (var sceneName in scenesToUnload)
         {
             Scene scene = UnityEngine.SceneManagement.SceneManager.GetSceneByName(sceneName);
             if (scene.isLoaded)
             {
-                AsyncOperation unloadOp = UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(scene);
-                // Espera o unload completar
-                yield return new WaitUntil(() => unloadOp.isDone);
+                // Só host pode usar o SceneManager do FishNet para sincronizar clients
+                if (InstanceFinder.IsServerStarted)
+                {
+                    SceneUnloadData unloadData = new SceneUnloadData(sceneName);
+                    InstanceFinder.SceneManager.UnloadGlobalScenes(unloadData);
+                }
+                else
+                {
+                    AsyncOperation unloadOp = UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(scene);
+                    yield return new WaitUntil(() => unloadOp.isDone);
+                }
             }
         }
 
         // 2. Carrega a cena de Loading
         SceneLoadData loadLoading = new SceneLoadData("Loading");
-        InstanceFinder.SceneManager.LoadGlobalScenes(loadLoading);
+        if (InstanceFinder.IsServerStarted)
+        {
+            // Host + clients
+            InstanceFinder.SceneManager.LoadConnectionScenes(loadLoading);
+        }
+        else
+        {
+            // Cliente local só carrega sem sincronizar
+            InstanceFinder.SceneManager.LoadGlobalScenes(loadLoading);
+        }
         yield return new WaitUntil(() => UnityEngine.SceneManagement.SceneManager.GetSceneByName("Loading").isLoaded);
 
         // 3. Carrega o mapa final
         SceneLoadData loadMap = new SceneLoadData(targetMap);
-        InstanceFinder.SceneManager.LoadGlobalScenes(loadMap);
+        if (InstanceFinder.IsServerStarted)
+        {
+            InstanceFinder.SceneManager.LoadConnectionScenes(loadMap); // sincroniza host + clients
+        }
+        else
+        {
+            InstanceFinder.SceneManager.LoadGlobalScenes(loadMap); // só cliente local
+        }
         yield return new WaitUntil(() => UnityEngine.SceneManagement.SceneManager.GetSceneByName(targetMap).isLoaded);
     }
 
