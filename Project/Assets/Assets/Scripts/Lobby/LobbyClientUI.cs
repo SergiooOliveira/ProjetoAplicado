@@ -27,21 +27,19 @@ public class LobbyClientUI : MonoBehaviour
 
     private void Awake()
     {
-        // Garantir que listeners estão no main thread
         var client = InstanceFinder.ClientManager;
         var server = InstanceFinder.ServerManager;
 
         client.OnClientConnectionState += OnClientConnectionStateChanged;
-        InstanceFinder.ServerManager.OnServerConnectionState += OnServerStarted;
+        server.OnServerConnectionState += OnServerStarted;
 
-        client.OnClientConnectionState += (args) =>
+        // Notificação de desconexão de qualquer client (no host)
+        server.OnRemoteConnectionState += (conn, args) =>
         {
-            Debug.Log($"[CLIENT] State: {args.ConnectionState}");
-        };
-
-        server.OnServerConnectionState += (args) =>
-        {
-            Debug.Log($"[SERVER] State: {args.ConnectionState} | Clients: {InstanceFinder.ServerManager.Clients.Count}");
+            if (args.ConnectionState == RemoteConnectionState.Stopped)
+            {
+                LobbyManager.Instance.RemovePlayer(conn);
+            }
         };
 
         RegisterClientMessages();
@@ -58,7 +56,7 @@ public class LobbyClientUI : MonoBehaviour
         yield return null; // Espera a scene carregar
 
         NetworkConnection myClientConn = InstanceFinder.ClientManager.Connection;
-        if (myClientConn != null)
+        if (myClientConn != null && LobbyManager.Instance.IsHost(myClientConn))
         {
             CreateRoomUIForHost(myClientConn);
         }
