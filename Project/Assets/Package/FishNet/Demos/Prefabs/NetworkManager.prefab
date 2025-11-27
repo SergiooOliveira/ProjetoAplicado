@@ -12,10 +12,8 @@ GameObject:
   - component: {fileID: 7443408887813606050}
   - component: {fileID: 934570884}
   - component: {fileID: 8924614168003458485}
-  - component: {fileID: 3260929099601998857}
   - component: {fileID: 4809549485601476037}
   - component: {fileID: 1511871188615951534}
-  - component: {fileID: 1388014356626115475}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -94,22 +92,6 @@ MonoBehaviour:
     _latency: 0
     _outOfOrder: 0
     _packetLoss: 0
---- !u!114 &3260929099601998857
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7443408887813606051}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15895a51081447d46bda466e7e830c08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _sceneProcessor: {fileID: 1388014356626115475}
-  _lightProbeUpdating: 0
-  _moveClientObjects: 1
-  _setActiveScene: 1
 --- !u!114 &4809549485601476037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,18 +129,6 @@ MonoBehaviour:
   _port: 7777
   _maximumClients: 10
   _clientAddress: localhost
---- !u!114 &1388014356626115475
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7443408887813606051}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c6eacaa60569d947b383df03fff1ea3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2130063410
 PrefabInstance:
   m_ObjectHideFlags: 0
