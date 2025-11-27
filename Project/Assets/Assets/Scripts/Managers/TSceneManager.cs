@@ -221,44 +221,32 @@ public class TSceneManager : MonoBehaviour
 
     private IEnumerator LoadLoadingThenMapRoutine(string targetMap)
     {
-        bool isHost = InstanceFinder.NetworkManager.IsHostStarted;
+        if (!InstanceFinder.IsServerStarted)
+            yield break;
 
-        // 1. Unload cenas antigas (Host apenas)
-        if (isHost)
+        // Unload cenas antigas
+        string[] scenesToUnload = { "StartMenu", "Lobby" };
+        foreach (var sceneName in scenesToUnload)
         {
-            string[] scenesToUnload = { "StartMenu", "Lobby" };
-
-            foreach (var sceneName in scenesToUnload)
-            {
-                SceneUnloadData unloadData = new SceneUnloadData(sceneName);
-                InstanceFinder.SceneManager.UnloadConnectionScenes(unloadData);
-            }
+            if (UnityEngine.SceneManagement.SceneManager.GetSceneByName(sceneName).isLoaded)
+                InstanceFinder.SceneManager.UnloadGlobalScenes(new SceneUnloadData(sceneName));
         }
 
-        // 2. Carrega a cena Loading
-        SceneLoadData loadLoading = new SceneLoadData("Loading");
-        InstanceFinder.SceneManager.LoadConnectionScenes(loadLoading);
-
-        // Esperar Loading carregar
+        // Carrega Loading
+        InstanceFinder.SceneManager.LoadGlobalScenes(new SceneLoadData("Loading"));
         yield return new WaitUntil(() =>
             UnityEngine.SceneManagement.SceneManager.GetSceneByName("Loading").isLoaded
         );
 
-        // 3. Carregar o mapa final
-        SceneLoadData loadMap = new SceneLoadData(targetMap);
-        InstanceFinder.SceneManager.LoadConnectionScenes(loadMap);
-
-        // Esperar mapa carregar
+        // Carrega target
+        InstanceFinder.SceneManager.LoadGlobalScenes(new SceneLoadData(targetMap));
         yield return new WaitUntil(() =>
             UnityEngine.SceneManagement.SceneManager.GetSceneByName(targetMap).isLoaded
         );
 
-        // 4. Unload da Loading (somente se estiver carregada)
+        // Remove Loading
         if (UnityEngine.SceneManagement.SceneManager.GetSceneByName("Loading").isLoaded)
-        {
-            SceneUnloadData unloadLoading = new SceneUnloadData("Loading");
-            InstanceFinder.SceneManager.UnloadConnectionScenes(unloadLoading);
-        }
+            InstanceFinder.SceneManager.UnloadGlobalScenes(new SceneUnloadData("Loading"));
     }
 
     #endregion
