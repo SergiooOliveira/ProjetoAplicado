@@ -4,13 +4,9 @@ using UnityEngine;
 public class DamageEffect : SpellEffect
 {
     [SerializeField] private float spellDamage;
-    [SerializeField] private float spellRange;
-    [SerializeField] private float spellProjectileSpeed;
 
     public float SpellDamage => spellDamage;
-    public float SpellRange => spellRange;
-    public float SpellProjectileSpeed => spellProjectileSpeed;
-
+    
     public override void Apply(Player caster, Collider2D target)
     {
         if (!target.TryGetComponent<Enemy>(out Enemy enemy)) return;

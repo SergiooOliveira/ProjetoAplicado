@@ -3,10 +3,11 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
 public class SpellHomingMissile : MonoBehaviour
-{    
+{
+    [SerializeField] private float spellSpeed;
+    [SerializeField] private float spellRange;
     [SerializeField] private float rotateSpeed;
     [SerializeField] private float targetSearchRadious = 10f;
-    private float spellSpeed;
 
     private Transform target;
     private Spell spellData;
@@ -23,12 +24,7 @@ public class SpellHomingMissile : MonoBehaviour
         this.caster = caster;        
         this.target = target;
         this.initialDirection = initialDir;
-
-        DamageEffect dmg = spell.SpellEffects.OfType<DamageEffect>().FirstOrDefault();
-
-        spellSpeed = dmg?.SpellProjectileSpeed ?? 10f;
-        float spellRange = dmg?.SpellRange ?? 10f;
-
+   
         rb = GetComponent<Rigidbody2D>();
 
         rb.linearVelocity = initialDirection.normalized * this.spellSpeed;

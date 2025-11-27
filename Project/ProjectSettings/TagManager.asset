@@ -19,7 +19,11 @@ TagManager:
   - Ground
   - Boss
   - Buff
+<<<<<<< Updated upstream
   - Attack
+=======
+  - Enemy
+>>>>>>> Stashed changes
   - 
   - 
   - 

@@ -20,7 +20,7 @@ MonoBehaviour:
   characterXp:
     max: 0
   characterMana:
-    max: 10
+    max: 500
   characterMovementSpeed: 6
   characterAttackSpeed: 6
   characterAttackPower: 6
@@ -30,6 +30,7 @@ MonoBehaviour:
     amount: 20
   characterSpells:
   - {fileID: 11400000, guid: b48eb3a1dc703fd45a2d4b768e2e3d90, type: 2}
+  - {fileID: 11400000, guid: ac17212be64b61447b5a70f2ea0ce142, type: 2}
   characterEquippedSpells: []
   characterInventory: []
   characterEquipment:

@@ -16,6 +16,7 @@ public class Spell : ScriptableObject, ISpell
     [SerializeField] private float spellCooldown;    
     [SerializeField] private int spellCost;
     [SerializeField] private float spellCastTime;
+    [SerializeField] private SpellManaCostType spellManaCostType;
 
     [Header("Behaviour")]
     [SerializeField] private SpellCastType spellCastType;
@@ -42,6 +43,7 @@ public class Spell : ScriptableObject, ISpell
     public float SpellCooldown => spellCooldown;
     public int SpellCost => spellCost;
     public float SpellCastTime => spellCastTime;
+    public SpellManaCostType SpellManaCostType => spellManaCostType;
 
     // *----- Behaviour -----*
     public SpellCastType SpellCastType => spellCastType;
@@ -58,26 +60,33 @@ public class Spell : ScriptableObject, ISpell
     #endregion
 
     #region Methods
-    public void Cast(Player caster, Vector2 direction)
+    public GameObject Cast(Player caster, Vector2 direction)
     {
         switch (SpellCastType)
         {
             case SpellCastType.Projectile:
-                CastProjectile(caster, direction);
-                break;
+                return CastProjectile(caster, direction);
             case SpellCastType.Homing:
                 CastHoming(caster, direction);
-                break;
+                return null;
             case SpellCastType.Area:
-                CastArea(caster, direction);
-                break;
+                //return CastArea(caster, direction);
+                return null;
             case SpellCastType.Self:
                 CastSelf(caster);
-                break;
+                return null;
+            case SpellCastType.Targeted:
+                return null;
+            case SpellCastType.Channeled:
+                return CastChanneled(caster);
+
+            default:
+                return null;
         }
     }
 
-    private void CastProjectile(Player caster, Vector2 direction)
+    #region Cast Methods
+    private GameObject CastProjectile(Player caster, Vector2 direction)
     {
         GameObject instance = Instantiate(SpellPrefab, caster.transform.position, Quaternion.identity);
 
@@ -85,6 +94,8 @@ public class Spell : ScriptableObject, ISpell
             projectile.Initialize(this, direction, caster);
         else
             Debug.Log($"{SpellName} is missing SpellPorjectile component");
+
+        return instance;
     }
 
     private void CastHoming(Player caster, Vector2 direction)
@@ -125,6 +136,19 @@ public class Spell : ScriptableObject, ISpell
         else
             Debug.Log($"{SpellName} is missing SelfSpell component");
     }
+
+    private GameObject CastChanneled(Player caster)
+    {
+        GameObject instance = Instantiate(SpellPrefab, caster.transform.position, Quaternion.identity);
+
+        if (instance.TryGetComponent<SpellChain>(out SpellChain chain))
+            chain.Initialize(this, caster);
+        else
+            Debug.Log($"{SpellName} is missing SpellChain component");
+
+        return instance;
+    }
+    #endregion
     #endregion
 
     public void OnHit(Player caster, Collider2D target)
