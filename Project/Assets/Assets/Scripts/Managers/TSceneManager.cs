@@ -2,6 +2,7 @@ using FishNet;
 using FishNet.Connection;
 using FishNet.Managing.Scened;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -16,6 +17,9 @@ public class TSceneManager : MonoBehaviour
     [Header("Player Spawner")]
     public PlayerSpawner spawner;
     private static bool startMenuLoadedOnce = false;
+
+    private HashSet<int> loadedClients = new HashSet<int>();
+    private int expectedClients = 0;
 
     #endregion
 
@@ -148,22 +152,22 @@ public class TSceneManager : MonoBehaviour
         Debug.Log($"[TSceneManager] Mapa carregado: {sceneName}");
 
         // Update spawn points (scene objects must be present now)
-        SpawnPointMarker[] markers = GameObject.FindObjectsByType<SpawnPointMarker>(FindObjectsSortMode.None);
-        spawner.spawnPoints = markers.Select(s => s.transform).ToArray();
+        //SpawnPointMarker[] markers = GameObject.FindObjectsByType<SpawnPointMarker>(FindObjectsSortMode.None);
+        //spawner.spawnPoints = markers.Select(s => s.transform).ToArray();
 
         // SPAWN: spawn players now that FishNet has finished loading the scenes (clients are synchronized)
         foreach (NetworkConnection conn in InstanceFinder.ServerManager.Clients.Values)
         {
             // If there's already a first object, optionally despawn it to avoid duplicates.
             // If you want to preserve existing FirstObject for hot-join or reconnect, adjust logic.
-            if (conn.FirstObject != null)
-            {
-                Debug.Log($"[TSceneManager] Despawn FirstObject for Conn {conn.ClientId}");
-                InstanceFinder.ServerManager.Objects.Despawn(conn.FirstObject);
-            }
+            //if (conn.FirstObject != null)
+            //{
+            //    Debug.Log($"[TSceneManager] Despawn FirstObject for Conn {conn.ClientId}");
+            //    InstanceFinder.ServerManager.Objects.Despawn(conn.FirstObject);
+            //}
 
             // Spawn the player for that connection
-            spawner.SpawnPlayer(conn);
+            //spawner.SpawnPlayer(conn);
         }
 
         // Remove Loading scene via FishNet API (do not call Unity unload directly)
