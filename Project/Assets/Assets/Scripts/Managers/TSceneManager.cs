@@ -195,6 +195,7 @@ public class TSceneManager : MonoBehaviour
                 {
                     SceneUnloadData unloadData = new SceneUnloadData(sceneName);
                     InstanceFinder.SceneManager.UnloadConnectionScenes(unloadData);
+                    UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(sceneName);
                 }
             }
         }
