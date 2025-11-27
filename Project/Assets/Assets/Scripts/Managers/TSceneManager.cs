@@ -25,7 +25,7 @@ public class TSceneManager : MonoBehaviour
     {
         Instance = this;
         DontDestroyOnLoad(gameObject);
-        //InstanceFinder.SceneManager.OnLoadEnd += OnScenesLoaded;
+        InstanceFinder.SceneManager.OnLoadEnd += OnScenesLoaded;
     }
 
     private void Start()
