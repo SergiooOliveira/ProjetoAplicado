@@ -220,7 +220,7 @@ public class TSceneManager : MonoBehaviour
     //}
 
     private IEnumerator LoadLoadingThenMapRoutine(string targetMap)
-    {
+{
         if (!InstanceFinder.IsServerStarted)
             yield break;
 
@@ -246,7 +246,11 @@ public class TSceneManager : MonoBehaviour
 
         // Remove Loading
         if (UnityEngine.SceneManagement.SceneManager.GetSceneByName("Loading").isLoaded)
+        {
             InstanceFinder.SceneManager.UnloadGlobalScenes(new SceneUnloadData("Loading"));
+            UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("Loading");
+        }
+            
     }
 
     #endregion
