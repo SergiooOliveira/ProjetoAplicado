@@ -58,7 +58,7 @@ public class LobbyClientUI : MonoBehaviour
         yield return null; // Espera a scene carregar
 
         NetworkConnection myClientConn = InstanceFinder.ClientManager.Connection;
-        if (myClientConn != null && LobbyManager.Instance.IsHost(myClientConn))
+        if (myClientConn != null)
         {
             CreateRoomUIForHost(myClientConn);
         }
@@ -90,10 +90,23 @@ public class LobbyClientUI : MonoBehaviour
 
     public void StartAsHost()
     {
-        // Start server
+        // 1. Start server
         InstanceFinder.ServerManager.StartConnection();
 
-        // Start LOCAL client usando localhost
+        // 2. Cria a sala assim que o servidor estiver pronto
+        InstanceFinder.ServerManager.OnServerConnectionState += (args) =>
+        {
+            if (args.ConnectionState == LocalConnectionState.Started)
+            {
+                var hostConn = InstanceFinder.ServerManager.Clients.Values.FirstOrDefault();
+                if (hostConn != null)
+                {
+                    LobbyManager.Instance.CreateRoom(hostConn);
+                }
+            }
+        };
+
+        // 3. Start LOCAL client usando localhost
         StartCoroutine(StartLocalClient());
     }
 
