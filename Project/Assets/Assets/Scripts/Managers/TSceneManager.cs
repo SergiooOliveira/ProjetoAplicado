@@ -166,13 +166,15 @@ public class TSceneManager : MonoBehaviour
         }
 
         // 2. Carrega a cena de Loading
-        //SceneLoadData loadLoading = new SceneLoadData("Loading");
+        SceneLoadData loadLoading = new SceneLoadData("Loading");
         //InstanceFinder.SceneManager.LoadGlobalScenes(loadLoading);
-        //yield return new WaitUntil(() => UnityEngine.SceneManagement.SceneManager.GetSceneByName("Loading").isLoaded);
+        InstanceFinder.SceneManager.LoadConnectionScenes(loadLoading);
+        yield return new WaitUntil(() => UnityEngine.SceneManagement.SceneManager.GetSceneByName("Loading").isLoaded);
 
         // 3. Carrega o mapa final
         SceneLoadData loadMap = new SceneLoadData(targetMap);
-        InstanceFinder.SceneManager.LoadGlobalScenes(loadMap);
+        //InstanceFinder.SceneManager.LoadGlobalScenes(loadMap);
+        InstanceFinder.SceneManager.LoadConnectionScenes(loadMap);
         yield return new WaitUntil(() => UnityEngine.SceneManagement.SceneManager.GetSceneByName(targetMap).isLoaded);
     }
 
