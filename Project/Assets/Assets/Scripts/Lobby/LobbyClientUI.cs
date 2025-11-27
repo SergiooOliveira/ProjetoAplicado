@@ -4,6 +4,7 @@ using FishNet.Managing;
 using FishNet.Managing.Client;
 using FishNet.Managing.Server;
 using FishNet.Transporting;
+using Pathfinding;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,18 +29,19 @@ public class LobbyClientUI : MonoBehaviour
     {
         // Garantir que listeners estão no main thread
         var client = InstanceFinder.ClientManager;
+        var server = InstanceFinder.ServerManager;
 
         client.OnClientConnectionState += OnClientConnectionStateChanged;
         InstanceFinder.ServerManager.OnServerConnectionState += OnServerStarted;
 
-        InstanceFinder.ServerManager.OnServerConnectionState += (args) =>
+        client.OnClientConnectionState += (args) =>
         {
-            Debug.Log($"[SERVER] State aa: {args.ConnectionState}");
+            Debug.Log($"[CLIENT] State: {args.ConnectionState}");
         };
 
-        InstanceFinder.ClientManager.OnClientConnectionState += (args) =>
+        server.OnServerConnectionState += (args) =>
         {
-            Debug.Log($"[CLIENT] State bb: {args.ConnectionState}");
+            Debug.Log($"[SERVER] State: {args.ConnectionState} | Clients: {InstanceFinder.ServerManager.Clients.Count}");
         };
 
         RegisterClientMessages();
@@ -147,7 +149,7 @@ public class LobbyClientUI : MonoBehaviour
         feedbackText.text = "A conectar ao host...";
         Debug.Log($"A conectar ao host: {hostIP}");
 
-        var tugboat = InstanceFinder.TransportManager.Transport as FishNet.Transporting.Tugboat.Tugboat;
+        //var tugboat = InstanceFinder.TransportManager.Transport as FishNet.Transporting.Tugboat.Tugboat;
         //tugboat.SetClientAddress(hostIP);
 
         // Corrigido: passar hostIP e port
