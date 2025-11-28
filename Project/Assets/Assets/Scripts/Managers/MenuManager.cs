@@ -12,9 +12,6 @@ public class MenuManager : MonoBehaviour
 
     private bool isLoading = false;
 
-    [Header("HUD")]
-    public NetworkHudCanvases hud;
-
     #endregion
 
     #region Methods
@@ -58,7 +55,7 @@ public class MenuManager : MonoBehaviour
         isLoading = true;
 
         // Apenas servidor inicia o carregamento global
-        if (!InstanceFinder.IsServer) return;
+        if (!InstanceFinder.IsServerStarted) return;
 
         // Unload Lobby
         InstanceFinder.SceneManager.UnloadGlobalScenes(new SceneUnloadData("Lobby"));
@@ -67,23 +64,19 @@ public class MenuManager : MonoBehaviour
         //SceneLoadData sld = new SceneLoadData("Map1_Part1");
         //InstanceFinder.SceneManager.LoadGlobalScenes(sld);
 
-        //// Espera carregar a cena para inicializar HUD
-        //StartCoroutine(WaitForSceneLoad("Map1_Part1"));
+        StartCoroutine(LoadMapWithDelay(10f, "Map1_Part1"));
     }
 
-    private IEnumerator WaitForSceneLoad(string sceneName)
+    private IEnumerator LoadMapWithDelay(float delay, string mapName)
     {
-        // Espera até a cena estar carregada
-        while (!UnityEngine.SceneManagement.SceneManager.GetSceneByName(sceneName).isLoaded)
-            yield return null;
+        // Aguarda o tempo especificado
+        yield return new WaitForSeconds(delay);
 
-        hud = FindObjectOfType<NetworkHudCanvases>();
+        // Carrega a nova cena
+        SceneLoadData sld = new SceneLoadData(mapName);
+        InstanceFinder.SceneManager.LoadGlobalScenes(sld);
 
-        // Cena carregada, inicializa HUD ou objetos de rede
-        if (hud != null)
-        {
-            hud.OnClick_Server(); // ou OnClick_Client
-        }
+        Debug.Log($"{mapName} foi carregada após {delay} segundos.");
     }
 
     public void QuitGame()
