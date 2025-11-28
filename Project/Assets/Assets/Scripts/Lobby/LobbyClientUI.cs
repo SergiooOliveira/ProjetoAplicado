@@ -1,12 +1,8 @@
 using FishNet;
 using FishNet.Connection;
-using FishNet.Managing;
-using FishNet.Managing.Client;
-using FishNet.Managing.Server;
+using FishNet.Example;
 using FishNet.Transporting;
-using Pathfinding;
 using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
@@ -22,6 +18,9 @@ public class LobbyClientUI : MonoBehaviour
     [Header("IP Settings")]
     public TMP_InputField ipInput;
     public ushort port = 7777;
+
+    [Header("HUD")]
+    public NetworkHudCanvases hud;
 
     private string currentRoomCode;
 
@@ -88,6 +87,8 @@ public class LobbyClientUI : MonoBehaviour
 
     public void StartAsHost()
     {
+        hud.OnClick_Server();
+
         // 1. Start server
         InstanceFinder.ServerManager.StartConnection();
 
@@ -112,9 +113,7 @@ public class LobbyClientUI : MonoBehaviour
     {
         yield return null; // Espera a scene carregar
 
-        InstanceFinder.ClientManager.StartConnection();
-
-        //InstanceFinder.ClientManager.StartConnection("localhost", port);
+        InstanceFinder.ClientManager.StartConnection("localhost", port);
         Debug.Log("Host iniciado!");
     }
 
@@ -145,6 +144,8 @@ public class LobbyClientUI : MonoBehaviour
 
     public void ConnectToHost()
     {
+        hud.OnClick_Client();
+
         string hostIP = ipInput.text.Trim();
         if (string.IsNullOrEmpty(hostIP))
         {
@@ -166,9 +167,7 @@ public class LobbyClientUI : MonoBehaviour
         //tugboat.SetClientAddress(hostIP);
 
         // Corrigido: passar hostIP e port
-        //InstanceFinder.ClientManager.StartConnection(hostIP, port);
-
-        InstanceFinder.ClientManager.StartConnection();
+        InstanceFinder.ClientManager.StartConnection(hostIP, port);
     }
 
     private void OnClientConnectionStateChanged(ClientConnectionStateArgs args)
@@ -202,25 +201,7 @@ public class LobbyClientUI : MonoBehaviour
 
         currentRoomCode = joinInput.text.Trim();
         feedbackText.text = "A entrar...";
-        InstanceFinder.ClientManager.OnClientConnectionState += OnClientConnectedForJoin;
-        //InstanceFinder.ClientManager.Broadcast(new JoinRoomRequest { code = currentRoomCode });
-        InstanceFinder.ClientManager.StartConnection();
-    }
-
-    private void OnClientConnectedForJoin(ClientConnectionStateArgs args)
-    {
-        if (args.ConnectionState != LocalConnectionState.Started)
-            return;
-
-        // Desinscreve para não repetir
-        InstanceFinder.ClientManager.OnClientConnectionState -= OnClientConnectedForJoin;
-
-        feedbackText.text = "A entrar na sala...";
-
-        // Agora sim o cliente está conectado ao Tugboat -> pode enviar o request
-        InstanceFinder.ClientManager.Broadcast(
-            new JoinRoomRequest { code = currentRoomCode }
-        );
+        InstanceFinder.ClientManager.Broadcast(new JoinRoomRequest { code = currentRoomCode });
     }
 
     private void CreateRoomUIForHost(NetworkConnection hostConn)
