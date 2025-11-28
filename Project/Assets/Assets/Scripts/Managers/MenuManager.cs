@@ -23,11 +23,6 @@ public class MenuManager : MonoBehaviour
 
         isLoading = true;
 
-        //TSceneManager sm = GameObject.FindFirstObjectByType<TSceneManager>();
-
-        //// First load the Loading screen
-        //sm.LoadLoadingThenMap("Map1_Part1");
-
         BootstrapSceneManager sm = GameObject.FindFirstObjectByType<BootstrapSceneManager>();
         sm.UnloadScene("StartMenu");
         sm.LoadScene("Map1_Part1");
@@ -42,7 +37,6 @@ public class MenuManager : MonoBehaviour
 
         BootstrapSceneManager sm = GameObject.FindFirstObjectByType<BootstrapSceneManager>();
 
-        // First load the Loading screen
         sm.UnloadSceneLocal("StartMenu");
         sm.LoadSceneLocal("Lobby");
     }
@@ -54,7 +48,6 @@ public class MenuManager : MonoBehaviour
 
         BootstrapSceneManager sm = GameObject.FindFirstObjectByType<BootstrapSceneManager>();
 
-        // First load the Loading screen
         sm.UnloadScene("Lobby");
         sm.LoadScene("Map1_Part1");
     }

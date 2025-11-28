@@ -1,13 +1,11 @@
 using UnityEngine;
 using FishNet;
 using FishNet.Managing.Scened;
-using System.Collections;
-using System;
 
 public class BootstrapSceneManager : MonoBehaviour
 {
 
-    private static bool startMenuLoadedOnce = false;
+    public static BootstrapSceneManager Instance { get; private set; }
 
     private void Awake()
     {

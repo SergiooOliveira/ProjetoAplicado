@@ -170,9 +170,6 @@ public class LobbyClientUI : MonoBehaviour
         feedbackText.text = "A conectar ao host...";
         Debug.Log($"A conectar ao host: {hostIP}");
 
-        //var tugboat = InstanceFinder.TransportManager.Transport as FishNet.Transporting.Tugboat.Tugboat;
-        //tugboat.SetClientAddress(hostIP);
-
         // Corrigido: passar hostIP e port
         InstanceFinder.ClientManager.StartConnection(hostIP, port);
     }

@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 using FishNet;
-using FishNet.Managing.Scened;
 
 public class MapSelectorUI : MonoBehaviour
 {
@@ -38,9 +37,10 @@ public class MapSelectorUI : MonoBehaviour
             return;
         }
 
-        // Aqui está a mágica:
-        TSceneManager.Instance.LoadLoadingThenMap(mapName);
-        InstanceFinder.SceneManager.UnloadGlobalScenes(new SceneUnloadData("SelectMap"));
+        BootstrapSceneManager sm = GameObject.FindFirstObjectByType<BootstrapSceneManager>();
+
+        sm.UnloadScene("SelectMap");
+        sm.LoadScene(mapName);
     }
 
     #endregion
