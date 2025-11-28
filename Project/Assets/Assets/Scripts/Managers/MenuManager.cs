@@ -64,11 +64,11 @@ public class MenuManager : MonoBehaviour
         InstanceFinder.SceneManager.UnloadGlobalScenes(new SceneUnloadData("Lobby"));
 
         // Load Map1_Part1
-        SceneLoadData sld = new SceneLoadData("Map1_Part1");
-        InstanceFinder.SceneManager.LoadGlobalScenes(sld);
+        //SceneLoadData sld = new SceneLoadData("Map1_Part1");
+        //InstanceFinder.SceneManager.LoadGlobalScenes(sld);
 
-        // Espera carregar a cena para inicializar HUD
-        StartCoroutine(WaitForSceneLoad("Map1_Part1"));
+        //// Espera carregar a cena para inicializar HUD
+        //StartCoroutine(WaitForSceneLoad("Map1_Part1"));
     }
 
     private IEnumerator WaitForSceneLoad(string sceneName)
