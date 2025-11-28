@@ -67,48 +67,48 @@ public class BootstrapSceneManager : MonoBehaviour
         InstanceFinder.SceneManager.LoadGlobalScenes(sld);
     }
 
-    //public void UnloadScene(string sceneName)
-    //{
-    //    if (!InstanceFinder.IsServerStarted)
-    //        return;
-
-    //    SceneUnloadData sld = new SceneUnloadData(sceneName);
-    //    InstanceFinder.SceneManager.UnloadGlobalScenes(sld);
-    //}
-
-    public void UnloadScene(string sceneName, Action callbackAfterUnload = null)
+    public void UnloadScene(string sceneName)
     {
         if (!InstanceFinder.IsServerStarted)
             return;
 
-        // Chama o unload no servidor
-        SceneUnloadData sud = new SceneUnloadData(sceneName);
-        InstanceFinder.SceneManager.UnloadGlobalScenes(sud);
-        Debug.Log($"[BootstrapSceneManager] UnloadScene chamado: {sceneName}");
-
-        // Inicia coroutine para aguardar a cena realmente descarregar
-        StartCoroutine(WaitForUnload(sceneName, callbackAfterUnload));
+        SceneUnloadData sld = new SceneUnloadData(sceneName);
+        InstanceFinder.SceneManager.UnloadGlobalScenes(sld);
     }
 
-    private IEnumerator WaitForUnload(string sceneName, Action callback)
-    {
-        // Espera até que a cena seja descarregada do servidor
-        yield return new WaitUntil(() =>
-            !UnityEngine.SceneManagement.SceneManager.GetSceneByName(sceneName).isLoaded
-        );
+    //public void UnloadScene(string sceneName, Action callbackAfterUnload = null)
+    //{
+    //    if (!InstanceFinder.IsServerStarted)
+    //        return;
 
-        Debug.Log($"[BootstrapSceneManager] Unload de {sceneName} concluído!");
-        callback?.Invoke();
-    }
+    //    // Chama o unload no servidor
+    //    SceneUnloadData sud = new SceneUnloadData(sceneName);
+    //    InstanceFinder.SceneManager.UnloadGlobalScenes(sud);
+    //    Debug.Log($"[BootstrapSceneManager] UnloadScene chamado: {sceneName}");
 
-    public IEnumerator LoadMapWithDelay(float delay, string mapName)
-    {
-        yield return new WaitForSeconds(delay);
+    //    // Inicia coroutine para aguardar a cena realmente descarregar
+    //    StartCoroutine(WaitForUnload(sceneName, callbackAfterUnload));
+    //}
 
-        SceneLoadData sld = new SceneLoadData(mapName);
-        InstanceFinder.SceneManager.LoadGlobalScenes(sld);
+    //private IEnumerator WaitForUnload(string sceneName, Action callback)
+    //{
+    //    // Espera até que a cena seja descarregada do servidor
+    //    yield return new WaitUntil(() =>
+    //        !UnityEngine.SceneManagement.SceneManager.GetSceneByName(sceneName).isLoaded
+    //    );
 
-        Debug.Log($"[{nameof(BootstrapSceneManager)}] {mapName} carregada após {delay} segundos.");
-    }
+    //    Debug.Log($"[BootstrapSceneManager] Unload de {sceneName} concluído!");
+    //    callback?.Invoke();
+    //}
+
+    //public IEnumerator LoadMapWithDelay(float delay, string mapName)
+    //{
+    //    yield return new WaitForSeconds(delay);
+
+    //    SceneLoadData sld = new SceneLoadData(mapName);
+    //    InstanceFinder.SceneManager.LoadGlobalScenes(sld);
+
+    //    Debug.Log($"[{nameof(BootstrapSceneManager)}] {mapName} carregada após {delay} segundos.");
+    //}
 
 }
