@@ -26,6 +26,13 @@ public class LobbyClientUI : MonoBehaviour
 
     private void Awake()
     {
+        if (hud == null)
+        {
+            hud = FindObjectOfType<NetworkHudCanvases>();
+            if (hud == null)
+                Debug.LogError("Não foi possível encontrar NetworkHudCanvases na cena persistente!");
+        }
+
         var client = InstanceFinder.ClientManager;
         var server = InstanceFinder.ServerManager;
 
