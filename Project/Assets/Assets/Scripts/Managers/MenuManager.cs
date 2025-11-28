@@ -17,10 +17,14 @@ public class MenuManager : MonoBehaviour
 
         isLoading = true;
 
-        TSceneManager sm = GameObject.FindFirstObjectByType<TSceneManager>();
+        //TSceneManager sm = GameObject.FindFirstObjectByType<TSceneManager>();
 
-        // First load the Loading screen
-        sm.LoadLoadingThenMap("Map1_Part1");
+        //// First load the Loading screen
+        //sm.LoadLoadingThenMap("Map1_Part1");
+
+        BootstrapSceneManager sm = GameObject.FindFirstObjectByType<BootstrapSceneManager>();
+        sm.UnloadScene("StartMenu");
+        sm.LoadScene("Map1_Part1");
     }
 
     public void Multiplayer()
@@ -30,10 +34,13 @@ public class MenuManager : MonoBehaviour
 
         isLoading = true;
 
-        TSceneManager sm = GameObject.FindFirstObjectByType<TSceneManager>();
+        //TSceneManager sm = GameObject.FindFirstObjectByType<TSceneManager>();
+        //sm.LoadMapByName("Lobby");
+        BootstrapSceneManager sm = GameObject.FindFirstObjectByType<BootstrapSceneManager>();
 
         // First load the Loading screen
-        sm.LoadMapByName("Lobby");
+        sm.UnloadScene("StartMenu");
+        sm.LoadScene("Lobby");
     }
 
     public void QuitGame()
