@@ -1,4 +1,8 @@
+using FishNet;
+using FishNet.Managing.Scened;
+using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.InputSystem.HID;
 
 public class MenuManager : MonoBehaviour
 {
@@ -45,19 +49,16 @@ public class MenuManager : MonoBehaviour
 
     public void PlayMultiplayer()
     {
-        if (isLoading)
-            return;
-
+        if (isLoading) return;
         isLoading = true;
 
-        //TSceneManager sm = GameObject.FindFirstObjectByType<TSceneManager>();
-
-        //// First load the Loading screen
-        //sm.LoadLoadingThenMap("Map1_Part1");
-
         BootstrapSceneManager sm = GameObject.FindFirstObjectByType<BootstrapSceneManager>();
-        sm.UnloadScene("Lobby");
-        sm.LoadScene("Map1_Part1");
+
+        // Unload Lobby e load Map1_Part1
+        InstanceFinder.SceneManager.UnloadGlobalScenes(new SceneUnloadData("Lobby"));
+
+        var sld = new SceneLoadData("Map1_Part1");
+        InstanceFinder.SceneManager.LoadGlobalScenes(sld);
     }
 
     public void QuitGame()
