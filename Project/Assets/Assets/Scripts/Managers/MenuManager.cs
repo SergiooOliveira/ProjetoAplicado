@@ -43,6 +43,23 @@ public class MenuManager : MonoBehaviour
         sm.LoadScene("Lobby");
     }
 
+    public void PlayMultiplayer()
+    {
+        if (isLoading)
+            return;
+
+        isLoading = true;
+
+        //TSceneManager sm = GameObject.FindFirstObjectByType<TSceneManager>();
+
+        //// First load the Loading screen
+        //sm.LoadLoadingThenMap("Map1_Part1");
+
+        BootstrapSceneManager sm = GameObject.FindFirstObjectByType<BootstrapSceneManager>();
+        sm.UnloadScene("Lobby");
+        sm.LoadScene("Map1_Part1");
+    }
+
     public void QuitGame()
     {
         Application.Quit();

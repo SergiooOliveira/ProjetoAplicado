@@ -1913,7 +1913,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 382878016}
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
-        m_MethodName: PlayButton
+        m_MethodName: PlayMultiplayer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
