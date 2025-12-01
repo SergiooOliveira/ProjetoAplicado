@@ -4,9 +4,19 @@ using UnityEngine;
 public class DamageEffect : SpellEffect
 {
     [SerializeField] private float spellDamage;
-
+    private float currentDamage;
     public float SpellDamage => spellDamage;
     
+    public void Initialize()
+    {
+        this.currentDamage = spellDamage;
+    }
+
+    public void SetDamageMultiplier(float multiplier)
+    {
+       this.currentDamage = spellDamage * multiplier;
+    }
+
     public override void Apply(Player caster, Collider2D target)
     {
         if (!target.TryGetComponent<Enemy>(out Enemy enemy)) return;

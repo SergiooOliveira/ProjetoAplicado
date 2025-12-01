@@ -81,7 +81,7 @@ public class PlayerData : ScriptableObject, ICharacter
     public void AddSpell(Spell spell)
     {
         // Firstly check if Spell is already there
-        if (CharacterSpells.Exists(s => s.SpellName == spell.SpellName)) return;
+        if (CharacterSpells.Exists(s => s.RuntimeSpellData.SpellName == spell.RuntimeSpellData.SpellName)) return;
 
         // Spell doesnst exist in the List
         this.CharacterSpells.Add(spell);
@@ -93,12 +93,12 @@ public class PlayerData : ScriptableObject, ICharacter
     /// <param name="spell">Spell to add</param>
     public void EquipSpell(Spell spell)
     {
-        bool alreadyEquipped = CharacterEquippedSpells.Any(s => s.spell != null && s.spell.SpellName == spell.SpellName);
+        bool alreadyEquipped = CharacterEquippedSpells.Any(s => s.spell != null && s.spell.RuntimeSpellData.SpellName == spell.RuntimeSpellData.SpellName);
 
         // Check if spell is already equipped
         if (alreadyEquipped)
         {
-            Debug.Log($"{spell.SpellName} is already equipped");
+            Debug.Log($"{spell.RuntimeSpellData.SpellName} is already equipped");
             return;
         }
 
@@ -167,7 +167,7 @@ public class PlayerData : ScriptableObject, ICharacter
             Debug.Log("New active Spell is null");
         } else
         {
-            Debug.LogWarning($"Swaping {activeSpell.spell.SpellName} with {newActiveSpell.spell.SpellName}");            
+            Debug.LogWarning($"Swaping {activeSpell.spell.RuntimeSpellData.SpellName} with {newActiveSpell.spell.RuntimeSpellData.SpellName}");            
             activeSpell.Deselect();
             newActiveSpell.Select();
 
@@ -177,7 +177,7 @@ public class PlayerData : ScriptableObject, ICharacter
             foreach(SpellEntry entry in CharacterEquippedSpells)
             {
                 if (entry.spell  != null)
-                    Debug.Log($"<Color=green>{entry.spell.SpellName}: {entry.isSelected}</Color>");
+                    Debug.Log($"<Color=green>{entry.spell.RuntimeSpellData.SpellName}: {entry.isSelected}</Color>");
             }
             // TODO: Update Spell bar
         }
