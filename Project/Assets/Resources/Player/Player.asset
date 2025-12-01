@@ -29,8 +29,9 @@ MonoBehaviour:
   - spellAfinity: 1
     amount: 20
   characterSpells:
-  - {fileID: 11400000, guid: b48eb3a1dc703fd45a2d4b768e2e3d90, type: 2}
-  - {fileID: 11400000, guid: ac17212be64b61447b5a70f2ea0ce142, type: 2}
+  - {fileID: 8828546701308468134, guid: 3668d21d8ded15f4d9242d9dd61400e8, type: 3}
+  - {fileID: -4933291075019803683, guid: 6b1abf4151309304081a5da92917dafe, type: 3}
+  - {fileID: 220613211818925742, guid: ea3e5071ab8174c4aaf293ad087d1e00, type: 3}
   characterEquippedSpells: []
   characterInventory: []
   characterEquipment:

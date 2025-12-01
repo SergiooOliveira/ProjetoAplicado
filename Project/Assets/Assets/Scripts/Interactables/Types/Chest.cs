@@ -58,7 +58,7 @@ public class Chest : MonoBehaviour
             if (spell != null)
             {                
                 playerData.AddSpell(spell);
-                Debug.Log($"Added spell {spell.SpellName} to player!");
+                Debug.Log($"Added spell {spell.RuntimeSpellData.SpellName} to player!");
             }
         }
 

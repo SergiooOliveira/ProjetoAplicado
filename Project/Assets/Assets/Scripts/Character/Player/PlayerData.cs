@@ -67,6 +67,14 @@ public class PlayerData : ScriptableObject, ICharacter
     #region Spell Methods
     public void InitializeSpells()
     {
+        foreach (Spell spell in CharacterSpells)
+        {
+            spell.InitializeRuntimeData();
+        }
+    }
+    
+    public void InitializeEquippedSpells()
+    {
         CharacterEquippedSpells.Clear();
 
         CharacterEquippedSpells.Add(new SpellEntry { spell = null, slot = 1, isSelected = false });

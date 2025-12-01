@@ -9,18 +9,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f43ff49d62b57614e9ca7d326c2a7ad5, type: 3}
-  m_Name: Homing missiles
+  m_Script: {fileID: 11500000, guid: 49fabf8be4a63bf4bb32b6a7da1e0ebd, type: 3}
+  m_Name: Water Missiles
   m_EditorClassIdentifier: 
-  spellName: Homing Missile
-  spellDescription: Homing Missile description
+  spellName: Water Missiles
+  spellDescription: Water Missiles
   spellPrefab: {fileID: 244863705734144963, guid: 3668d21d8ded15f4d9242d9dd61400e8, type: 3}
   spellTag: 0
   spellAfinity: 2
-  spellCooldown: 2
-  spellCost: 4
-  spellCastTime: 1
+  spellCooldown: 1
+  spellCost: 10
+  spellCastTime: 0
+  spellManaCostType: 0
   spellCastType: 2
   spellImpactType: 0
   spellEffects:
-  - {fileID: 11400000, guid: 0f59993b5bb758840a805dc49876e5ac, type: 2}
+  - {fileID: 11400000, guid: 9fb9c6fbf202605468acbbcfba50e454, type: 2}

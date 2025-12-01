@@ -7,12 +7,12 @@ public class SpellProjectile : MonoBehaviour
     [SerializeField] private float spellSpeed;
     [SerializeField] private float spellRange;
 
-    private Spell spellData;
+    private SpellData spellData;
     private Player caster;
     private Rigidbody2D rb;
     private float lifetime;
 
-    public void Initialize(Spell spell, Vector2 dir, Player caster)
+    public void Initialize(SpellData spell, Vector2 dir, Player caster)
     {
         this.spellData = spell;
         this.caster = caster;

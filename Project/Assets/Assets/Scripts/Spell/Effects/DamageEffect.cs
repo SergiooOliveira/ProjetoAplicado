@@ -5,7 +5,8 @@ public class DamageEffect : SpellEffect
 {
     [SerializeField] private float spellDamage;
     private float currentDamage;
-    public float SpellDamage => spellDamage;
+    
+    public float SpellDamage => currentDamage;
     
     public void Initialize()
     {

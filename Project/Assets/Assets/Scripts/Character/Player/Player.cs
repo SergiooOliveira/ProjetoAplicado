@@ -58,6 +58,7 @@ public class Player : MonoBehaviour
 
         runTimePlayerData.EquipmentStats();
         runTimePlayerData.InitializeSpells();
+        runTimePlayerData.InitializeEquippedSpells();
     }
 
     /// <summary>

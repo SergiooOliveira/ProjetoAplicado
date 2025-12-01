@@ -19,11 +19,6 @@ public class InventoryManagerUI : MonoBehaviour
         SetAllSlots();
     }
 
-    private void OnDisable()
-    {
-        // TODO: Get all the tooltips that might exist and destroy them
-    }
-
     public void SetAllSlots()
     {
         foreach (ItemEntry entry in player.RunTimePlayerData.CharacterInventory)

@@ -11,8 +11,6 @@ public class Spell : MonoBehaviour
     private List<ScriptableObject> runtimeSpellEffects;
     private float currentMultiplier = 1f;
 
-    
-
     public Spell(SpellData spellData)
     {
         this.spellData = spellData;
@@ -24,12 +22,7 @@ public class Spell : MonoBehaviour
         }
     }
 
-    private void Awake()
-    {
-        InitializeRuntimeData();
-    }
-
-    private void InitializeRuntimeData()
+    public void InitializeRuntimeData()
     {
         if (spellData == null) return;
 
@@ -60,9 +53,7 @@ public class Spell : MonoBehaviour
     }
 
     public void OnHit(Player caster, Collider2D target)
-    {
-        float damage = spellData.BaseDamage * currentMultiplier;
-
+    {        
         foreach (SpellEffect effect in runtimeSpellEffects)
         {
             if (effect is DamageEffect damageEffect)

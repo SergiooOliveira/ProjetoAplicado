@@ -14,14 +14,14 @@ public class SpellChain : MonoBehaviour
     [SerializeField] private float textureTiling = 1f;
 
     private LineRenderer lineRenderer;
-    private Spell spellData;
+    private SpellData spellData;
     private Player caster;
 
     private float nextTickTime;
     private Transform currentTarget1;
     private Transform currentTarget2;
 
-    public void Initialize(Spell spell, Player caster)
+    public void Initialize(SpellData spell, Player caster)
     {
         this.spellData = spell;
         this.caster = caster;

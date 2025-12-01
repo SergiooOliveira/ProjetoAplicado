@@ -179,12 +179,12 @@ public class PlayerController : NetworkBehaviour
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 castDirection = (mousePos - rb.position).normalized;
 
-        if (spell.SpellManaCostType == SpellManaCostType.Continuous)
+        if (spell.RuntimeSpellData.SpellManaCostType == SpellManaCostType.Continuous)
         {
             if (callbackContext.started)
             {
                 Debug.Log("Casting channeled spell");
-                currentChanneledObject = spell.Cast(player, castDirection);
+                currentChanneledObject = spell.RuntimeSpellData.Cast(player, castDirection);
                 currentChanneledSpellData = spell;
             }
             else if (callbackContext.canceled)
@@ -197,10 +197,10 @@ public class PlayerController : NetworkBehaviour
         {
             if (callbackContext.started)
             {
-                if (playerData.CharacterMana.Current >= spell.SpellCost)
+                if (playerData.CharacterMana.Current >= spell.RuntimeSpellData.SpellCost)
                 {
-                    playerData.CharacterMana.ConsumeMana(spell.SpellCost);
-                    spell.Cast(player, castDirection);
+                    playerData.CharacterMana.ConsumeMana(spell.RuntimeSpellData.SpellCost);
+                    spell.RuntimeSpellData.Cast(player, castDirection);
                 }
                 else
                 {
@@ -313,7 +313,7 @@ public class PlayerController : NetworkBehaviour
     {
         if (currentChanneledObject != null && currentChanneledSpellData != null)
         {
-            float costThisFrame = currentChanneledSpellData.SpellCost * Time.fixedDeltaTime;
+            float costThisFrame = currentChanneledSpellData.RuntimeSpellData.SpellCost * Time.fixedDeltaTime;
 
             if (playerData.CharacterMana.Current >= costThisFrame)
             {

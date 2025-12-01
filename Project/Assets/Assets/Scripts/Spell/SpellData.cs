@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-[CreateAssetMenu(menuName = "Spells/Spell")]
+[CreateAssetMenu(menuName = "Spells/SpellData")]
 public class SpellData : ScriptableObject, ISpell
 {
     #region Serialized Fields
@@ -72,11 +72,10 @@ public class SpellData : ScriptableObject, ISpell
         {
             if (effect is DamageEffect dmgEffect)
             {
-                dmgEffect.AddDamage(multiplier);
+                dmgEffect.SetDamageMultiplier(multiplier);
             }
         }
     }
-
 
     #region Methods
     public GameObject Cast(Player caster, Vector2 direction)
@@ -110,7 +109,7 @@ public class SpellData : ScriptableObject, ISpell
         GameObject instance = Instantiate(SpellPrefab, caster.transform.position, Quaternion.identity);
 
         if (instance.TryGetComponent<SpellProjectile>(out SpellProjectile projectile))
-            projectile.Initialize(runtimeSpell, direction, caster);
+            projectile.Initialize(this, direction, caster);
         else
             Debug.Log($"{SpellName} is missing SpellPorjectile component");
 
@@ -136,7 +135,7 @@ public class SpellData : ScriptableObject, ISpell
             {
                 Enemy target = FindNearestEnemy(spawnPos, projectile.TargetSearchRadious);
                 //if (target == null) return;
-                projectile.Initialize(runtimeSpell, caster, dir, target != null ? target.transform : null);
+                projectile.Initialize(this, caster, dir, target != null ? target.transform : null);
             }
         }
     }
@@ -151,7 +150,7 @@ public class SpellData : ScriptableObject, ISpell
         GameObject instance = Instantiate(SpellPrefab, caster.transform.position, Quaternion.identity);
 
         if (instance.TryGetComponent<SelfSpell>(out SelfSpell self))
-            self.Initialize(runtimeSpell, caster, caster.transform);
+            self.Initialize(this, caster, caster.transform);
         else
             Debug.Log($"{SpellName} is missing SelfSpell component");
     }
@@ -161,7 +160,7 @@ public class SpellData : ScriptableObject, ISpell
         GameObject instance = Instantiate(SpellPrefab, caster.transform.position, Quaternion.identity);
 
         if (instance.TryGetComponent<SpellChain>(out SpellChain chain))
-            chain.Initialize(runtimeSpell, caster);
+            chain.Initialize(this, caster);
         else
             Debug.Log($"{SpellName} is missing SpellChain component");
 
@@ -171,7 +170,7 @@ public class SpellData : ScriptableObject, ISpell
 
     public void OnHit(Player caster, Collider2D target)
     {
-        foreach (SpellEffect effect in SpellEffects)
+        foreach (SpellEffect effect in spellEffects)
         {
             //Debug.Log($"OnHit effect: {effect}");
             if (effect != null)

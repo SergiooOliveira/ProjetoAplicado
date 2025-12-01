@@ -4,15 +4,13 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
 public class SelfSpell : MonoBehaviour
 {
-    private Spell spellData;
+    private SpellData spellData;
     private Player caster;
     
-    public void Initialize(Spell spell, Player caster, Transform target)
+    public void Initialize(SpellData spell, Player caster, Transform target)
     {
         this.spellData = spell;
-        this.caster = caster;
-        
-        HealEffect heal = spellData.SpellEffects.OfType<HealEffect>().FirstOrDefault();
+        this.caster = caster;        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
