@@ -24,8 +24,6 @@ public class SpellManager : MonoBehaviour
 
     private void SetSlot(int index)
     {
-        Debug.LogWarning($"Trying to set: {index}");
-
         Image img = slots[index].GetComponentInChildren<Image>();
         TMP_Text tb = slots[index].GetComponentInChildren<TMP_Text>();
 
@@ -33,25 +31,21 @@ public class SpellManager : MonoBehaviour
         {
             Debug.LogWarning($"{img} is null or {tb} is null on {index}");
             return;
-        }
-        else
-        {
-            Debug.LogWarning($"Everything ok for {index}");
-        }
+        }        
 
         SpellEntry entry = playerData.GetSlot(index);
 
         if (entry.spell != null)
         {            
-            Debug.Log($"{entry.spell.SpellName} is not null");
+            //Debug.Log($"{entry.spell.RuntimeSpellData.SpellName} is not null");
          
             img.enabled = true;
-            img.sprite = entry.spell.SpellPrefab.GetComponent<SpriteRenderer>().sprite;
+            img.sprite = entry.spell.RuntimeSpellData.SpellPrefab.GetComponent<SpriteRenderer>().sprite;
             
             if (entry.isSelected) img.color = Color.blue;
             else img.color = Color.white;
             
-            tb.text = entry.spell.SpellName;
+            tb.text = entry.spell.RuntimeSpellData.SpellName;
         }
         else
         {

@@ -545,8 +545,8 @@ public class Enemy : MonoBehaviour
 
     private float ApplyAffinity (float damage, DamageContext context)
     {
-        float bonusPercent = context.caster.GetAffinityBonuses(context.spell.SpellAfinity);
-        float resistancePercent = this.GetResistance(context.spell.SpellAfinity);
+        float bonusPercent = context.caster.GetAffinityBonuses(context.spell.RuntimeSpellData.SpellAfinity);
+        float resistancePercent = this.GetResistance(context.spell.RuntimeSpellData.SpellAfinity);
         //float weakness = GetWeaknessMultiplier(context.spell);
 
         Debug.Log($"ApplyAffinity damage: {damage * bonusPercent / resistancePercent} with bonusPercent: {bonusPercent} and resistancePercent: {resistancePercent}");

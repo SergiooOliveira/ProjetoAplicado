@@ -28,8 +28,8 @@ public class SpellManagerSlot : MonoBehaviour, IPointerClickHandler
     public void SetSlot(Spell s)
     {
         spell = s;
-        img_slot.sprite = s.SpellPrefab.GetComponent<SpriteRenderer>().sprite;
-        tb_name.text = s.SpellName;
+        img_slot.sprite = s.RuntimeSpellData.SpellPrefab.GetComponent<SpriteRenderer>().sprite;
+        tb_name.text = s.RuntimeSpellData.SpellName;
     }
 
     public void SetSlot(SpellEntry spell)
@@ -38,8 +38,8 @@ public class SpellManagerSlot : MonoBehaviour, IPointerClickHandler
         {            
             entry = spell;
             img_slot.enabled = true;
-            img_slot.sprite = spell.spell.SpellPrefab.GetComponent<SpriteRenderer>().sprite;
-            tb_name.text = spell.spell.SpellName;
+            img_slot.sprite = spell.spell.RuntimeSpellData.SpellPrefab.GetComponent<SpriteRenderer>().sprite;
+            tb_name.text = spell.spell.RuntimeSpellData.SpellName;
         }
         else
         {
@@ -52,7 +52,7 @@ public class SpellManagerSlot : MonoBehaviour, IPointerClickHandler
     {
         if (eventData.button == PointerEventData.InputButton.Right)
         {
-            Debug.Log($"Right clicked on: {(spell != null ? spell.SpellName : entry.spell.SpellName)}");
+            //Debug.Log($"Right clicked on: {(spell != null ? spell.RuntimeSpellData.SpellName : entry.spell.RuntimeSpellData.SpellName)}");
 
             // Right click
             /*
@@ -61,17 +61,17 @@ public class SpellManagerSlot : MonoBehaviour, IPointerClickHandler
             if (spell != null)
             {
                 // Try to equip
-                Debug.Log($"Trying to equip: {spell.SpellName}");
+                //Debug.Log($"Trying to equip: {spell.RuntimeSpellData.SpellName}");
                 playerData.EquipSpell(spell);
             }
             else if (entry.spell != null)
             {
                 // Try to unequip                
-                Debug.Log($"Trying to unequip: {entry.spell.SpellName}");
+                //Debug.Log($"Trying to unequip: {entry.spell.RuntimeSpellData.SpellName}");
                 playerData.UnequipSpell(entry.slot);
             }
 
-            SeeAllSpells();
+            //SeeAllSpells();
             spellInventoryController.UpdateUI();
             //spellManager.SetAllSlots();
         }
@@ -82,7 +82,7 @@ public class SpellManagerSlot : MonoBehaviour, IPointerClickHandler
         foreach (SpellEntry s in playerData.CharacterEquippedSpells)
         {
             if (s.spell != null)
-                Debug.Log($"Equipped: {s.spell.SpellName}");
+                Debug.Log($"Equipped: {s.spell.RuntimeSpellData.SpellName}");
             else
                 Debug.Log("Equipped: Empty Slot");
         }

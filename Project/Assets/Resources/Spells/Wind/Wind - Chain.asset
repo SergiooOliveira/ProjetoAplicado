@@ -10,17 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f43ff49d62b57614e9ca7d326c2a7ad5, type: 3}
-  m_Name: Hydro Cannon
+  m_Name: Wind - Chain
   m_EditorClassIdentifier: 
-  spellName: Hydro Cannon
-  spellDescription: Hydro Cannon description
-  spellPrefab: {fileID: 244863705734144963, guid: bdb58c44bce11674193227086c3514c4, type: 3}
+  spellName: Skyline Burst
+  spellDescription: Skyline Burst description
+  spellPrefab: {fileID: 244863705734144963, guid: 8ddfd1c2860fad34bbd1fc0cff2a99f7, type: 3}
   spellTag: 0
-  spellAfinity: 2
-  spellCooldown: 10
-  spellCost: 20
+  spellAfinity: 1
+  spellCooldown: 0
+  spellCost: 5
   spellCastTime: 10
-  spellCastType: 1
+  spellManaCostType: 1
+  spellCastType: 5
   spellImpactType: 0
   spellEffects:
-  - {fileID: 11400000, guid: 1a69f9ea73c7c314598b87d2f675efc2, type: 2}
+  - {fileID: 11400000, guid: 9fb9c6fbf202605468acbbcfba50e454, type: 2}

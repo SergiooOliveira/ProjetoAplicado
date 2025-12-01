@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 8569445410634528845}
   - component: {fileID: 7699964468585947124}
   - component: {fileID: 5860827059549771783}
-  - component: {fileID: 1997535066481531519}
+  - component: {fileID: 220613211818925742}
+  - component: {fileID: 2932001219480894694}
   m_Layer: 6
   m_Name: ArmorBreakerDebuff
   m_TagString: Untagged
@@ -120,7 +121,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -153,7 +154,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1997535066481531519
+--- !u!114 &220613211818925742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 630829662884969359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f43ff49d62b57614e9ca7d326c2a7ad5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spellData: {fileID: 11400000, guid: 444f3567adb03764d96ea709125930de, type: 2}
+--- !u!114 &2932001219480894694
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -165,3 +179,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cd4e7dbbf4fba94db6aed8917cb0e9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spellSpeed: 50
+  spellRange: 20

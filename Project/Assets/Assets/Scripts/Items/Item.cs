@@ -14,11 +14,11 @@ public class Item : MonoBehaviour
     [SerializeField] private ItemData itemData;
     private ItemData runTimeItemData;
 
+    public ItemData RunTimeItemData => runTimeItemData;
+
     public void Initialize()
     {        
         runTimeItemData = ScriptableObject.Instantiate(itemData);
         // Debug.Log($"Initializing {runTimeItemData.ItemName}");
     }
-
-    public ItemData RunTimeItemData => runTimeItemData;    
 }
