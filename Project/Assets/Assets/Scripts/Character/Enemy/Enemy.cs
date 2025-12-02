@@ -496,8 +496,8 @@ public class Enemy : MonoBehaviour
         player.RunTimePlayerData.AddGold(RunTimeData.CharacterGold);
 
         // Add xp to player
-        player.RunTimePlayerData.CharacterXp.AddExperience(player.RunTimePlayerData, RunTimeData.CharacterXp.Max);        
         player.playerHUDManager.SetXPValues((float)RunTimeData.CharacterXp.Max / player.RunTimePlayerData.CharacterXp.Max);
+        player.RunTimePlayerData.CharacterXp.AddExperience(player.RunTimePlayerData, RunTimeData.CharacterXp.Max);                
 
         // Destroy EnemyHUD
         if (hudInstance != null)
