@@ -55,10 +55,15 @@ public class Stat
     /// </summary>
     /// <param name="level">Current player level</param>
     /// <returns>New Max Xp</returns>
-    public void NewXpMax(int level) => max = (int)(100 * Mathf.Pow((float)1.2, level - 1));
+    public void NewXpMax(int level)
+    {        
+        max = (int)(100 * Mathf.Pow((float)1.2, level - 1));
+        Debug.Log($"Starting player {level} with {max} xp");
+    }
 
     public void AddExperience(PlayerData player, int amount)
     {
+        Debug.Log($"Gained {amount} xp");
         current += amount;
         while (current >= max)
         {

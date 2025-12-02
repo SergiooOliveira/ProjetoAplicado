@@ -97,7 +97,7 @@ public class EnemySpawner : MonoBehaviour
 
         var temp = new List<EnemySpawnPoint>(allSpawnPoints);
         int count = Mathf.Min(enemyData.SpawnCount, temp.Count);
-        Debug.Log($"[Spawner] Selecting {count}/{temp.Count} spawn points randomly.");
+        //Debug.Log($"[Spawner] Selecting {count}/{temp.Count} spawn points randomly.");
 
         for (int i = 0; i < count; i++)
         {
@@ -105,7 +105,7 @@ public class EnemySpawner : MonoBehaviour
             var sp = temp[index];
             activeSpawnPoints.Add(sp);
             sp.isActiveSpawnPoint = true;
-            Debug.Log($"[Spawner] Active spawn: {sp.name}");
+            //Debug.Log($"[Spawner] Active spawn: {sp.name}");
             temp.RemoveAt(index);
         }
     }

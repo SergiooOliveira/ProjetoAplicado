@@ -334,11 +334,11 @@ public class PlayerController : NetworkBehaviour
                     playerData.CharacterMana.ConsumeMana(manaToSpend);
                     manaAccumulator -= manaToSpend;
                     playerHUDManager.SetManaValues((float)playerData.CharacterMana.Current / playerData.CharacterMana.Max);
-                    Debug.Log($"Player Mana: <Color=blue>{playerData.CharacterMana.Current}</Color> consuming {manaToSpend}");
+                    //Debug.Log($"Player Mana: <Color=blue>{playerData.CharacterMana.Current}</Color> consuming {manaToSpend}");
                 }
                 else
                 {
-                    Debug.Log($"<Color=red>Mana ran out, stopping channeled spell</Color>");
+                    //Debug.Log($"<Color=red>Mana ran out, stopping channeled spell</Color>");
                     StopChanneledSpell();
                     manaAccumulator = 0f;
                 }

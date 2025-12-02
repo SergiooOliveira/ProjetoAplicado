@@ -40,7 +40,9 @@ public class PlayerHUDManager : MonoBehaviour
 
     public void SetXPValues(float amount)
     {
+        Debug.Log($"Received amount: {amount}");
         targetXPFill = Mathf.Clamp01(amount);
+        Debug.Log($"Setting XP Fill to {targetXPFill}");
         if (playerXPForeground != null) playerXPForeground.fillAmount = Mathf.Lerp(playerXPForeground.fillAmount, targetXPFill, Time.deltaTime * smoothSpeed);
     }
 }

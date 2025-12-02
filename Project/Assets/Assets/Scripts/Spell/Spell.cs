@@ -29,16 +29,24 @@ public class Spell : MonoBehaviour
         runtimeSpellData = ScriptableObject.Instantiate(spellData);
         List<ScriptableObject> instantiatedEffects = new List<ScriptableObject>();
 
-        foreach (SpellEffect effect in spellData.SpellEffects)
+        if (spellData.SpellEffects != null)
         {
-            SpellEffect clone = Instantiate(effect);
-
-            if (clone is DamageEffect dmgEffect)
+            Debug.Log($"Initializing effects");
+            foreach (SpellEffect effect in spellData.SpellEffects)
             {
-                dmgEffect.Initialize();
-            }
+                SpellEffect clone = Instantiate(effect);
 
-            instantiatedEffects.Add(clone);
+                if (clone is DamageEffect dmgEffect)
+                {
+                    dmgEffect.Initialize();
+                }
+
+                instantiatedEffects.Add(clone);
+            }
+        }
+        else
+        {
+            Debug.Log($"{runtimeSpellData.SpellName} has no effects");
         }
     }
 
