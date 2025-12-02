@@ -13,19 +13,29 @@ public class SpellChain : MonoBehaviour
     [SerializeField] private float textureScrollSpeed = -10f;
     [SerializeField] private float textureTiling = 1f;
 
+    [Header("Charge Setting")]
+    [SerializeField] private float timeToMaxCharge = 3f;
+    [SerializeField] private float maxMultiplier = 2.0f;
+
     private LineRenderer lineRenderer;
-    private SpellData spellData;
+    private SpellData runtimeSpellData;
     private Player caster;
 
     private float nextTickTime;
+    private float currentChargeTime;
+
     private Transform currentTarget1;
     private Transform currentTarget2;
 
+    public SpellData RuntimeSpellData => runtimeSpellData;
+
     public void Initialize(SpellData spell, Player caster)
     {
-        this.spellData = spell;
+        this.runtimeSpellData = Instantiate(spell);
         this.caster = caster;
         this.lineRenderer = GetComponent<LineRenderer>();
+
+        this.runtimeSpellData.Initialize();
 
         // Initial lineRenderer setup
         lineRenderer.positionCount = 2;
@@ -35,7 +45,9 @@ public class SpellChain : MonoBehaviour
     private void FixedUpdate()
     {
         if (caster == null) { Destroy(gameObject); return; }
-        
+
+        HandleCharging();
+
         Vector2 origin = caster.transform.position;
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 direction = (mousePos - origin).normalized;
@@ -44,6 +56,16 @@ public class SpellChain : MonoBehaviour
         DrawVisuals(origin, direction);
         AnimateTexture();
         HandleTickDamage();
+    }
+
+    public void HandleCharging()
+    {
+        currentChargeTime += Time.fixedDeltaTime;
+
+        float t = Mathf.Clamp01(currentChargeTime / timeToMaxCharge);
+        float multiplier = Mathf.Lerp(1f, maxMultiplier, t);
+
+        runtimeSpellData.UpdateDamageMultiplier(multiplier);
     }
 
     private void UpdateTargets(Vector2 origin, Vector2 direction)
@@ -114,21 +136,21 @@ public class SpellChain : MonoBehaviour
     {
         if (Time.time >= nextTickTime)
         {
-            ApllyEffectToTarget(currentTarget1);
-            ApllyEffectToTarget(currentTarget2);
+            ApplyEffectToTarget(currentTarget1);
+            ApplyEffectToTarget(currentTarget2);
 
             nextTickTime = Time.time + tickRate;
         }
     }
 
-    private void ApllyEffectToTarget(Transform target)
+    private void ApplyEffectToTarget(Transform target)
     {
-        if (target != null && spellData != null)
+        if (target != null && runtimeSpellData != null)
         {
             Collider2D col = target.GetComponent<Collider2D>();
             if (col != null)
             {
-                spellData.OnHit(caster, col);
+                runtimeSpellData.OnHit(caster, col);
             }
         }
     }

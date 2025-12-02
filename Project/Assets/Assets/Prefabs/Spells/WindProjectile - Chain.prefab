@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1020584598921066751}
   - component: {fileID: 4419351622565259760}
   - component: {fileID: -1277145476663223914}
+  - component: {fileID: -7447219417858919371}
   - component: {fileID: -5779812453282691186}
   m_Layer: 6
   m_Name: WindProjectile - Chain
@@ -196,6 +197,19 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
+--- !u!114 &-7447219417858919371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 244863705734144963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f43ff49d62b57614e9ca7d326c2a7ad5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spellData: {fileID: 11400000, guid: 6e2c1e3bd524a154191d1db1a01a4ff9, type: 2}
 --- !u!114 &-5779812453282691186
 MonoBehaviour:
   m_ObjectHideFlags: 0

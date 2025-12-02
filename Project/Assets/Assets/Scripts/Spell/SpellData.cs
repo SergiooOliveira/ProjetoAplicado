@@ -27,6 +27,8 @@ public class SpellData : ScriptableObject, ISpell
 
     // Runtime Variables
     private List<ScriptableObject> runtimeEffects;
+    private float currentMultiplier = 1f;
+    public float CurrentCostPerSecond => spellCost * currentMultiplier;
     #endregion
 
     #region Property implementation
@@ -53,6 +55,7 @@ public class SpellData : ScriptableObject, ISpell
 
     public void Initialize()
     {
+        currentMultiplier = 1f;
         runtimeEffects = new List<ScriptableObject>();
 
         foreach (SpellEffect original in spellEffects)
@@ -68,6 +71,8 @@ public class SpellData : ScriptableObject, ISpell
 
     public void UpdateDamageMultiplier(float multiplier)
     {
+        this.currentMultiplier = multiplier;
+
         foreach (SpellEffect effect in runtimeEffects)
         {
             if (effect is DamageEffect dmgEffect)
@@ -93,8 +98,8 @@ public class SpellData : ScriptableObject, ISpell
             case SpellCastType.Self:
                 CastSelf(caster);
                 return null;
-            case SpellCastType.Targeted:
-                return null;
+            case SpellCastType.Pierce:
+                return CastPierce(caster, direction);
             case SpellCastType.Channeled:
                 return CastChanneled(caster);
 
@@ -163,6 +168,18 @@ public class SpellData : ScriptableObject, ISpell
             chain.Initialize(this, caster);
         else
             Debug.Log($"{SpellName} is missing SpellChain component");
+
+        return instance;
+    }
+
+    private GameObject CastPierce(Player caster, Vector2 direction)
+    {
+        GameObject instance = Instantiate(SpellPrefab, caster.transform.position, Quaternion.identity);
+
+        if (instance.TryGetComponent<SpellPierce>(out SpellPierce pierce))
+            pierce.Initialize(this, direction, caster);
+        else
+            Debug.Log($"{SpellName} is missing SpellPierce component");
 
         return instance;
     }

@@ -18,6 +18,11 @@ public class DamageEffect : SpellEffect
        this.currentDamage = spellDamage * multiplier;
     }
 
+    public void AddFlatDamage(float amount)
+    {
+        this.currentDamage += amount;
+    }
+
     public override void Apply(Player caster, Collider2D target)
     {
         if (!target.TryGetComponent<Enemy>(out Enemy enemy)) return;

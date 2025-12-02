@@ -376,7 +376,7 @@ public class Enemy : MonoBehaviour
         finalDamage = ApplyLevelScaling(finalDamage, context);
 
         runtimeData.CharacterHp.TakeDamage(Mathf.CeilToInt(finalDamage));
-        Debug.Log($"Final damage: <Color=orange>{Mathf.CeilToInt(finalDamage)}</Color>, leaving enemy with: {runtimeData.CharacterHp.Current}");
+        //Debug.Log($"Final damage: <Color=orange>{Mathf.CeilToInt(finalDamage)}</Color>, leaving enemy with: {runtimeData.CharacterHp.Current}");
 
         if (runtimeData.CharacterHp.Current <= 0) Die(context.caster);
     }

@@ -21,7 +21,7 @@ MonoBehaviour:
   spellCost: 10
   spellCastTime: 0
   spellManaCostType: 0
-  spellCastType: 1
+  spellCastType: 0
   spellImpactType: 2
   spellEffects:
   - {fileID: 11400000, guid: 61ee28e95f45af04cb102bfbf5f287f4, type: 2}
