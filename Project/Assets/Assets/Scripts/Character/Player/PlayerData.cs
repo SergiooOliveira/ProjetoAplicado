@@ -523,4 +523,11 @@ public class PlayerData : ScriptableObject, ICharacter
     }
     #endregion
     #endregion
+
+    #region XP Methods
+    public void LevelUP()
+    {
+        characterLevel++;
+    }
+    #endregion
 }

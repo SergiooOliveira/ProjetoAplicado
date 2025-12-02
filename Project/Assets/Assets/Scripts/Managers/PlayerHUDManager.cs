@@ -18,37 +18,29 @@ public class PlayerHUDManager : MonoBehaviour
     private PlayerData playerData;
     private float targetHPFill = 1f;
     private float targetManaFill = 1f;
-    private float targetXPFill = 1f;
+    private float targetXPFill = 0f;
     [SerializeField] private float smoothSpeed = 5f;
 
     private void Awake()
     {
         playerData = GetComponentInParent<Player>().RunTimePlayerData;
-        UpdateHUD();
     }
 
     public void SetHPValues(float amount)
     {
         targetHPFill = Mathf.Clamp01(amount);
-        UpdateHUD();
+        if (playerHPForeground != null) playerHPForeground.fillAmount = Mathf.Lerp(playerHPForeground.fillAmount, targetHPFill, Time.deltaTime * smoothSpeed);
     }
 
     public void SetManaValues(float amount)
     {
         targetManaFill = Mathf.Clamp01(amount);
-        UpdateHUD();
+        if (playerManaForeground != null) playerManaForeground.fillAmount = Mathf.Lerp(playerManaForeground.fillAmount, targetManaFill, Time.deltaTime * smoothSpeed);
     }
 
     public void SetXPValues(float amount)
     {
         targetXPFill = Mathf.Clamp01(amount);
-        UpdateHUD();
-    }
-
-    private void UpdateHUD()
-    {
-        if (playerHPForeground != null) playerHPForeground.fillAmount = Mathf.Lerp(playerHPForeground.fillAmount, targetHPFill, Time.deltaTime * smoothSpeed);
-        if (playerManaForeground != null) playerManaForeground.fillAmount = Mathf.Lerp(playerManaForeground.fillAmount, targetManaFill, Time.deltaTime * smoothSpeed);
-        if (playerXPForeground != null) playerXPForeground.fillAmount = Mathf.Lerp(playerXPForeground.fillAmount, targetXPFill, Time.deltaTime * smoothSpeed);        
+        if (playerXPForeground != null) playerXPForeground.fillAmount = Mathf.Lerp(playerXPForeground.fillAmount, targetXPFill, Time.deltaTime * smoothSpeed);
     }
 }

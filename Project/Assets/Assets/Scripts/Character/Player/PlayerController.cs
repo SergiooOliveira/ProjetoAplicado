@@ -208,7 +208,7 @@ public class PlayerController : NetworkBehaviour
                 if (playerData.CharacterMana.Current >= spell.RuntimeSpellData.SpellCost)
                 {
                     playerData.CharacterMana.ConsumeMana(spell.RuntimeSpellData.SpellCost);
-                    playerHUDManager.SetManaValues(spell.RuntimeSpellData.SpellCost / playerData.CharacterMana.Max);
+                    playerHUDManager.SetManaValues(playerData.CharacterMana.Current / playerData.CharacterMana.Max);
                     spell.RuntimeSpellData.Cast(player, castDirection);
                 }
                 else

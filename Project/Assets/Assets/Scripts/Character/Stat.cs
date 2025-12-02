@@ -46,6 +46,10 @@ public class Stat
     /// <param name="amount">Amount to heal</param>
     public void IncreaseCurrent(int amount) => current = Mathf.Min(Max, Current + amount);
 
+    public void TakeDamage(int damage) => current = Mathf.Max(0, current -= damage);
+
+    public void ConsumeMana(float amount) => current = Mathf.Max(0, current -= (int)amount);
+
     /// <summary>
     /// Call this method to set the max xp to level up
     /// </summary>
@@ -53,8 +57,15 @@ public class Stat
     /// <returns>New Max Xp</returns>
     public void NewXpMax(int level) => max = (int)(100 * Mathf.Pow((float)1.2, level - 1));
 
-    public void TakeDamage(int damage) => current = Mathf.Max(0, current -= damage);
-
-    public void ConsumeMana(float amount) => current = Mathf.Max(0, current -= (int)amount);
+    public void AddExperience(PlayerData player, int amount)
+    {
+        current += amount;
+        while (current >= max)
+        {
+            current -= max;
+            player.LevelUP();
+            NewXpMax(player.CharacterLevel);
+        }
+    }
     #endregion
 }
