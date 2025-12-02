@@ -91,6 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f2040e721d002e4999e7e8b9f0c30b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy: {fileID: 0}
 --- !u!1 &4214155701801310540
 GameObject:
   m_ObjectHideFlags: 0
@@ -248,9 +249,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 1148640954166823008}
-  hitboxes:
-  - {fileID: 9183546892166167111}
-  - {fileID: 373691624528219274}
 --- !u!1 &4898658288275938700
 GameObject:
   m_ObjectHideFlags: 0
@@ -342,6 +340,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f2040e721d002e4999e7e8b9f0c30b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy: {fileID: 0}
 --- !u!1 &8985559003228744641
 GameObject:
   m_ObjectHideFlags: 0
@@ -356,7 +355,6 @@ GameObject:
   - component: {fileID: 1148640954166823008}
   - component: {fileID: -3212755625456027727}
   - component: {fileID: 3314789802581385837}
-  - component: {fileID: 3060669037655419388}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -539,18 +537,6 @@ MonoBehaviour:
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
     value: -1
---- !u!114 &3060669037655419388
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8985559003228744641}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ba6ce7b84c125c4d8592307cdf8df2d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &3118421470769092096
 PrefabInstance:
   m_ObjectHideFlags: 0

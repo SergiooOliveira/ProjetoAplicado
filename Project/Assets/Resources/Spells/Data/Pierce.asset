@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 49fabf8be4a63bf4bb32b6a7da1e0ebd, type: 3}
-  m_Name: Heal
+  m_Name: Pierce
   m_EditorClassIdentifier: 
-  spellName: Heal Spell
-  spellDescription: Heal Spell
-  spellPrefab: {fileID: 244863705734144963, guid: 6b1abf4151309304081a5da92917dafe, type: 3}
-  spellTag: 1
-  spellAfinity: 3
+  spellName: Pierce Spell
+  spellDescription: Pierce Spell
+  spellPrefab: {fileID: 6022871407546440100, guid: 93f57672454b57840b5f0e1d0638ea91, type: 3}
+  spellTag: 0
+  spellAfinity: 1
   spellCooldown: 0
-  spellCost: 50
+  spellCost: 10
   spellCastTime: 0
   spellManaCostType: 0
-  spellCastType: 1
-  spellImpactType: 3
+  spellCastType: 4
+  spellImpactType: 0
   spellEffects:
-  - {fileID: 11400000, guid: 4db89f0f1a1f5e549a91482cd3beccb6, type: 2}
+  - {fileID: 11400000, guid: 9fb9c6fbf202605468acbbcfba50e454, type: 2}

@@ -26,7 +26,7 @@ public class Spell : MonoBehaviour
     {
         if (spellData == null) return;
 
-        runtimeSpellData = Instantiate(spellData);
+        runtimeSpellData = ScriptableObject.Instantiate(spellData);
         List<ScriptableObject> instantiatedEffects = new List<ScriptableObject>();
 
         foreach (SpellEffect effect in spellData.SpellEffects)

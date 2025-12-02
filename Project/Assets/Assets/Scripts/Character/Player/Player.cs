@@ -13,11 +13,14 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject notificationSlotPrefab;
     [SerializeField] private Transform notificationPanel;
 
+    public PlayerHUDManager playerHUDManager;
+
     #region Unity Methods
     public void Awake ()
     {
         runTimePlayerData = Instantiate(playerData);
         Initialize();
+        playerHUDManager = GetComponentInChildren<PlayerHUDManager>();
     }
 
     public void Start()

@@ -17,6 +17,12 @@ public class Chest : MonoBehaviour
             if (data.DropObject != null)
                 data.Initialize();
         }
+
+        foreach (Spell spell in spellReward)
+        {
+            if (spell != null)
+                spell.InitializeRuntimeData();
+        }
     }
 
     /// <summary>

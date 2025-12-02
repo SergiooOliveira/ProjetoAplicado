@@ -1,6 +1,7 @@
 using FishNet.Object;
 using System.Linq;
 using TMPro;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,6 +12,8 @@ public class PlayerController : NetworkBehaviour
     private PlayerData playerData;
     private GameObject currentChanneledObject;
     private Spell currentChanneledSpellData;
+    private PlayerHUDManager playerHUDManager;
+    private float manaAccumulator = 0f;
 
     private Rigidbody2D rb;
     public Transform groundCheck;
@@ -52,6 +55,7 @@ public class PlayerController : NetworkBehaviour
         player = GetComponent<Player>();
         playerData = player.RunTimePlayerData;
         spellManager = GetComponentInChildren<SpellManager>();
+        playerHUDManager = GetComponentInChildren<PlayerHUDManager>();
 
         if (playerData == null)
             Debug.Log("Player data is null");
@@ -183,9 +187,13 @@ public class PlayerController : NetworkBehaviour
         {
             if (callbackContext.started)
             {
-                Debug.Log("Casting channeled spell");
-                currentChanneledObject = spell.RuntimeSpellData.Cast(player, castDirection);
-                currentChanneledSpellData = spell;
+                if (playerData.CharacterMana.Current >= spell.RuntimeSpellData.SpellCost)
+                {
+                    Debug.Log("Casting channeled spell");
+                    currentChanneledObject = spell.RuntimeSpellData.Cast(player, castDirection);
+                    currentChanneledSpellData = spell;                    
+                }
+                else StopChanneledSpell();
             }
             else if (callbackContext.canceled)
             {
@@ -200,6 +208,7 @@ public class PlayerController : NetworkBehaviour
                 if (playerData.CharacterMana.Current >= spell.RuntimeSpellData.SpellCost)
                 {
                     playerData.CharacterMana.ConsumeMana(spell.RuntimeSpellData.SpellCost);
+                    playerHUDManager.SetManaValues(playerData.CharacterMana.Current / playerData.CharacterMana.Max);
                     spell.RuntimeSpellData.Cast(player, castDirection);
                 }
                 else
@@ -313,18 +322,31 @@ public class PlayerController : NetworkBehaviour
     {
         if (currentChanneledObject != null && currentChanneledSpellData != null)
         {
-            float costThisFrame = currentChanneledSpellData.RuntimeSpellData.SpellCost * Time.fixedDeltaTime;
+            float realTimeCost = currentChanneledSpellData.RuntimeSpellData.CurrentCostPerSecond;
+            float costThisFrame = realTimeCost * Time.fixedDeltaTime;
+            manaAccumulator += costThisFrame;
 
-            if (playerData.CharacterMana.Current >= costThisFrame)
+            if (manaAccumulator >= 1f)
             {
-                Debug.Log($"Consuming {costThisFrame} mana for channeled spell");
-                playerData.CharacterMana.ConsumeMana(costThisFrame);
+                int manaToSpend = Mathf.FloorToInt(manaAccumulator);
+                if (playerData.CharacterMana.Current >= manaToSpend)
+                {
+                    playerData.CharacterMana.ConsumeMana(manaToSpend);
+                    manaAccumulator -= manaToSpend;
+                    playerHUDManager.SetManaValues((float)playerData.CharacterMana.Current / playerData.CharacterMana.Max);
+                    Debug.Log($"Player Mana: <Color=blue>{playerData.CharacterMana.Current}</Color> consuming {manaToSpend}");
+                }
+                else
+                {
+                    Debug.Log($"<Color=red>Mana ran out, stopping channeled spell</Color>");
+                    StopChanneledSpell();
+                    manaAccumulator = 0f;
+                }
             }
-            else
-            {
-                Debug.Log("Mana ran out, stopping channeled spell");
-                StopChanneledSpell();
-            }
+        }
+        else
+        {
+            manaAccumulator = 0f;
         }
     }
 

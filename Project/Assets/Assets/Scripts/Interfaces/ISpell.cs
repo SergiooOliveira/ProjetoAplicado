@@ -2,7 +2,7 @@ using UnityEngine;
 
 public enum SpellTag { Damage, Buff, Debuff }
 public enum SpellAffinity { Fire, Wind, Ice, Light, Dark }
-public enum SpellCastType { Self, Projectile, Homing, Area, Targeted, Channeled }
+public enum SpellCastType { Projectile, Self, Homing, Area, Pierce, Channeled }
 public enum SpellImpactType { Damage, Buff, Debuff, Heal, Utility };
 public enum SpellManaCostType { Instant, Continuous }
 
