@@ -1544,7 +1544,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &731164336
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3521,7 +3521,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 214d674358a62d04c8cb41212fd2348c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomCodeText: {fileID: 1267714086}
+  roomCodeText: {fileID: 2093627697}
   joinInput: {fileID: 187690158}
   feedbackText: {fileID: 724601465}
   playerListText: {fileID: 728211819}
