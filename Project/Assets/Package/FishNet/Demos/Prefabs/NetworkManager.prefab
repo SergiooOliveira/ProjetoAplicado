@@ -123,12 +123,12 @@ MonoBehaviour:
   _dontRoute: 0
   _reuseAddress: 1
   _unreliableMtu: 1023
-  _ipv4BindAddress: 0.0.0.0
+  _ipv4BindAddress: 
   _enableIpv6: 0
   _ipv6BindAddress: 
-  _port: 7777
+  _port: 30116
   _maximumClients: 10
-  _clientAddress: localhost
+  _clientAddress: 0a5a3be3b89e.pr.edgegap.net
 --- !u!1001 &2130063410
 PrefabInstance:
   m_ObjectHideFlags: 0

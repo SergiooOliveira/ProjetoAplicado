@@ -94,7 +94,7 @@ public class LobbyClientUI : MonoBehaviour
 
     public void StartAsHost()
     {
-        hud.OnClick_Server();
+        //hud.OnClick_Server();
 
         // 1. Start server
         InstanceFinder.ServerManager.StartConnection();
@@ -120,7 +120,8 @@ public class LobbyClientUI : MonoBehaviour
     {
         yield return null; // Espera a scene carregar
 
-        InstanceFinder.ClientManager.StartConnection("localhost", port);
+        //InstanceFinder.ClientManager.StartConnection("localhost", port);
+        InstanceFinder.ClientManager.StartConnection();
         Debug.Log("Host iniciado!");
     }
 
@@ -151,7 +152,7 @@ public class LobbyClientUI : MonoBehaviour
 
     public void ConnectToHost()
     {
-        hud.OnClick_Client();
+        //hud.OnClick_Client();
 
         string hostIP = ipInput.text.Trim();
         if (string.IsNullOrEmpty(hostIP))
@@ -171,7 +172,8 @@ public class LobbyClientUI : MonoBehaviour
         Debug.Log($"A conectar ao host: {hostIP}");
 
         // Corrigido: passar hostIP e port
-        InstanceFinder.ClientManager.StartConnection(hostIP, port);
+        //InstanceFinder.ClientManager.StartConnection(hostIP, port);
+        InstanceFinder.ClientManager.StartConnection();
     }
 
     private void OnClientConnectionStateChanged(ClientConnectionStateArgs args)
