@@ -14,30 +14,21 @@ public class LobbyClientUI : MonoBehaviour
     public TMP_InputField joinInput;
     public TMP_Text feedbackText;
     public TMP_Text playerListText;
+    public GameObject lobby;
+    public GameObject room;
 
     [Header("IP Settings")]
     public TMP_InputField ipInput;
     public ushort port = 7777;
 
-    [Header("HUD")]
-    public NetworkHudCanvases hud;
-
     private string currentRoomCode;
 
     private void Awake()
     {
-        if (hud == null)
-        {
-            hud = FindObjectOfType<NetworkHudCanvases>();
-            if (hud == null)
-                Debug.LogError("Não foi possível encontrar NetworkHudCanvases na cena persistente!");
-        }
-
         var client = InstanceFinder.ClientManager;
         var server = InstanceFinder.ServerManager;
 
         client.OnClientConnectionState += OnClientConnectionStateChanged;
-        server.OnServerConnectionState += OnServerStarted;
 
         // Notificação de desconexão de qualquer client (no host)
         server.OnRemoteConnectionState += (conn, args) =>
@@ -51,78 +42,31 @@ public class LobbyClientUI : MonoBehaviour
         RegisterClientMessages();
     }
 
-    private void Start()
+    void Start()
     {
-        // Se este cliente for host local (rodando server + client), passamos a conexão do client.
-        StartCoroutine(CheckLocalHostConnection());
-    }
-
-    private IEnumerator CheckLocalHostConnection()
-    {
-        yield return null; // Espera a scene carregar
-
-        NetworkConnection myClientConn = InstanceFinder.ClientManager.Connection;
-        if (myClientConn != null && LobbyManager.Instance.IsHost(myClientConn))
-        {
-            CreateRoomUIForHost(myClientConn);
-        }
-    }
-
-    private void OnServerStarted(ServerConnectionStateArgs args)
-    {
-        if (args.ConnectionState == LocalConnectionState.Started)
-        {
-            StartCoroutine(HandleHostConnection());
-        }
-    }
-
-    private IEnumerator HandleHostConnection()
-    {
-        yield return null; // Espera a scene carregar
-        Debug.Log("Servidor iniciado. Procurando conexão do host...");
-
-        NetworkConnection hostConn = InstanceFinder.ServerManager.Clients.Values.FirstOrDefault();
-        if (hostConn != null)
-        {
-            CreateRoomUIForHost(hostConn);
-        }
-        else
-        {
-            Debug.LogWarning("Nenhum host conectado ainda.");
-        }
+        joinInput.onValueChanged.AddListener(OnCodeTyping);
     }
 
     public void StartAsHost()
     {
-        //hud.OnClick_Server();
-
         // 1. Start server
         InstanceFinder.ServerManager.StartConnection();
 
-        // 2. Cria a sala assim que o servidor estiver pronto
-        InstanceFinder.ServerManager.OnServerConnectionState += (args) =>
-        {
-            if (args.ConnectionState == LocalConnectionState.Started)
-            {
-                var hostConn = InstanceFinder.ServerManager.Clients.Values.FirstOrDefault();
-                if (hostConn != null)
-                {
-                    LobbyManager.Instance.CreateRoom(hostConn);
-                }
-            }
-        };
+        // 2. Start LOCAL client usando localhost
+        InstanceFinder.ClientManager.StartConnection("localhost", port);
 
-        // 3. Start LOCAL client usando localhost
-        StartCoroutine(StartLocalClient());
+        StartCoroutine(CreateRoom());
     }
 
-    private IEnumerator StartLocalClient()
+    private IEnumerator CreateRoom()
     {
-        yield return null; // Espera a scene carregar
+        yield return new WaitForSeconds(1f);
 
-        //InstanceFinder.ClientManager.StartConnection("localhost", port);
-        InstanceFinder.ClientManager.StartConnection();
-        Debug.Log("Host iniciado!");
+        lobby.SetActive(false);
+        room.SetActive(true);
+
+        var hostConn = InstanceFinder.ServerManager.Clients.Values.FirstOrDefault();
+        CreateRoomUIForHost(hostConn);
     }
 
     private void RegisterClientMessages()
@@ -152,8 +96,6 @@ public class LobbyClientUI : MonoBehaviour
 
     public void ConnectToHost()
     {
-        //hud.OnClick_Client();
-
         string hostIP = ipInput.text.Trim();
         if (string.IsNullOrEmpty(hostIP))
         {
@@ -161,20 +103,22 @@ public class LobbyClientUI : MonoBehaviour
             return;
         }
 
-        StartCoroutine(ConnectClientCoroutine(hostIP));
-    }
-
-    private IEnumerator ConnectClientCoroutine(string hostIP)
-    {
-        yield return null; // Garante main thread e scene carregada
-
         feedbackText.text = "A conectar ao host...";
-        Debug.Log($"A conectar ao host: {hostIP}");
+        InstanceFinder.ClientManager.StartConnection(hostIP, port);
 
-        // Corrigido: passar hostIP e port
-        //InstanceFinder.ClientManager.StartConnection(hostIP, port);
-        InstanceFinder.ClientManager.StartConnection();
+        //StartCoroutine(ConnectClientCoroutine(hostIP));
     }
+
+    //private IEnumerator ConnectClientCoroutine(string hostIP)
+    //{
+    //    yield return null; // Garante main thread e scene carregada
+
+    //    feedbackText.text = "A conectar ao host...";
+    //    Debug.Log($"A conectar ao host: {hostIP}");
+
+    //    // Corrigido: passar hostIP e port
+    //    //InstanceFinder.ClientManager.StartConnection(hostIP, port);
+    //}
 
     private void OnClientConnectionStateChanged(ClientConnectionStateArgs args)
     {
@@ -197,14 +141,16 @@ public class LobbyClientUI : MonoBehaviour
         }
     }
 
+    void OnCodeTyping(string text)
+    {
+        if (text.Length == 6)
+        {
+            JoinRoom(); // chama automaticamente
+        }
+    }
+
     public void JoinRoom()
     {
-        if (string.IsNullOrWhiteSpace(joinInput.text))
-        {
-            feedbackText.text = "Insira um código!";
-            return;
-        }
-
         currentRoomCode = joinInput.text.Trim();
         feedbackText.text = "A entrar...";
         InstanceFinder.ClientManager.Broadcast(new JoinRoomRequest { code = currentRoomCode });

@@ -126,9 +126,9 @@ MonoBehaviour:
   _ipv4BindAddress: 
   _enableIpv6: 0
   _ipv6BindAddress: 
-  _port: 30116
+  _port: 7777
   _maximumClients: 10
-  _clientAddress: 0a5a3be3b89e.pr.edgegap.net
+  _clientAddress: localhost
 --- !u!1001 &2130063410
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -256,6 +256,10 @@ PrefabInstance:
     - target: {fileID: 4393252310969058995, guid: 0570b6f7f713dc44a90463654bbcd8d0, type: 3}
       propertyPath: m_Name
       value: NetworkHudCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 4393252310969058995, guid: 0570b6f7f713dc44a90463654bbcd8d0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5478332172321550133, guid: 0570b6f7f713dc44a90463654bbcd8d0, type: 3}
       propertyPath: m_IsActive
