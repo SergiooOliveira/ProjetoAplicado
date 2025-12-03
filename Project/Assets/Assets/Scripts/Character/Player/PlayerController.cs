@@ -191,7 +191,7 @@ public class PlayerController : NetworkBehaviour
                 {
                     Debug.Log("Casting channeled spell");
                     currentChanneledObject = spell.RuntimeSpellData.Cast(player, castDirection);
-                    currentChanneledSpellData = spell;                    
+                    currentChanneledSpellData = spell;
                 }
                 else StopChanneledSpell();
             }
@@ -208,7 +208,7 @@ public class PlayerController : NetworkBehaviour
                 if (playerData.CharacterMana.Current >= spell.RuntimeSpellData.SpellCost)
                 {
                     playerData.CharacterMana.ConsumeMana(spell.RuntimeSpellData.SpellCost);
-                    playerHUDManager.SetManaValues(playerData.CharacterMana.Current / playerData.CharacterMana.Max);
+                    playerHUDManager.SetManaValues((float)playerData.CharacterMana.Current / playerData.CharacterMana.Max);
                     spell.RuntimeSpellData.Cast(player, castDirection);
                 }
                 else
@@ -306,10 +306,6 @@ public class PlayerController : NetworkBehaviour
             if (spell.spell != null)
             {
                 int index = playerData.GetActiveSpellIndex();
-
-                //Debug.LogWarning($"<Color=blue>Trying to swap Slot[{index}]</Color>");
-                //Debug.LogWarning($"<Color=Yellow>Equipped spell: {playerData.GetSlot(index).spell.SpellName}</Color>");
-                //Debug.LogWarning($"<Color=red>Trying to equip: {spell.spell.SpellName}</Color>");
                 playerData.SwapActiveSpell(playerData.GetSlot(index), spell);
                 spellManager.SetAllSlots();
             }

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class SpellManager : MonoBehaviour
 {
-    [SerializeField] private List<Transform> slots;
+    [SerializeField] private List<Image> slots;
 
     private PlayerData playerData;
 
@@ -24,33 +24,27 @@ public class SpellManager : MonoBehaviour
 
     private void SetSlot(int index)
     {
-        Image img = slots[index].GetComponentInChildren<Image>();
-        TMP_Text tb = slots[index].GetComponentInChildren<TMP_Text>();
+        Image img = slots[index];
 
-        if (img == null || tb == null)
+        if (img == null)
         {
-            Debug.LogWarning($"{img} is null or {tb} is null on {index}");
+            Debug.LogWarning($"{img} is null on {index}");
             return;
         }        
 
         SpellEntry entry = playerData.GetSlot(index);
 
         if (entry.spell != null)
-        {            
-            //Debug.Log($"{entry.spell.RuntimeSpellData.SpellName} is not null");
-         
+        {
             img.enabled = true;
             img.sprite = entry.spell.RuntimeSpellData.SpellPrefab.GetComponent<SpriteRenderer>().sprite;
             
             if (entry.isSelected) img.color = Color.blue;
-            else img.color = Color.white;
-            
-            tb.text = entry.spell.RuntimeSpellData.SpellName;
+            else img.color = Color.white;            
         }
         else
         {
             img.enabled = false;
-            tb.text = "No spell equipped";
         }
     }
 }
