@@ -265,21 +265,8 @@ public class BootstrapSceneManager : MonoBehaviour
             spawner.SpawnPlayer(conn);
         }
 
-        yield return new WaitForSeconds(0.1f);
-
-        foreach (var conn in InstanceFinder.ClientManager.Clients.Values)
-        {
-            NetworkObject player = conn.FirstObject;
-            if (player != null)
-            {
-                Scene persistentScene = SceneManager.GetSceneByName("PersistentScene");
-                if (persistentScene.IsValid())
-                    SceneManager.MoveGameObjectToScene(player.gameObject, persistentScene);
-            }
-        }
-
         // Remove LOADING
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(0.1f);
         UnloadLoading();
     }
 
