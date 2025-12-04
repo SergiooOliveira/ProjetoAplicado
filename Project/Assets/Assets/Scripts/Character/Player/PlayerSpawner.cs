@@ -22,8 +22,8 @@ public class PlayerSpawner : MonoBehaviour
     #region Spawn Player
 
     /// <summary>
-    /// Atualiza spawnPoints baseado nos SpawnPointMarker do mapa carregado.
-    /// Deve ser chamado **ap�s a cena do mapa estar carregada**.
+    /// Updates spawnPoints based on the loaded map's SpawnPointMarker.
+    /// Must be called after the map scene is loaded.
     /// </summary>
     public void CaptureSpawnPointsFromScene()
     {
@@ -60,8 +60,6 @@ public class PlayerSpawner : MonoBehaviour
 
         // Spawn on the server
         InstanceFinder.ServerManager.Spawn(playerInstance, conn);
-
-        Debug.Log($"Player spawned para {conn.ClientId} em {spawnPoint.position}");
     }
 
     #endregion
