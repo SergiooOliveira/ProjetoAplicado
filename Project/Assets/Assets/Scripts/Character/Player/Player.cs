@@ -34,7 +34,8 @@ public class Player : MonoBehaviour
     public void Initialize()
     {
         runTimePlayerData.CharacterHp.Initialize();
-        runTimePlayerData.CharacterMana.Initialize();        
+        runTimePlayerData.CharacterMana.Initialize();
+        runTimePlayerData.CharacterXp.NewXpMax(GetPlayerLevel());
 
         // Initialize item list
         foreach (ItemEntry item in runTimePlayerData.CharacterInventory)

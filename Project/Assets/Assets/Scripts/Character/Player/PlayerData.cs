@@ -235,6 +235,18 @@ public class PlayerData : ScriptableObject, ICharacter
             }
         }
     }
+
+    public bool IsSpellEquipped(Spell spell)
+    {
+        return CharacterEquippedSpells
+            .Exists(s => s.spell != null && s.spell.RuntimeSpellData.SpellName == spell.RuntimeSpellData.SpellName);
+    }
+
+    public int GetSpellSlot(Spell spell)
+    {
+        return CharacterEquippedSpells
+            .FindIndex(s => s.spell != null && s.spell.RuntimeSpellData.SpellName == spell.RuntimeSpellData.SpellName);
+    }
     #endregion
     #endregion
 

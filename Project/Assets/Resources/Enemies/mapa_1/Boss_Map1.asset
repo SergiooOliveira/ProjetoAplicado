@@ -35,7 +35,7 @@ MonoBehaviour:
   characterHp:
     max: 500
   characterXp:
-    max: 0
+    max: 1000
   characterMana:
     max: 1000
   characterMovementSpeed: 6

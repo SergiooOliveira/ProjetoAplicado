@@ -59,7 +59,7 @@ public class SpellHomingMissile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log($"Collision: {collision.name}");
+        //Debug.Log($"Collision: {collision.name}");
 
         if (collision.CompareTag(GameManager.Instance.playerTag)) return;
         if (!collision.TryGetComponent<Enemy>(out Enemy enemy)) return;

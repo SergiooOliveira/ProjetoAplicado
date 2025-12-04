@@ -391,7 +391,7 @@ public class Enemy : MonoBehaviour
             .Where(r => r.SpellAfinity == spellAffinity)
             .Sum(r => r.Amount);
 
-        Debug.Log($"<Color=green>GetResistance: {totalResistances}</Color>");
+        //Debug.Log($"<Color=green>GetResistance: {totalResistances}</Color>");
 
         return 1f + (totalResistances / 100f);
     }
@@ -496,9 +496,8 @@ public class Enemy : MonoBehaviour
         player.RunTimePlayerData.AddGold(RunTimeData.CharacterGold);
 
         // Add xp to player
-        player.RunTimePlayerData.CharacterXp.AddExperience(player.RunTimePlayerData, RunTimeData.CharacterXp.Max);
-        player.playerHUDManager.SetXPValues(RunTimeData.CharacterXp.Max);
-
+        player.playerHUDManager.SetXPValues((float)RunTimeData.CharacterXp.Max / player.RunTimePlayerData.CharacterXp.Max);
+        player.RunTimePlayerData.CharacterXp.AddExperience(player.RunTimePlayerData, RunTimeData.CharacterXp.Max);                
 
         // Destroy EnemyHUD
         if (hudInstance != null)
