@@ -1,5 +1,6 @@
 using FishNet;
 using FishNet.Transporting;
+using System.Linq;
 using UnityEngine;
 
 public class MenuManager : MonoBehaviour
@@ -14,9 +15,7 @@ public class MenuManager : MonoBehaviour
 
     public void PlaySingleplayer()
     {
-        if (isLoading)
-            return;
-
+        if (isLoading) return;
         isLoading = true;
 
         var client = InstanceFinder.ClientManager;
@@ -51,9 +50,7 @@ public class MenuManager : MonoBehaviour
 
     public void Multiplayer()
     {
-        if (isLoading)
-            return;
-
+        if (isLoading) return;
         isLoading = true;
 
         BootstrapSceneManager sm = GameObject.FindFirstObjectByType<BootstrapSceneManager>();
@@ -67,10 +64,10 @@ public class MenuManager : MonoBehaviour
         if (isLoading) return;
         isLoading = true;
 
-        BootstrapSceneManager sm = GameObject.FindFirstObjectByType<BootstrapSceneManager>();
+        var sm = GameObject.FindFirstObjectByType<BootstrapSceneManager>();
 
-        sm.UnloadScene("Lobby");
-        sm.LoadScene("Map1_Part1");
+        sm.UnloadSceneLocal("StartMenu");
+        sm.LoadLoadingThenMap("Map1_Part1");
     }
 
     #endregion
