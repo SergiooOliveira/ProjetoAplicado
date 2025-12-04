@@ -97,8 +97,8 @@ public class BootstrapSceneManager : MonoBehaviour
 
         // 5. Remove a tela de loading
         UnloadLoading();
-        //UnloadScene("Loading");
-        //UnloadSceneLocal("Loading");
+        UnloadScene("Loading");
+        UnloadSceneLocal("Loading");
     }
 
     private void UnloadLoading()
