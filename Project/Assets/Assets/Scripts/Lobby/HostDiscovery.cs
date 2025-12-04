@@ -17,6 +17,8 @@ public class HostDiscovery : MonoBehaviour
         udp = new UdpClient();
         udp.EnableBroadcast = true;
 
+        Debug.Log($"[HostDiscovery] Começando a broadcast da sala {roomCode}");
+
         InvokeRepeating(nameof(Broadcast), 0f, broadcastInterval);
     }
 
@@ -26,6 +28,8 @@ public class HostDiscovery : MonoBehaviour
         var data = Encoding.UTF8.GetBytes(msg);
 
         udp.Send(data, data.Length, new IPEndPoint(IPAddress.Broadcast, port));
+
+        Debug.Log($"[HostDiscovery] Broadcast enviado: {msg}");
     }
 
     private void OnDestroy()
@@ -35,15 +39,16 @@ public class HostDiscovery : MonoBehaviour
 
     private string GetLocalIPAddress()
     {
-        foreach (var ni in System.Net.NetworkInformation.NetworkInterface.GetAllNetworkInterfaces())
+        foreach (var ni in NetworkInterface.GetAllNetworkInterfaces())
         {
             var ipProps = ni.GetIPProperties();
             foreach (var ip in ipProps.UnicastAddresses)
             {
+                // ip.Address é do tipo IPAddress
                 if (ip.Address.AddressFamily == AddressFamily.InterNetwork &&
-                    !IPAddress.IsLoopback(ip.Address) &&
-                    ip.Address.ToString().StartsWith("192.168.1")) // garante IP da LAN
+                    !IPAddress.IsLoopback(ip.Address))
                 {
+                    Debug.Log($"[HostDiscovery] IP local detectado: {ip.Address}");
                     return ip.Address.ToString();
                 }
             }

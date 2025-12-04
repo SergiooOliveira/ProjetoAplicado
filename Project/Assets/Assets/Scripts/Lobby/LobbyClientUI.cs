@@ -159,6 +159,7 @@ public class LobbyClientUI : MonoBehaviour
     public void JoinRoom()
     {
         string code = joinInput.text.Trim();
+        Debug.Log($"[LobbyClientUI] Tentando entrar na sala: {code}");
 
         // tentar descobrir o IP pela LAN
         if (discovery.TryGetRoom(code, out string ip, out int foundPort))
@@ -168,14 +169,14 @@ public class LobbyClientUI : MonoBehaviour
             pendingJoinCode = code;
             currentRoomCode = code;
 
-            Debug.Log($"Ip: {ip} / {(ushort)foundPort}");
+            Debug.Log($"[LobbyClientUI] IP do host encontrado: {ip} / Porta: {foundPort}");
 
             // conecta ao host encontrado
             InstanceFinder.ClientManager.StartConnection(ip, (ushort)foundPort);
         }
         else
         {
-            Debug.Log($"Ip: {ip} / {(ushort)foundPort}");
+            Debug.Log($"[LobbyClientUI] Nenhum host encontrado para o código {code}");
             feedbackText.text = "Nenhuma sala LAN encontrada com esse código!";
         }
     }
