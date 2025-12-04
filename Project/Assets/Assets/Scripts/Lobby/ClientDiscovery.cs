@@ -76,6 +76,7 @@ public class ClientDiscovery : MonoBehaviour
 
         ip = null;
         port = 0;
+        Debug.Log($"Room: {rooms}");
         Debug.Log($"[ClientDiscovery] Sala NÃO encontrada: {code}");
         return false;
     }
