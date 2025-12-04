@@ -20,8 +20,11 @@ public class LobbyClientUI : MonoBehaviour
     [Header("IP Settings")]
     public TMP_InputField ipInput;
     public ushort port = 7777;
+    public HostDiscovery hostDiscovery;
+    public ClientDiscovery discovery;
 
     private string currentRoomCode;
+    private string pendingJoinCode;
 
     private void Awake()
     {
@@ -105,20 +108,7 @@ public class LobbyClientUI : MonoBehaviour
 
         feedbackText.text = "A conectar ao host...";
         InstanceFinder.ClientManager.StartConnection(hostIP, port);
-
-        //StartCoroutine(ConnectClientCoroutine(hostIP));
     }
-
-    //private IEnumerator ConnectClientCoroutine(string hostIP)
-    //{
-    //    yield return null; // Garante main thread e scene carregada
-
-    //    feedbackText.text = "A conectar ao host...";
-    //    Debug.Log($"A conectar ao host: {hostIP}");
-
-    //    // Corrigido: passar hostIP e port
-    //    //InstanceFinder.ClientManager.StartConnection(hostIP, port);
-    //}
 
     private void OnClientConnectionStateChanged(ClientConnectionStateArgs args)
     {
@@ -130,6 +120,16 @@ public class LobbyClientUI : MonoBehaviour
             case LocalConnectionState.Started:
                 feedbackText.text = "Conectado ao host!";
                 Debug.Log("Cliente conectado com sucesso!");
+
+                // se temos um código pendente, envia JoinRoom automaticamente
+                if (!string.IsNullOrEmpty(pendingJoinCode))
+                {
+                    InstanceFinder.ClientManager.Broadcast(
+                        new JoinRoomRequest { code = pendingJoinCode }
+                    );
+
+                    pendingJoinCode = null;
+                }
                 break;
             case LocalConnectionState.Stopping:
                 feedbackText.text = "Desconectando...";
@@ -145,15 +145,36 @@ public class LobbyClientUI : MonoBehaviour
     {
         if (text.Length == 6)
         {
-            JoinRoom(); // chama automaticamente
+            JoinRoom();
         }
     }
 
+    //public void JoinRoom()
+    //{
+    //    currentRoomCode = joinInput.text.Trim();
+    //    feedbackText.text = "A entrar...";
+    //    InstanceFinder.ClientManager.Broadcast(new JoinRoomRequest { code = currentRoomCode });
+    //}
+
     public void JoinRoom()
     {
-        currentRoomCode = joinInput.text.Trim();
-        feedbackText.text = "A entrar...";
-        InstanceFinder.ClientManager.Broadcast(new JoinRoomRequest { code = currentRoomCode });
+        string code = joinInput.text.Trim();
+
+        // tentar descobrir o IP pela LAN
+        if (discovery.TryGetRoom(code, out string ip, out int foundPort))
+        {
+            feedbackText.text = "A conectar ao host...";
+
+            pendingJoinCode = code;
+            currentRoomCode = code;
+
+            // conecta ao host encontrado
+            InstanceFinder.ClientManager.StartConnection(ip, (ushort)foundPort);
+        }
+        else
+        {
+            feedbackText.text = "Nenhuma sala LAN encontrada com esse código!";
+        }
     }
 
     private void CreateRoomUIForHost(NetworkConnection hostConn)
@@ -172,6 +193,8 @@ public class LobbyClientUI : MonoBehaviour
         string code = LobbyManager.Instance.CreateRoom(hostConn);
         roomCodeText.text = "Código da sala: " + code;
         feedbackText.text = "Sala criada!";
+
+        hostDiscovery.StartBroadcasting(code);
 
         PlayerListUpdate updateMsg = new PlayerListUpdate
         {
