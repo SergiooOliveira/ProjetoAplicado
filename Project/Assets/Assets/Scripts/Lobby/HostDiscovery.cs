@@ -1,4 +1,5 @@
 using System.Net;
+using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Text;
 using UnityEngine;
@@ -34,10 +35,18 @@ public class HostDiscovery : MonoBehaviour
 
     private string GetLocalIPAddress()
     {
-        foreach (var ni in Dns.GetHostEntry(Dns.GetHostName()).AddressList)
+        foreach (var ni in NetworkInterface.GetAllNetworkInterfaces())
         {
-            if (ni.AddressFamily == AddressFamily.InterNetwork)
-                return ni.ToString();
+            var ipProps = ni.GetIPProperties();
+            foreach (var ip in ipProps.UnicastAddresses)
+            {
+                // ip.Address é do tipo IPAddress
+                if (ip.Address.AddressFamily == AddressFamily.InterNetwork &&
+                    !IPAddress.IsLoopback(ip.Address))
+                {
+                    return ip.Address.ToString();
+                }
+            }
         }
         return "127.0.0.1";
     }
