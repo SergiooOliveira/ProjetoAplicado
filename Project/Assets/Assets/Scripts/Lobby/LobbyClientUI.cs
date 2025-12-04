@@ -165,12 +165,21 @@ public class LobbyClientUI : MonoBehaviour
 
         client.RegisterBroadcast<JoinRoomResponse>((msg, channel) =>
         {
-            feedbackText.text = msg.success ? "Entrou na sala!" : "Código inválido!";
-            if (msg.success) joinInput.text = "";
-            lobby.SetActive(false);
-            room.SetActive(true);
-            play.SetActive(false);
-            UpdatePlayerList();
+            if (msg.success)
+            {
+                feedbackText.text = "Entrou na sala!";
+                joinInput.text = "";
+
+                lobby.SetActive(false);
+                room.SetActive(true);
+                play.SetActive(false);
+
+                UpdatePlayerList();
+            }
+            else
+            {
+                feedbackText.text = "Código inválido!";
+            }
         });
 
         client.RegisterBroadcast<PlayerListUpdate>((msg, channel) =>
