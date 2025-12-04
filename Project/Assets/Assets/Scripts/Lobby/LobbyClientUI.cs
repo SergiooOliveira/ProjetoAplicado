@@ -159,25 +159,35 @@ public class LobbyClientUI : MonoBehaviour
     public void JoinRoom()
     {
         string code = joinInput.text.Trim();
-        Debug.Log($"[LobbyClientUI] Tentando entrar na sala: {code}");
 
-        // tentar descobrir o IP pela LAN
-        if (discovery.TryGetRoom(code, out string ip, out int foundPort))
+        feedbackText.text = "Procurando sala na LAN...";
+        StartCoroutine(WaitForRoomAndJoin(code));
+    }
+
+    private IEnumerator WaitForRoomAndJoin(string code)
+    {
+        float timeout = 5f;
+        float timer = 0f;
+
+        while (timer < timeout)
         {
-            Debug.Log($"[DEBUG] Sala encontrada: IP={ip}, Porta={foundPort}, Código={code}");
-
-            if (string.IsNullOrEmpty(ip) || foundPort == 0)
+            if (discovery.TryGetRoom(code, out string ip, out int foundPort))
             {
-                Debug.LogError("[DEBUG] IP ou porta inválidos, não conectar");
-                feedbackText.text = "Erro: IP ou porta inválidos!";
-                return;
+                feedbackText.text = "A conectar ao host...";
+                pendingJoinCode = code;
+                currentRoomCode = code;
+
+                Debug.Log($"[LobbyClientUI] IP do host encontrado: {ip} / Porta: {foundPort}");
+                InstanceFinder.ClientManager.StartConnection(ip, (ushort)foundPort);
+                yield break;
             }
 
-            pendingJoinCode = code;
-            currentRoomCode = code;
-
-            InstanceFinder.ClientManager.StartConnection(ip, (ushort)foundPort);
+            timer += Time.deltaTime;
+            yield return null;
         }
+
+        feedbackText.text = "Nenhuma sala LAN encontrada com esse código!";
+        Debug.Log($"[LobbyClientUI] Sala NÃO encontrada após {timeout} segundos: {code}");
     }
 
     private void CreateRoomUIForHost(NetworkConnection hostConn)
