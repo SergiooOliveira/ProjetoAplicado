@@ -96,10 +96,11 @@ public class BootstrapSceneManager : MonoBehaviour
         }
 
         // 5. Remove a tela de loading
-        UnloadLoading();
-        //UnloadScene("Loading");
-        //UnloadSceneLocal("Loading");
-        //UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("Loading");
+        //UnloadLoading();
+        InstanceFinder.SceneManager.UnloadGlobalScenes(new SceneUnloadData("Loading"));
+        UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("Loading");
+        UnloadScene("Loading");
+        UnloadSceneLocal("Loading");
     }
 
     private void UnloadLoading()
@@ -113,4 +114,5 @@ public class BootstrapSceneManager : MonoBehaviour
             Debug.Log("[BootstrapSceneManager] Loading removida pelo servidor.");
         }
     }
+
 }
