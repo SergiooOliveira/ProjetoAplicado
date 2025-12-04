@@ -67,7 +67,9 @@ public class PlayerSpawner : MonoBehaviour
 
         Scene persistentScene = SceneManager.GetSceneByName("PersistentScene");
         if (persistentScene.IsValid())
+        {
             SceneManager.MoveGameObjectToScene(playerInstance.gameObject, persistentScene);
+        }
 
         InstanceFinder.ServerManager.Spawn(playerInstance, conn);
         Debug.Log($"Player spawned para {conn.ClientId} em {spawnPoint.position}");
