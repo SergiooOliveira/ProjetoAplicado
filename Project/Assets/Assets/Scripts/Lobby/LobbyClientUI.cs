@@ -19,6 +19,7 @@ public class LobbyClientUI : MonoBehaviour
     public GameObject room;
     public GameObject ip;
     public GameObject joinRoom;
+    public GameObject play;
 
     [Header("IP Settings")]
     public TMP_InputField ipInput;
@@ -157,6 +158,7 @@ public class LobbyClientUI : MonoBehaviour
 
         lobby.SetActive(false);
         room.SetActive(true);
+        play.SetActive(false);
     }
 
     private void CreateRoomUIForHost(NetworkConnection hostConn)
