@@ -4,12 +4,16 @@ public class EnemySpawnPoint : MonoBehaviour
 {
     #region Fields
 
-    public bool hasEnemy = false;               // Check if it is spawned
-    public GameObject currentEnemy;             // Tag the Enemy
-    public bool isRespawning = false;           // Prevent double respawn
-    public bool isActiveSpawnPoint = false;     // Spawn is activated
-
     [HideInInspector] public EnemyData enemyTypeData;
+
+    [HideInInspector] public bool hasEnemy = false;               // Check if it is spawned
+    [HideInInspector] public GameObject currentEnemy;             // Tag the Enemy
+    [HideInInspector] public bool isRespawning = false;           // Prevent double respawn
+    [HideInInspector] public bool hasSpawnedOnce = false;         // Mark if it has already been generated
+
+    [Header("Spawn Rules")]
+    public bool isActiveSpawnPoint = false;     // Spawn is activated
+    public bool onlySpawnOnce = false;          // Only spawn once
 
     #endregion
 
