@@ -35,14 +35,14 @@ public class HostDiscovery : MonoBehaviour
 
     private string GetLocalIPAddress()
     {
-        foreach (var ni in NetworkInterface.GetAllNetworkInterfaces())
+        foreach (var ni in System.Net.NetworkInformation.NetworkInterface.GetAllNetworkInterfaces())
         {
             var ipProps = ni.GetIPProperties();
             foreach (var ip in ipProps.UnicastAddresses)
             {
-                // ip.Address é do tipo IPAddress
                 if (ip.Address.AddressFamily == AddressFamily.InterNetwork &&
-                    !IPAddress.IsLoopback(ip.Address))
+                    !IPAddress.IsLoopback(ip.Address) &&
+                    ip.Address.ToString().StartsWith("192.168.1")) // garante IP da LAN
                 {
                     return ip.Address.ToString();
                 }
