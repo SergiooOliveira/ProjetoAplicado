@@ -72,16 +72,18 @@ public class BootstrapSceneManager : MonoBehaviour
     private IEnumerator LoadLoadingThenMapRoutine(string targetMap)
     {
         // 1. Carrega a cena de loading
-        SceneLoadData loadLoading = new SceneLoadData("Loading");
-        InstanceFinder.SceneManager.LoadGlobalScenes(loadLoading);
+        //SceneLoadData loadLoading = new SceneLoadData("Loading");
+        //InstanceFinder.SceneManager.LoadGlobalScenes(loadLoading);
+        LoadScene("Loading");
 
         // Espera até o loading estar carregado
         yield return new WaitUntil(() =>
             UnityEngine.SceneManagement.SceneManager.GetSceneByName("Loading").isLoaded);
 
         // 2. Carrega a cena do mapa
-        SceneLoadData loadMap = new SceneLoadData(targetMap);
-        InstanceFinder.SceneManager.LoadGlobalScenes(loadMap);
+        //SceneLoadData loadMap = new SceneLoadData(targetMap);
+        //InstanceFinder.SceneManager.LoadGlobalScenes(loadMap);
+        LoadScene(targetMap);
 
         // Espera a cena do mapa ser carregada
         yield return new WaitUntil(() =>
@@ -97,17 +99,20 @@ public class BootstrapSceneManager : MonoBehaviour
         }
 
         // 5. Remove a tela de loading
-        UnloadLoading();
+        //UnloadLoading();
+        UnloadSceneLocal("Loading");
+        UnloadScene("Loading");
+        
     }
 
-    private void UnloadLoading()
-    {
-        var loadingScene = UnityEngine.SceneManagement.SceneManager.GetSceneByName("Loading");
-        if (loadingScene.isLoaded)
-        {
-            InstanceFinder.SceneManager.UnloadGlobalScenes(new SceneUnloadData("Loading"));
-            UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("Loading");
-            Debug.Log("[BootstrapSceneManager] Loading removida.");
-        }
-    }
+    //private void UnloadLoading()
+    //{
+    //    var loadingScene = UnityEngine.SceneManagement.SceneManager.GetSceneByName("Loading");
+    //    if (loadingScene.isLoaded)
+    //    {
+    //        InstanceFinder.SceneManager.UnloadGlobalScenes(new SceneUnloadData("Loading"));
+    //        UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("Loading");
+    //        Debug.Log("[BootstrapSceneManager] Loading removida.");
+    //    }
+    //}
 }
