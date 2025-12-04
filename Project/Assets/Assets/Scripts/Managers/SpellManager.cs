@@ -38,9 +38,10 @@ public class SpellManager : MonoBehaviour
         {
             img.enabled = true;
             img.sprite = entry.spell.RuntimeSpellData.SpellPrefab.GetComponent<SpriteRenderer>().sprite;
-            
+            img.color = entry.spell.RuntimeSpellData.SpellPrefab.GetComponent<SpriteRenderer>().color;
+
             if (entry.isSelected) img.color = Color.blue;
-            else img.color = Color.white;            
+            else img.color = entry.spell.RuntimeSpellData.SpellPrefab.GetComponent<SpriteRenderer>().color;
         }
         else
         {
