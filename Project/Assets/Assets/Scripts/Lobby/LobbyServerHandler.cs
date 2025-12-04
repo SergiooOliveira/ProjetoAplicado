@@ -26,7 +26,11 @@ public class LobbyServerHandler : MonoBehaviour
         bool ok = LobbyManager.Instance.TryJoinRoom(msg.code, conn);
 
         // envia JoinRoomResponse para quem entrou
-        conn.Broadcast(new JoinRoomResponse { success = ok }); // <- envia para o cliente específico
+        conn.Broadcast(new JoinRoomResponse 
+        { 
+            success = ok,
+            code = msg.code
+        }); // <- envia para o cliente específico
 
         // envia PlayerListUpdate para todos os players da sala
         LobbyRoom room = LobbyManager.Instance.GetRoom(msg.code);
