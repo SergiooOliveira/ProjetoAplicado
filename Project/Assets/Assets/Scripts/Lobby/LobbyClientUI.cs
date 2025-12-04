@@ -161,6 +161,8 @@ public class LobbyClientUI : MonoBehaviour
         string code = joinInput.text.Trim();
 
         feedbackText.text = "Procurando sala na LAN...";
+        discovery.PrintAvailableRooms();
+
         StartCoroutine(WaitForRoomAndJoin(code));
     }
 

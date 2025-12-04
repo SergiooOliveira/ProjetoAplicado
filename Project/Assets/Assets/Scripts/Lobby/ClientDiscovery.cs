@@ -79,4 +79,23 @@ public class ClientDiscovery : MonoBehaviour
         Debug.Log($"[ClientDiscovery] Sala NÃO encontrada: {code}");
         return false;
     }
+
+    public void PrintAvailableRooms()
+    {
+        if (rooms.Count == 0)
+        {
+            Debug.Log("[ClientDiscovery] Nenhuma sala recebida até agora.");
+            return;
+        }
+
+        Debug.Log("[ClientDiscovery] Salas recebidas:");
+
+        foreach (var kvp in rooms)
+        {
+            string code = kvp.Key;
+            string ip = kvp.Value.ip;
+            int port = kvp.Value.port;
+            Debug.Log($" - Código: {code}, IP: {ip}, Porta: {port}");
+        }
+    }
 }
