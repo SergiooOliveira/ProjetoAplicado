@@ -1,10 +1,11 @@
 using FishNet;
-using FishNet.Managing.Client;
 using FishNet.Transporting;
 using UnityEngine;
 
 public class LobbyClientHandler : MonoBehaviour
 {
+    #region Client Handler
+
     private void Start()
     {
         var client = InstanceFinder.ClientManager;
@@ -24,4 +25,6 @@ public class LobbyClientHandler : MonoBehaviour
         Debug.Log("[CLIENT] Join resultado: " + msg.success);
         // TODO -> UI atualiza
     }
+
+    #endregion
 }

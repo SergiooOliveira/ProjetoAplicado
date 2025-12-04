@@ -1,6 +1,5 @@
 using FishNet;
 using FishNet.Connection;
-using FishNet.Example;
 using FishNet.Transporting;
 using System.Collections;
 using System.Linq;
@@ -9,6 +8,8 @@ using UnityEngine;
 
 public class LobbyClientUI : MonoBehaviour
 {
+    #region Fields
+
     [Header("UI Elements")]
     public TMP_Text roomCodeText;
     public TMP_InputField joinInput;
@@ -27,6 +28,10 @@ public class LobbyClientUI : MonoBehaviour
 
     private string currentRoomCode;
 
+    #endregion
+
+    #region Unity Callbacks
+
     private void Awake()
     {
         var client = InstanceFinder.ClientManager;
@@ -34,7 +39,7 @@ public class LobbyClientUI : MonoBehaviour
 
         client.OnClientConnectionState += OnClientConnectionStateChanged;
 
-        // Notificação de desconexão de qualquer client (no host)
+        // Notification of disconnection from any client (on the host)
         server.OnRemoteConnectionState += (conn, args) =>
         {
             if (args.ConnectionState == RemoteConnectionState.Stopped)
@@ -45,7 +50,7 @@ public class LobbyClientUI : MonoBehaviour
 
         client.RegisterBroadcast<PlayerListUpdate>((msg, channel) =>
         {
-            // atualiza lista de players sempre que receber do servidor
+            // Update list of players whenever received from the serve
             playerListText.text = string.Join("\n", msg.playerIds);
         });
 
@@ -57,12 +62,16 @@ public class LobbyClientUI : MonoBehaviour
         joinInput.onValueChanged.AddListener(OnCodeTyping);
     }
 
+    #endregion
+
+    #region Start Host
+
     public void StartAsHost()
     {
         // 1. Start server
         InstanceFinder.ServerManager.StartConnection();
 
-        // 2. Start LOCAL client usando localhost
+        // 2. Start LOCAL client
         InstanceFinder.ClientManager.StartConnection("localhost", port);
 
         StartCoroutine(CreateRoom());
@@ -77,88 +86,6 @@ public class LobbyClientUI : MonoBehaviour
 
         var hostConn = InstanceFinder.ServerManager.Clients.Values.FirstOrDefault();
         CreateRoomUIForHost(hostConn);
-    }
-
-    private void RegisterClientMessages()
-    {
-        var client = InstanceFinder.ClientManager;
-
-        client.RegisterBroadcast<CreateRoomResponse>((msg, channel) =>
-        {
-            currentRoomCode = msg.code;
-            roomCodeText.text = "Código da sala: " + msg.code;
-            feedbackText.text = "Sala criada!";
-            UpdatePlayerList();
-        });
-
-        client.RegisterBroadcast<JoinRoomResponse>((msg, channel) =>
-        {
-            feedbackText.text = msg.success ? "Entrou na sala!" : "Código inválido!";
-            if (msg.success) joinInput.text = "";
-            UpdatePlayerList();
-        });
-
-        client.RegisterBroadcast<PlayerListUpdate>((msg, channel) =>
-        {
-            playerListText.text = string.Join("\n", msg.playerIds);
-        });
-    }
-
-    public void ConnectToHost()
-    {
-        string hostIP = ipInput.text.Trim();
-        if (string.IsNullOrEmpty(hostIP))
-        {
-            feedbackText.text = "Insira o IP do host!";
-            return;
-        }
-
-        feedbackText.text = "A conectar ao host...";
-        InstanceFinder.ClientManager.StartConnection(hostIP, port);
-
-        ip.SetActive(false);
-        createRoom.SetActive(false);
-        joinRoom.SetActive(true);
-    }
-
-    private void OnClientConnectionStateChanged(ClientConnectionStateArgs args)
-    {
-        switch (args.ConnectionState)
-        {
-            case LocalConnectionState.Starting:
-                feedbackText.text = "Conectando ao host...";
-                break;
-            case LocalConnectionState.Started:
-                feedbackText.text = "Conectado ao host!";
-                Debug.Log("Cliente conectado com sucesso!");
-                break;
-            case LocalConnectionState.Stopping:
-                feedbackText.text = "Desconectando...";
-                break;
-            case LocalConnectionState.Stopped:
-                feedbackText.text = "Desconectado do host!";
-                Debug.Log("Cliente desconectado!");
-                break;
-        }
-    }
-
-    void OnCodeTyping(string text)
-    {
-        if (text.Length == 6)
-        {
-            JoinRoom();
-        }
-    }
-
-    public void JoinRoom()
-    {
-        currentRoomCode = joinInput.text.Trim();
-        feedbackText.text = "A entrar...";
-        InstanceFinder.ClientManager.Broadcast(new JoinRoomRequest { code = currentRoomCode });
-
-        lobby.SetActive(false);
-        room.SetActive(true);
-        play.SetActive(false);
     }
 
     private void CreateRoomUIForHost(NetworkConnection hostConn)
@@ -188,9 +115,99 @@ public class LobbyClientUI : MonoBehaviour
         playerListText.text = string.Join("\n", updateMsg.playerIds);
     }
 
+    #endregion
+
+    #region Start Client
+
+    public void ConnectToHost()
+    {
+        string hostIP = ipInput.text.Trim();
+        if (string.IsNullOrEmpty(hostIP))
+        {
+            feedbackText.text = "Insira o IP do host!";
+            return;
+        }
+
+        feedbackText.text = "A conectar ao host...";
+        InstanceFinder.ClientManager.StartConnection(hostIP, port);
+
+        ip.SetActive(false);
+        createRoom.SetActive(false);
+        joinRoom.SetActive(true);
+    }
+
+    void OnCodeTyping(string text)
+    {
+        if (text.Length == 6)
+        {
+            JoinRoom();
+        }
+    }
+
+    public void JoinRoom()
+    {
+        currentRoomCode = joinInput.text.Trim();
+        feedbackText.text = "A entrar...";
+        InstanceFinder.ClientManager.Broadcast(new JoinRoomRequest { code = currentRoomCode });
+
+        lobby.SetActive(false);
+        room.SetActive(true);
+        play.SetActive(false);
+    }
+
+    #endregion
+
+    #region Utilitys
+
+    private void RegisterClientMessages()
+    {
+        var client = InstanceFinder.ClientManager;
+
+        client.RegisterBroadcast<CreateRoomResponse>((msg, channel) =>
+        {
+            currentRoomCode = msg.code;
+            roomCodeText.text = "Código da sala: " + msg.code;
+            feedbackText.text = "Sala criada!";
+            UpdatePlayerList();
+        });
+
+        client.RegisterBroadcast<JoinRoomResponse>((msg, channel) =>
+        {
+            feedbackText.text = msg.success ? "Entrou na sala!" : "Código inválido!";
+            if (msg.success) joinInput.text = "";
+            UpdatePlayerList();
+        });
+
+        client.RegisterBroadcast<PlayerListUpdate>((msg, channel) =>
+        {
+            playerListText.text = string.Join("\n", msg.playerIds);
+        });
+    }
+
+    private void OnClientConnectionStateChanged(ClientConnectionStateArgs args)
+    {
+        switch (args.ConnectionState)
+        {
+            case LocalConnectionState.Starting:
+                feedbackText.text = "Conectando ao host...";
+                break;
+            case LocalConnectionState.Started:
+                feedbackText.text = "Conectado ao host!";
+                break;
+            case LocalConnectionState.Stopping:
+                feedbackText.text = "Desconectando...";
+                break;
+            case LocalConnectionState.Stopped:
+                feedbackText.text = "Desconectado do host!";
+                break;
+        }
+    }
+
     private void UpdatePlayerList()
     {
         if (string.IsNullOrEmpty(currentRoomCode)) return;
         playerListText.text = LobbyManager.Instance.GetPlayerIds(currentRoomCode);
     }
+
+    #endregion
 }

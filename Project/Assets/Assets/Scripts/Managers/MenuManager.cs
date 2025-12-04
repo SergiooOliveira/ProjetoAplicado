@@ -1,10 +1,6 @@
 using FishNet;
-using FishNet.Example;
-using FishNet.Managing.Scened;
-using System.Collections;
-using System.Runtime.CompilerServices;
+using FishNet.Transporting;
 using UnityEngine;
-using UnityEngine.InputSystem.HID;
 
 public class MenuManager : MonoBehaviour
 {
@@ -14,19 +10,44 @@ public class MenuManager : MonoBehaviour
 
     #endregion
 
-    #region Methods
+    #region SinglePlayer
 
-    public void PlayButton()
+    public void PlaySingleplayer()
     {
         if (isLoading)
             return;
 
         isLoading = true;
 
-        BootstrapSceneManager sm = GameObject.FindFirstObjectByType<BootstrapSceneManager>();
-        sm.UnloadScene("StartMenu");
-        sm.LoadScene("Map1_Part1");
+        var client = InstanceFinder.ClientManager;
+        var server = InstanceFinder.ServerManager;
+
+        // Start server
+        server.StartConnection();
+
+        // Start client (local)
+        client.OnClientConnectionState += OnClientConnectionState;
+        client.StartConnection("localhost", 7777);
     }
+
+    private void OnClientConnectionState(ClientConnectionStateArgs args)
+    {
+        if (args.ConnectionState == LocalConnectionState.Started)
+        {
+            var sm = GameObject.FindFirstObjectByType<BootstrapSceneManager>();
+
+            // Chama a coroutine de loading + mapa
+            sm.UnloadSceneLocal("StartMenu");
+            sm.LoadLoadingThenMap("Map1_Part1");
+
+            // Remove o listener
+            InstanceFinder.ClientManager.OnClientConnectionState -= OnClientConnectionState;
+        }
+    }
+
+    #endregion
+
+    #region MultiPlayer
 
     public void Multiplayer()
     {
@@ -51,6 +72,10 @@ public class MenuManager : MonoBehaviour
         sm.UnloadScene("Lobby");
         sm.LoadScene("Map1_Part1");
     }
+
+    #endregion
+
+    #region Quit
 
     public void QuitGame()
     {

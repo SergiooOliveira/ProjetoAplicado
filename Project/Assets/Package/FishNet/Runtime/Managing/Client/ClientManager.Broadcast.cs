@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using FishNet.Managing.Transporting;
 using UnityEngine;
+using FishNet.Connection;
 
 namespace FishNet.Managing.Client
 {
@@ -23,6 +24,8 @@ namespace FishNet.Managing.Client
         /// Handler for registered broadcasts.
         /// </summary>
         private readonly Dictionary<ushort, BroadcastHandlerBase> _broadcastHandlers = new();
+
+        public NetworkConnection LocalConnection { get; set; }
         #endregion
 
         /// <summary>

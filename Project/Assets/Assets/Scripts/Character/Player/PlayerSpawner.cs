@@ -1,7 +1,9 @@
 using FishNet;
 using FishNet.Connection;
 using FishNet.Object;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerSpawner : MonoBehaviour
 {
@@ -18,6 +20,24 @@ public class PlayerSpawner : MonoBehaviour
     #endregion
 
     #region Spawn Player
+
+    /// <summary>
+    /// Atualiza spawnPoints baseado nos SpawnPointMarker do mapa carregado.
+    /// Deve ser chamado **após a cena do mapa estar carregada**.
+    /// </summary>
+    public void CaptureSpawnPointsFromScene()
+    {
+        var markers = GameObject.FindObjectsByType<SpawnPointMarker>(FindObjectsSortMode.None);
+        if (markers.Length > 0)
+        {
+            spawnPoints = markers.Select(m => m.transform).ToArray();
+            Debug.Log($"PlayerSpawner: Capturados {spawnPoints.Length} spawnPoints do mapa.");
+        }
+        else
+        {
+            Debug.LogWarning("PlayerSpawner: Nenhum SpawnPointMarker encontrado na cena carregada.");
+        }
+    }
 
     /// <summary>
     /// Spawns a player for the specific connection
@@ -44,6 +64,13 @@ public class PlayerSpawner : MonoBehaviour
 
         // Instantiates the player on the server
         NetworkObject playerInstance = Instantiate(playerPrefab, spawnPoint.position, spawnPoint.rotation);
+
+        Scene persistentScene = SceneManager.GetSceneByName("PersistentScene");
+        if (persistentScene.IsValid())
+        {
+            SceneManager.MoveGameObjectToScene(playerInstance.gameObject, persistentScene);
+        }
+
         InstanceFinder.ServerManager.Spawn(playerInstance, conn);
         Debug.Log($"Player spawned para {conn.ClientId} em {spawnPoint.position}");
     }

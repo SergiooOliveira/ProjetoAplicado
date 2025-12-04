@@ -1,12 +1,13 @@
 using FishNet;
 using FishNet.Connection;
-using FishNet.Managing.Server;
 using FishNet.Transporting;
 using System.Linq;
 using UnityEngine;
 
 public class LobbyServerHandler : MonoBehaviour
 {
+    #region Server Handler
+
     private void Start()
     {
         var server = InstanceFinder.ServerManager;
@@ -25,14 +26,10 @@ public class LobbyServerHandler : MonoBehaviour
     {
         bool ok = LobbyManager.Instance.TryJoinRoom(msg.code, conn);
 
-        // envia JoinRoomResponse para quem entrou
-        conn.Broadcast(new JoinRoomResponse 
-        { 
-            success = ok,
-            code = msg.code
-        }); // <- envia para o cliente específico
+        // Sends JoinRoomResponse to whoever joined
+        conn.Broadcast(new JoinRoomResponse { success = ok }); // <- send to specific client
 
-        // envia PlayerListUpdate para todos os players da sala
+        // Sends PlayerListUpdate to all players in the room
         LobbyRoom room = LobbyManager.Instance.GetRoom(msg.code);
         if (room != null)
         {
@@ -43,8 +40,10 @@ public class LobbyServerHandler : MonoBehaviour
 
             foreach (var p in room.players)
             {
-                p.Broadcast(updateMsg); // <- envia para cada client da sala
+                p.Broadcast(updateMsg); // <- sends to each client in the room
             }
         }
     }
+
+    #endregion
 }
