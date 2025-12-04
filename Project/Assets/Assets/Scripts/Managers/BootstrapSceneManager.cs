@@ -7,6 +7,7 @@ using System.Collections;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using SceneManager = UnityEngine.SceneManagement.SceneManager;
 
 public class BootstrapSceneManager : MonoBehaviour
 {
@@ -39,37 +40,36 @@ public class BootstrapSceneManager : MonoBehaviour
     {
         foreach (var scene in args.LoadedScenes)
         {
-            // Ignora menu ou loading
-            if (scene.name == "StartMenu" || scene.name == "Loading")
-                continue;
+            // Ignora menu/loading
+            if (scene.name == "StartMenu" || scene.name == "Loading") continue;
 
-            Debug.Log($"[BootstrapSceneManager] Cena {scene.name} carregada, spawnando players.");
+            // Tornar a nova cena ativa
+            UnityEngine.SceneManagement.SceneManager.SetActiveScene(scene);
 
-            // 1. Captura spawn points
-            spawner.CaptureSpawnPointsFromScene();
-
-            // 2. Apenas o servidor spawn players
+            // Spawn players só no host
             if (InstanceFinder.IsServerStarted)
             {
+                spawner.CaptureSpawnPointsFromScene();
+
                 foreach (var conn in InstanceFinder.ServerManager.Clients.Values)
                     spawner.SpawnPlayer(conn);
             }
 
-            // 3. Move players replicados para PersistentScene no client
             foreach (var conn in InstanceFinder.ClientManager.Clients.Values)
             {
                 NetworkObject player = conn.FirstObject;
                 if (player != null)
                 {
-                    Scene persistentScene = UnityEngine.SceneManagement.SceneManager.GetSceneByName("PersistentScene");
+                    Scene persistentScene = SceneManager.GetSceneByName("PersistentScene");
                     if (persistentScene.IsValid())
-                        UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(player.gameObject, persistentScene);
+                        SceneManager.MoveGameObjectToScene(player.gameObject, persistentScene);
                 }
             }
 
-            // 4. Se a cena carregada foi Loading, descarrega
-            if (scene.name == "Loading")
-                UnloadSceneLocal("Loading");
+            // Remove Loading localmente no cliente
+            var loadingScene = UnityEngine.SceneManagement.SceneManager.GetSceneByName("Loading");
+            if (loadingScene.isLoaded)
+                UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("Loading");
         }
     }
 
