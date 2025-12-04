@@ -164,20 +164,19 @@ public class LobbyClientUI : MonoBehaviour
         // tentar descobrir o IP pela LAN
         if (discovery.TryGetRoom(code, out string ip, out int foundPort))
         {
-            feedbackText.text = "A conectar ao host...";
+            Debug.Log($"[DEBUG] Sala encontrada: IP={ip}, Porta={foundPort}, Código={code}");
+
+            if (string.IsNullOrEmpty(ip) || foundPort == 0)
+            {
+                Debug.LogError("[DEBUG] IP ou porta inválidos, não conectar");
+                feedbackText.text = "Erro: IP ou porta inválidos!";
+                return;
+            }
 
             pendingJoinCode = code;
             currentRoomCode = code;
 
-            Debug.Log($"[LobbyClientUI] IP do host encontrado: {ip} / Porta: {foundPort}");
-
-            // conecta ao host encontrado
             InstanceFinder.ClientManager.StartConnection(ip, (ushort)foundPort);
-        }
-        else
-        {
-            Debug.Log($"[LobbyClientUI] Nenhum host encontrado para o código {code}");
-            feedbackText.text = "Nenhuma sala LAN encontrada com esse código!";
         }
     }
 
