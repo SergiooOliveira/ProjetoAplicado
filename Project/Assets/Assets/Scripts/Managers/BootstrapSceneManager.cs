@@ -262,10 +262,10 @@ public class BootstrapSceneManager : MonoBehaviour
         foreach (NetworkConnection conn in InstanceFinder.ServerManager.Clients.Values)
         {
             spawner.CaptureSpawnPointsFromScene();
-
-            // Create the player only if it doesn't already exist
             spawner.SpawnPlayer(conn);
         }
+
+        yield return new WaitForSeconds(0.1f);
 
         foreach (var conn in InstanceFinder.ClientManager.Clients.Values)
         {
