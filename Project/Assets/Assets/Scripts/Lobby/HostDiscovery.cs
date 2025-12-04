@@ -39,20 +39,30 @@ public class HostDiscovery : MonoBehaviour
 
     private string GetLocalIPAddress()
     {
-        foreach (var ni in NetworkInterface.GetAllNetworkInterfaces())
+        foreach (var ni in System.Net.NetworkInformation.NetworkInterface.GetAllNetworkInterfaces())
         {
+            // Ignora interfaces inativas ou loopback
+            if (ni.OperationalStatus != System.Net.NetworkInformation.OperationalStatus.Up ||
+                ni.NetworkInterfaceType == System.Net.NetworkInformation.NetworkInterfaceType.Loopback)
+                continue;
+
             var ipProps = ni.GetIPProperties();
             foreach (var ip in ipProps.UnicastAddresses)
             {
-                // ip.Address é do tipo IPAddress
-                if (ip.Address.AddressFamily == AddressFamily.InterNetwork &&
-                    !IPAddress.IsLoopback(ip.Address))
+                if (ip.Address.AddressFamily == AddressFamily.InterNetwork)
                 {
-                    Debug.Log($"[HostDiscovery] IP local detectado: {ip.Address}");
-                    return ip.Address.ToString();
+                    // Apenas IPs privados da LAN (192.168.x.x ou 10.x.x.x ou 172.16-31.x.x)
+                    byte[] bytes = ip.Address.GetAddressBytes();
+                    if ((bytes[0] == 192 && bytes[1] == 168) ||
+                        (bytes[0] == 10) ||
+                        (bytes[0] == 172 && bytes[1] >= 16 && bytes[1] <= 31))
+                    {
+                        Debug.Log($"[HostDiscovery] IP local correto da LAN detectado: {ip.Address}");
+                        return ip.Address.ToString();
+                    }
                 }
             }
         }
-        return "127.0.0.1";
+        return "127.0.0.1"; // fallback
     }
 }
