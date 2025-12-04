@@ -15,6 +15,7 @@ public class LobbyClientUI : MonoBehaviour
     public TMP_Text feedbackText;
     public TMP_Text playerListText;
     public GameObject lobby;
+    public GameObject createRoom;
     public GameObject room;
     public GameObject ip;
     public GameObject joinRoom;
@@ -40,6 +41,12 @@ public class LobbyClientUI : MonoBehaviour
                 LobbyManager.Instance.RemovePlayer(conn);
             }
         };
+
+        client.RegisterBroadcast<PlayerListUpdate>((msg, channel) =>
+        {
+            // atualiza lista de players sempre que receber do servidor
+            playerListText.text = string.Join("\n", msg.playerIds);
+        });
 
         RegisterClientMessages();
     }
@@ -109,6 +116,7 @@ public class LobbyClientUI : MonoBehaviour
         InstanceFinder.ClientManager.StartConnection(hostIP, port);
 
         ip.SetActive(false);
+        createRoom.SetActive(false);
         joinRoom.SetActive(true);
     }
 
@@ -146,6 +154,9 @@ public class LobbyClientUI : MonoBehaviour
         currentRoomCode = joinInput.text.Trim();
         feedbackText.text = "A entrar...";
         InstanceFinder.ClientManager.Broadcast(new JoinRoomRequest { code = currentRoomCode });
+
+        lobby.SetActive(false);
+        room.SetActive(true);
     }
 
     private void CreateRoomUIForHost(NetworkConnection hostConn)
