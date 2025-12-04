@@ -4,12 +4,24 @@ using UnityEngine;
 public class DamageEffect : SpellEffect
 {
     [SerializeField] private float spellDamage;
-    [SerializeField] private float spellRange;
-    [SerializeField] private float spellProjectileSpeed;
+    private float currentDamage;
+    
+    public float SpellDamage => currentDamage;
+    
+    public void Initialize()
+    {
+        this.currentDamage = spellDamage;
+    }
 
-    public float SpellDamage => spellDamage;
-    public float SpellRange => spellRange;
-    public float SpellProjectileSpeed => spellProjectileSpeed;
+    public void SetDamageMultiplier(float multiplier)
+    {
+       this.currentDamage = spellDamage * multiplier;
+    }
+
+    public void AddFlatDamage(float amount)
+    {
+        this.currentDamage += amount;
+    }
 
     public override void Apply(Player caster, Collider2D target)
     {

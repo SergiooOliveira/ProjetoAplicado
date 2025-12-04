@@ -9,18 +9,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f43ff49d62b57614e9ca7d326c2a7ad5, type: 3}
-  m_Name: Skyline Burst
+  m_Script: {fileID: 11500000, guid: 49fabf8be4a63bf4bb32b6a7da1e0ebd, type: 3}
+  m_Name: Chain Spell
   m_EditorClassIdentifier: 
-  spellName: Skyline Burst
-  spellDescription: Skyline Burst description
+  spellName: Purple Beam
+  spellDescription: Purple Beam
   spellPrefab: {fileID: 244863705734144963, guid: 8ddfd1c2860fad34bbd1fc0cff2a99f7, type: 3}
   spellTag: 0
-  spellAfinity: 1
-  spellCooldown: 10
-  spellCost: 20
-  spellCastTime: 10
-  spellCastType: 1
+  spellAfinity: 3
+  spellCooldown: 0
+  spellCost: 10
+  spellCastTime: 0
+  spellManaCostType: 1
+  spellCastType: 5
   spellImpactType: 0
   spellEffects:
-  - {fileID: 11400000, guid: 1a69f9ea73c7c314598b87d2f675efc2, type: 2}
+  - {fileID: 11400000, guid: 9fb9c6fbf202605468acbbcfba50e454, type: 2}

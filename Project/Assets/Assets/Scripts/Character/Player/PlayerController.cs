@@ -1,6 +1,7 @@
 using FishNet.Object;
 using System.Linq;
 using TMPro;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,6 +10,10 @@ public class PlayerController : NetworkBehaviour
     #region Global Variables
     private Player player;
     private PlayerData playerData;
+    private GameObject currentChanneledObject;
+    private Spell currentChanneledSpellData;
+    private PlayerHUDManager playerHUDManager;
+    private float manaAccumulator = 0f;
 
     private Rigidbody2D rb;
     public Transform groundCheck;
@@ -50,6 +55,7 @@ public class PlayerController : NetworkBehaviour
         player = GetComponent<Player>();
         playerData = player.RunTimePlayerData;
         spellManager = GetComponentInChildren<SpellManager>();
+        playerHUDManager = GetComponentInChildren<PlayerHUDManager>();
 
         if (playerData == null)
             Debug.Log("Player data is null");
@@ -70,11 +76,14 @@ public class PlayerController : NetworkBehaviour
 
         if (!IsOwner)
             return;
+
         // Collect input every frame
         horizontal = Input.GetAxisRaw("Horizontal");
 
         // Sets the parameter value in the Animator
         animator.SetFloat("Speed", Mathf.Abs(horizontal));
+
+        HandleChanneledMana();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -165,28 +174,48 @@ public class PlayerController : NetworkBehaviour
     /// <param name="callbackContext"></param>
     public void OnAttack(InputAction.CallbackContext callbackContext)
     {
-        // Each spell has different interactions
-        // Check what is the selected spell first
-        // At the moment we only have fireball
+        int index = playerData.GetActiveSpellIndex();
+        if (index == -1) return;
 
-        // Debug.Log("Attacking");
+        SpellEntry activeSpellEntry = playerData.GetSlot(index);
+        Spell spell = activeSpellEntry.spell;
 
-        if (callbackContext.performed)
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 castDirection = (mousePos - rb.position).normalized;
+
+        if (spell.RuntimeSpellData.SpellManaCostType == SpellManaCostType.Continuous)
         {
-            int index = playerData.GetActiveSpellIndex();
-
-            if (index == -1)
+            if (callbackContext.started)
             {
-                Debug.Log("No active spell");
-                return;
+                if (playerData.CharacterMana.Current >= spell.RuntimeSpellData.SpellCost)
+                {
+                    Debug.Log("Casting channeled spell");
+                    currentChanneledObject = spell.RuntimeSpellData.Cast(player, castDirection);
+                    currentChanneledSpellData = spell;
+                }
+                else StopChanneledSpell();
             }
-
-            SpellEntry activeSpell = playerData.GetSlot(index);
-
-            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 castDirection = (mousePos - rb.position).normalized;
-
-            activeSpell.spell.Cast(player, castDirection);
+            else if (callbackContext.canceled)
+            {
+                Debug.Log("Stopping channeled spell");
+                StopChanneledSpell();
+            }
+        }
+        else
+        {
+            if (callbackContext.started)
+            {
+                if (playerData.CharacterMana.Current >= spell.RuntimeSpellData.SpellCost)
+                {
+                    playerData.CharacterMana.ConsumeMana(spell.RuntimeSpellData.SpellCost);
+                    playerHUDManager.SetManaValues((float)playerData.CharacterMana.Current / playerData.CharacterMana.Max);
+                    spell.RuntimeSpellData.Cast(player, castDirection);
+                }
+                else
+                {
+                    Debug.Log("Not enough mana!");
+                }
+            }
         }
     }
 
@@ -277,13 +306,53 @@ public class PlayerController : NetworkBehaviour
             if (spell.spell != null)
             {
                 int index = playerData.GetActiveSpellIndex();
-
-                //Debug.LogWarning($"<Color=blue>Trying to swap Slot[{index}]</Color>");
-                //Debug.LogWarning($"<Color=Yellow>Equipped spell: {playerData.GetSlot(index).spell.SpellName}</Color>");
-                //Debug.LogWarning($"<Color=red>Trying to equip: {spell.spell.SpellName}</Color>");
                 playerData.SwapActiveSpell(playerData.GetSlot(index), spell);
                 spellManager.SetAllSlots();
             }
+        }
+    }
+    #endregion
+
+    #region Methods
+    private void HandleChanneledMana()
+    {
+        if (currentChanneledObject != null && currentChanneledSpellData != null)
+        {
+            float realTimeCost = currentChanneledSpellData.RuntimeSpellData.CurrentCostPerSecond;
+            float costThisFrame = realTimeCost * Time.fixedDeltaTime;
+            manaAccumulator += costThisFrame;
+
+            if (manaAccumulator >= 1f)
+            {
+                int manaToSpend = Mathf.FloorToInt(manaAccumulator);
+                if (playerData.CharacterMana.Current >= manaToSpend)
+                {
+                    playerData.CharacterMana.ConsumeMana(manaToSpend);
+                    manaAccumulator -= manaToSpend;
+                    playerHUDManager.SetManaValues((float)playerData.CharacterMana.Current / playerData.CharacterMana.Max);
+                    //Debug.Log($"Player Mana: <Color=blue>{playerData.CharacterMana.Current}</Color> consuming {manaToSpend}");
+                }
+                else
+                {
+                    //Debug.Log($"<Color=red>Mana ran out, stopping channeled spell</Color>");
+                    StopChanneledSpell();
+                    manaAccumulator = 0f;
+                }
+            }
+        }
+        else
+        {
+            manaAccumulator = 0f;
+        }
+    }
+
+    private void StopChanneledSpell()
+    {
+        if (currentChanneledObject != null)
+        {
+            Destroy(currentChanneledObject);
+            currentChanneledObject = null;
+            currentChanneledSpellData = null;
         }
     }
     #endregion

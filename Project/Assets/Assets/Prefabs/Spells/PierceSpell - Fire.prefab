@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 6942391965615297955}
   - component: {fileID: 1028217103593400989}
   - component: {fileID: 379097881706781737}
-  - component: {fileID: -6676662803172485165}
+  - component: {fileID: 1785471668261009206}
+  - component: {fileID: 7193631298856254477}
   m_Layer: 6
-  m_Name: FireProjectileBig
+  m_Name: PierceSpell - Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -153,7 +154,7 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
---- !u!114 &-6676662803172485165
+--- !u!114 &1785471668261009206
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -162,6 +163,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 6022871407546440100}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5cd4e7dbbf4fba94db6aed8917cb0e9c, type: 3}
+  m_Script: {fileID: 11500000, guid: f43ff49d62b57614e9ca7d326c2a7ad5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spellData: {fileID: 11400000, guid: 3d6db1fed4e261d448269619d5b56216, type: 2}
+--- !u!114 &7193631298856254477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6022871407546440100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5097392fb4fc4234da9eb3af305ecdf5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spellSpeed: 10
+  spellRange: 10
+  spellPierceAmount: 3
+  spellData: {fileID: 0}

@@ -2,13 +2,7 @@ using UnityEngine;
 
 public class SpellInventoryController : MonoBehaviour
 {
-    [SerializeField] private Transform spellAvailableList;
-    [SerializeField] private Transform spellEquippedList;
-    [SerializeField] private GameObject spellSlot;
-
-    [SerializeField] private Transform slot1;
-    [SerializeField] private Transform slot2;
-    [SerializeField] private Transform slot3;
+    [SerializeField] private Transform[] slots;
 
     [SerializeField] private SpellManager spellManager;
 
@@ -28,34 +22,28 @@ public class SpellInventoryController : MonoBehaviour
     {
         if (player != null)
         {
-            foreach (Spell spell in player.CharacterSpells)
+            // Percorrer a list de transforms e caso haja um spell preencher o slot
+            for (int i = 0; i < slots.Length; i++)
             {
-                GameObject newSlot = Instantiate(spellSlot, spellAvailableList);
-                SpellManagerSlot sms = newSlot.GetComponent<SpellManagerSlot>();
-                sms.SetSlot(spell);
+                SpellManagerSlot sms = slots[i].GetComponent<SpellManagerSlot>();
+
+                if (i < player.CharacterSpells.Count)
+                {
+                    // Spell exist
+                    Debug.Log($"Setting spell slot {i} with spell: {player.CharacterSpells[i].RuntimeSpellData.SpellName}");
+                    sms.SetSlot(player.CharacterSpells[i]);
+                }
+                else
+                {
+                    // Spell does not exist
+                    sms.SetSlot(null);
+                }
             }
-
-            SpellManagerSlot s1 = slot1.GetComponent<SpellManagerSlot>();
-            SpellManagerSlot s2 = slot2.GetComponent<SpellManagerSlot>();
-            SpellManagerSlot s3 = slot3.GetComponent<SpellManagerSlot>();
-
-            s1.SetSlot(player.CharacterEquippedSpells[0]);
-            s2.SetSlot(player.CharacterEquippedSpells[1]);
-            s3.SetSlot(player.CharacterEquippedSpells[2]);
-        }
-    }
-
-    private void DeleteList()
-    {
-        foreach (Transform i in spellAvailableList)
-        {
-            Destroy(i.gameObject);
         }
     }
 
     public void UpdateUI()
     {
-        DeleteList();
         SetAllSlot();
         spellManager.SetAllSlots();
     }

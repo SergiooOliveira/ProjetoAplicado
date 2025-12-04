@@ -17,6 +17,12 @@ public class Chest : MonoBehaviour
             if (data.DropObject != null)
                 data.Initialize();
         }
+
+        foreach (Spell spell in spellReward)
+        {
+            if (spell != null)
+                spell.InitializeRuntimeData();
+        }
     }
 
     /// <summary>
@@ -58,7 +64,7 @@ public class Chest : MonoBehaviour
             if (spell != null)
             {                
                 playerData.AddSpell(spell);
-                Debug.Log($"Added spell {spell.SpellName} to player!");
+                Debug.Log($"Added spell {spell.RuntimeSpellData.SpellName} to player!");
             }
         }
 

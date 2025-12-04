@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class HealthBarController : MonoBehaviour
 {
     [SerializeField] private Image foregroundImage; // Verde
-    [SerializeField] private Image backgroundImage; // Vermelho (opcional, só estética)
+    [SerializeField] private Image backgroundImage; // Vermelho (opcional, sï¿½ estï¿½tica)
 
     private float targetFill = 1f;
     [SerializeField] private float smoothSpeed = 5f;
@@ -21,7 +21,7 @@ public class HealthBarController : MonoBehaviour
     {
         if (foregroundImage != null)
         {
-            // Suaviza a transição da barra
+            // Suaviza a transiï¿½ï¿½o da barra
             foregroundImage.fillAmount = Mathf.Lerp(foregroundImage.fillAmount, targetFill, Time.deltaTime * smoothSpeed);
         }
     }

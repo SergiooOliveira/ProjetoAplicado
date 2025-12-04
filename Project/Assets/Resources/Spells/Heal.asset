@@ -12,14 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f43ff49d62b57614e9ca7d326c2a7ad5, type: 3}
   m_Name: Heal
   m_EditorClassIdentifier: 
-  spellName: 
-  spellDescription: 
-  spellPrefab: {fileID: 0}
-  spellTag: 0
-  spellAfinity: 0
+  spellName: Heal
+  spellDescription: Heal
+  spellPrefab: {fileID: 244863705734144963, guid: 6b1abf4151309304081a5da92917dafe, type: 3}
+  spellTag: 1
+  spellAfinity: 3
   spellCooldown: 0
   spellCost: 0
   spellCastTime: 0
   spellCastType: 0
-  spellImpactType: 0
-  spellEffects: []
+  spellImpactType: 3
+  spellEffects:
+  - {fileID: 11400000, guid: 4db89f0f1a1f5e549a91482cd3beccb6, type: 2}

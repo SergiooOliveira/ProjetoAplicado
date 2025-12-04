@@ -9,7 +9,6 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     #region Variables / References
-
     [Header("Data")]
     public EnemyData enemyData;
     private EnemyData runtimeData;
@@ -52,11 +51,9 @@ public class Enemy : MonoBehaviour
 
     private bool isDead = false;
     private bool isAttacking = false;
-
     #endregion
 
     #region Unity Callbacks
-
     private void Awake()
     {
         runtimeData = Instantiate(enemyData);
@@ -88,7 +85,6 @@ public class Enemy : MonoBehaviour
         if (movement != null)
             movement.OnFixedUpdate();
     }
-
     #endregion
 
     #region Initialization
@@ -376,7 +372,7 @@ public class Enemy : MonoBehaviour
         finalDamage = ApplyLevelScaling(finalDamage, context);
 
         runtimeData.CharacterHp.TakeDamage(Mathf.CeilToInt(finalDamage));
-        Debug.Log($"Final damage: <Color=orange>{Mathf.CeilToInt(finalDamage)}</Color>, leaving enemy with: {runtimeData.CharacterHp.Current}");
+        //Debug.Log($"Final damage: <Color=orange>{Mathf.CeilToInt(finalDamage)}</Color>, leaving enemy with: {runtimeData.CharacterHp.Current}");
 
         if (runtimeData.CharacterHp.Current <= 0) Die(context.caster);
     }
@@ -395,7 +391,7 @@ public class Enemy : MonoBehaviour
             .Where(r => r.SpellAfinity == spellAffinity)
             .Sum(r => r.Amount);
 
-        Debug.Log($"<Color=green>GetResistance: {totalResistances}</Color>");
+        //Debug.Log($"<Color=green>GetResistance: {totalResistances}</Color>");
 
         return 1f + (totalResistances / 100f);
     }
@@ -499,6 +495,10 @@ public class Enemy : MonoBehaviour
         // Add gold to player inventory
         player.RunTimePlayerData.AddGold(RunTimeData.CharacterGold);
 
+        // Add xp to player
+        player.playerHUDManager.SetXPValues((float)RunTimeData.CharacterXp.Max / player.RunTimePlayerData.CharacterXp.Max);
+        player.RunTimePlayerData.CharacterXp.AddExperience(player.RunTimePlayerData, RunTimeData.CharacterXp.Max);                
+
         // Destroy EnemyHUD
         if (hudInstance != null)
             Destroy(hudInstance);
@@ -545,8 +545,8 @@ public class Enemy : MonoBehaviour
 
     private float ApplyAffinity (float damage, DamageContext context)
     {
-        float bonusPercent = context.caster.GetAffinityBonuses(context.spell.SpellAfinity);
-        float resistancePercent = this.GetResistance(context.spell.SpellAfinity);
+        float bonusPercent = context.caster.GetAffinityBonuses(context.spell.RuntimeSpellData.SpellAfinity);
+        float resistancePercent = this.GetResistance(context.spell.RuntimeSpellData.SpellAfinity);
         //float weakness = GetWeaknessMultiplier(context.spell);
 
         Debug.Log($"ApplyAffinity damage: {damage * bonusPercent / resistancePercent} with bonusPercent: {bonusPercent} and resistancePercent: {resistancePercent}");

@@ -505,7 +505,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3288258466330080081, guid: ba83de55d5070f44a8c63fd7a72775eb, type: 3}
       propertyPath: spellReward.Array.size
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3288258466330080081, guid: ba83de55d5070f44a8c63fd7a72775eb, type: 3}
       propertyPath: 'chestData.Array.data[0]'
@@ -514,11 +514,11 @@ PrefabInstance:
     - target: {fileID: 3288258466330080081, guid: ba83de55d5070f44a8c63fd7a72775eb, type: 3}
       propertyPath: 'spellReward.Array.data[0]'
       value: 
-      objectReference: {fileID: 11400000, guid: 3bb4d690133b65f4f8ca348c4364f6c2, type: 2}
+      objectReference: {fileID: 220613211818925742, guid: ea3e5071ab8174c4aaf293ad087d1e00, type: 3}
     - target: {fileID: 3288258466330080081, guid: ba83de55d5070f44a8c63fd7a72775eb, type: 3}
       propertyPath: 'spellReward.Array.data[1]'
       value: 
-      objectReference: {fileID: 11400000, guid: dbc5df1f62d4e7f43b42e92d58784a6c, type: 2}
+      objectReference: {fileID: 11400000, guid: e6f1a33ce5d41fe4a8e223c31a30050e, type: 2}
     - target: {fileID: 3288258466330080081, guid: ba83de55d5070f44a8c63fd7a72775eb, type: 3}
       propertyPath: 'spellReward.Array.data[2]'
       value: 

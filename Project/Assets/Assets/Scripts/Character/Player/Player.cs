@@ -13,11 +13,14 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject notificationSlotPrefab;
     [SerializeField] private Transform notificationPanel;
 
+    public PlayerHUDManager playerHUDManager;
+
     #region Unity Methods
     public void Awake ()
     {
         runTimePlayerData = Instantiate(playerData);
         Initialize();
+        playerHUDManager = GetComponentInChildren<PlayerHUDManager>();
     }
 
     public void Start()
@@ -31,7 +34,8 @@ public class Player : MonoBehaviour
     public void Initialize()
     {
         runTimePlayerData.CharacterHp.Initialize();
-        runTimePlayerData.CharacterMana.Initialize();        
+        runTimePlayerData.CharacterMana.Initialize();
+        runTimePlayerData.CharacterXp.NewXpMax(GetPlayerLevel());
 
         // Initialize item list
         foreach (ItemEntry item in runTimePlayerData.CharacterInventory)
@@ -58,6 +62,7 @@ public class Player : MonoBehaviour
 
         runTimePlayerData.EquipmentStats();
         runTimePlayerData.InitializeSpells();
+        runTimePlayerData.InitializeEquippedSpells();
     }
 
     /// <summary>

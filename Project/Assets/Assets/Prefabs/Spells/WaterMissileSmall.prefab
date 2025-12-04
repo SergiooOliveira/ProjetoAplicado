@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4419351622565259760}
   - component: {fileID: -8520651402304079374}
   - component: {fileID: 8987674780632977613}
+  - component: {fileID: 8828546701308468134}
   - component: {fileID: 6574095398641375174}
   m_Layer: 6
   m_Name: WaterMissileSmall
@@ -153,6 +154,19 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
+--- !u!114 &8828546701308468134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 244863705734144963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f43ff49d62b57614e9ca7d326c2a7ad5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spellData: {fileID: 11400000, guid: 6478920f15555164ebe309949c5a8c0b, type: 2}
 --- !u!114 &6574095398641375174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,6 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abdc52e49076ab54c88583869d832e8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  spellSpeed: 10
+  spellRange: 20
   rotateSpeed: 500
   targetSearchRadious: 10

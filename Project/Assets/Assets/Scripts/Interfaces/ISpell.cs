@@ -2,8 +2,9 @@ using UnityEngine;
 
 public enum SpellTag { Damage, Buff, Debuff }
 public enum SpellAffinity { Fire, Wind, Ice, Light, Dark }
-public enum SpellCastType { Self, Projectile, Homing, Area, Targeted }
+public enum SpellCastType { Projectile, Self, Homing, Area, Pierce, Channeled }
 public enum SpellImpactType { Damage, Buff, Debuff, Heal, Utility };
+public enum SpellManaCostType { Instant, Continuous }
 
 public interface ISpell
 {
@@ -23,6 +24,6 @@ public interface ISpell
     SpellImpactType SpellImpactType { get; }
     
     #region Methods
-    void Cast(Player caster, Vector2 direction);
+    GameObject Cast(Player caster, Vector2 direction);
     #endregion
 }

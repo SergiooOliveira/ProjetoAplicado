@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class SpellManagerSlot : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private Image img_slot;
-    [SerializeField] private TMP_Text tb_name;
 
     private PlayerData playerData;
     private Spell spell;
@@ -27,9 +26,19 @@ public class SpellManagerSlot : MonoBehaviour, IPointerClickHandler
 
     public void SetSlot(Spell s)
     {
-        spell = s;
-        img_slot.sprite = s.SpellPrefab.GetComponent<SpriteRenderer>().sprite;
-        tb_name.text = s.SpellName;
+        if (s != null)
+        {
+            Debug.Log($"Setting slot with spell: {s.RuntimeSpellData.SpellName}");
+            spell = s;
+            img_slot.enabled = true;
+            img_slot.sprite = spell.RuntimeSpellData.SpellPrefab.GetComponent<SpriteRenderer>().sprite;
+            img_slot.color = spell.RuntimeSpellData.SpellPrefab.GetComponent<SpriteRenderer>().color;
+        }
+        else
+        {
+            Debug.Log("Spell is empty");
+            img_slot.enabled = false;
+        }
     }
 
     public void SetSlot(SpellEntry spell)
@@ -38,13 +47,11 @@ public class SpellManagerSlot : MonoBehaviour, IPointerClickHandler
         {            
             entry = spell;
             img_slot.enabled = true;
-            img_slot.sprite = spell.spell.SpellPrefab.GetComponent<SpriteRenderer>().sprite;
-            tb_name.text = spell.spell.SpellName;
+            img_slot.sprite = spell.spell.RuntimeSpellData.SpellPrefab.GetComponent<SpriteRenderer>().sprite;
         }
         else
         {
             img_slot.enabled = false;
-            tb_name.text = "No spell equipped in this slot";
         }
     }
 
@@ -52,26 +59,25 @@ public class SpellManagerSlot : MonoBehaviour, IPointerClickHandler
     {
         if (eventData.button == PointerEventData.InputButton.Right)
         {
-            Debug.Log($"Right clicked on: {(spell != null ? spell.SpellName : entry.spell.SpellName)}");
+            Debug.Log($"Right clicked on: {(spell != null ? spell.RuntimeSpellData.SpellName : entry.spell.RuntimeSpellData.SpellName)}");
 
             // Right click
             /*
              * In here be able to Equip/Unequip the player spells
              */
-            if (spell != null)
+            if (playerData.IsSpellEquipped(spell))
+            {
+                // Already equipped, so unequip
+                playerData.UnequipSpell(playerData.GetSpellSlot(spell));
+            }
+            else if (spell != null)
             {
                 // Try to equip
-                Debug.Log($"Trying to equip: {spell.SpellName}");
+                //Debug.Log($"Trying to equip: {spell.RuntimeSpellData.SpellName}");
                 playerData.EquipSpell(spell);
             }
-            else if (entry.spell != null)
-            {
-                // Try to unequip                
-                Debug.Log($"Trying to unequip: {entry.spell.SpellName}");
-                playerData.UnequipSpell(entry.slot);
-            }
 
-            SeeAllSpells();
+            //SeeAllSpells();
             spellInventoryController.UpdateUI();
             //spellManager.SetAllSlots();
         }
@@ -82,7 +88,7 @@ public class SpellManagerSlot : MonoBehaviour, IPointerClickHandler
         foreach (SpellEntry s in playerData.CharacterEquippedSpells)
         {
             if (s.spell != null)
-                Debug.Log($"Equipped: {s.spell.SpellName}");
+                Debug.Log($"Equipped: {s.spell.RuntimeSpellData.SpellName}");
             else
                 Debug.Log("Equipped: Empty Slot");
         }

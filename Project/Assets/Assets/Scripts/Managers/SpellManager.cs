@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class SpellManager : MonoBehaviour
 {
-    [SerializeField] private List<Transform> slots;
+    [SerializeField] private List<Image> slots;
 
     private PlayerData playerData;
 
@@ -24,39 +24,28 @@ public class SpellManager : MonoBehaviour
 
     private void SetSlot(int index)
     {
-        Debug.LogWarning($"Trying to set: {index}");
+        Image img = slots[index];
 
-        Image img = slots[index].GetComponentInChildren<Image>();
-        TMP_Text tb = slots[index].GetComponentInChildren<TMP_Text>();
-
-        if (img == null || tb == null)
+        if (img == null)
         {
-            Debug.LogWarning($"{img} is null or {tb} is null on {index}");
+            Debug.LogWarning($"{img} is null on {index}");
             return;
-        }
-        else
-        {
-            Debug.LogWarning($"Everything ok for {index}");
-        }
+        }        
 
         SpellEntry entry = playerData.GetSlot(index);
 
         if (entry.spell != null)
-        {            
-            Debug.Log($"{entry.spell.SpellName} is not null");
-         
+        {
             img.enabled = true;
-            img.sprite = entry.spell.SpellPrefab.GetComponent<SpriteRenderer>().sprite;
-            
+            img.sprite = entry.spell.RuntimeSpellData.SpellPrefab.GetComponent<SpriteRenderer>().sprite;
+            img.color = entry.spell.RuntimeSpellData.SpellPrefab.GetComponent<SpriteRenderer>().color;
+
             if (entry.isSelected) img.color = Color.blue;
-            else img.color = Color.white;
-            
-            tb.text = entry.spell.SpellName;
+            else img.color = entry.spell.RuntimeSpellData.SpellPrefab.GetComponent<SpriteRenderer>().color;
         }
         else
         {
             img.enabled = false;
-            tb.text = "No spell equipped";
         }
     }
 }

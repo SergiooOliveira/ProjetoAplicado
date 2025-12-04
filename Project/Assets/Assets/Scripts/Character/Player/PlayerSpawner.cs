@@ -23,7 +23,7 @@ public class PlayerSpawner : MonoBehaviour
 
     /// <summary>
     /// Atualiza spawnPoints baseado nos SpawnPointMarker do mapa carregado.
-    /// Deve ser chamado **após a cena do mapa estar carregada**.
+    /// Deve ser chamado **apï¿½s a cena do mapa estar carregada**.
     /// </summary>
     public void CaptureSpawnPointsFromScene()
     {
@@ -43,17 +43,12 @@ public class PlayerSpawner : MonoBehaviour
             return;
 
 
-        // Choose random spawn point (can change to sequential)
-        int spawnIndex = Random.Range(0, spawnPoints.Length);
+        var persistentScene = UnityEngine.SceneManagement.SceneManager.GetSceneByName("PersistentScene");
 
-        // Avoid repeating the same spawn consecutively
-        if (spawnPoints.Length > 1 && spawnIndex == lastSpawnIndex)
-        {
-            spawnIndex = (spawnIndex + 1) % spawnPoints.Length;
-        }
+        NetworkObject player = Instantiate(playerPrefab);
 
-        lastSpawnIndex = spawnIndex;
-        Transform spawnPoint = spawnPoints[spawnIndex];
+        // Move player to persistent scene
+        UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(player.gameObject, persistentScene);
 
         // Instantiates the player on the server
         NetworkObject playerInstance = Instantiate(playerPrefab, spawnPoint.position, spawnPoint.rotation);

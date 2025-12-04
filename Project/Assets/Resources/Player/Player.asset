@@ -20,7 +20,7 @@ MonoBehaviour:
   characterXp:
     max: 0
   characterMana:
-    max: 10
+    max: 500
   characterMovementSpeed: 6
   characterAttackSpeed: 6
   characterAttackPower: 6
@@ -28,7 +28,12 @@ MonoBehaviour:
   characterResistances:
   - spellAfinity: 1
     amount: 20
-  characterSpells: []
+  characterSpells:
+  - {fileID: 8828546701308468134, guid: 3668d21d8ded15f4d9242d9dd61400e8, type: 3}
+  - {fileID: -4933291075019803683, guid: 6b1abf4151309304081a5da92917dafe, type: 3}
+  - {fileID: 1785471668261009206, guid: 93f57672454b57840b5f0e1d0638ea91, type: 3}
+  - {fileID: -7447219417858919371, guid: 8ddfd1c2860fad34bbd1fc0cff2a99f7, type: 3}
+  - {fileID: 220613211818925742, guid: ea3e5071ab8174c4aaf293ad087d1e00, type: 3}
   characterEquippedSpells: []
   characterInventory: []
   characterEquipment:
