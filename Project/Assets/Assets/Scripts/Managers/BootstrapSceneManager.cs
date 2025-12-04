@@ -99,18 +99,31 @@ public class BootstrapSceneManager : MonoBehaviour
         UnloadLoading();
         UnloadScene("Loading");
         UnloadSceneLocal("Loading");
+        UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("Loading");
     }
+
+    //private void UnloadLoading()
+    //{
+    //    if (!InstanceFinder.IsServerStarted) return; // só servidor/host
+
+    //    var loadingScene = UnityEngine.SceneManagement.SceneManager.GetSceneByName("Loading");
+    //    if (loadingScene.isLoaded)
+    //    {
+    //        // Descarrega globalmente para todos
+    //        InstanceFinder.SceneManager.UnloadGlobalScenes(new SceneUnloadData("Loading"));
+    //        Debug.Log("[BootstrapSceneManager] Loading removida pelo servidor.");
+    //    }
+    //}
 
     private void UnloadLoading()
     {
-        if (!InstanceFinder.IsServerStarted) return; // só servidor/host
-
         var loadingScene = UnityEngine.SceneManagement.SceneManager.GetSceneByName("Loading");
+
         if (loadingScene.isLoaded)
         {
-            // Descarrega globalmente para todos
             InstanceFinder.SceneManager.UnloadGlobalScenes(new SceneUnloadData("Loading"));
-            Debug.Log("[BootstrapSceneManager] Loading removida pelo servidor.");
+            UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("Loading");
+            Debug.Log("[TSceneManager] Loading removida.");
         }
     }
 }
