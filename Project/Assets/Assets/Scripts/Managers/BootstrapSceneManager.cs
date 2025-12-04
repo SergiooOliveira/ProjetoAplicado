@@ -1,8 +1,6 @@
 using FishNet;
 using FishNet.Connection;
 using FishNet.Managing.Scened;
-using FishNet.Object;
-using System;
 using System.Collections;
 using System.Linq;
 using UnityEngine;
@@ -11,11 +9,14 @@ using SceneManager = UnityEngine.SceneManagement.SceneManager;
 
 public class BootstrapSceneManager : MonoBehaviour
 {
-
-    public static BootstrapSceneManager Instance { get; private set; }
+    #region Fields
 
     [Header("Player Spawner")]
     public PlayerSpawner spawner;
+
+    #endregion
+
+    #region Unity Callbacks
 
     private void Awake()
     {
@@ -26,62 +27,12 @@ public class BootstrapSceneManager : MonoBehaviour
     {
         LoadSceneLocal("StartMenu");
 
-        if (spawner == null)
-        {
-            spawner = GameObject.FindFirstObjectByType<PlayerSpawner>();
-            if (spawner == null)
-                Debug.LogError("PlayerSpawner não encontrado na cena!");
-        }
-
         InstanceFinder.SceneManager.OnLoadEnd += OnScenesLoaded;
     }
 
-    //private void OnSceneLoadEnd(SceneLoadEndEventArgs args)
-    //{
-    //    foreach (var scene in args.LoadedScenes)
-    //    {
-    //        Ignora menu/ loading
-    //        if (scene.name == "StartMenu" || scene.name == "Loading") continue;
+    #endregion
 
-    //        Tornar a nova cena ativa
-    //        SceneManager.SetActiveScene(scene);
-
-    //        Spawn players só no host
-    //        if (InstanceFinder.IsServerStarted)
-    //        {
-    //            spawner.CaptureSpawnPointsFromScene();
-
-    //            foreach (var conn in InstanceFinder.ServerManager.Clients.Values)
-    //                spawner.SpawnPlayer(conn);
-
-    //            StartCoroutine(RemoveLoadingAfterPlayersSpawned());
-    //        }
-
-    //        foreach (var conn in InstanceFinder.ClientManager.Clients.Values)
-    //        {
-    //            NetworkObject player = conn.FirstObject;
-    //            if (player != null)
-    //            {
-    //                Scene persistentScene = SceneManager.GetSceneByName("PersistentScene");
-    //                if (persistentScene.IsValid())
-    //                    SceneManager.MoveGameObjectToScene(player.gameObject, persistentScene);
-    //            }
-    //        }
-
-    //        // Remove Loading localmente no cliente
-    //        var loadingScene = SceneManager.GetSceneByName("Loading");
-    //        if (loadingScene.isLoaded)
-    //        {
-    //            // Unload localmente
-    //            SceneManager.UnloadSceneAsync("Loading");
-    //            // Se for multiplayer, também remove globalmente
-    //            if (InstanceFinder.IsServerStarted)
-    //                InstanceFinder.SceneManager.UnloadGlobalScenes(new SceneUnloadData("Loading"));
-
-    //            Debug.Log("[BootstrapSceneManager] Loading removida após spawn dos players.");
-    //        }
-    //    }
-    //}
+    #region Load / Unload Scenes Withou Host / Client
 
     public void LoadSceneLocal(string sceneName)
     {
@@ -98,6 +49,10 @@ public class BootstrapSceneManager : MonoBehaviour
             SceneManager.UnloadSceneAsync(sceneName);
         }
     }
+
+    #endregion
+
+    #region Load / Unload With Host / Client
 
     public void LoadScene(string sceneName)
     {
@@ -117,67 +72,9 @@ public class BootstrapSceneManager : MonoBehaviour
         InstanceFinder.SceneManager.UnloadGlobalScenes(sld);
     }
 
-    //public void LoadLoadingThenMap(string targetMap)
-    //{
-    //    if (!InstanceFinder.IsServerStarted) return;
+    #endregion
 
-    //    StartCoroutine(LoadLoadingThenMapRoutine(targetMap));
-    //}
-
-    //private IEnumerator LoadLoadingThenMapRoutine(string targetMap)
-    //{
-    //    // 1. Carrega Loading globalmente
-    //    SceneLoadData loadLoading = new SceneLoadData("Loading");
-    //    InstanceFinder.SceneManager.LoadGlobalScenes(loadLoading);
-
-    //    yield return new WaitUntil(() => SceneManager.GetSceneByName("Loading").isLoaded);
-
-    //    // 2. Carrega mapa globalmente
-    //    SceneLoadData loadMap = new SceneLoadData(targetMap);
-    //    InstanceFinder.SceneManager.LoadGlobalScenes(loadMap);
-
-    //    yield return new WaitUntil(() => SceneManager.GetSceneByName(targetMap).isLoaded);
-    //}
-
-    //private IEnumerator RemoveLoadingAfterPlayersSpawned()
-    //{
-    //    // Espera que todos os clients tenham instanciado seus players
-    //    yield return new WaitUntil(() =>
-    //    {
-    //        // Todos os clientes devem ter pelo menos 1 NetworkObject (player)
-    //        return InstanceFinder.ClientManager.Clients.Values.All(c => c.FirstObject != null);
-    //    });
-
-    //    // Move players para PersistentScene (garante que host e clients fiquem na PersistentScene)
-    //    foreach (var conn in InstanceFinder.ClientManager.Clients.Values)
-    //    {
-    //        NetworkObject player = conn.FirstObject;
-    //        if (player != null)
-    //        {
-    //            Scene persistentScene = SceneManager.GetSceneByName("PersistentScene");
-    //            if (persistentScene.IsValid())
-    //                SceneManager.MoveGameObjectToScene(player.gameObject, persistentScene);
-    //        }
-    //    }
-
-
-    //    InstanceFinder.SceneManager.UnloadGlobalScenes(new SceneUnloadData("Loading"));
-    //    SceneManager.UnloadSceneAsync("Loading");
-
-    //    // Remove Loading localmente
-    //    var loadingScene = SceneManager.GetSceneByName("Loading");
-    //    if (loadingScene.isLoaded)
-    //    {
-    //        // Unload localmente
-    //        SceneManager.UnloadSceneAsync("Loading");
-    //        // Se for multiplayer, também remove globalmente
-    //        if (InstanceFinder.IsServerStarted)
-    //            InstanceFinder.SceneManager.UnloadGlobalScenes(new SceneUnloadData("Loading"));
-
-    //        Debug.Log("[BootstrapSceneManager] Loading removida após spawn dos players.");
-    //    }
-    //}
-
+    #region On Scene Load
 
     private void OnScenesLoaded(SceneLoadEndEventArgs args)
     {
@@ -189,20 +86,14 @@ public class BootstrapSceneManager : MonoBehaviour
 
         string sceneName = args.LoadedScenes[0].name;
 
-        if (sceneName == "Loading")
+        if (sceneName == "StartMenu" || sceneName == "Loading")
             return; // does nothing
 
-        if (sceneName == "StartMenu")
-            return; // menu does not spawn players
-
-        var newScene = UnityEngine.SceneManagement.SceneManager.GetSceneByName(sceneName);
+        var newScene = SceneManager.GetSceneByName(sceneName);
         if (newScene.IsValid())
         {
-            UnityEngine.SceneManagement.SceneManager.SetActiveScene(newScene);
-            Debug.Log("[TSceneManager] ActiveScene set to: " + sceneName);
+            SceneManager.SetActiveScene(newScene);
         }
-
-        Debug.Log("[TSceneManager] Mapa carregado: " + sceneName);
 
         // Update spawn points
         SpawnPointMarker[] markers = GameObject.FindObjectsByType<SpawnPointMarker>(FindObjectsSortMode.None);
@@ -212,6 +103,7 @@ public class BootstrapSceneManager : MonoBehaviour
         StartCoroutine(FinishLoadAndSpawn());
     }
 
+    #endregion
 
     #region Load Scenes Using Loading
 
@@ -222,24 +114,13 @@ public class BootstrapSceneManager : MonoBehaviour
 
     private IEnumerator LoadLoadingThenMapRoutine(string targetMap)
     {
-        // 1. Unload StartMenu if it is loaded
-        var startMenuScene = UnityEngine.SceneManagement.SceneManager.GetSceneByName("StartMenu");
-        if (startMenuScene.isLoaded)
-        {
-            InstanceFinder.SceneManager.UnloadGlobalScenes(new SceneUnloadData("StartMenu")); // ideal / correct but it doesn't work
-            UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("StartMenu"); // TODO: You shouldn't use this but it's the only way that works
-
-            // espera descarregar
-            yield return new WaitUntil(() => !UnityEngine.SceneManagement.SceneManager.GetSceneByName("StartMenu").isLoaded);
-        }
-
-        // 2. Load LOADING scene
+        // 1. Load LOADING scene
         SceneLoadData loadLoading = new SceneLoadData("Loading");
         InstanceFinder.SceneManager.LoadGlobalScenes(loadLoading);
 
-        yield return new WaitUntil(() => UnityEngine.SceneManagement.SceneManager.GetSceneByName("Loading").isLoaded);
+        yield return new WaitUntil(() => SceneManager.GetSceneByName("Loading").isLoaded);
 
-        // 3. Load the actual map
+        // 2. Load the actual map
         SceneLoadData loadMap = new SceneLoadData(targetMap);
         InstanceFinder.SceneManager.LoadGlobalScenes(loadMap);
     }
@@ -247,8 +128,6 @@ public class BootstrapSceneManager : MonoBehaviour
     #endregion
 
     #region Spawn Players
-
-    
 
     private IEnumerator FinishLoadAndSpawn()
     {
@@ -272,16 +151,14 @@ public class BootstrapSceneManager : MonoBehaviour
 
     private void UnloadLoading()
     {
-        var loadingScene = UnityEngine.SceneManagement.SceneManager.GetSceneByName("Loading");
+        var loadingScene = SceneManager.GetSceneByName("Loading");
 
         if (loadingScene.isLoaded)
         {
             InstanceFinder.SceneManager.UnloadGlobalScenes(new SceneUnloadData("Loading"));
-            UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("Loading");
-            Debug.Log("[TSceneManager] Loading removida.");
+            SceneManager.UnloadSceneAsync("Loading");
         }
     }
 
     #endregion
-
 }

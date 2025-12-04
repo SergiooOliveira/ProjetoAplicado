@@ -1,5 +1,4 @@
 using FishNet.Object;
-using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
 
@@ -7,7 +6,7 @@ public class PlayerNetwork : NetworkBehaviour
 {
     public override void OnStartNetwork()
     {
-        // Garante que o cliente move sempre o player para a PersistentScene
+        // Ensures that the client always moves the player to the PersistentScene
         StartCoroutine(MoveToPersistentWhenReady());
     }
 
@@ -15,7 +14,7 @@ public class PlayerNetwork : NetworkBehaviour
     {
         Scene persistentScene;
 
-        // Aguarda até a PersistentScene estar carregada no cliente
+        // Wait until the PersistentScene is loaded on the client
         do
         {
             persistentScene = UnityEngine.SceneManagement.SceneManager.GetSceneByName("PersistentScene");
@@ -23,8 +22,7 @@ public class PlayerNetwork : NetworkBehaviour
         }
         while (!persistentScene.isLoaded);
 
-        // Move o player para a PersistentScene
+        // Move player to PersistentScene
         UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(gameObject, persistentScene);
-        Debug.Log("[Client] Player movido para PersistentScene");
     }
 }

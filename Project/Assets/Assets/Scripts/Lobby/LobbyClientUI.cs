@@ -149,10 +149,6 @@ public class LobbyClientUI : MonoBehaviour
         currentRoomCode = joinInput.text.Trim();
         feedbackText.text = "A entrar...";
         InstanceFinder.ClientManager.Broadcast(new JoinRoomRequest { code = currentRoomCode });
-
-        lobby.SetActive(false);
-        room.SetActive(true);
-        play.SetActive(false);
     }
 
     #endregion
@@ -175,6 +171,9 @@ public class LobbyClientUI : MonoBehaviour
         {
             feedbackText.text = msg.success ? "Entrou na sala!" : "Código inválido!";
             if (msg.success) joinInput.text = "";
+            lobby.SetActive(false);
+            room.SetActive(true);
+            play.SetActive(false);
             UpdatePlayerList();
         });
 

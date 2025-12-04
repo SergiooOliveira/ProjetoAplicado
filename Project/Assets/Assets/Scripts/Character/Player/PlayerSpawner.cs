@@ -31,11 +31,6 @@ public class PlayerSpawner : MonoBehaviour
         if (markers.Length > 0)
         {
             spawnPoints = markers.Select(m => m.transform).ToArray();
-            Debug.Log($"PlayerSpawner: Capturados {spawnPoints.Length} spawnPoints do mapa.");
-        }
-        else
-        {
-            Debug.LogWarning("PlayerSpawner: Nenhum SpawnPointMarker encontrado na cena carregada.");
         }
     }
 
@@ -45,10 +40,8 @@ public class PlayerSpawner : MonoBehaviour
     public void SpawnPlayer(NetworkConnection conn)
     {
         if (playerPrefab == null || spawnPoints.Length == 0)
-        {
-            Debug.LogError("PlayerPrefab ou SpawnPoints não configurados!");
             return;
-        }
+
 
         // Choose random spawn point (can change to sequential)
         int spawnIndex = Random.Range(0, spawnPoints.Length);
@@ -72,7 +65,6 @@ public class PlayerSpawner : MonoBehaviour
         }
 
         InstanceFinder.ServerManager.Spawn(playerInstance, conn);
-        Debug.Log($"Player spawned para {conn.ClientId} em {spawnPoint.position}");
     }
 
     #endregion
