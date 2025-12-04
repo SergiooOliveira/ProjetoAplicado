@@ -1,6 +1,7 @@
 using FishNet;
 using FishNet.Connection;
 using FishNet.Managing.Scened;
+using System;
 using System.Collections;
 using System.Linq;
 using UnityEngine;
@@ -96,20 +97,20 @@ public class BootstrapSceneManager : MonoBehaviour
 
         // 5. Remove a tela de loading
         UnloadLoading();
-        UnloadScene("Loading");
-        UnloadSceneLocal("Loading");
-        
-        
+        //UnloadScene("Loading");
+        //UnloadSceneLocal("Loading");
     }
 
     private void UnloadLoading()
     {
+        if (!InstanceFinder.IsServerStarted) return; // só servidor/host
+
         var loadingScene = UnityEngine.SceneManagement.SceneManager.GetSceneByName("Loading");
         if (loadingScene.isLoaded)
         {
+            // Descarrega globalmente para todos
             InstanceFinder.SceneManager.UnloadGlobalScenes(new SceneUnloadData("Loading"));
-            UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("Loading");
-            Debug.Log("[BootstrapSceneManager] Loading removida.");
+            Debug.Log("[BootstrapSceneManager] Loading removida pelo servidor.");
         }
     }
 }
