@@ -40,7 +40,7 @@ public class MapSelectorUI : MonoBehaviour
         BootstrapSceneManager sm = GameObject.FindFirstObjectByType<BootstrapSceneManager>();
 
         sm.UnloadScene("SelectMap");
-        sm.LoadScene(mapName);
+        sm.LoadLoadingThenMap(mapName);
     }
 
     #endregion

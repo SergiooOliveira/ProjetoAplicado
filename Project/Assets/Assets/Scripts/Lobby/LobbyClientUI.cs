@@ -197,9 +197,12 @@ public class LobbyClientUI : MonoBehaviour
                 break;
             case LocalConnectionState.Started:
                 feedbackText.text = "Conectado ao host!";
-                ip.SetActive(false);
-                createRoom.SetActive(false);
-                joinRoom.SetActive(true);
+                if (InstanceFinder.IsClientStarted && !InstanceFinder.IsServerStarted)
+                {
+                    ip.SetActive(false);
+                    createRoom.SetActive(false);
+                    joinRoom.SetActive(true);
+                }
                 break;
             case LocalConnectionState.Stopping:
                 feedbackText.text = "Desconectando...";
