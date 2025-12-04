@@ -130,10 +130,6 @@ public class LobbyClientUI : MonoBehaviour
 
         feedbackText.text = "A conectar ao host...";
         InstanceFinder.ClientManager.StartConnection(hostIP, port);
-
-        ip.SetActive(false);
-        createRoom.SetActive(false);
-        joinRoom.SetActive(true);
     }
 
     void OnCodeTyping(string text)
@@ -192,6 +188,9 @@ public class LobbyClientUI : MonoBehaviour
                 break;
             case LocalConnectionState.Started:
                 feedbackText.text = "Conectado ao host!";
+                ip.SetActive(false);
+                createRoom.SetActive(false);
+                joinRoom.SetActive(true);
                 break;
             case LocalConnectionState.Stopping:
                 feedbackText.text = "Desconectando...";
