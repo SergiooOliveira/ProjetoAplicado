@@ -66,7 +66,7 @@ public class MenuManager : MonoBehaviour
 
         var sm = GameObject.FindFirstObjectByType<BootstrapSceneManager>();
 
-        sm.UnloadSceneLocal("Lobby");
+        sm.UnloadScene("Lobby");
         sm.LoadLoadingThenMap("Map1_Part1");
     }
 
