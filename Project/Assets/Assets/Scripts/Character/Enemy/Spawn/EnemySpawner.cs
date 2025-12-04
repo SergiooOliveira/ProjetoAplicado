@@ -241,16 +241,9 @@ public class EnemySpawner : MonoBehaviour
 
     private void TeleportToSelectMap()
     {
-        // Encontra o TSceneManager na cena ou PersistentScene
-        TSceneManager sceneManager = GameObject.FindFirstObjectByType<TSceneManager>();
-        if (sceneManager == null)
-        {
-            Debug.LogError("TSceneManager não encontrado!");
-            return;
-        }
-
+        BootstrapSceneManager sm = GameObject.FindFirstObjectByType<BootstrapSceneManager>();
         // Call the method to load the SelectMap scene
-        sceneManager.LoadMapByName("SelectMap");
+        sm.LoadScene("SelectMap");
     }
 
     #endregion
