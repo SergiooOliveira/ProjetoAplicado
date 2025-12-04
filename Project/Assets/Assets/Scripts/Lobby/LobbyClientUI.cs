@@ -168,6 +168,8 @@ public class LobbyClientUI : MonoBehaviour
             pendingJoinCode = code;
             currentRoomCode = code;
 
+            Debug.Log($"Ip: {ip} / {(ushort)foundPort}");
+
             // conecta ao host encontrado
             InstanceFinder.ClientManager.StartConnection(ip, (ushort)foundPort);
         }
