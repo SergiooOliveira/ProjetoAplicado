@@ -175,6 +175,7 @@ public class LobbyClientUI : MonoBehaviour
         }
         else
         {
+            Debug.Log($"Ip: {ip} / {(ushort)foundPort}");
             feedbackText.text = "Nenhuma sala LAN encontrada com esse código!";
         }
     }
