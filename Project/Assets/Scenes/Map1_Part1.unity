@@ -257,11 +257,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 304b391d38382d44e8fd0b30ef25c931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyTypeData: {fileID: 0}
   hasEnemy: 0
   currentEnemy: {fileID: 0}
   isRespawning: 0
+  hasSpawnedOnce: 0
   isActiveSpawnPoint: 0
-  enemyTypeData: {fileID: 0}
+  onlySpawnOnce: 0
 --- !u!1 &104813951
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,7 +289,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 104813951}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 27.7, y: -48.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -306,11 +308,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 304b391d38382d44e8fd0b30ef25c931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyTypeData: {fileID: 0}
   hasEnemy: 0
   currentEnemy: {fileID: 0}
   isRespawning: 0
+  hasSpawnedOnce: 0
   isActiveSpawnPoint: 0
-  enemyTypeData: {fileID: 0}
+  onlySpawnOnce: 0
 --- !u!1 &121225989
 GameObject:
   m_ObjectHideFlags: 0
@@ -336,7 +340,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 121225989}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -53.64, y: -3.35, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -355,11 +359,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 304b391d38382d44e8fd0b30ef25c931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyTypeData: {fileID: 0}
   hasEnemy: 0
   currentEnemy: {fileID: 0}
   isRespawning: 0
+  hasSpawnedOnce: 0
   isActiveSpawnPoint: 0
-  enemyTypeData: {fileID: 0}
+  onlySpawnOnce: 0
 --- !u!1 &183294946
 GameObject:
   m_ObjectHideFlags: 0
@@ -614,7 +620,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 210148480}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 20.06, y: -55.67, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -633,11 +639,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 304b391d38382d44e8fd0b30ef25c931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyTypeData: {fileID: 0}
   hasEnemy: 0
   currentEnemy: {fileID: 0}
   isRespawning: 0
+  hasSpawnedOnce: 0
   isActiveSpawnPoint: 0
-  enemyTypeData: {fileID: 0}
+  onlySpawnOnce: 0
 --- !u!1 &218486050
 GameObject:
   m_ObjectHideFlags: 0
@@ -663,7 +671,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 218486050}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -31.29, y: -20.71, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -682,11 +690,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 304b391d38382d44e8fd0b30ef25c931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyTypeData: {fileID: 0}
   hasEnemy: 0
   currentEnemy: {fileID: 0}
   isRespawning: 0
+  hasSpawnedOnce: 0
   isActiveSpawnPoint: 0
-  enemyTypeData: {fileID: 0}
+  onlySpawnOnce: 0
 --- !u!1 &269156299
 GameObject:
   m_ObjectHideFlags: 0
@@ -712,7 +722,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 269156299}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 17.34, y: -21.95, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -731,11 +741,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 304b391d38382d44e8fd0b30ef25c931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyTypeData: {fileID: 0}
   hasEnemy: 0
   currentEnemy: {fileID: 0}
   isRespawning: 0
+  hasSpawnedOnce: 0
   isActiveSpawnPoint: 0
-  enemyTypeData: {fileID: 0}
+  onlySpawnOnce: 0
 --- !u!1001 &273076104
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -882,11 +894,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 304b391d38382d44e8fd0b30ef25c931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyTypeData: {fileID: 0}
   hasEnemy: 0
   currentEnemy: {fileID: 0}
   isRespawning: 0
+  hasSpawnedOnce: 0
   isActiveSpawnPoint: 0
-  enemyTypeData: {fileID: 0}
+  onlySpawnOnce: 0
 --- !u!1 &330253789
 GameObject:
   m_ObjectHideFlags: 0
@@ -931,11 +945,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 304b391d38382d44e8fd0b30ef25c931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyTypeData: {fileID: 0}
   hasEnemy: 0
   currentEnemy: {fileID: 0}
   isRespawning: 0
+  hasSpawnedOnce: 0
   isActiveSpawnPoint: 0
-  enemyTypeData: {fileID: 0}
+  onlySpawnOnce: 0
 --- !u!1 &335856026
 GameObject:
   m_ObjectHideFlags: 0
@@ -1400,11 +1416,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 304b391d38382d44e8fd0b30ef25c931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyTypeData: {fileID: 0}
   hasEnemy: 0
   currentEnemy: {fileID: 0}
   isRespawning: 0
+  hasSpawnedOnce: 0
   isActiveSpawnPoint: 0
-  enemyTypeData: {fileID: 0}
+  onlySpawnOnce: 0
 --- !u!1 &644755022
 GameObject:
   m_ObjectHideFlags: 0
@@ -100862,11 +100880,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 304b391d38382d44e8fd0b30ef25c931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyTypeData: {fileID: 0}
   hasEnemy: 0
   currentEnemy: {fileID: 0}
   isRespawning: 0
+  hasSpawnedOnce: 0
   isActiveSpawnPoint: 1
-  enemyTypeData: {fileID: 0}
+  onlySpawnOnce: 1
 --- !u!1001 &866661483
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -100986,7 +101006,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 893028551}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -11.89, y: -10.15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -101005,11 +101025,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 304b391d38382d44e8fd0b30ef25c931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyTypeData: {fileID: 0}
   hasEnemy: 0
   currentEnemy: {fileID: 0}
   isRespawning: 0
+  hasSpawnedOnce: 0
   isActiveSpawnPoint: 0
-  enemyTypeData: {fileID: 0}
+  onlySpawnOnce: 0
 --- !u!1 &895953469
 GameObject:
   m_ObjectHideFlags: 0
@@ -104181,7 +104203,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 955999197}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 57.69, y: -12.73, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -104200,11 +104222,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 304b391d38382d44e8fd0b30ef25c931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyTypeData: {fileID: 0}
   hasEnemy: 0
   currentEnemy: {fileID: 0}
   isRespawning: 0
+  hasSpawnedOnce: 0
   isActiveSpawnPoint: 0
-  enemyTypeData: {fileID: 0}
+  onlySpawnOnce: 0
 --- !u!1 &1059564257
 GameObject:
   m_ObjectHideFlags: 0
@@ -104274,7 +104298,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1066267375}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -59.81, y: -14.86, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -104293,11 +104317,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 304b391d38382d44e8fd0b30ef25c931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyTypeData: {fileID: 0}
   hasEnemy: 0
   currentEnemy: {fileID: 0}
   isRespawning: 0
+  hasSpawnedOnce: 0
   isActiveSpawnPoint: 0
-  enemyTypeData: {fileID: 0}
+  onlySpawnOnce: 0
 --- !u!1 &1074459563
 GameObject:
   m_ObjectHideFlags: 0
@@ -104323,7 +104349,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1074459563}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 2.83, y: -44.45, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -104342,11 +104368,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 304b391d38382d44e8fd0b30ef25c931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyTypeData: {fileID: 0}
   hasEnemy: 0
   currentEnemy: {fileID: 0}
   isRespawning: 0
+  hasSpawnedOnce: 0
   isActiveSpawnPoint: 0
-  enemyTypeData: {fileID: 0}
+  onlySpawnOnce: 0
 --- !u!1 &1088081059
 GameObject:
   m_ObjectHideFlags: 0
@@ -104391,11 +104419,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 304b391d38382d44e8fd0b30ef25c931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyTypeData: {fileID: 0}
   hasEnemy: 0
   currentEnemy: {fileID: 0}
   isRespawning: 0
+  hasSpawnedOnce: 0
   isActiveSpawnPoint: 0
-  enemyTypeData: {fileID: 0}
+  onlySpawnOnce: 0
 --- !u!1 &1209469841
 GameObject:
   m_ObjectHideFlags: 0
@@ -104508,7 +104538,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1260288641}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 36.44, y: -9.97, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -104527,11 +104557,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 304b391d38382d44e8fd0b30ef25c931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyTypeData: {fileID: 0}
   hasEnemy: 0
   currentEnemy: {fileID: 0}
   isRespawning: 0
+  hasSpawnedOnce: 0
   isActiveSpawnPoint: 0
-  enemyTypeData: {fileID: 0}
+  onlySpawnOnce: 1
 --- !u!1 &1262518643
 GameObject:
   m_ObjectHideFlags: 0
@@ -107882,7 +107914,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1314834019}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 64.38, y: -3.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -107901,11 +107933,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 304b391d38382d44e8fd0b30ef25c931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyTypeData: {fileID: 0}
   hasEnemy: 0
   currentEnemy: {fileID: 0}
   isRespawning: 0
+  hasSpawnedOnce: 0
   isActiveSpawnPoint: 0
-  enemyTypeData: {fileID: 0}
+  onlySpawnOnce: 0
 --- !u!4 &1365023990 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5545151297695041092, guid: 28961f88c1d287c4d9750bb9ee8f3ca7, type: 3}
@@ -108026,7 +108060,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1394722682}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 73.67, y: -6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -108045,11 +108079,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 304b391d38382d44e8fd0b30ef25c931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyTypeData: {fileID: 0}
   hasEnemy: 0
   currentEnemy: {fileID: 0}
   isRespawning: 0
+  hasSpawnedOnce: 0
   isActiveSpawnPoint: 0
-  enemyTypeData: {fileID: 0}
+  onlySpawnOnce: 0
 --- !u!1 &1426254197
 GameObject:
   m_ObjectHideFlags: 0
@@ -109011,11 +109047,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 304b391d38382d44e8fd0b30ef25c931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyTypeData: {fileID: 0}
   hasEnemy: 0
   currentEnemy: {fileID: 0}
   isRespawning: 0
+  hasSpawnedOnce: 0
   isActiveSpawnPoint: 0
-  enemyTypeData: {fileID: 0}
+  onlySpawnOnce: 0
 --- !u!1 &1869342349
 GameObject:
   m_ObjectHideFlags: 0
@@ -109060,11 +109098,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 304b391d38382d44e8fd0b30ef25c931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyTypeData: {fileID: 0}
   hasEnemy: 0
   currentEnemy: {fileID: 0}
   isRespawning: 0
+  hasSpawnedOnce: 0
   isActiveSpawnPoint: 0
-  enemyTypeData: {fileID: 0}
+  onlySpawnOnce: 0
 --- !u!1 &1924759765
 GameObject:
   m_ObjectHideFlags: 0
@@ -109254,7 +109294,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1947636764}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 59.72, y: -42.35, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -109273,11 +109313,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 304b391d38382d44e8fd0b30ef25c931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyTypeData: {fileID: 0}
   hasEnemy: 0
   currentEnemy: {fileID: 0}
   isRespawning: 0
+  hasSpawnedOnce: 0
   isActiveSpawnPoint: 0
-  enemyTypeData: {fileID: 0}
+  onlySpawnOnce: 0
 --- !u!1001 &1959171713
 PrefabInstance:
   m_ObjectHideFlags: 0

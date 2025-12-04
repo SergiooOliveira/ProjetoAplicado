@@ -73,7 +73,6 @@ public class EnemySpawner : MonoBehaviour
             if (netObj != null && netObj.CompareTag("Player") && netObj.IsOwner)
             {
                 player = netObj.transform;
-                Debug.Log($"[Spawner] Local Network Player Found: {player.name}");
                 return;
             }
         }
@@ -83,7 +82,6 @@ public class EnemySpawner : MonoBehaviour
         if (spPlayer != null)
         {
             player = spPlayer.transform;
-            Debug.Log("[Spawner] Singleplayer Player Found.");
         }
     }
 
@@ -95,9 +93,16 @@ public class EnemySpawner : MonoBehaviour
     {
         activeSpawnPoints.Clear();
 
+        foreach (var sp in allSpawnPoints)
+        {
+            if (sp.isActiveSpawnPoint)
+            {
+                activeSpawnPoints.Add(sp);
+            }
+        }
+
         var temp = new List<EnemySpawnPoint>(allSpawnPoints);
         int count = Mathf.Min(enemyData.SpawnCount, temp.Count);
-        //Debug.Log($"[Spawner] Selecting {count}/{temp.Count} spawn points randomly.");
 
         for (int i = 0; i < count; i++)
         {
@@ -105,7 +110,6 @@ public class EnemySpawner : MonoBehaviour
             var sp = temp[index];
             activeSpawnPoints.Add(sp);
             sp.isActiveSpawnPoint = true;
-            //Debug.Log($"[Spawner] Active spawn: {sp.name}");
             temp.RemoveAt(index);
         }
     }
@@ -146,6 +150,9 @@ public class EnemySpawner : MonoBehaviour
     {
         if (IsBossDead()) return;
 
+        if (sp.onlySpawnOnce && sp.hasSpawnedOnce)
+            return;
+
         GameObject enemyObj = Instantiate(enemyData.CharacterPrefab, sp.transform.position, Quaternion.identity);
         sp.AssignEnemy(enemyObj);
 
@@ -153,7 +160,8 @@ public class EnemySpawner : MonoBehaviour
         enemy.spawnPoint = sp;
         enemy.spawner = this;
 
-        Debug.Log($"{enemy.RunTimeData}");
+        if (sp.onlySpawnOnce)
+            sp.hasSpawnedOnce = true;
     }
 
     #endregion
@@ -175,7 +183,6 @@ public class EnemySpawner : MonoBehaviour
 
         if (!sp.isRespawning)
         {
-            Debug.Log($"Enemy died at {sp.name}. Respawn in {enemyData.RespawnTime}s");
             sp.isRespawning = true;
             StartCoroutine(RespawnEnemy(sp));
         }
@@ -183,6 +190,8 @@ public class EnemySpawner : MonoBehaviour
 
     private IEnumerator RespawnEnemy(EnemySpawnPoint sp)
     {
+        if (sp.onlySpawnOnce) yield break;
+
         sp.ClearEnemy();
         yield return new WaitForSeconds(enemyData.RespawnTime);
 
