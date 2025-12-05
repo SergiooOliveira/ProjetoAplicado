@@ -1,36 +1,36 @@
 fileFormatVersion: 2
-guid: ad25c63a2d23dc645afa8fe79d51d56f
+guid: 4d71d417e8be8eb4ab42a5e01c31ee46
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -89256125096702416
-    second: Idle_Full_Skeleton_80_48_0
+      213: -4330757389984994905
+    second: Idle_Full_Skeleton_80_48_Emission_0
   - first:
-      213: -1610184012915397592
-    second: Idle_Full_Skeleton_80_48_1
+      213: -5502587878868617731
+    second: Idle_Full_Skeleton_80_48_Emission_1
   - first:
-      213: 7311476698997770958
-    second: Idle_Full_Skeleton_80_48_2
+      213: 2504537488059729122
+    second: Idle_Full_Skeleton_80_48_Emission_2
   - first:
-      213: -3600715381523976606
-    second: Idle_Full_Skeleton_80_48_3
+      213: -9218704474055532897
+    second: Idle_Full_Skeleton_80_48_Emission_3
   - first:
-      213: 6854088982704283982
-    second: Idle_Full_Skeleton_80_48_4
+      213: 4187798224900117561
+    second: Idle_Full_Skeleton_80_48_Emission_4
   - first:
-      213: -4551675764475776593
-    second: Idle_Full_Skeleton_80_48_5
+      213: -3813690485518991261
+    second: Idle_Full_Skeleton_80_48_Emission_5
   - first:
-      213: -7745021457317106267
-    second: Idle_Full_Skeleton_80_48_6
+      213: 4641166749885510516
+    second: Idle_Full_Skeleton_80_48_Emission_6
   - first:
-      213: -6820683771810998381
-    second: Idle_Full_Skeleton_80_48_7
+      213: 6234571789045634538
+    second: Idle_Full_Skeleton_80_48_Emission_7
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 0
+    enableMipMap: 1
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -72,13 +72,13 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
-  alphaIsTransparency: 1
+  alphaIsTransparency: 0
   spriteTessellationDetail: -1
-  textureType: 8
+  textureType: 0
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
@@ -96,7 +96,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -121,177 +121,177 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Idle_Full_Skeleton_80_48_0
+      name: Idle_Full_Skeleton_80_48_Emission_0
       rect:
         serializedVersion: 2
         x: 0
         y: 144
-        width: 80
+        width: 61
         height: 48
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 03e4591f606e2cef0800000000000000
-      internalID: -89256125096702416
+      spriteID: 7a9eb81691f06e3c0800000000000000
+      internalID: -4330757389984994905
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_Full_Skeleton_80_48_1
+      name: Idle_Full_Skeleton_80_48_Emission_1
       rect:
         serializedVersion: 2
-        x: 80
+        x: 0
+        y: 96
+        width: 61
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df57aa66a71e2a3b0800000000000000
+      internalID: -5502587878868617731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle_Full_Skeleton_80_48_Emission_2
+      rect:
+        serializedVersion: 2
+        x: 79
         y: 144
-        width: 80
+        width: 62
         height: 48
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 82c2a2fdb2a77a9e0800000000000000
-      internalID: -1610184012915397592
+      spriteID: 2e403766397e1c220800000000000000
+      internalID: 2504537488059729122
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_Full_Skeleton_80_48_2
+      name: Idle_Full_Skeleton_80_48_Emission_3
       rect:
         serializedVersion: 2
-        x: 0
+        x: 79
         y: 96
-        width: 80
+        width: 62
         height: 48
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ecace43e155977560800000000000000
-      internalID: 7311476698997770958
+      spriteID: f9e9d96af15901080800000000000000
+      internalID: -9218704474055532897
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_Full_Skeleton_80_48_3
-      rect:
-        serializedVersion: 2
-        x: 80
-        y: 96
-        width: 80
-        height: 48
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 26e6afa1070b70ec0800000000000000
-      internalID: -3600715381523976606
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Idle_Full_Skeleton_80_48_4
+      name: Idle_Full_Skeleton_80_48_Emission_4
       rect:
         serializedVersion: 2
         x: 0
         y: 48
-        width: 80
+        width: 61
         height: 48
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e41e1018d9d9e1f50800000000000000
-      internalID: 6854088982704283982
+      spriteID: 934de223c4c0e1a30800000000000000
+      internalID: 4187798224900117561
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_Full_Skeleton_80_48_5
-      rect:
-        serializedVersion: 2
-        x: 80
-        y: 48
-        width: 80
-        height: 48
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: fa1baad020335d0c0800000000000000
-      internalID: -4551675764475776593
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Idle_Full_Skeleton_80_48_6
+      name: Idle_Full_Skeleton_80_48_Emission_5
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 80
+        width: 61
         height: 48
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5ade5daf408248490800000000000000
-      internalID: -7745021457317106267
+      spriteID: 3608a5f85bc031bc0800000000000000
+      internalID: -3813690485518991261
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_Full_Skeleton_80_48_7
+      name: Idle_Full_Skeleton_80_48_Emission_6
       rect:
         serializedVersion: 2
-        x: 80
-        y: 0
-        width: 80
+        x: 79
+        y: 48
+        width: 62
         height: 48
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3971fef3f301851a0800000000000000
-      internalID: -6820683771810998381
+      spriteID: 473b74ea19cb86040800000000000000
+      internalID: 4641166749885510516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle_Full_Skeleton_80_48_Emission_7
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 0
+        width: 62
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae59cbc8206a58650800000000000000
+      internalID: 6234571789045634538
       vertices: []
       indices: 
       edges: []
@@ -300,26 +300,24 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 13bd023b491d9a94bbcfa9d34b9183ed
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
-    secondaryTextures:
-    - texture: {fileID: 2800000, guid: 4d71d417e8be8eb4ab42a5e01c31ee46, type: 3}
-      name: _Emission
+    secondaryTextures: []
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Idle_Full_Skeleton_80_48_0: -89256125096702416
-      Idle_Full_Skeleton_80_48_1: -1610184012915397592
-      Idle_Full_Skeleton_80_48_2: 7311476698997770958
-      Idle_Full_Skeleton_80_48_3: -3600715381523976606
-      Idle_Full_Skeleton_80_48_4: 6854088982704283982
-      Idle_Full_Skeleton_80_48_5: -4551675764475776593
-      Idle_Full_Skeleton_80_48_6: -7745021457317106267
-      Idle_Full_Skeleton_80_48_7: -6820683771810998381
+      Idle_Full_Skeleton_80_48_Emission_0: -4330757389984994905
+      Idle_Full_Skeleton_80_48_Emission_1: -5502587878868617731
+      Idle_Full_Skeleton_80_48_Emission_2: 2504537488059729122
+      Idle_Full_Skeleton_80_48_Emission_3: -9218704474055532897
+      Idle_Full_Skeleton_80_48_Emission_4: 4187798224900117561
+      Idle_Full_Skeleton_80_48_Emission_5: -3813690485518991261
+      Idle_Full_Skeleton_80_48_Emission_6: 4641166749885510516
+      Idle_Full_Skeleton_80_48_Emission_7: 6234571789045634538
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
