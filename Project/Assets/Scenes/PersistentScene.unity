@@ -165,7 +165,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 4718583287289556441, guid: df68d57ed8f82924aa9409dd2b0ab306, type: 3}
   spawnPoints: []
---- !u!1001 &1040932764
+--- !u!1001 &586293603
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -173,10 +173,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4809549485601476037, guid: 0b650fca685f2eb41a86538aa883e4c1, type: 3}
-      propertyPath: _playerPrefab
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 7443408887813606049, guid: 0b650fca685f2eb41a86538aa883e4c1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -235,9 +231,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1835234308}
-  - component: {fileID: 1835234309}
+  - component: {fileID: 1835234310}
   m_Layer: 0
-  m_Name: SceneController
+  m_Name: SceneManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -258,7 +254,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1835234309
+--- !u!114 &1835234310
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -267,7 +263,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1835234307}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81b3ce3d37c1e2a44ba3ba1f1cb5e3d3, type: 3}
+  m_Script: {fileID: 11500000, guid: ed398afe4ce9a3b41b4d55b90f17dc08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawner: {fileID: 237854971}
@@ -275,6 +271,6 @@ MonoBehaviour:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1040932764}
+  - {fileID: 586293603}
   - {fileID: 1835234308}
   - {fileID: 237854970}

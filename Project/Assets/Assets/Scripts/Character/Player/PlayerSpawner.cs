@@ -1,7 +1,9 @@
 using FishNet;
 using FishNet.Connection;
 using FishNet.Object;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerSpawner : MonoBehaviour
 {
@@ -20,24 +22,44 @@ public class PlayerSpawner : MonoBehaviour
     #region Spawn Player
 
     /// <summary>
+    /// Updates spawnPoints based on the loaded map's SpawnPointMarker.
+    /// Must be called after the map scene is loaded.
+    /// </summary>
+    public void CaptureSpawnPointsFromScene()
+    {
+        var markers = GameObject.FindObjectsByType<SpawnPointMarker>(FindObjectsSortMode.None);
+        if (markers.Length > 0)
+        {
+            spawnPoints = markers.Select(m => m.transform).ToArray();
+        }
+    }
+
+    /// <summary>
     /// Spawns a player for the specific connection
     /// </summary>
     public void SpawnPlayer(NetworkConnection conn)
     {
-        if (conn.FirstObject != null)
-        {
-            Debug.Log("Player já existe — não será respawnado.");
+        if (playerPrefab == null || spawnPoints.Length == 0)
             return;
-        }
 
-        var persistentScene = UnityEngine.SceneManagement.SceneManager.GetSceneByName("PersistentScene");
+        // Choose random spawn
+        int spawnIndex = Random.Range(0, spawnPoints.Length);
+        if (spawnPoints.Length > 1 && spawnIndex == lastSpawnIndex)
+            spawnIndex = (spawnIndex + 1) % spawnPoints.Length;
+        lastSpawnIndex = spawnIndex;
 
-        NetworkObject player = Instantiate(playerPrefab);
+        Transform spawnPoint = spawnPoints[spawnIndex];
 
-        // Move player to persistent scene
-        UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(player.gameObject, persistentScene);
+        // Instantiates the player at spawn
+        NetworkObject playerInstance = Instantiate(playerPrefab, spawnPoint.position, spawnPoint.rotation);
 
-        InstanceFinder.ServerManager.Spawn(player, conn);
+        // Move to PersistentScene
+        Scene persistentScene = SceneManager.GetSceneByName("PersistentScene");
+        if (persistentScene.IsValid())
+            SceneManager.MoveGameObjectToScene(playerInstance.gameObject, persistentScene);
+
+        // Spawn on the server
+        InstanceFinder.ServerManager.Spawn(playerInstance, conn);
     }
 
     #endregion
