@@ -56,9 +56,9 @@ public interface ICharacter
     void AddEquipmentStats(EquipmentData equipment);
     void RemoveEquipmentStats(EquipmentData equipment);
     void AddBonusHp(int amount);
-    void AddBonusAttack(int amount);
+    void AddBonusAttack(float amount);
     void AddBonusAttackSpeed(float amount);
-    void AddBonusDefense(int amount);
+    void AddBonusDefense(float amount);
     void AddBonusMana(int amount);
     void AddBonusMovementSpeed(float amount);
     #endregion

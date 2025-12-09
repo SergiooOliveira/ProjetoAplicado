@@ -25,3 +25,9 @@ MonoBehaviour:
   spellImpactType: 2
   spellEffects:
   - {fileID: 11400000, guid: 61ee28e95f45af04cb102bfbf5f287f4, type: 2}
+  upgradeLevels:
+  - costGold: 0
+    bonusCooldown: 0
+    bonusCost: 0
+    bonusCastTime: 0
+    bonusEffects: []

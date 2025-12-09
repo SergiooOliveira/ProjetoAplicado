@@ -482,7 +482,7 @@ public class PlayerData : ScriptableObject, ICharacter
     /// Call this method to add the bonus attack from the equipment to the enemy data
     /// </summary>
     /// <param name="amount">Quantity to add</param>
-    public void AddBonusAttack(int amount)
+    public void AddBonusAttack(float amount)
     {
         if (amount == 0) return;
 
@@ -505,7 +505,7 @@ public class PlayerData : ScriptableObject, ICharacter
     /// Call this method to add the bonus defense from the equipment to the enemy data
     /// </summary>
     /// <param name="amount">Quantity to add</param>
-    public void AddBonusDefense(int amount)
+    public void AddBonusDefense(float amount)
     {
         if (amount == 0) return;
 

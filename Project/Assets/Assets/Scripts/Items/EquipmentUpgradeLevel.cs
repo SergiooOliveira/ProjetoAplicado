@@ -4,27 +4,30 @@ using UnityEngine;
 [System.Serializable]
 public class EquipmentUpgradeLevel
 {
-    [Header("Upgrade Cost")]
+    [Header("Cost")]
     [SerializeField] private int costGold;
     [SerializeField] private List<ItemEntry> costItem;
 
-    [Header("Upgraded Stats")]
-    [SerializeField] private float bonusHp;
+    [Header("Upgrades")]
+    [SerializeField] private int bonusHp;
     [SerializeField] private float bonusAttackDamage;
     [SerializeField] private float bonusAttackSpeed;
     [SerializeField] private float bonusDefense;
-    [SerializeField] private float bonusMana;
+    [SerializeField] private int bonusMana;
     [SerializeField] private float bonusMovementSpeed;
     [SerializeField] private List<Resistance> bonusResistances;
     [SerializeField] private List<Resistance> bonusDamageAffinity;
 
+    // *----- Cost -----*
     public int CostGold => costGold;
     public List<ItemEntry> CostItem => costItem;
-    public float BonusHp => bonusHp;
+
+    // *----- Upgrades -----*
+    public int BonusHp => bonusHp;
     public float BonusAttackDamage => bonusAttackDamage;
     public float BonusAttackSpeed => bonusAttackSpeed;
     public float BonusDefense => bonusDefense;
-    public float BonusMana => bonusMana;
+    public int BonusMana => bonusMana;
     public float BonusMovementSpeed => bonusMovementSpeed;
     public List<Resistance> BonusResistances => bonusResistances;
     public List<Resistance> BonusDamageAffinity => bonusDamageAffinity;
