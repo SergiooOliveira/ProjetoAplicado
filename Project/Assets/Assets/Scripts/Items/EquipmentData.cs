@@ -20,7 +20,10 @@ public class EquipmentData : ItemData
     [SerializeField] private int itemManaBonus;                         // Item Mana Bonus
     [SerializeField] private float itemMovementSpeedBonus;              // Item Movement Speed Bonus in percentage
     [SerializeField] private List<Resistance> itemResistanceBonus;      // Item Resistance Bonus in percentage
-    [SerializeField] private List<Resistance> itemDamageAffinity;        // Item Afinity Attack Bonus
+    [SerializeField] private List<Resistance> itemDamageAffinity;       // Item Afinity Attack Bonus
+
+    [Header("Upgrades")]
+    [SerializeField] private List<EquipmentUpgradeLevel> upgradeLevels; // List of upgrade levels
     #endregion
 
     #region Property implementation
@@ -37,5 +40,6 @@ public class EquipmentData : ItemData
     public float ItemMovementSpeedBonus => itemMovementSpeedBonus;
     public List<Resistance> ItemResistanceBonus => itemResistanceBonus;
     public List<Resistance> ItemDamageAffinity => itemDamageAffinity;
+    public List<EquipmentUpgradeLevel> UpgradeLevels => upgradeLevels;
     #endregion
 }

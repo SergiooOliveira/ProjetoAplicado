@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class SpellManagerSlot : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private Image img_slot;
+    [SerializeField] private Transform upgradeSlot;
 
     private PlayerData playerData;
     private Spell spell;
@@ -80,6 +81,11 @@ public class SpellManagerSlot : MonoBehaviour, IPointerClickHandler
             //SeeAllSpells();
             spellInventoryController.UpdateUI();
             //spellManager.SetAllSlots();
+        }
+        else if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            if (upgradeSlot.TryGetComponent<SpellUpgrade>(out SpellUpgrade su))
+                su.Initialize(spell);
         }
     }
 
