@@ -355,7 +355,9 @@ TextureImporter:
     indices: 
     edges: []
     weights: []
-    secondaryTextures: []
+    secondaryTextures:
+    - texture: {fileID: 2800000, guid: 57d6f836857e3ff46b4c4c3b1e3091cb, type: 3}
+      name: _Emission
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:

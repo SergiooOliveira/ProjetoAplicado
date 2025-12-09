@@ -1,0 +1,1131 @@
+fileFormatVersion: 2
+guid: 1cd6b3cf9be4d9a42b78e871c5a96870
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6978337931616455069
+    second: Atk1_Boss_140_93_Emission_0
+  - first:
+      213: -2368080385451307462
+    second: Atk1_Boss_140_93_Emission_1
+  - first:
+      213: 8903231554042630293
+    second: Atk1_Boss_140_93_Emission_2
+  - first:
+      213: -7926609031199388804
+    second: Atk1_Boss_140_93_Emission_3
+  - first:
+      213: -3671295271358651277
+    second: Atk1_Boss_140_93_Emission_4
+  - first:
+      213: 7555047328940745142
+    second: Atk1_Boss_140_93_Emission_5
+  - first:
+      213: 5377344879286023317
+    second: Atk1_Boss_140_93_Emission_6
+  - first:
+      213: -6459463514030459363
+    second: Atk1_Boss_140_93_Emission_7
+  - first:
+      213: 5131602931178596235
+    second: Atk1_Boss_140_93_Emission_8
+  - first:
+      213: -6313076000080375749
+    second: Atk1_Boss_140_93_Emission_9
+  - first:
+      213: 5655442583983601082
+    second: Atk1_Boss_140_93_Emission_10
+  - first:
+      213: 5428186372312665074
+    second: Atk1_Boss_140_93_Emission_11
+  - first:
+      213: -6339017314304597103
+    second: Atk1_Boss_140_93_Emission_12
+  - first:
+      213: 3036885349275035601
+    second: Atk1_Boss_140_93_Emission_13
+  - first:
+      213: 588031294946844995
+    second: Atk1_Boss_140_93_Emission_14
+  - first:
+      213: -3412551270880383367
+    second: Atk1_Boss_140_93_Emission_15
+  - first:
+      213: -1059345448816427060
+    second: Atk1_Boss_140_93_Emission_16
+  - first:
+      213: -5570687548253160414
+    second: Atk1_Boss_140_93_Emission_17
+  - first:
+      213: -1009656321303701442
+    second: Atk1_Boss_140_93_Emission_18
+  - first:
+      213: 8015217545052097726
+    second: Atk1_Boss_140_93_Emission_19
+  - first:
+      213: 1881478248650002559
+    second: Atk1_Boss_140_93_Emission_20
+  - first:
+      213: 6718334066961186077
+    second: Atk1_Boss_140_93_Emission_21
+  - first:
+      213: -1868913246211806093
+    second: Atk1_Boss_140_93_Emission_22
+  - first:
+      213: 4473877009864608966
+    second: Atk1_Boss_140_93_Emission_23
+  - first:
+      213: -9006930880043632648
+    second: Atk1_Boss_140_93_Emission_24
+  - first:
+      213: 1945972592487530242
+    second: Atk1_Boss_140_93_Emission_25
+  - first:
+      213: 4064227968686568722
+    second: Atk1_Boss_140_93_Emission_26
+  - first:
+      213: 8927806657652805696
+    second: Atk1_Boss_140_93_Emission_27
+  - first:
+      213: 4160554185927545777
+    second: Atk1_Boss_140_93_Emission_28
+  - first:
+      213: -734614068938447530
+    second: Atk1_Boss_140_93_Emission_29
+  - first:
+      213: 4076440875465687294
+    second: Atk1_Boss_140_93_Emission_30
+  - first:
+      213: 1641771334767443500
+    second: Atk1_Boss_140_93_Emission_31
+  - first:
+      213: 2439258378302392124
+    second: Atk1_Boss_140_93_Emission_32
+  - first:
+      213: -7015713951463227181
+    second: Atk1_Boss_140_93_Emission_33
+  - first:
+      213: 5542480852511320289
+    second: Atk1_Boss_140_93_Emission_34
+  - first:
+      213: 5203815718509021675
+    second: Atk1_Boss_140_93_Emission_35
+  - first:
+      213: 4779543637288950278
+    second: Atk1_Boss_140_93_Emission_36
+  - first:
+      213: -7967623821191389010
+    second: Atk1_Boss_140_93_Emission_37
+  - first:
+      213: -8350094021485454576
+    second: Atk1_Boss_140_93_Emission_38
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Atk1_Boss_140_93_Emission_0
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 279
+        width: 46
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9902a0406908d060800000000000000
+      internalID: 6978337931616455069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk1_Boss_140_93_Emission_1
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 279
+        width: 62
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3eca91af63e22fd0800000000000000
+      internalID: -2368080385451307462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk1_Boss_140_93_Emission_2
+      rect:
+        serializedVersion: 2
+        x: 285
+        y: 279
+        width: 63
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59092c35de1ae8b70800000000000000
+      internalID: 8903231554042630293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk1_Boss_140_93_Emission_3
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 186
+        width: 64
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7b05f545170ff190800000000000000
+      internalID: -7926609031199388804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk1_Boss_140_93_Emission_4
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 186
+        width: 135
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 374a81de660fc0dc0800000000000000
+      internalID: -3671295271358651277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk1_Boss_140_93_Emission_5
+      rect:
+        serializedVersion: 2
+        x: 279
+        y: 251
+        width: 32
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b1e6ce648be8d860800000000000000
+      internalID: 7555047328940745142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk1_Boss_140_93_Emission_6
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 186
+        width: 120
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 594fb946daa20aa40800000000000000
+      internalID: 5377344879286023317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk1_Boss_140_93_Emission_7
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 93
+        width: 110
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d163e9e58206b56a0800000000000000
+      internalID: -6459463514030459363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk1_Boss_140_93_Emission_8
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 174
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b87e0417dad173740800000000000000
+      internalID: 5131602931178596235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk1_Boss_140_93_Emission_9
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 162
+        width: 28
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b305a2773d27368a0800000000000000
+      internalID: -6313076000080375749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk1_Boss_140_93_Emission_10
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 168
+        width: 17
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab5b5f9f01b2c7e40800000000000000
+      internalID: 5655442583983601082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk1_Boss_140_93_Emission_11
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 159
+        width: 14
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2fb0050febac45b40800000000000000
+      internalID: 5428186372312665074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk1_Boss_140_93_Emission_12
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 162
+        width: 23
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 193e2d396594708a0800000000000000
+      internalID: -6339017314304597103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk1_Boss_140_93_Emission_13
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 160
+        width: 14
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d76023922f252a20800000000000000
+      internalID: 3036885349275035601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk1_Boss_140_93_Emission_14
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 161
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 341ae14e85b192800800000000000000
+      internalID: 588031294946844995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk1_Boss_140_93_Emission_15
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 122
+        width: 20
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97eed5913be24a0d0800000000000000
+      internalID: -3412551270880383367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk1_Boss_140_93_Emission_16
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 149
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ccfbedc4de27c41f0800000000000000
+      internalID: -1059345448816427060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk1_Boss_140_93_Emission_17
+      rect:
+        serializedVersion: 2
+        x: 253
+        y: 149
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22cbdab8031f0b2b0800000000000000
+      internalID: -5570687548253160414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk1_Boss_140_93_Emission_18
+      rect:
+        serializedVersion: 2
+        x: 357
+        y: 143
+        width: 16
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e381777dceafcf1f0800000000000000
+      internalID: -1009656321303701442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk1_Boss_140_93_Emission_19
+      rect:
+        serializedVersion: 2
+        x: 376
+        y: 153
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ebc0f4a04e5cb3f60800000000000000
+      internalID: 8015217545052097726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk1_Boss_140_93_Emission_20
+      rect:
+        serializedVersion: 2
+        x: 380
+        y: 141
+        width: 17
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f705867af7a5c1a10800000000000000
+      internalID: 1881478248650002559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk1_Boss_140_93_Emission_21
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 93
+        width: 73
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1d70a71d315c3d50800000000000000
+      internalID: 6718334066961186077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk1_Boss_140_93_Emission_22
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 141
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37ce583fd494016e0800000000000000
+      internalID: -1868913246211806093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk1_Boss_140_93_Emission_23
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 100
+        width: 30
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6cc44c5df67661e30800000000000000
+      internalID: 4473877009864608966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk1_Boss_140_93_Emission_24
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 109
+        width: 13
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f7b08ad514f00380800000000000000
+      internalID: -9006930880043632648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk1_Boss_140_93_Emission_25
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 123
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20f7ddd33cb710b10800000000000000
+      internalID: 1945972592487530242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk1_Boss_140_93_Emission_26
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 93
+        width: 40
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21535c7edc9076830800000000000000
+      internalID: 4064227968686568722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk1_Boss_140_93_Emission_27
+      rect:
+        serializedVersion: 2
+        x: 362
+        y: 131
+        width: 15
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04053c48ad0f5eb70800000000000000
+      internalID: 8927806657652805696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk1_Boss_140_93_Emission_28
+      rect:
+        serializedVersion: 2
+        x: 378
+        y: 121
+        width: 7
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b3d9f01df14db930800000000000000
+      internalID: 4160554185927545777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk1_Boss_140_93_Emission_29
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 119
+        width: 12
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6556bed75602ec5f0800000000000000
+      internalID: -734614068938447530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk1_Boss_140_93_Emission_30
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 139
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef0c30ad06d629830800000000000000
+      internalID: 4076440875465687294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk1_Boss_140_93_Emission_31
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 124
+        width: 15
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2e7b3b945eb8c610800000000000000
+      internalID: 1641771334767443500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk1_Boss_140_93_Emission_32
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 120
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c370c12429cf9d120800000000000000
+      internalID: 2439258378302392124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk1_Boss_140_93_Emission_33
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 113
+        width: 11
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d0484df45d23ae90800000000000000
+      internalID: -7015713951463227181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk1_Boss_140_93_Emission_34
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 105
+        width: 15
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e8675458f8daec40800000000000000
+      internalID: 5542480852511320289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk1_Boss_140_93_Emission_35
+      rect:
+        serializedVersion: 2
+        x: 380
+        y: 107
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be9035233daa73840800000000000000
+      internalID: 5203815718509021675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk1_Boss_140_93_Emission_36
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 106
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60a16117d99545240800000000000000
+      internalID: 4779543637288950278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk1_Boss_140_93_Emission_37
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 106
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea062f159505d6190800000000000000
+      internalID: -7967623821191389010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk1_Boss_140_93_Emission_38
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 39
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01b1f386ab18e1c80800000000000000
+      internalID: -8350094021485454576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Atk1_Boss_140_93_Emission_0: 6978337931616455069
+      Atk1_Boss_140_93_Emission_1: -2368080385451307462
+      Atk1_Boss_140_93_Emission_10: 5655442583983601082
+      Atk1_Boss_140_93_Emission_11: 5428186372312665074
+      Atk1_Boss_140_93_Emission_12: -6339017314304597103
+      Atk1_Boss_140_93_Emission_13: 3036885349275035601
+      Atk1_Boss_140_93_Emission_14: 588031294946844995
+      Atk1_Boss_140_93_Emission_15: -3412551270880383367
+      Atk1_Boss_140_93_Emission_16: -1059345448816427060
+      Atk1_Boss_140_93_Emission_17: -5570687548253160414
+      Atk1_Boss_140_93_Emission_18: -1009656321303701442
+      Atk1_Boss_140_93_Emission_19: 8015217545052097726
+      Atk1_Boss_140_93_Emission_2: 8903231554042630293
+      Atk1_Boss_140_93_Emission_20: 1881478248650002559
+      Atk1_Boss_140_93_Emission_21: 6718334066961186077
+      Atk1_Boss_140_93_Emission_22: -1868913246211806093
+      Atk1_Boss_140_93_Emission_23: 4473877009864608966
+      Atk1_Boss_140_93_Emission_24: -9006930880043632648
+      Atk1_Boss_140_93_Emission_25: 1945972592487530242
+      Atk1_Boss_140_93_Emission_26: 4064227968686568722
+      Atk1_Boss_140_93_Emission_27: 8927806657652805696
+      Atk1_Boss_140_93_Emission_28: 4160554185927545777
+      Atk1_Boss_140_93_Emission_29: -734614068938447530
+      Atk1_Boss_140_93_Emission_3: -7926609031199388804
+      Atk1_Boss_140_93_Emission_30: 4076440875465687294
+      Atk1_Boss_140_93_Emission_31: 1641771334767443500
+      Atk1_Boss_140_93_Emission_32: 2439258378302392124
+      Atk1_Boss_140_93_Emission_33: -7015713951463227181
+      Atk1_Boss_140_93_Emission_34: 5542480852511320289
+      Atk1_Boss_140_93_Emission_35: 5203815718509021675
+      Atk1_Boss_140_93_Emission_36: 4779543637288950278
+      Atk1_Boss_140_93_Emission_37: -7967623821191389010
+      Atk1_Boss_140_93_Emission_38: -8350094021485454576
+      Atk1_Boss_140_93_Emission_4: -3671295271358651277
+      Atk1_Boss_140_93_Emission_5: 7555047328940745142
+      Atk1_Boss_140_93_Emission_6: 5377344879286023317
+      Atk1_Boss_140_93_Emission_7: -6459463514030459363
+      Atk1_Boss_140_93_Emission_8: 5131602931178596235
+      Atk1_Boss_140_93_Emission_9: -6313076000080375749
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

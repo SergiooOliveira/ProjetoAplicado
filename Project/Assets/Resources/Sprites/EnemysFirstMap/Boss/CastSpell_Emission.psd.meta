@@ -1,0 +1,559 @@
+fileFormatVersion: 2
+guid: 57d6f836857e3ff46b4c4c3b1e3091cb
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8008636453373238923
+    second: CastSpell_Boss_140_93_Emission_0
+  - first:
+      213: -8032472994655850016
+    second: CastSpell_Boss_140_93_Emission_1
+  - first:
+      213: 4201191689365789655
+    second: CastSpell_Boss_140_93_Emission_2
+  - first:
+      213: 7058035934372225057
+    second: CastSpell_Boss_140_93_Emission_3
+  - first:
+      213: -8794011675963315879
+    second: CastSpell_Boss_140_93_Emission_4
+  - first:
+      213: 3509438860015066553
+    second: CastSpell_Boss_140_93_Emission_5
+  - first:
+      213: -9191171440425607000
+    second: CastSpell_Boss_140_93_Emission_6
+  - first:
+      213: 1644591346224544209
+    second: CastSpell_Boss_140_93_Emission_7
+  - first:
+      213: -2370139362078617494
+    second: CastSpell_Boss_140_93_Emission_8
+  - first:
+      213: 1687885141882587529
+    second: CastSpell_Boss_140_93_Emission_9
+  - first:
+      213: -758980374052635468
+    second: CastSpell_Boss_140_93_Emission_10
+  - first:
+      213: 1902619044487861793
+    second: CastSpell_Boss_140_93_Emission_11
+  - first:
+      213: 3387559604009468843
+    second: CastSpell_Boss_140_93_Emission_12
+  - first:
+      213: 6555919384040292462
+    second: CastSpell_Boss_140_93_Emission_13
+  - first:
+      213: 2784336734082473928
+    second: CastSpell_Boss_140_93_Emission_14
+  - first:
+      213: 7163422382496911424
+    second: CastSpell_Boss_140_93_Emission_15
+  - first:
+      213: -7800196639480942282
+    second: CastSpell_Boss_140_93_Emission_16
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: CastSpell_Boss_140_93_Emission_0
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 372
+        width: 50
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8e5e8a3c64642f60800000000000000
+      internalID: 8008636453373238923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CastSpell_Boss_140_93_Emission_1
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 372
+        width: 50
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e1be958e5ce68090800000000000000
+      internalID: -8032472994655850016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CastSpell_Boss_140_93_Emission_2
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 279
+        width: 48
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7db98f52591ad4a30800000000000000
+      internalID: 4201191689365789655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CastSpell_Boss_140_93_Emission_3
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 279
+        width: 50
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 120e238894e23f160800000000000000
+      internalID: 7058035934372225057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CastSpell_Boss_140_93_Emission_4
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 186
+        width: 51
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 959a19f29f465f580800000000000000
+      internalID: -8794011675963315879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CastSpell_Boss_140_93_Emission_5
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 186
+        width: 52
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9bd5624ac0804b030800000000000000
+      internalID: 3509438860015066553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CastSpell_Boss_140_93_Emission_6
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 215
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a067b79546627080800000000000000
+      internalID: -9191171440425607000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CastSpell_Boss_140_93_Emission_7
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 85
+        width: 55
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d93560bd13c2d610800000000000000
+      internalID: 1644591346224544209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CastSpell_Boss_140_93_Emission_8
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 178
+        width: 12
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a601227cec29b1fd0800000000000000
+      internalID: -2370139362078617494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CastSpell_Boss_140_93_Emission_9
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 175
+        width: 23
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 989429ff7929c6710800000000000000
+      internalID: 1687885141882587529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CastSpell_Boss_140_93_Emission_10
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 177
+        width: 15
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4bc791dfe5f8775f0800000000000000
+      internalID: -758980374052635468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CastSpell_Boss_140_93_Emission_11
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 170
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1269791c0f5776a10800000000000000
+      internalID: 1902619044487861793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CastSpell_Boss_140_93_Emission_12
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 161
+        width: 16
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba382740387030f20800000000000000
+      internalID: 3387559604009468843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CastSpell_Boss_140_93_Emission_13
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 93
+        width: 41
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e60c1dde1fd4bfa50800000000000000
+      internalID: 6555919384040292462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CastSpell_Boss_140_93_Emission_14
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 77
+        width: 16
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8cf9e02f183f3a620800000000000000
+      internalID: 2784336734082473928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CastSpell_Boss_140_93_Emission_15
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 66
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0409fc414b6996360800000000000000
+      internalID: 7163422382496911424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CastSpell_Boss_140_93_Emission_16
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 0
+        width: 42
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 631fa8dcb7220c390800000000000000
+      internalID: -7800196639480942282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      CastSpell_Boss_140_93_Emission_0: 8008636453373238923
+      CastSpell_Boss_140_93_Emission_1: -8032472994655850016
+      CastSpell_Boss_140_93_Emission_10: -758980374052635468
+      CastSpell_Boss_140_93_Emission_11: 1902619044487861793
+      CastSpell_Boss_140_93_Emission_12: 3387559604009468843
+      CastSpell_Boss_140_93_Emission_13: 6555919384040292462
+      CastSpell_Boss_140_93_Emission_14: 2784336734082473928
+      CastSpell_Boss_140_93_Emission_15: 7163422382496911424
+      CastSpell_Boss_140_93_Emission_16: -7800196639480942282
+      CastSpell_Boss_140_93_Emission_2: 4201191689365789655
+      CastSpell_Boss_140_93_Emission_3: 7058035934372225057
+      CastSpell_Boss_140_93_Emission_4: -8794011675963315879
+      CastSpell_Boss_140_93_Emission_5: 3509438860015066553
+      CastSpell_Boss_140_93_Emission_6: -9191171440425607000
+      CastSpell_Boss_140_93_Emission_7: 1644591346224544209
+      CastSpell_Boss_140_93_Emission_8: -2370139362078617494
+      CastSpell_Boss_140_93_Emission_9: 1687885141882587529
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
