@@ -252,7 +252,7 @@ public class EnemySpawner : MonoBehaviour
     {
         BootstrapSceneManager sm = GameObject.FindFirstObjectByType<BootstrapSceneManager>();
         // Call the method to load the SelectMap scene
-        sm.LoadScene("SelectMap");
+        //sm.LoadScene("SelectMap");
     }
 
     #endregion
