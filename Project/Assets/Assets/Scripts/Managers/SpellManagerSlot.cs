@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class SpellManagerSlot : MonoBehaviour, IPointerClickHandler
+public class SpellManagerSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     [SerializeField] private Image img_slot;
     [SerializeField] private Transform upgradeSlot;
@@ -54,6 +54,16 @@ public class SpellManagerSlot : MonoBehaviour, IPointerClickHandler
         {
             img_slot.enabled = false;
         }
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        // Show tooltip
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        // Hide tooltip
     }
 
     public void OnPointerClick(PointerEventData eventData)
