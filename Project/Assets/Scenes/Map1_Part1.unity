@@ -1611,7 +1611,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5861255841006063316, guid: 28961f88c1d287c4d9750bb9ee8f3ca7, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7163221535772300027, guid: 28961f88c1d287c4d9750bb9ee8f3ca7, type: 3}
       propertyPath: m_IsActive
@@ -101172,6 +101172,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   questionText: {fileID: 0}
+  playerInputField: {fileID: 0}
+  sendButton: {fileID: 0}
 --- !u!4 &708147249 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7783078003308098956, guid: ba83de55d5070f44a8c63fd7a72775eb, type: 3}
@@ -101605,7 +101607,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 743611216}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 11500000, guid: 3c7f084b3ff9d88428b812afcd7899c2, type: 3}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &743611216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -108878,6 +108892,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   questionText: {fileID: 382652028}
+  playerInputField: {fileID: 2078882410}
+  sendButton: {fileID: 743611215}
 --- !u!1001 &1377758363
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -109555,6 +109571,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   questionText: {fileID: 0}
+  playerInputField: {fileID: 0}
+  sendButton: {fileID: 0}
 --- !u!1001 &1559286708
 PrefabInstance:
   m_ObjectHideFlags: 0

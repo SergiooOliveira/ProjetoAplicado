@@ -8,7 +8,7 @@
   - Layers:
     - Default, TransparentFX, Ignore Raycast, Player, Water, UI, Spell, Ground, Boss, Buff, Enemy
 - Active game object:
-  - Name: Menus
+  - Name: Enviar
   - Tag: Untagged
   - Layer: UI
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->

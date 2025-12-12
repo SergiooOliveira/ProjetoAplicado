@@ -8,6 +8,8 @@ using TMPro;
 public class ChatGPTIntegration : MonoBehaviour
 {
     public TMP_Text questionText;
+    public TMP_InputField playerInputField;  
+    public Button sendButton;
 
     private string apiKey = "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";  // Substitua pela sua chave de API da OpenAI
     private string apiUrl = "https://openrouter.ai/api/v1/chat/completions"; // URL da API
@@ -24,33 +26,6 @@ public class ChatGPTIntegration : MonoBehaviour
     {
         public string model;
         public Message[] messages;
-    }
-
-    public void Awake()
-    {
-
-        Transform textTransform = transform.Find("Canvas/Menus/ChatMenu/Panel/textNPC");
-
-        if (textTransform != null)
-        {
-            questionText = textTransform.GetComponent<TMP_Text>();
-            Debug.Log("Texto encontrado: " + questionText.text);  // Verifique se o texto foi encontrado
-        }
-        else
-        {
-            Debug.LogError("Não foi possível encontrar o 'textNPC' no caminho especificado.");
-        }
-
-        string[] test = {
-            "caca",
-            "sdfs"
-        };
-
-        string qw = "pergunta1";
-
-        AskQuestionToPlayer(qw, 1, test);
-
-        Debug.Log(questionText.text);
     }
 
     // Função para enviar uma mensagem ao ChatGPT e obter a resposta
@@ -152,14 +127,18 @@ public class ChatGPTIntegration : MonoBehaviour
         // Mostra a pergunta no console também
         Debug.Log("Pergunta: " + question);
 
-        // Simula a resposta do jogador para a pergunta
-        string response = GetManualResponse(index);  // Função para pegar uma resposta predefinida
+        // Aguarda o botão de envio ser clicado
+        yield return new WaitUntil(() => sendButton.onClick.GetPersistentEventCount() > 0);
 
-        // Mostra a resposta simulada (resposta manual)
-        Debug.Log($"Resposta simulada para a pergunta '{question}': {response}");
+        // Pega a resposta do jogador a partir do InputField
+        string playerResponse = playerInputField.text;
+        playerAnswers[index] = playerResponse;
 
-        // Armazenamos a resposta
-        playerAnswers[index] = response;
+        // Mostra a resposta no console e na tela
+        Debug.Log($"Resposta do jogador para a pergunta '{question}': {playerResponse}");
+
+        // Limpa o campo de texto
+        playerInputField.text = "";
 
         // Aqui você pode adicionar uma pausa ou animação, se necessário
         yield return null;
@@ -167,20 +146,20 @@ public class ChatGPTIntegration : MonoBehaviour
 
 
     // Função para retornar uma resposta simulada manualmente
-    private string GetManualResponse(int questionIndex)
-    {
-        // Respostas predefinidas para as perguntas (você pode alterar conforme necessário)
-        string[] predefinedResponses = new string[]
-        {
-            "Meu nome é NPC",  // Resposta para a primeira pergunta
-            "Estou buscando aventuras",  // Resposta para a segunda pergunta
-            "Estou aqui para ajudar os heróis",  // Resposta para a terceira pergunta
-            "Você pode me ajudar com uma missão?"  // Resposta para a quarta pergunta
-        };
+    // private string GetManualResponse(int questionIndex)
+    // {
+    //     // Respostas predefinidas para as perguntas (você pode alterar conforme necessário)
+    //     string[] predefinedResponses = new string[]
+    //     {
+    //         "Meu nome é NPC",  // Resposta para a primeira pergunta
+    //         "Estou buscando aventuras",  // Resposta para a segunda pergunta
+    //         "Estou aqui para ajudar os heróis",  // Resposta para a terceira pergunta
+    //         "Você pode me ajudar com uma missão?"  // Resposta para a quarta pergunta
+    //     };
 
-        // Retorna a resposta predefinida com base no índice
-        return predefinedResponses[questionIndex];
-    }
+    //     // Retorna a resposta predefinida com base no índice
+    //     return predefinedResponses[questionIndex];
+    // }
 
     // Função para decidir se o NPC vai ajudar baseado nas respostas do jogador
     private void DecideHelp(string[]questions, string[] playerAnswers)
@@ -223,4 +202,32 @@ public class ChatGPTIntegration : MonoBehaviour
     //         Debug.Log("Resposta recebida: " + response);
     //     }));
     // }
+
+    public void OnSendButtonClicked()
+    {
+        // Obtém o texto digitado no InputField
+        string playerResponse = playerInputField.text;
+
+        // Verifica se o jogador digitou algo
+        if (!string.IsNullOrEmpty(playerResponse))
+        {
+            // Envia a resposta para o ChatGPT
+            StartCoroutine(SendMessageToChatGPT(playerResponse, (response) =>
+            {
+                // Exibe a resposta do ChatGPT na tela
+                Debug.Log("Resposta da IA: " + response);
+                
+                // Aqui você pode atualizar um TextMeshPro ou qualquer outro componente para mostrar a resposta.
+                questionText.text = "Resposta da IA: " + response;
+            }));
+            
+            // Limpa o campo de texto após enviar
+            playerInputField.text = "";
+        }
+        else
+        {
+            // Se o campo de entrada estiver vazio, você pode mostrar uma mensagem de erro
+            Debug.Log("Por favor, insira uma resposta antes de enviar.");
+        }
+    }
 }
