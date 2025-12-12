@@ -26,8 +26,7 @@ public class ChatGPTIntegration : MonoBehaviour
     private string finalDecisionValue = null;
     private bool rewardGiven = false;
 
-    //private string apiKey = "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";  // Cahve Antiga Queiroga
-    private string apiKey = "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"; // Chave Nova José
+    private string apiKey = "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";
     private string apiUrl = "https://openrouter.ai/api/v1/chat/completions"; // URL da API
 
     #endregion
