@@ -28,6 +28,11 @@ public class ChatGPTIntegration : MonoBehaviour
         public Message[] messages;
     }
 
+    public void test()
+    {
+        Debug.Log("test");
+    }
+
     // Função para enviar uma mensagem ao ChatGPT e obter a resposta
     public IEnumerator SendMessageToChatGPT(string prompt, System.Action<string> callback)
     {
@@ -205,29 +210,31 @@ public class ChatGPTIntegration : MonoBehaviour
 
     public void OnSendButtonClicked()
     {
-        // Obtém o texto digitado no InputField
-        string playerResponse = playerInputField.text;
 
-        // Verifica se o jogador digitou algo
-        if (!string.IsNullOrEmpty(playerResponse))
-        {
-            // Envia a resposta para o ChatGPT
-            StartCoroutine(SendMessageToChatGPT(playerResponse, (response) =>
-            {
-                // Exibe a resposta do ChatGPT na tela
-                Debug.Log("Resposta da IA: " + response);
+        Debug.Log("TEste");
+        // // Obtém o texto digitado no InputField
+        // string playerResponse = playerInputField.text;
+
+        // // Verifica se o jogador digitou algo
+        // if (!string.IsNullOrEmpty(playerResponse))
+        // {
+        //     // Envia a resposta para o ChatGPT
+        //     StartCoroutine(SendMessageToChatGPT(playerResponse, (response) =>
+        //     {
+        //         // Exibe a resposta do ChatGPT na tela
+        //         Debug.Log("Resposta da IA: " + response);
                 
-                // Aqui você pode atualizar um TextMeshPro ou qualquer outro componente para mostrar a resposta.
-                questionText.text = "Resposta da IA: " + response;
-            }));
+        //         // Aqui você pode atualizar um TextMeshPro ou qualquer outro componente para mostrar a resposta.
+        //         questionText.text = "Resposta da IA: " + response;
+        //     }));
             
-            // Limpa o campo de texto após enviar
-            playerInputField.text = "";
-        }
-        else
-        {
-            // Se o campo de entrada estiver vazio, você pode mostrar uma mensagem de erro
-            Debug.Log("Por favor, insira uma resposta antes de enviar.");
-        }
+        //     // Limpa o campo de texto após enviar
+        //     playerInputField.text = "";
+        // }
+        // else
+        // {
+        //     // Se o campo de entrada estiver vazio, você pode mostrar uma mensagem de erro
+        //     Debug.Log("Por favor, insira uma resposta antes de enviar.");
+        // }
     }
 }
