@@ -210,3 +210,238 @@ A integração com uma **API de IA**, permite interagir com o  **NPC** de forma 
 
 ## 🎯 Conclusão Final
 Com estas três técnicas de **IA**, cria-se uma nova **experiência e jogabilidade**, pois trazem **dinamismo e variedade**, principalmente na interação entre o **Jogador** e o **NPC**.
+
+---
+
+## Prints / Código
+
+### ⭐ **A*** - Pathfinding
+<img width="1919" height="960" alt="image" src="https://github.com/user-attachments/assets/357f860c-6036-48bf-86b5-b9ffa28cdfa5" />
+
+---
+
+### 🧠 **Máquina de Estados**
+#### 🧟 Core do Inimigo
+
+Sensor do inimigo, quando o **Jogador** estiver proximo tem realizar algum estado.
+```C#
+#region Senses
+
+void FindClosestPlayer()
+{
+    Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, sightRange, playerLayer);
+    Transform closest = null;
+    float closestDist = Mathf.Infinity;
+    foreach (var h in hits)
+    {
+        float d = Vector2.Distance(transform.position, h.transform.position);
+        if (d < closestDist)
+        {
+            closestDist = d;
+            closest = h.transform;
+        }
+    }
+
+    player = closest;
+    playerInSightRange = closest != null;
+}
+
+#endregion
+```
+Este código vai estar sempre a correr é o que vai fazer com que o inimigo passe de **Patrulha** -> **Perseguição** -> **Atacar**.
+```C#
+private IEnumerator AI_Tick()
+{
+    while (true)
+    {
+        // If you use server/NetworkBehaviour
+        // if (!IsServer) { yield return null; continue; }
+
+        FindClosestPlayer();
+
+        if (movement != null)
+        {
+            movement.SetPlayerInSight(playerInSightRange);
+            movement.SetAttacking(isAttacking);
+        }
+
+        if (playerInSightRange && player != null)
+        {
+            float dist = Vector2.Distance(transform.position, player.position);
+            if (dist <= attackRange)
+            {
+                if (!isAttacking)
+                {
+                    movement.SetTarget(null);
+                    movement.StopMovement();
+                    AttackPlayer();
+                }
+            }
+            else
+            {
+                ChasePlayer();
+            }
+        }
+        else
+        {
+            Patrolling();
+        }
+
+        UpdateAnimator(); // speed, grounded, etc.
+
+        // Tick every 0.1s (10x per second, much lighter than Update)
+        yield return new WaitForSeconds(0.1f);
+    }
+}
+```
+
+Que estados o inimigo tem que realizar.
+```C#
+ #region Movement / High-Level Actions
+
+ public void Patrolling()
+ {
+     if (isAttacking || playerInSightRange)
+         return;
+
+     // Example: mover.MoveTo(waypoint) or idle - keep simple here
+     if (movement != null)
+         movement.SetTarget(null); // no target -> do patrol inside mover if it supports it
+ }
+
+ public void ChasePlayer()
+ {
+     if (player == null) return;
+     if (movement != null)
+         movement.SetTarget(player);
+ }
+ 
+ #endregion
+ ```
+
+#### 🧟 Movimentação do Inimigo
+Vai escolher pontos aleatórios dentro da área de **Patrulha** para mover-se até esse ponto.
+```C#
+private void ChooseNewPatrolPoint()
+{
+    float randomX = patrolCenter.x + Random.Range(-patrolRange, patrolRange);
+    patrolTarget = new Vector2(randomX, patrolCenter.y);
+}
+```
+
+Quando o **Jogador** se aproximar do inimigo vai atualizar o **caminho**, vai entrar no estado **Perseguição**.
+```C#
+#region Pathfinding
+
+void UpdatePath()
+{
+    if (seeker == null || rb == null) return;
+    if (target == null)
+    {
+        // If no target, you could compute path to patrol waypoints or stop requesting paths
+        path = null;
+        return;
+    }
+
+    if (seeker.IsDone())
+        seeker.StartPath(rb.position, target.position, OnPathComplete);
+}
+
+void OnPathComplete(Path p)
+{
+    if (!p.error)
+    {
+        path = p;
+        currentWaypoint = 0;
+    }
+}
+
+#endregion
+
+```
+
+Estado em que o inimigo esta a **Patrulhar**
+```C#
+#region Patrol
+
+private void HandlePatrol()
+{
+    if (!initializedPatrol) return;
+
+    float distToTarget = Vector2.Distance(rb.position, patrolTarget);
+
+    if (distToTarget < 0.2f)
+    {
+        if (!waiting)
+            StartCoroutine(WaitAndChooseNewPatrol());
+        return;
+    }
+
+    Vector2 dir = (patrolTarget - rb.position).normalized;
+    TryJumpPatrolObstacle(dir);
+    rb.linearVelocity = new Vector2(dir.x * patrolSpeed, rb.linearVelocity.y);
+
+    if (dir.x > 0.1f)
+        transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+    else if (dir.x < -0.1f)
+        transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+}
+
+private IEnumerator WaitAndChooseNewPatrol()
+{
+    waiting = true;
+    rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+    yield return new WaitForSeconds(patrolWaitTime);
+    ChooseNewPatrolPoint();
+    waiting = false;
+}
+
+#endregion
+```
+
+Quando o inimigo esta em **Perseguição**, pode encontrar obstáculos pelo caminho, e é necessario fazer com que o inimigo salte.
+```C#
+#region Jump Logic
+
+private void TryJumpPatrolObstacle(Vector2 dir)
+{
+    bool grounded = IsGrounded();
+
+    if (!grounded) return;
+
+    // Raycast origin: at foot height
+    Vector2 origin = rb.position + Vector2.up * -0.05f;
+
+    // Pure horizontal direction, ignoring y
+    Vector2 horizontalDir = new Vector2(Mathf.Sign(dir.x), 0f);
+
+    // Raycast length, adjusts according to obstacle
+    float distance = 1f;
+
+    // Draw for debug
+    Debug.DrawRay(origin, horizontalDir * distance, Color.red);
+
+    RaycastHit2D hit = Physics2D.Raycast(origin, horizontalDir, distance, groundLayer);
+
+    if (hit.collider != null)
+    {
+        // Ceiling check, keep it higher than the obstacle
+        Vector2 ceilingCheck = rb.position + Vector2.up * 1f;
+        Collider2D overlap = Physics2D.OverlapBox(ceilingCheck, new Vector2(0.3f, 0.5f), 0f, groundLayer);
+
+        if (overlap == null)
+        {
+            Vector2 v = rb.linearVelocity;
+            v.y = jumpVelocity;
+            rb.linearVelocity = v;
+            lastJumpTime = Time.time;
+        }
+    }
+}
+
+#endregion
+```
+
+---
+
+### 🤖 **Integração com API de IA**
