@@ -445,3 +445,103 @@ private void TryJumpPatrolObstacle(Vector2 dir)
 ---
 
 ### 🤖 **Integração com API de IA**
+
+O cérebro da **API**, este código é responsável por fazer requisições **HTTP a API**.
+```C#
+#region AI HTTP Request
+
+public IEnumerator SendToAI(string prompt, System.Action<string> callback)
+{
+    RequestBody body = new RequestBody
+    {
+        model = "nex-agi/deepseek-v3.1-nex-n1:free",
+        messages = new Message[] { new Message { role = "user", content = prompt } }
+    };
+
+    string json = JsonUtility.ToJson(body);
+    byte[] data = Encoding.UTF8.GetBytes(json);
+
+    UnityWebRequest req = new UnityWebRequest(apiUrl, "POST");
+    req.uploadHandler = new UploadHandlerRaw(data);
+    req.downloadHandler = new DownloadHandlerBuffer();
+    req.SetRequestHeader("Content-Type", "application/json");
+    req.SetRequestHeader("Authorization", "Bearer " + apiKey);
+
+    yield return req.SendWebRequest();
+
+    if (req.result != UnityWebRequest.Result.Success)
+    {
+        Debug.LogError("❌ ERRO NA API: " + req.error);
+        Debug.LogError("❌ Resposta bruta da API: " + req.downloadHandler.text);
+        callback("ERRO: " + req.error);
+        yield break;
+    }
+
+    APIResponse response = JsonUtility.FromJson<APIResponse>(req.downloadHandler.text);
+    if (response.choices == null || response.choices.Length == 0)
+    {
+        Debug.LogError("❌ Resposta da API inválida!");
+        callback("ERRO: Resposta inválida.");
+        yield break;
+    }
+
+    string aiMsg = response.choices[0].message.content;
+    callback(aiMsg);
+}
+```
+
+O **Jogador** envia a mensagem, o **NPC** responde, e a **IA** processa a resposta para devolver outra.
+```C#
+#region AI Response
+
+private void OnPlayerSend()
+{
+    if (string.IsNullOrEmpty(playerInput.text))
+        return;
+
+    lastPlayerMessage = playerInput.text;
+    playerInput.text = "";
+    playerInput.interactable = false;
+    sendButton.interactable = false;
+
+    playerAnswers[currentQuestionIndex] = lastPlayerMessage;
+    Debug.Log($"📤 Player respondeu: {lastPlayerMessage}");
+
+    string prompt = $"Você é um NPC neutro. Pergunta do NPC: \"{questions[currentQuestionIndex]}\". Resposta do jogador: \"{lastPlayerMessage}\". Responda de forma neutra, curta, como o NPC responderia.";
+
+    StartCoroutine(SendToAI(prompt, aiResponse =>
+    {
+        npcText.text = aiResponse;
+        Debug.Log($"🗨 NPC respondeu: {aiResponse}");
+        nextButton.gameObject.SetActive(true);
+    }));
+}
+
+#endregion
+```
+
+Se a decisão final for **1(True)** o **Jogador** vai ser recompensado, se for **0(False)** o **Jogador** não irá receber nada.
+```C#
+#region Final Decision
+
+private IEnumerator FinalDecision()
+{
+    string finalPrompt = "Com base nas respostas do jogador, decida se o NPC deve ajudá-lo. Responda apenas '0' (não ajuda) ou '1' (ajuda).\n";
+    for (int i = 0; i < questions.Length; i++)
+        finalPrompt += $"Pergunta: {questions[i]} | Resposta: {playerAnswers[i]}\n";
+
+    yield return SendToAI(finalPrompt, finalDecision =>
+    {
+        finalDecisionValue = finalDecision.Trim(); // Guardamos a decisão
+
+        Debug.Log("🧾 Decisão final da IA: " + finalDecisionValue);
+        npcText.text = finalDecisionValue == "1" ? "Acho que posso confiar em ti. Vou ajudar-te." : "Lamento, mas não posso ajudar-te.";
+
+        sendButton.interactable = false;
+        nextButton.gameObject.SetActive(true); // Next agora vai dar recompensa
+        playerInput.interactable = false;
+    });
+}
+
+#endregion
+```
