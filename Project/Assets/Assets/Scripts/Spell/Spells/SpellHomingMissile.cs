@@ -66,6 +66,9 @@ public class SpellHomingMissile : MonoBehaviour
 
         if (enemy != null) Debug.Log("Enemy not null");
 
+        if (spellData.ImpactVFX != null)
+            Instantiate(spellData.ImpactVFX, collision.ClosestPoint(transform.position), Quaternion.identity);
+
         spellData.OnHit(caster, collision);
         Destroy(gameObject);
     }

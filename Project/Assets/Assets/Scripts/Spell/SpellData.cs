@@ -25,6 +25,11 @@ public class SpellData : ScriptableObject, ISpell
     [Header("Effects")]
     [SerializeField] private List<ScriptableObject> spellEffects;
 
+    [Header("VFX")]
+    [SerializeField] private GameObject orbVFX;
+    [SerializeField] private GameObject projectileVFX;
+    [SerializeField] private GameObject impactVFX;
+
     // Runtime Variables
     private List<ScriptableObject> runtimeEffects;
     private float currentMultiplier = 1f;
@@ -51,6 +56,10 @@ public class SpellData : ScriptableObject, ISpell
 
     // *----- Effects -----*
     public IReadOnlyList<ScriptableObject> SpellEffects => runtimeEffects;
+
+    // *----- VFX -----*
+    public GameObject OrbVFX => orbVFX;
+    public GameObject ImpactVFX => impactVFX;
     #endregion
 
     public void Initialize()

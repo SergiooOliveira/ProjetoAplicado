@@ -25,3 +25,6 @@ MonoBehaviour:
   spellImpactType: 0
   spellEffects:
   - {fileID: 11400000, guid: 9fb9c6fbf202605468acbbcfba50e454, type: 2}
+  orbVFX: {fileID: 6912109270773886764, guid: 93f68ba0761834346b8bf38b3eb65133, type: 3}
+  projectileVFX: {fileID: 358750538764759873, guid: 6320e70e6917c6946a3dcf3c92fa591a, type: 3}
+  impactVFX: {fileID: 1547374145678586684, guid: 17c27f7551455c845b25438554077c3d, type: 3}
