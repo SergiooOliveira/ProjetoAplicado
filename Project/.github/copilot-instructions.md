@@ -2,7 +2,7 @@
 - Project name: Project
 - Unity version: Unity 6000.0.58f1
 - Active game object:
-  - Name: PlayerSpawner
+  - Name: Atk1Hitbox
   - Tag: Untagged
-  - Layer: Default
+  - Layer: Enemy
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->

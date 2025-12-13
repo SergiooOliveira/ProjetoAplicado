@@ -1,21 +1,21 @@
 fileFormatVersion: 2
-guid: 82af6c2a40796f6419f64c0169e6dfed
+guid: 8681b2f742715bd45a886b0c9dc4398e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7115397206734645080
-    second: Lava_Animation_0
+      213: -7819435003811228988
+    second: Lava_Animation_Emission_0
   - first:
-      213: 2827860714734554934
-    second: Lava_Animation_1
+      213: -262805451329406951
+    second: Lava_Animation_Emission_1
   - first:
-      213: -1659499506836962242
-    second: Lava_Animation_2
+      213: -1388237044517586558
+    second: Lava_Animation_Emission_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 0
+    enableMipMap: 1
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -57,13 +57,13 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
-  alphaIsTransparency: 1
+  alphaIsTransparency: 0
   spriteTessellationDetail: -1
-  textureType: 8
+  textureType: 0
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
@@ -106,133 +106,67 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Lava_Animation_0
+      name: Lava_Animation_Emission_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 32
-        width: 16
-        height: 16
+        y: 31
+        width: 32
+        height: 13
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 857a93f7f08feb260800000000000000
-      internalID: 7115397206734645080
+      spriteID: 4c2939d0b49cb7390800000000000000
+      internalID: -7819435003811228988
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Lava_Animation_1
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 32
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 63f090066549e3720800000000000000
-      internalID: 2827860714734554934
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lava_Animation_2
+      name: Lava_Animation_Emission_1
       rect:
         serializedVersion: 2
         x: 0
-        y: 16
-        width: 16
-        height: 16
+        y: 15
+        width: 32
+        height: 14
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e340c0eadf548f8e0800000000000000
-      internalID: -1659499506836962242
+      spriteID: 918797c95d35a5cf0800000000000000
+      internalID: -262805451329406951
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Lava_Animation_3
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 16
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d60120fccf0645a41b7b3691ae4636dd
-      internalID: 479988394
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lava_Animation_4
+      name: Lava_Animation_Emission_2
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 16
-        height: 16
+        width: 32
+        height: 12
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 41dc17368cbfb2147afb5c618acac635
-      internalID: -672928361
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lava_Animation_5
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b8368593b682ca24da6d4228f3cdf618
-      internalID: -1435954854
+      spriteID: 289bd7163cdfbbce0800000000000000
+      internalID: -1388237044517586558
       vertices: []
       indices: 
       edges: []
@@ -241,24 +175,19 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
-    secondaryTextures:
-    - texture: {fileID: 2800000, guid: 8681b2f742715bd45a886b0c9dc4398e, type: 3}
-      name: _Emission
+    secondaryTextures: []
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Lava_Animation_0: 7115397206734645080
-      Lava_Animation_1: 2827860714734554934
-      Lava_Animation_2: -1659499506836962242
-      Lava_Animation_3: 479988394
-      Lava_Animation_4: -672928361
-      Lava_Animation_5: -1435954854
+      Lava_Animation_Emission_0: -7819435003811228988
+      Lava_Animation_Emission_1: -262805451329406951
+      Lava_Animation_Emission_2: -1388237044517586558
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
