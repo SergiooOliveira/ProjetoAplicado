@@ -29,6 +29,7 @@ public class SpellData : ScriptableObject, ISpell
     [SerializeField] private GameObject orbVFX;
     [SerializeField] private GameObject projectileVFX;
     [SerializeField] private GameObject impactVFX;
+    public Transform SpellSpawnPoint;
 
     // Runtime Variables
     private List<ScriptableObject> runtimeEffects;
@@ -142,7 +143,7 @@ public class SpellData : ScriptableObject, ISpell
 
         foreach (Vector2 dir in compassDir)
         {
-            Vector3 spawnPos = caster.transform.position + (Vector3)dir * 0.5f;
+            Vector3 spawnPos = caster.SpellSpawnPoint.position;
             GameObject instance = Instantiate(SpellPrefab, spawnPos, Quaternion.identity);
 
             if (instance.TryGetComponent<SpellHomingMissile>(out SpellHomingMissile projectile))

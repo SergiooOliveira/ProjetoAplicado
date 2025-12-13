@@ -68,20 +68,34 @@ public class PlayerController : NetworkBehaviour
     }
 
     private void FixedUpdate()
-    {       
+    {
+        if (!IsOwner)
+            return;
+
+        horizontal = Input.GetAxisRaw("Horizontal");
+
+        bool jumpPressed = Input.GetButtonDown("Jump");
+
         rb.linearVelocity = new Vector2(horizontal * playerData.CharacterMovementSpeed, rb.linearVelocity.y);
 
         if (!isFacingRight && horizontal > 0f) Flip();
         else if (isFacingRight && horizontal < 0f) Flip();
 
-        if (!IsOwner)
-            return;
+        bool isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
 
-        // Collect input every frame
-        horizontal = Input.GetAxisRaw("Horizontal");
+        if (jumpPressed && isGrounded)
+        {
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpingPower);
+        }
 
-        // Sets the parameter value in the Animator
+        if (!isGrounded && rb.linearVelocity.y < 0)
+        {
+            animator.Play("JumpDown");
+        }
+
         animator.SetFloat("Speed", Mathf.Abs(horizontal));
+        animator.SetBool("IsGrounded", isGrounded);
+        animator.SetFloat("VerticalVelocity", rb.linearVelocity.y);
 
         HandleChanneledMana();
     }

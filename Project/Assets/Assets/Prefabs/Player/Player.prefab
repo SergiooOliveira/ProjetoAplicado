@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &356472115423266067
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8146614672172476252}
+  m_Layer: 3
+  m_Name: Spell
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8146614672172476252
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 356472115423266067}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.95, y: -0.11, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3097906672890437039}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1262297832921891090
 GameObject:
   m_ObjectHideFlags: 0
@@ -42,6 +73,7 @@ Transform:
   m_LocalScale: {x: 0.27, y: 0.27, z: 0.27}
   m_ConstrainProportionsScale: 1
   m_Children:
+  - {fileID: 8146614672172476252}
   - {fileID: 3931027091314934018}
   - {fileID: 2385744341092141961}
   - {fileID: 609864048271575325}
@@ -546,6 +578,7 @@ MonoBehaviour:
   playerData: {fileID: 11400000, guid: 7cdcbafc46b155847b81d4b36d43cfd2, type: 2}
   notificationSlotPrefab: {fileID: 5633027878506804917, guid: 93d29e773aa9f8948be3989b523c8764, type: 3}
   notificationPanel: {fileID: 3744176797619962874}
+  spellSpawnPoint: {fileID: 8146614672172476252}
   playerHUDManager: {fileID: 0}
 --- !u!114 &4471846361496907415
 MonoBehaviour:
