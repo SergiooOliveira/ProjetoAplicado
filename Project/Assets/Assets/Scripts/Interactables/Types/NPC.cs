@@ -1,15 +1,16 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class NPC : MonoBehaviour
-{    
+{
     public NPCData npcData;
     private NPCData runtimeData;
-   
+
     public NPCData RuntimeData => runtimeData;
 
     private GameObject shopPanel;
     private PlayerData playerData;
+
+    public ChatGPTIntegration chat;
 
     public PlayerData PlayerData => playerData;
 
@@ -43,6 +44,11 @@ public class NPC : MonoBehaviour
 
         bool newState = !runtimeData.NPCItemPanel.activeSelf;
         runtimeData.NPCItemPanel.SetActive(newState);
+
+        if (chat != null)
+        {
+            chat.StartDialogue(playerData);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
