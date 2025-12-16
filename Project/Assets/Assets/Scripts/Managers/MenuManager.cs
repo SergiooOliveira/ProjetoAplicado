@@ -1,5 +1,3 @@
-using FishNet;
-using FishNet.Transporting;
 using UnityEngine;
 
 public class MenuManager : MonoBehaviour
@@ -17,31 +15,31 @@ public class MenuManager : MonoBehaviour
         if (isLoading) return;
         isLoading = true;
 
-        var client = InstanceFinder.ClientManager;
-        var server = InstanceFinder.ServerManager;
+        // var client = InstanceFinder.ClientManager;
+        // var server = InstanceFinder.ServerManager;
 
         // Start server
-        server.StartConnection();
+        // server.StartConnection();
 
-        // Start client (local)
-        client.OnClientConnectionState += OnClientConnectionState;
-        client.StartConnection("localhost", 7777);
+        // // Start client (local)
+        // client.OnClientConnectionState += OnClientConnectionState;
+        // client.StartConnection("localhost", 7777);
     }
 
-    private void OnClientConnectionState(ClientConnectionStateArgs args)
-    {
-        if (args.ConnectionState == LocalConnectionState.Started)
-        {
-            var sm = GameObject.FindFirstObjectByType<BootstrapSceneManager>();
+    // private void OnClientConnectionState(ClientConnectionStateArgs args)
+    // {
+    //     if (args.ConnectionState == LocalConnectionState.Started)
+    //     {
+    //         var sm = GameObject.FindFirstObjectByType<BootstrapSceneManager>();
 
-            // Chama a coroutine de loading + mapa
-            sm.UnloadSceneLocal("StartMenu");
-            sm.LoadLoadingThenMap("Map1_Part1");
+    //         // Chama a coroutine de loading + mapa
+    //         sm.UnloadSceneLocal("StartMenu");
+    //         sm.LoadLoadingThenMap("Map1_Part1");
 
-            // Remove o listener
-            InstanceFinder.ClientManager.OnClientConnectionState -= OnClientConnectionState;
-        }
-    }
+    //         // Remove o listener
+    //         InstanceFinder.ClientManager.OnClientConnectionState -= OnClientConnectionState;
+    //     }
+    // }
 
     #endregion
 
@@ -65,8 +63,8 @@ public class MenuManager : MonoBehaviour
 
         var sm = GameObject.FindFirstObjectByType<BootstrapSceneManager>();
 
-        sm.UnloadScene("Lobby");
-        sm.LoadLoadingThenMap("Map1_Part1");
+        // sm.UnloadScene("Lobby");
+        // sm.LoadLoadingThenMap("Map1_Part1");
     }
 
     #endregion

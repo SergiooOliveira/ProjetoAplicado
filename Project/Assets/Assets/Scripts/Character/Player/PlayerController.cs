@@ -1,11 +1,10 @@
-using FishNet.Object;
 using System.Linq;
 using TMPro;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : NetworkBehaviour
+public class PlayerController : MonoBehaviour
 {
     #region Global Variables
     private Player player;
@@ -37,16 +36,16 @@ public class PlayerController : NetworkBehaviour
     #endregion
 
     #region Unity Methods
-    public override void OnStartClient()
-    {
-        //Debug.Log("test owner");
-        if (IsOwner)
-        {
-            //Debug.Log("owner true");
-            GetComponent<PlayerInput>().enabled = true;
-        }
+    // public override void OnStartClient()
+    // {
+    //     //Debug.Log("test owner");
+    //     if (IsOwner)
+    //     {
+    //         //Debug.Log("owner true");
+    //         GetComponent<PlayerInput>().enabled = true;
+    //     }
             
-    }
+    // }
 
     private void Awake()
     {
@@ -74,8 +73,8 @@ public class PlayerController : NetworkBehaviour
         if (!isFacingRight && horizontal > 0f) Flip();
         else if (isFacingRight && horizontal < 0f) Flip();
 
-        if (!IsOwner)
-            return;
+        // if (!IsOwner)
+        //     return;
 
         // Collect input every frame
         horizontal = Input.GetAxisRaw("Horizontal");

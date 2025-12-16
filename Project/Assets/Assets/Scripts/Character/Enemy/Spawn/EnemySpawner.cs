@@ -1,4 +1,3 @@
-using FishNet.Object;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -68,14 +67,14 @@ public class EnemySpawner : MonoBehaviour
     private void TryFindLocalPlayer()
     {
         // Multiplayer
-        foreach (var netObj in FindObjectsByType<NetworkObject>(FindObjectsSortMode.None))
-        {
-            if (netObj != null && netObj.CompareTag("Player") && netObj.IsOwner)
-            {
-                player = netObj.transform;
-                return;
-            }
-        }
+        // foreach (var netObj in FindObjectsByType<NetworkObject>(FindObjectsSortMode.None))
+        // {
+        //     if (netObj != null && netObj.CompareTag("Player") && netObj.IsOwner)
+        //     {
+        //         player = netObj.transform;
+        //         return;
+        //     }
+        // }
 
         // Singleplayer fallback
         var spPlayer = GameObject.FindWithTag("Player");
@@ -252,7 +251,7 @@ public class EnemySpawner : MonoBehaviour
     {
         BootstrapSceneManager sm = GameObject.FindFirstObjectByType<BootstrapSceneManager>();
         // Call the method to load the SelectMap scene
-        sm.LoadScene("SelectMap");
+        // sm.LoadScene("SelectMap");
     }
 
     #endregion

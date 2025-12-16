@@ -1,6 +1,3 @@
-using FishNet;
-using FishNet.Connection;
-using FishNet.Managing.Scened;
 using System.Collections;
 using System.Linq;
 using UnityEngine;
@@ -27,7 +24,7 @@ public class BootstrapSceneManager : MonoBehaviour
     {
         LoadSceneLocal("StartMenu");
 
-        InstanceFinder.SceneManager.OnLoadEnd += OnScenesLoaded;
+        // InstanceFinder.SceneManager.OnLoadEnd += OnScenesLoaded;
     }
 
     #endregion
@@ -54,76 +51,76 @@ public class BootstrapSceneManager : MonoBehaviour
 
     #region Load / Unload With Host / Client
 
-    public void LoadScene(string sceneName)
-    {
-        if (!InstanceFinder.IsServerStarted)
-            return;
+    // public void LoadScene(string sceneName)
+    // {
+    //     if (!InstanceFinder.IsServerStarted)
+    //         return;
 
-        SceneLoadData sld = new SceneLoadData(sceneName);
-        InstanceFinder.SceneManager.LoadGlobalScenes(sld);
-    }
+    //     SceneLoadData sld = new SceneLoadData(sceneName);
+    //     InstanceFinder.SceneManager.LoadGlobalScenes(sld);
+    // }
 
-    public void UnloadScene(string sceneName)
-    {
-        if (!InstanceFinder.IsServerStarted)
-            return;
+    // public void UnloadScene(string sceneName)
+    // {
+    //     if (!InstanceFinder.IsServerStarted)
+    //         return;
 
-        SceneUnloadData sld = new SceneUnloadData(sceneName);
-        InstanceFinder.SceneManager.UnloadGlobalScenes(sld);
-    }
+    //     SceneUnloadData sld = new SceneUnloadData(sceneName);
+    //     InstanceFinder.SceneManager.UnloadGlobalScenes(sld);
+    // }
 
     #endregion
 
     #region On Scene Load
 
-    private void OnScenesLoaded(SceneLoadEndEventArgs args)
-    {
-        if (!InstanceFinder.IsServerStarted)
-            return;
+    // private void OnScenesLoaded(SceneLoadEndEventArgs args)
+    // {
+    //     if (!InstanceFinder.IsServerStarted)
+    //         return;
 
-        if (args.LoadedScenes == null || args.LoadedScenes.Count() == 0)
-            return;
+    //     if (args.LoadedScenes == null || args.LoadedScenes.Count() == 0)
+    //         return;
 
-        string sceneName = args.LoadedScenes[0].name;
+    //     string sceneName = args.LoadedScenes[0].name;
 
-        if (sceneName == "StartMenu" || sceneName == "Loading")
-            return; // does nothing
+    //     if (sceneName == "StartMenu" || sceneName == "Loading")
+    //         return; // does nothing
 
-        var newScene = SceneManager.GetSceneByName(sceneName);
-        if (newScene.IsValid())
-        {
-            SceneManager.SetActiveScene(newScene);
-        }
+    //     var newScene = SceneManager.GetSceneByName(sceneName);
+    //     if (newScene.IsValid())
+    //     {
+    //         SceneManager.SetActiveScene(newScene);
+    //     }
 
-        // Update spawn points
-        SpawnPointMarker[] markers = GameObject.FindObjectsByType<SpawnPointMarker>(FindObjectsSortMode.None);
-        spawner.spawnPoints = markers.Select(s => s.transform).ToArray();
+    //     // Update spawn points
+    //     SpawnPointMarker[] markers = GameObject.FindObjectsByType<SpawnPointMarker>(FindObjectsSortMode.None);
+    //     spawner.spawnPoints = markers.Select(s => s.transform).ToArray();
 
-        // Spawn players
-        StartCoroutine(FinishLoadAndSpawn());
-    }
+    //     // Spawn players
+    //     StartCoroutine(FinishLoadAndSpawn());
+    // }
 
     #endregion
 
     #region Load Scenes Using Loading
 
-    public void LoadLoadingThenMap(string targetMap)
-    {
-        StartCoroutine(LoadLoadingThenMapRoutine(targetMap));
-    }
+    // public void LoadLoadingThenMap(string targetMap)
+    // {
+    //     StartCoroutine(LoadLoadingThenMapRoutine(targetMap));
+    // }
 
-    private IEnumerator LoadLoadingThenMapRoutine(string targetMap)
-    {
-        // 1. Load LOADING scene
-        SceneLoadData loadLoading = new SceneLoadData("Loading");
-        InstanceFinder.SceneManager.LoadGlobalScenes(loadLoading);
+    // private IEnumerator LoadLoadingThenMapRoutine(string targetMap)
+    // {
+    //     // 1. Load LOADING scene
+    //     SceneLoadData loadLoading = new SceneLoadData("Loading");
+    //     InstanceFinder.SceneManager.LoadGlobalScenes(loadLoading);
 
-        yield return new WaitUntil(() => SceneManager.GetSceneByName("Loading").isLoaded);
+    //     yield return new WaitUntil(() => SceneManager.GetSceneByName("Loading").isLoaded);
 
-        // 2. Load the actual map
-        SceneLoadData loadMap = new SceneLoadData(targetMap);
-        InstanceFinder.SceneManager.LoadGlobalScenes(loadMap);
-    }
+    //     // 2. Load the actual map
+    //     SceneLoadData loadMap = new SceneLoadData(targetMap);
+    //     InstanceFinder.SceneManager.LoadGlobalScenes(loadMap);
+    // }
 
     #endregion
 
@@ -138,11 +135,11 @@ public class BootstrapSceneManager : MonoBehaviour
                                          .Select(s => s.transform)
                                          .ToArray();
 
-        foreach (NetworkConnection conn in InstanceFinder.ServerManager.Clients.Values)
-        {
-            spawner.CaptureSpawnPointsFromScene();
-            spawner.SpawnPlayer(conn);
-        }
+        // foreach (NetworkConnection conn in InstanceFinder.ServerManager.Clients.Values)
+        // {
+        //     spawner.CaptureSpawnPointsFromScene();
+        //     spawner.SpawnPlayer(conn);
+        // }
 
         // Remove LOADING
         yield return new WaitForSeconds(0.1f);
@@ -153,11 +150,11 @@ public class BootstrapSceneManager : MonoBehaviour
     {
         var loadingScene = SceneManager.GetSceneByName("Loading");
 
-        if (loadingScene.isLoaded)
-        {
-            InstanceFinder.SceneManager.UnloadGlobalScenes(new SceneUnloadData("Loading"));
-            SceneManager.UnloadSceneAsync("Loading");
-        }
+        // if (loadingScene.isLoaded)
+        // {
+        //     InstanceFinder.SceneManager.UnloadGlobalScenes(new SceneUnloadData("Loading"));
+        //     SceneManager.UnloadSceneAsync("Loading");
+        // }
     }
 
     #endregion

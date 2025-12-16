@@ -2,13 +2,13 @@
 - Project name: Project
 - Unity version: Unity 6000.0.58f1
 - Active scene:
-  - Name: Map1_Part1
+  - Name: Player
   - Tags:
-    - Untagged, Respawn, Finish, EditorOnly, MainCamera, Player, GameController, Grimoire, Enemy, Interactable, Grid
+    - Untagged, Respawn, Finish, EditorOnly, MainCamera, Player, GameController
   - Layers:
-    - Default, TransparentFX, Ignore Raycast, Player, Water, UI, Spell, Ground, Boss, Buff, Enemy
+    - Default, TransparentFX, Ignore Raycast, Water, UI
 - Active game object:
-  - Name: Enviar
-  - Tag: Untagged
-  - Layer: UI
+  - Name: Player
+  - Tag: Player
+  - Layer: 3
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->
