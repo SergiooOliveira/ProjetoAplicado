@@ -15,6 +15,7 @@ public class SpellHomingMissile : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 initialDirection;
     private float lifetime;
+    private GameObject vfx;
 
     public float TargetSearchRadious => targetSearchRadious;
 
@@ -67,9 +68,11 @@ public class SpellHomingMissile : MonoBehaviour
         if (enemy != null) Debug.Log("Enemy not null");
 
         if (spellData.ImpactVFX != null)
-            Instantiate(spellData.ImpactVFX, collision.ClosestPoint(transform.position), Quaternion.identity);
+            vfx = Instantiate(spellData.ImpactVFX, collision.ClosestPoint(transform.position), Quaternion.identity);
 
         spellData.OnHit(caster, collision);
+
+        Destroy(vfx, 0.5f);
         Destroy(gameObject);
     }
 
