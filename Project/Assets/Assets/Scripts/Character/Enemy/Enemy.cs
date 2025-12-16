@@ -352,17 +352,13 @@ public class Enemy : MonoBehaviour
     /// </summary>
     public void ApplyDamage(Collider2D other)
     {
-        Debug.Log($"Colliding with: {other.name}");
-
         if (!other.TryGetComponent<Player>(out Player player)) return;
         runTimePlayerData = player.RunTimePlayerData;
 
         if (runTimePlayerData == null) return;
 
         int totalDamage = Mathf.RoundToInt(runtimeData.CharacterAttackPower * (currentAttack.damage / 100f));
-
-        Debug.Log($"Damage: {totalDamage}");
-
+        
         runTimePlayerData.CharacterHp.TakeDamage(totalDamage);
         player.playerHUDManager.SetHPBar((float)runTimePlayerData.CharacterHp.Current / runTimePlayerData.CharacterHp.Max);
     }
