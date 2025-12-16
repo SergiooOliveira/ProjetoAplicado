@@ -5172,7 +5172,7 @@ MonoBehaviour:
   roomNameText: {fileID: 670382721}
   playerCountText: {fileID: 2102489677}
   playerListContent: {fileID: 1791393452}
-  playerListItemPrefab: {fileID: 2199203831172894514, guid: c27aaf0fc1af7184d84cc67b8e307f00, type: 3}
+  playerListItemPrefab: {fileID: 1870835462058431626, guid: 7cf2301ad27150c468d7e6f63c620eca, type: 3}
   startGameButton: {fileID: 1830050500}
   leaveRoomButton: {fileID: 657233851}
   errorMessageText: {fileID: 1933828713}
