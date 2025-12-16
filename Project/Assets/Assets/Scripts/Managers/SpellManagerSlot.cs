@@ -29,7 +29,7 @@ public class SpellManagerSlot : MonoBehaviour, IPointerEnterHandler, IPointerExi
     {
         if (s != null)
         {
-            Debug.Log($"Setting slot with spell: {s.RuntimeSpellData.SpellName}");
+            //Debug.Log($"Setting slot with spell: {s.RuntimeSpellData.SpellName}");
             spell = s;
             img_slot.enabled = true;
             img_slot.sprite = spell.RuntimeSpellData.SpellPrefab.GetComponent<SpriteRenderer>().sprite;
@@ -37,7 +37,7 @@ public class SpellManagerSlot : MonoBehaviour, IPointerEnterHandler, IPointerExi
         }
         else
         {
-            Debug.Log("Spell is empty");
+            //Debug.Log("Spell is empty");
             img_slot.enabled = false;
         }
     }
@@ -70,7 +70,7 @@ public class SpellManagerSlot : MonoBehaviour, IPointerEnterHandler, IPointerExi
     {
         if (eventData.button == PointerEventData.InputButton.Right)
         {
-            Debug.Log($"Right clicked on: {(spell != null ? spell.RuntimeSpellData.SpellName : entry.spell.RuntimeSpellData.SpellName)}");
+            //Debug.Log($"Right clicked on: {(spell != null ? spell.RuntimeSpellData.SpellName : entry.spell.RuntimeSpellData.SpellName)}");
 
             // Right click
             /*

@@ -11,6 +11,7 @@ public class SpellUpgrade : MonoBehaviour
     public void Initialize(Spell spell)
     {
         img_slot.sprite = spell.RuntimeSpellData.SpellPrefab.GetComponent<SpriteRenderer>().sprite;
+        img_slot.color = spell.RuntimeSpellData.SpellPrefab.GetComponent<SpriteRenderer>().color;
 
         // if player has enough materials to upgrade, show in green, else red and disabled
         // if spell is max level, show in grey and change text to "Max Level"

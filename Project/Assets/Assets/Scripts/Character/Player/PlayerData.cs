@@ -175,19 +175,18 @@ public class PlayerData : ScriptableObject, ICharacter
             Debug.Log("New active Spell is null");
         } else
         {
-            Debug.LogWarning($"Swaping {activeSpell.spell.RuntimeSpellData.SpellName} with {newActiveSpell.spell.RuntimeSpellData.SpellName}");            
+            //Debug.LogWarning($"Swaping {activeSpell.spell.RuntimeSpellData.SpellName} with {newActiveSpell.spell.RuntimeSpellData.SpellName}");            
             activeSpell.Deselect();
             newActiveSpell.Select();
 
             SetSlot(activeSpell.slot, activeSpell);
             SetSlot(newActiveSpell.slot, newActiveSpell);
 
-            foreach(SpellEntry entry in CharacterEquippedSpells)
-            {
-                if (entry.spell  != null)
-                    Debug.Log($"<Color=green>{entry.spell.RuntimeSpellData.SpellName}: {entry.isSelected}</Color>");
-            }
-            // TODO: Update Spell bar
+            //foreach(SpellEntry entry in CharacterEquippedSpells)
+            //{
+            //    if (entry.spell  != null)
+            //        Debug.Log($"<Color=green>{entry.spell.RuntimeSpellData.SpellName}: {entry.isSelected}</Color>");
+            //}            
         }
     }
 

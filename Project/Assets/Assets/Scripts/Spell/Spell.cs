@@ -31,7 +31,6 @@ public class Spell : MonoBehaviour
 
         if (spellData.SpellEffects != null)
         {
-            Debug.Log($"Initializing effects");
             foreach (SpellEffect effect in spellData.SpellEffects)
             {
                 SpellEffect clone = Instantiate(effect);

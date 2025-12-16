@@ -156,7 +156,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: a5340577969446946b668f45830ee966, type: 2}
-  hitboxes: []
+  hitboxes:
+  - {fileID: 1341704219239329036}
   playerLayer:
     serializedVersion: 2
     m_Bits: 8

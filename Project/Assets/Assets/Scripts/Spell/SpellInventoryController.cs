@@ -16,6 +16,12 @@ public class SpellInventoryController : MonoBehaviour
     private void OnEnable()
     {
         UpdateUI();
+        GameManager.Instance.TogglePause(true);
+    }
+
+    private void OnDisable()
+    {
+        GameManager.Instance.TogglePause(false);
     }
 
     private void SetAllSlot()
@@ -30,7 +36,7 @@ public class SpellInventoryController : MonoBehaviour
                 if (i < player.CharacterSpells.Count)
                 {
                     // Spell exist
-                    Debug.Log($"Setting spell slot {i} with spell: {player.CharacterSpells[i].RuntimeSpellData.SpellName}");
+                    //Debug.Log($"Setting spell slot {i} with spell: {player.CharacterSpells[i].RuntimeSpellData.SpellName}");
                     sms.SetSlot(player.CharacterSpells[i]);
                 }
                 else
