@@ -29,18 +29,18 @@ public class PlayerHUDManager : MonoBehaviour
         playerData = GetComponentInParent<Player>().RunTimePlayerData;
     }
 
-    public void SetHPValues(float amount)
+    public void SetHPBar(float amount)
     {
-        targetHPFill = Mathf.Clamp01(amount);        
+        targetHPFill = Mathf.Clamp01(amount);
     }
 
-    public void SetManaValues(float amount)
+    public void SetManaBar(float amount)
     {
         targetManaFill = Mathf.Clamp01(amount);
-        Debug.Log($"targetManaFill: {targetManaFill}");
+        //Debug.Log($"targetManaFill: {targetManaFill}");
     }
 
-    public void SetXPValues(float amount)
+    public void SetXPBar(float amount)
     {
         targetXPFill += amount;
         //Debug.Log($"<Color=Lime>targetXPFill: {targetXPFill}</Color>");

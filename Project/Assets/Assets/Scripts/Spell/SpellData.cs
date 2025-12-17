@@ -25,6 +25,9 @@ public class SpellData : ScriptableObject, ISpell
     [Header("Effects")]
     [SerializeField] private List<ScriptableObject> spellEffects;
 
+    [Header("Upgrades")]
+    [SerializeField] private List<SpellUpgradeLevel> upgradeLevels;
+
     // Runtime Variables
     private List<ScriptableObject> runtimeEffects;
     private float currentMultiplier = 1f;
@@ -51,6 +54,9 @@ public class SpellData : ScriptableObject, ISpell
 
     // *----- Effects -----*
     public IReadOnlyList<ScriptableObject> SpellEffects => runtimeEffects;
+
+    // *----- Upgrades -----*
+    public List<SpellUpgradeLevel> SpellUpgradeLevels => upgradeLevels;
     #endregion
 
     public void Initialize()

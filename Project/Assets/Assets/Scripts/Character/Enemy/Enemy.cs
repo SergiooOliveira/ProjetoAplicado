@@ -219,12 +219,13 @@ public class Enemy : MonoBehaviour
     }
 
     public void AttackPlayer()
-    {
+    {        
         if (isAttacking) return;
         isAttacking = true;
 
         // Pick attack from runtimeData.Attacks
         currentAttack = GetRandomAttack();
+
         if (animator != null) animator.SetTrigger(currentAttack.triggerName);
 
         // Attack flow: Animation event should call ApplyAttackDamage() and reset isAttacking = false
@@ -351,15 +352,15 @@ public class Enemy : MonoBehaviour
     /// </summary>
     public void ApplyDamage(Collider2D other)
     {
-        runTimePlayerData = other.GetComponent<Player>().RunTimePlayerData;
+        if (!other.TryGetComponent<Player>(out Player player)) return;
+        runTimePlayerData = player.RunTimePlayerData;
 
         if (runTimePlayerData == null) return;
 
         int totalDamage = Mathf.RoundToInt(runtimeData.CharacterAttackPower * (currentAttack.damage / 100f));
-
-        //Debug.Log($"Damage: {totalDamage}");
-
+        
         runTimePlayerData.CharacterHp.TakeDamage(totalDamage);
+        player.playerHUDManager.SetHPBar((float)runTimePlayerData.CharacterHp.Current / runTimePlayerData.CharacterHp.Max);
     }
 
     #endregion
@@ -496,7 +497,7 @@ public class Enemy : MonoBehaviour
         player.RunTimePlayerData.AddGold(RunTimeData.CharacterGold);
 
         // Add xp to player
-        player.playerHUDManager.SetXPValues((float)RunTimeData.CharacterXp.Max / player.RunTimePlayerData.CharacterXp.Max);
+        player.playerHUDManager.SetXPBar((float)RunTimeData.CharacterXp.Max / player.RunTimePlayerData.CharacterXp.Max);
         player.RunTimePlayerData.CharacterXp.AddExperience(player.RunTimePlayerData, RunTimeData.CharacterXp.Max);                
 
         // Destroy EnemyHUD
