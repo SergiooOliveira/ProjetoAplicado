@@ -24,7 +24,6 @@ public class LobbyUI : MonoBehaviour
     [Header("Lobby Panel - Botões")]
     [SerializeField] private Button createRoomButton;
     [SerializeField] private Button joinRoomButton;
-    [SerializeField] private Button joinRandomButton;
     [SerializeField] private Button refreshRoomsButton;
 
     [Header("Lobby Panel - Inputs")]
@@ -126,9 +125,6 @@ public void Initialize(LobbyManager manager)
 
         if (joinRoomButton != null)
             joinRoomButton.onClick.AddListener(OnJoinRoomButtonClicked);
-
-        if (joinRandomButton != null)
-            joinRandomButton.onClick.AddListener(OnJoinRandomButtonClicked);
 
         if (refreshRoomsButton != null)
             refreshRoomsButton.onClick.AddListener(OnRefreshButtonClicked);

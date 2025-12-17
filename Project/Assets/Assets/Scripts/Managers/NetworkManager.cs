@@ -155,7 +155,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         // MOSTRA O ESTADO A CADA 5 SEGUNDOS
         if (Time.frameCount % 300 == 0) // ~5 segundos a 60 FPS
         {
-            UnityEngine.Debug.Log($"[NetworkManager] ligado: {PhotonNetwork.IsConnected} | Na sala: {PhotonNetwork.InRoom}");
+            // UnityEngine.Debug.Log($"[NetworkManager] ligado: {PhotonNetwork.IsConnected} | Na sala: {PhotonNetwork.InRoom}");
         }
     }
 

@@ -1773,7 +1773,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameSceneName: Game
   maxPlayersPerRoom: 4
-  lobbyUI: {fileID: 0}
+  lobbyUI: {fileID: 1973004238}
 --- !u!1 &647464195
 GameObject:
   m_ObjectHideFlags: 0
@@ -2613,7 +2613,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &804164179
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3275,7 +3275,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1355984450
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5168,7 +5168,7 @@ MonoBehaviour:
   roomNameInput: {fileID: 895717064}
   joinRoomNameInput: {fileID: 160048128}
   roomListContent: {fileID: 1685664993}
-  roomListItemPrefab: {fileID: 6429503833933000932, guid: a28b6d09a9419074884f56b6960e7480, type: 3}
+  roomListItemPrefab: {fileID: 1004340071900812133, guid: 768d918f1e251d14db077b1c88d109c5, type: 3}
   roomNameText: {fileID: 670382721}
   playerCountText: {fileID: 2102489677}
   playerListContent: {fileID: 1791393452}
