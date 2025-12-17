@@ -80,15 +80,15 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         UnityEngine.Debug.Log("NetworkManager: Saiu da sala");
     }
 
-    // public override void OnPlayerEnteredRoom(Player newPlayer)
-    // {
-    //     UnityEngine.Debug.Log($"NetworkManager: {newPlayer.NickName} entrou na sala");
-    // }
+    public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)
+    {
+        UnityEngine.Debug.Log($"NetworkManager: {newPlayer.NickName} entrou na sala");
+    }
 
-    // public override void OnPlayerLeftRoom(Player otherPlayer)
-    // {
-    //     UnityEngine.Debug.Log($"NetworkManager: {otherPlayer.NickName} saiu da sala");
-    // }
+    public override void OnPlayerLeftRoom(Photon.Realtime.Player otherPlayer)
+    {
+        UnityEngine.Debug.Log($"NetworkManager: {otherPlayer.NickName} saiu da sala");
+    }
 
     #endregion
 
@@ -155,7 +155,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         // MOSTRA O ESTADO A CADA 5 SEGUNDOS
         if (Time.frameCount % 300 == 0) // ~5 segundos a 60 FPS
         {
-            // UnityEngine.Debug.Log($"[NetworkManager] ligado: {PhotonNetwork.IsConnected} | Na sala: {PhotonNetwork.InRoom}");
+            UnityEngine.Debug.Log($"[NetworkManager] ligado: {PhotonNetwork.IsConnected} | Na sala: {PhotonNetwork.InRoom}");
         }
     }
 
