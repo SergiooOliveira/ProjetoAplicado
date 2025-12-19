@@ -21,4 +21,9 @@ public class HealEffect : SpellEffect
             return;
         }
     }
+
+    public override string AddEffectString()
+    {
+        return $"Add Heal Effect";
+    }
 }

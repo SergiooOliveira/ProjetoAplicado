@@ -24,6 +24,11 @@ public class ArmorBreakEffect : SpellEffect
         enemy.StartCoroutine(ApplyDefenseBreak(enemy));        
     }
 
+    public override string AddEffectString()
+    {
+        return $"Add Armor Break Effect";
+    }
+
     public IEnumerator ApplyDefenseBreak(Enemy enemy)
     {
         enemy.RunTimeData.AddBonusDefense(-armorReduce);

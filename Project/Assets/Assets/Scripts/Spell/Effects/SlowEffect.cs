@@ -20,6 +20,11 @@ public class SlowEffect : SpellEffect
         enemy.StartCoroutine(ApplySlow(enemy));
     }
 
+    public override string AddEffectString()
+    {
+        return $"Add Slow Effect";
+    }
+
     private IEnumerator ApplySlow(Enemy enemy)
     {
         enemy.RunTimeData.AddBonusMovementSpeed(-slowPercent);

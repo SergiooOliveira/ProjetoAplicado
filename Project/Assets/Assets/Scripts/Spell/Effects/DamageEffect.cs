@@ -38,4 +38,9 @@ public class DamageEffect : SpellEffect
 
         enemy.TakeDamage(context);
     }
+
+    public override string AddEffectString()
+    {
+        return $"Add Damage Effect";
+    }
 }
