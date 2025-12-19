@@ -26,6 +26,7 @@ public class SpellData : ScriptableObject, ISpell
     [SerializeField] private List<ScriptableObject> spellEffects;
 
     [Header("Upgrades")]
+    [SerializeField][Min(1)] private int spellLevel;
     [SerializeField] private List<SpellUpgradeLevel> upgradeLevels;
 
     // Runtime Variables
@@ -56,6 +57,7 @@ public class SpellData : ScriptableObject, ISpell
     public IReadOnlyList<ScriptableObject> SpellEffects => runtimeEffects;
 
     // *----- Upgrades -----*
+    public int SpellLevel => spellLevel;
     public List<SpellUpgradeLevel> SpellUpgradeLevels => upgradeLevels;
     #endregion
 

@@ -10,6 +10,8 @@ public class SpellUpgrade : MonoBehaviour
 
     public void Initialize(Spell spell)
     {
+        Debug.Log($"Spell level: {spell.RuntimeSpellData.SpellLevel}");
+
         img_slot.sprite = spell.RuntimeSpellData.SpellPrefab.GetComponent<SpriteRenderer>().sprite;
         img_slot.color = spell.RuntimeSpellData.SpellPrefab.GetComponent<SpriteRenderer>().color;
 

@@ -6,6 +6,7 @@ public class SpellUpgradeLevel
 {
     [Header("Cost")]
     [SerializeField] private int costGold;
+    [SerializeField] private List<ItemCost> itemCost;
 
     [Header("Upgrades")]
     [SerializeField] private float bonusCooldown;
