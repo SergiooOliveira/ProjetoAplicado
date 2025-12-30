@@ -22,8 +22,21 @@ public class HealEffect : SpellEffect
         }
     }
 
+    public override string GetEffectID()
+    {
+        return "Heal";
+    }
+
     public override string AddEffectString()
     {
-        return $"Add Heal Effect";
+        return $"+ {amount} heal";
+    }
+
+    public override void Refresh(SpellEffect newSpellEffect)
+    {
+        if (newSpellEffect is HealEffect heal)
+        {
+            this.amount += heal.amount;
+        }
     }
 }

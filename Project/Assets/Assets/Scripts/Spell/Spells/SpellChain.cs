@@ -32,10 +32,10 @@ public class SpellChain : MonoBehaviour
     public void Initialize(SpellData spell, Player caster)
     {
         this.runtimeSpellData = Instantiate(spell);
+        this.runtimeSpellData.Initialize();
+
         this.caster = caster;
         this.lineRenderer = GetComponent<LineRenderer>();
-
-        this.runtimeSpellData.Initialize();
 
         // Initial lineRenderer setup
         lineRenderer.positionCount = 2;

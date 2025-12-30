@@ -37,7 +37,7 @@ public class NPCItemManager : MonoBehaviour
     {
         if (npc == null)
         {
-            Debug.Log($"NPC {npc.npcData.NPCName} is null");
+            Debug.Log($"NPC {npc.RuntimeData.NPCName} is null");
             return;
         }
 
@@ -45,6 +45,8 @@ public class NPCItemManager : MonoBehaviour
         {
             if (!entry.item.RunTimeItemData.IsItemSellable) continue;
             if (entry.quantity <= 0) continue;
+
+            //Debug.Log($"Setting buy slot: {entry.item.RunTimeItemData.ItemName}");
 
             GameObject newSlot = Instantiate(itemBuySlot, itemList);
 
@@ -57,6 +59,8 @@ public class NPCItemManager : MonoBehaviour
         {
             if (!entry.equipment.RunTimeEquipmentData.IsItemSellable) continue;
             if (entry.quantity <= 0) continue;
+
+            //Debug.Log($"Setting buy slot: {entry.equipment.RunTimeEquipmentData.ItemName}");
 
             GameObject newSlot = Instantiate(itemBuySlot, itemList);
 
@@ -91,6 +95,7 @@ public class NPCItemManager : MonoBehaviour
 
         foreach (EquipmentEntry entry in playerData.CharacterEquipment)
         {
+            //Debug.Log($"<Color=red>{entry.equipment.RunTimeEquipmentData.ItemName} is {(entry.isEquipped ? "equipped" : "not equipped")}</Color>");
             if (!entry.equipment.RunTimeEquipmentData.IsItemSellable) continue;
             if (entry.quantity <= 0) continue;
             if (entry.isEquipped) continue;

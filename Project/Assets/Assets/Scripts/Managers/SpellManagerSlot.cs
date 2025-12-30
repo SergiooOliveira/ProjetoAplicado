@@ -95,7 +95,7 @@ public class SpellManagerSlot : MonoBehaviour, IPointerEnterHandler, IPointerExi
         else if (eventData.button == PointerEventData.InputButton.Left)
         {
             if (upgradeSlot.TryGetComponent<SpellUpgrade>(out SpellUpgrade su))
-                su.Initialize(spell);
+                su.Initialize(spell, playerData);
         }
     }
 

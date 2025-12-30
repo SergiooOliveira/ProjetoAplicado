@@ -20,9 +20,14 @@ public class SlowEffect : SpellEffect
         enemy.StartCoroutine(ApplySlow(enemy));
     }
 
+    public override string GetEffectID()
+    {
+        return "Slow";
+    }
+
     public override string AddEffectString()
     {
-        return $"Add Slow Effect";
+        return $"+ {slowPercent} slow for {duration} seconds";
     }
 
     private IEnumerator ApplySlow(Enemy enemy)
@@ -36,5 +41,14 @@ public class SlowEffect : SpellEffect
         Debug.Log($"Enemy movement speed: <Color=red>{enemy.RunTimeData.CharacterMovementSpeed}</Color>");
 
         enemy.appliedEffects.Remove(this);
+    }
+
+    public override void Refresh(SpellEffect newSpellEffect)
+    {
+        if (newSpellEffect is SlowEffect slow)
+        {
+            this.slowPercent += slow.slowPercent;
+            this.duration += slow.duration;
+        }
     }
 }

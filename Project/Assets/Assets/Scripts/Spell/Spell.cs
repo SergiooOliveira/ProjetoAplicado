@@ -8,45 +8,46 @@ public class Spell : MonoBehaviour
 
     public SpellData RuntimeSpellData => runtimeSpellData;
 
-    private List<ScriptableObject> runtimeSpellEffects;
+    //private List<ScriptableObject> runtimeSpellEffects;
     private float currentMultiplier = 1f;
 
-    public Spell(SpellData spellData)
-    {
-        this.spellData = spellData;
-        this.runtimeSpellEffects = new List<ScriptableObject>();
+    //public Spell(SpellData spellData)
+    //{
+    //    this.spellData = spellData;
+    //    this.runtimeSpellEffects = new List<ScriptableObject>();
 
-        foreach(SpellEffect effect in spellData.SpellEffects)
-        {
-            runtimeSpellEffects.Add(Object.Instantiate(effect));
-        }
-    }
+    //    foreach (SpellEffect effect in spellData.SpellEffects)
+    //    {
+    //        runtimeSpellEffects.Add(Object.Instantiate(effect));
+    //    }
+    //}
 
     public void InitializeRuntimeData()
     {
         if (spellData == null) return;
 
         runtimeSpellData = ScriptableObject.Instantiate(spellData);
-        List<ScriptableObject> instantiatedEffects = new List<ScriptableObject>();
+        runtimeSpellData.Initialize();
 
-        if (spellData.SpellEffects != null)
-        {
-            foreach (SpellEffect effect in spellData.SpellEffects)
-            {
-                SpellEffect clone = Instantiate(effect);
+        //if (runtimeSpellData.SpellEffects == null)
+        //{
+        //    Debug.Log($"{runtimeSpellData.SpellName} has effects");
+        //    foreach (SpellEffect effect in spellData.SpellEffects)
+        //    {
+        //        SpellEffect clone = Instantiate(effect);
 
-                if (clone is DamageEffect dmgEffect)
-                {
-                    dmgEffect.Initialize();
-                }
+        //        if (clone is DamageEffect dmgEffect)
+        //        {
+        //            dmgEffect.Initialize();
+        //        }
 
-                instantiatedEffects.Add(clone);
-            }
-        }
-        else
-        {
-            Debug.Log($"{runtimeSpellData.SpellName} has no effects");
-        }
+        //        instantiatedEffects.Add(clone);
+        //    }
+        //}
+        //else
+        //{
+        //    Debug.Log($"{runtimeSpellData.SpellName} has no effects");
+        //}
     }
 
     public void SetMultiplier(float multiplier)
@@ -61,7 +62,7 @@ public class Spell : MonoBehaviour
 
     public void OnHit(Player caster, Collider2D target)
     {        
-        foreach (SpellEffect effect in runtimeSpellEffects)
+        foreach (SpellEffect effect in spellData.SpellEffects)
         {
             if (effect is DamageEffect damageEffect)
             {

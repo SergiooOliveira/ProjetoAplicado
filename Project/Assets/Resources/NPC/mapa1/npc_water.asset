@@ -14,7 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   npcName: Merchant
   npcPrefab: {fileID: 3020755681615273721, guid: 28961f88c1d287c4d9750bb9ee8f3ca7, type: 3}
-  npcInventory: []
+  npcInventory:
+  - item: {fileID: 7362672995192851571, guid: 0c58a3701768c7147a2732ac37b4d9e8, type: 3}
+    quantity: 10
+    isGuarantee: 0
   npcEquipment:
   - equipment: {fileID: 757658082841171293, guid: 79ac6aad41a12304eaa6c9f9185b55d3, type: 3}
     quantity: 1
