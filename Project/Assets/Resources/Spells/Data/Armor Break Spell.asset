@@ -17,14 +17,15 @@ MonoBehaviour:
   spellPrefab: {fileID: 630829662884969359, guid: ea3e5071ab8174c4aaf293ad087d1e00, type: 3}
   spellTag: 0
   spellAfinity: 0
-  spellCooldown: 0
+  spellCooldown: 10
   spellCost: 10
-  spellCastTime: 0
+  spellCastTime: 1
   spellManaCostType: 0
   spellCastType: 0
   spellImpactType: 2
   spellEffects:
   - {fileID: 11400000, guid: 61ee28e95f45af04cb102bfbf5f287f4, type: 2}
+  - {fileID: 11400000, guid: 9fb9c6fbf202605468acbbcfba50e454, type: 2}
   spellLevel: 0
   upgradeLevels:
   - costGold: 100
@@ -34,3 +35,10 @@ MonoBehaviour:
     bonusCastTime: 1
     bonusEffects:
     - {fileID: 11400000, guid: 7e2ca9e7649f87f49b54c835519d8b3c, type: 2}
+  - costGold: 100
+    upgradeItemCost: []
+    bonusCooldown: 1
+    bonusManaCost: -10
+    bonusCastTime: 1
+    bonusEffects:
+    - {fileID: 11400000, guid: 0f59993b5bb758840a805dc49876e5ac, type: 2}
