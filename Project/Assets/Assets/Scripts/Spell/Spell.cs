@@ -50,30 +50,30 @@ public class Spell : MonoBehaviour
         //}
     }
 
-    public void SetMultiplier(float multiplier)
-    {
-        this.currentMultiplier = multiplier;
-    }
+    //public void SetMultiplier(float multiplier)
+    //{
+    //    this.currentMultiplier = multiplier;
+    //}
 
-    public float GetCurrentCost()
-    {
-        return spellData.SpellCost * currentMultiplier;
-    }
+    //public float GetCurrentCost()
+    //{
+    //    return spellData.SpellCost * currentMultiplier;
+    //}
 
-    public void OnHit(Player caster, Collider2D target)
-    {        
-        foreach (SpellEffect effect in spellData.SpellEffects)
-        {
-            if (effect is DamageEffect damageEffect)
-            {
-                // TODO: Set damage value in damageEffect
-                //damageEffect. = damage;
-                damageEffect.Apply(caster, target);
-            }
-            else
-            {
-                effect.Apply(caster, target);
-            }
-        }
-    }
+    //public void OnHit(Player caster, Collider2D target)
+    //{        
+    //    foreach (SpellEffect effect in spellData.SpellEffects)
+    //    {
+    //        if (effect is DamageEffect damageEffect)
+    //        {
+    //            // TODO: Set damage value in damageEffect
+    //            //damageEffect. = damage;
+    //            damageEffect.Apply(caster, target);
+    //        }
+    //        else
+    //        {
+    //            effect.Apply(caster, target);
+    //        }
+    //    }
+    //}
 }

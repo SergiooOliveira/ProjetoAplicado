@@ -70,9 +70,8 @@ public class SpellData : ScriptableObject, ISpell
         foreach (SpellEffect original in spellEffects)
         {
             SpellEffect clone = Instantiate(original);
-
-            if (clone is DamageEffect dmgEffect)
-                dmgEffect.Initialize();
+            
+            clone.Initialize();
 
             runtimeEffects.Add(clone);
         }
@@ -196,7 +195,7 @@ public class SpellData : ScriptableObject, ISpell
 
     public void OnHit(Player caster, Collider2D target)
     {
-        foreach (SpellEffect effect in spellEffects)
+        foreach (SpellEffect effect in runtimeEffects)
         {
             //Debug.Log($"OnHit effect: {effect}");
             if (effect != null)
