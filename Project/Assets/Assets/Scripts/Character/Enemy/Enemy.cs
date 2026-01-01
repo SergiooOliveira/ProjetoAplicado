@@ -51,6 +51,9 @@ public class Enemy : MonoBehaviour
 
     private bool isDead = false;
     private bool isAttacking = false;
+
+    private bool isFrozen = false;
+    private float freezeTimer = 0f;
     #endregion
 
     #region Unity Callbacks
@@ -121,7 +124,6 @@ public class Enemy : MonoBehaviour
     #endregion
 
     #region Senses
-
     void FindClosestPlayer()
     {
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, sightRange, playerLayer);
@@ -147,6 +149,28 @@ public class Enemy : MonoBehaviour
         {
             // If you use server/NetworkBehaviour
             // if (!IsServer) { yield return null; continue; }
+
+            if (isFrozen)
+            {
+                if (movement != null)
+                {
+                    movement.StopMovement();
+
+                    if (TryGetComponent<Rigidbody2D>(out Rigidbody2D rb))
+                    {
+                        rb.linearVelocity = Vector2.zero;
+                        rb.angularVelocity = 0f;
+                    }
+                }
+
+                if (animator != null)
+                {
+                    animator.SetFloat("Speed", 0f);
+                }
+
+                yield return new WaitForSeconds(0.1f);
+                continue;
+            }
 
             FindClosestPlayer();
 
@@ -188,7 +212,6 @@ public class Enemy : MonoBehaviour
     #endregion
 
     #region Movement / High-Level Actions
-
     public void Patrolling()
     {
         if (isAttacking || playerInSightRange)
@@ -528,6 +551,43 @@ public class Enemy : MonoBehaviour
     public void OnDeathAnimationEnd()
     {
         Destroy(gameObject);
+    }
+
+    public void ApplyFreeze(float duration)
+    {
+        // If already frozen, just reset the timer to the new duration (refresh)
+        if (isFrozen)
+        {
+            freezeTimer = duration;
+            return;
+        }
+
+        // Start freezing process
+        StartCoroutine(FreezeRoutine(duration));
+    }
+
+    private System.Collections.IEnumerator FreezeRoutine(float duration)
+    {
+        isFrozen = true;
+        freezeTimer = duration;
+
+        // 1. DISABLE MECHANICS HERE
+        Debug.Log($"{name} is frozen!");
+        // movementScript.enabled = false; // Stop moving
+        // animator.speed = 0; // Pause animation (optional effect)
+
+        // 2. Wait loop (allows timer to be refreshed externally)
+        while (freezeTimer > 0)
+        {
+            freezeTimer -= Time.deltaTime;
+            yield return null;
+        }
+
+        // 3. RE-ENABLE MECHANICS HERE
+        Debug.Log($"{name} thawed out.");
+        isFrozen = false;
+        // movementScript.enabled = true;
+        // animator.speed = 1;
     }
 
     #region Auxiliary methods

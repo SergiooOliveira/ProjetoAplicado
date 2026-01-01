@@ -126,7 +126,7 @@ public class NPCitemSlot : MonoBehaviour
             }
             else
             {
-                item = playerData.RemoveItem(item, 1);
+                playerData.RemoveItem(item, 1);
                 playerData.AddGold(item.item.RunTimeItemData.ItemSellValue);
 
                 if (item.quantity <= 0)

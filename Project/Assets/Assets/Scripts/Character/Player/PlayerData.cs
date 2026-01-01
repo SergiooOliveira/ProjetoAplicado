@@ -365,6 +365,7 @@ public class PlayerData : ScriptableObject, ICharacter
         //Debug.Log($"Adding {amount} gold to player");
         characterGold += amount;
     }
+
     #endregion
 
     #region Equipment Methods
@@ -374,9 +375,17 @@ public class PlayerData : ScriptableObject, ICharacter
     /// <param name="equipment">Equipment to add</param>
     public void EquipEquipment(EquipmentEntry equipment)
     {
-        equipment.Equip();
-        CharacterEquipedEquipment.Add(equipment);
-        AddEquipmentStats(equipment.equipment.RunTimeEquipmentData);
+        // Get index and EquipmentEntry
+        int index = CharacterEquipment.FindIndex(e => e.equipment.RunTimeEquipmentData.ItemName == equipment.equipment.RunTimeEquipmentData.ItemName);
+        EquipmentEntry eq = CharacterEquipment[index];
+        eq.Equip();
+
+        //Debug.Log($"Equipping {eq.equipment.RunTimeEquipmentData.ItemName}");
+        
+        CharacterEquipedEquipment.Add(eq);
+        AddEquipmentStats(eq.equipment.RunTimeEquipmentData);
+
+        CharacterEquipment[index] = eq;
     }
 
     /// <summary>
@@ -385,9 +394,19 @@ public class PlayerData : ScriptableObject, ICharacter
     /// <param name="equipment">Equipment to remove</param>
     public void UnequipEquipment(EquipmentEntry equipment)
     {
-        equipment.Unequip();
-        CharacterEquipedEquipment.RemoveAll(e => e.equipment.RunTimeEquipmentData.ItemName == equipment.equipment.RunTimeEquipmentData.ItemName);
-        RemoveEquipmentStats(equipment.equipment.RunTimeEquipmentData);
+        // Get index and EquipmentEntry
+        int index = CharacterEquipment.FindIndex(e => e.equipment.RunTimeEquipmentData.ItemName == equipment.equipment.RunTimeEquipmentData.ItemName);
+        EquipmentEntry eq = CharacterEquipment[index];
+
+        // Unequip
+        eq.Unequip();
+
+        // Remove from EquipedEquipment List and remove Stats
+        CharacterEquipedEquipment.RemoveAll(e => e.equipment.RunTimeEquipmentData.ItemName == eq.equipment.RunTimeEquipmentData.ItemName);
+        RemoveEquipmentStats(eq.equipment.RunTimeEquipmentData);
+
+        // Reasign EquipmentEntry to List
+        CharacterEquipment[index] = eq;
     }
 
     /// <summary>

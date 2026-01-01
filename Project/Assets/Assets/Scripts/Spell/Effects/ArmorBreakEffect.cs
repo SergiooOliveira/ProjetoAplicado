@@ -24,6 +24,16 @@ public class ArmorBreakEffect : SpellEffect
         enemy.StartCoroutine(ApplyDefenseBreak(enemy));        
     }
 
+    public override string GetEffectID()
+    {
+        return "Armor Break";
+    }
+
+    public override string AddEffectString()
+    {
+        return $"+ {armorReduce}% for {duration} seconds";
+    }
+
     public IEnumerator ApplyDefenseBreak(Enemy enemy)
     {
         enemy.RunTimeData.AddBonusDefense(-armorReduce);
@@ -35,5 +45,14 @@ public class ArmorBreakEffect : SpellEffect
         Debug.Log($"Reducing defense <Color=lime>{enemy.RunTimeData.CharacterDefense}</Color>");
 
         enemy.appliedEffects.Remove(this);
+    }
+
+    public override void Refresh(SpellEffect newSpellEffect)
+    {
+        if (newSpellEffect is ArmorBreakEffect abe)
+        {
+            this.armorReduce += abe.armorReduce;
+            this.duration += abe.duration;
+        }
     }
 }

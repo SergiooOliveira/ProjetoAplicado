@@ -4,12 +4,15 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
 public class SelfSpell : MonoBehaviour
 {
-    private SpellData spellData;
+    private SpellData runtimeSpellData;
     private Player caster;
-    
+
+    public SpellData RuntimeSpellData => runtimeSpellData;
     public void Initialize(SpellData spell, Player caster, Transform target)
     {
-        this.spellData = spell;
+        this.runtimeSpellData = Instantiate(spell);
+        this.runtimeSpellData.Initialize();
+
         this.caster = caster;        
     }
 
@@ -17,7 +20,7 @@ public class SelfSpell : MonoBehaviour
     {
         if (collision.CompareTag(GameManager.Instance.playerTag))
         {
-            spellData.OnHit(caster, collision);
+            runtimeSpellData.OnHit(caster, collision);
 
             Destroy(gameObject);
         }

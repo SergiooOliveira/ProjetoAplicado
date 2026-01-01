@@ -7,16 +7,20 @@ public class SpellPierce : MonoBehaviour
     [SerializeField] private float spellRange;
     [SerializeField] private float spellPierceAmount;
 
-    private SpellData spellData;
+    private SpellData runtimeSpellData;
     private Player caster;
     private Rigidbody2D rb;
     private float lifetime;
     private float counter = 0;
 
+    public SpellData RuntimeSpellData => runtimeSpellData;
+
     public void Initialize(SpellData spell, Vector2 dir, Player caster)
     {
-        this.spellData = spell;
+        this.runtimeSpellData = Instantiate(spell);
+        this.runtimeSpellData.Initialize();
         this.caster = caster;
+
         rb = GetComponent<Rigidbody2D>();
 
         if (rb != null)
@@ -38,7 +42,7 @@ public class SpellPierce : MonoBehaviour
         if (collision.CompareTag(GameManager.Instance.interactableTag)) return;
         if (collision.CompareTag(GameManager.Instance.gridTag)) { Destroy(gameObject); return; }        
 
-        spellData.OnHit(caster, collision);
+        runtimeSpellData.OnHit(caster, collision);
 
         counter++;
         if (counter >= spellPierceAmount)

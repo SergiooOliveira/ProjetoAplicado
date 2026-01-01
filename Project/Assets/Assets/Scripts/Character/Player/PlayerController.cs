@@ -147,7 +147,8 @@ public class PlayerController : NetworkBehaviour
     /// <param name="callbackContext"></param>
     public void OnMove(InputAction.CallbackContext callbackContext)
     {
-        //Debug.Log($"Carreguei no {callbackContext.ReadValue<Vector2>()}");
+        if (GameManager.Instance.isUiOpen) return;
+
         horizontal = callbackContext.ReadValue<Vector2>().x;
     }
 
@@ -157,10 +158,8 @@ public class PlayerController : NetworkBehaviour
     /// <param name="callbackContext"></param>
     public void OnJump(InputAction.CallbackContext callbackContext)
     {
-        //if (callbackContext.performed) Debug.Log($"Space Pressed");
-        //if (IsGrounded()) Debug.Log($"Space Pressed");
-
-        // Debug.Log("jump press");
+        if (GameManager.Instance.isUiOpen) return;
+        
         if (callbackContext.performed && IsGrounded())
         {
             //Debug.Log("Jumping");
