@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class Chest : MonoBehaviour
 {
@@ -7,11 +8,15 @@ public class Chest : MonoBehaviour
     public List<ChestData> chestData;
     public List<Spell> spellReward;
     private bool isOpened = false;
+    private Animator animator;
+    [SerializeField] private Light2D chestLight;
 
     public string ChestName => chestName;
 
     private void Awake()
     {
+        animator = GetComponent<Animator>();
+
         foreach (ChestData data in chestData)
         {
             if (data.DropObject != null)
@@ -69,6 +74,7 @@ public class Chest : MonoBehaviour
         }
 
         isOpened = true;
-        Destroy(gameObject);
+        animator.SetTrigger("Open");
+        Destroy(chestLight.gameObject, 2f);
     }
 }

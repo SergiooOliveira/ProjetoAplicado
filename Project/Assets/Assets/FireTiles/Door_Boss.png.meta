@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: 0389b178fc291f44bb1fbcd1c47848d6
+guid: fcf42842db45c2641a0a33016aa71934
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3930843188267102273
-    second: Lava_Boss_floor_0
+      213: -8282658699538101459
+    second: Door_Boss_0
+  - first:
+      213: 7003058117041469238
+    second: Door_Boss_1
+  - first:
+      213: 6087885893828123317
+    second: Door_Boss_2
+  - first:
+      213: 3304530999466990387
+    second: Door_Boss_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,67 +109,89 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Lava_Boss_floor_0
+      name: Door_Boss_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        y: 64
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.18, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 140bc60ad092d8630800000000000000
-      internalID: 3930843188267102273
+      spriteID: d2b8b32dbc51e0d80800000000000000
+      internalID: -8282658699538101459
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Lava_Boss_floor_1
+      name: Door_Boss_1
       rect:
         serializedVersion: 2
-        x: 16
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 48
+        y: 64
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.18, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: fa9f49d964aed9645ab49ecb756b01f5
-      internalID: 2007524771
+      spriteID: 6373cafe04cdf2160800000000000000
+      internalID: 7003058117041469238
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Lava_Boss_floor_2
+      name: Door_Boss_2
       rect:
         serializedVersion: 2
-        x: 32
+        x: 0
         y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.18, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: d6cf659caa702e146ae07ea128564231
-      internalID: 822205423
+      spriteID: 5ba9cb627f38c7450800000000000000
+      internalID: 6087885893828123317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Door_Boss_3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.18, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33b1f749f6d0cdd20800000000000000
+      internalID: 3304530999466990387
       vertices: []
       indices: 
       edges: []
@@ -169,21 +200,20 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: b2a2dff3edb89a740aab383506c0e565
+    spriteID: c36842776978799478a18f1725422da1
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
-    secondaryTextures:
-    - texture: {fileID: 2800000, guid: f02debb41f9f89e4da6bc3a5ff191bce, type: 3}
-      name: _Emission
+    secondaryTextures: []
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Lava_Boss_floor_0: 3930843188267102273
-      Lava_Boss_floor_1: 2007524771
-      Lava_Boss_floor_2: 822205423
+      Door_Boss_0: -8282658699538101459
+      Door_Boss_1: 7003058117041469238
+      Door_Boss_2: 6087885893828123317
+      Door_Boss_3: 3304530999466990387
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

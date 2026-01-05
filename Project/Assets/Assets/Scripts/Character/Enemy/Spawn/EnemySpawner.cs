@@ -8,6 +8,7 @@ public class EnemySpawner : MonoBehaviour
     #region Serialized Fields
 
     [SerializeField] private EnemyData enemyData; // Data defining spawn count, distances, respawn time, prefab
+    [SerializeField] private BossRoomTrigger bossRoom;
 
     #endregion
 
@@ -229,6 +230,8 @@ public class EnemySpawner : MonoBehaviour
 
         string bossKey = $"{enemy.RunTimeData.CharacterSpawnLevel}_{enemy.RunTimeData.CharacterName}";
         string bossName = enemy.RunTimeData.CharacterName; // code to change map
+
+        bossRoom.OpenDoors();
 
         if (debugMode)
         {

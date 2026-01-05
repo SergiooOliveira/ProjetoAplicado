@@ -1,15 +1,15 @@
 fileFormatVersion: 2
-guid: 0389b178fc291f44bb1fbcd1c47848d6
+guid: f02debb41f9f89e4da6bc3a5ff191bce
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3930843188267102273
-    second: Lava_Boss_floor_0
+      213: -1165673134221260436
+    second: Lava_Boss_floor_Emission_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 0
+    enableMipMap: 1
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -51,13 +51,13 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
-  alphaIsTransparency: 1
+  alphaIsTransparency: 0
   spriteTessellationDetail: -1
-  textureType: 8
+  textureType: 0
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
@@ -100,67 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Lava_Boss_floor_0
+      name: Lava_Boss_floor_Emission_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 16
+        width: 48
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 140bc60ad092d8630800000000000000
-      internalID: 3930843188267102273
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lava_Boss_floor_1
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fa9f49d964aed9645ab49ecb756b01f5
-      internalID: 2007524771
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lava_Boss_floor_2
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d6cf659caa702e146ae07ea128564231
-      internalID: 822205423
+      spriteID: c69868ed572b2dfe0800000000000000
+      internalID: -1165673134221260436
       vertices: []
       indices: 
       edges: []
@@ -169,21 +125,17 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: b2a2dff3edb89a740aab383506c0e565
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
-    secondaryTextures:
-    - texture: {fileID: 2800000, guid: f02debb41f9f89e4da6bc3a5ff191bce, type: 3}
-      name: _Emission
+    secondaryTextures: []
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Lava_Boss_floor_0: 3930843188267102273
-      Lava_Boss_floor_1: 2007524771
-      Lava_Boss_floor_2: 822205423
+      Lava_Boss_floor_Emission_0: -1165673134221260436
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

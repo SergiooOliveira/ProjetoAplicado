@@ -181,6 +181,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  chestLight: {fileID: 4272981327777534560}
 --- !u!1 &7322328355340824438
 GameObject:
   m_ObjectHideFlags: 0
