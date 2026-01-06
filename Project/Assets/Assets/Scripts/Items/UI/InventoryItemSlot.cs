@@ -15,7 +15,11 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     [Header("Tooltips")]
     [SerializeField] private GameObject itemTooltipObject;
     [SerializeField] private GameObject equipmentTooltipObject;
-    
+
+    [Header("Upgrade")]
+    [SerializeField] private GameObject upgradeObject;
+    private GameObject upgradeInstance;
+
     private PlayerData player;
 
     // Types of Entry
@@ -112,13 +116,13 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     {
         // Read the right click
         if (eventData.button == PointerEventData.InputButton.Right)
-        {            
+        {
             /* Check if its an equipment
              * If its an equipment check if that equipment slot is empty
              * Is empty? Cool, just set the Equip tag on
              * Is not empty? Show a little pop up to ask, swap equipment? Then, yes or no 
              */
-            
+
             // Only equipments
             if (item.item != null) return;
 
@@ -141,7 +145,7 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
                 if (equippedEquipment.equipment.RunTimeEquipmentData.ItemName == equipment.equipment.RunTimeEquipmentData.ItemName)
                 {
                     player.UnequipEquipment(equipment);
-                } 
+                }
                 else
                 {
                     // Swap
@@ -151,9 +155,22 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
             // Update UI
             statManagerUI.UpdateEquipedEquipment();
-            statManagerUI.UpdateUI();            
+            statManagerUI.UpdateUI();
         }
-        //else if (eventData.button == PointerEventData.InputButton.Left) { }
+        else if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            if (upgradeInstance != null)
+            {
+                return;
+            }
+
+            upgradeInstance = Instantiate(upgradeObject, canvas.transform);
+            EquipmentUpgrade equipmentUpgrade = upgradeInstance.GetComponent<EquipmentUpgrade>();
+            if (equipmentUpgrade != null)
+            {
+                equipmentUpgrade.Initialize(equipment.equipment.RunTimeEquipmentData, player);
+            }
+        }
     }
     #endregion
 

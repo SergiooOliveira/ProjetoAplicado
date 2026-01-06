@@ -6,7 +6,7 @@ public class EquipmentUpgradeLevel
 {
     [Header("Cost")]
     [SerializeField] private int costGold;
-    [SerializeField] private List<ItemEntry> costItem;
+    [SerializeField] private List<ItemCost> costItem;
 
     [Header("Upgrades")]
     [SerializeField] private int bonusHp;
@@ -20,7 +20,7 @@ public class EquipmentUpgradeLevel
 
     // *----- Cost -----*
     public int CostGold => costGold;
-    public List<ItemEntry> CostItem => costItem;
+    public List<ItemCost> CostItem => costItem;
 
     // *----- Upgrades -----*
     public int BonusHp => bonusHp;

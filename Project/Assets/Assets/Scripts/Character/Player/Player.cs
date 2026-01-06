@@ -43,7 +43,6 @@ public class Player : MonoBehaviour
             item.item.Initialize();
         }
 
-        // TODO: Change the foreach to a for loop
         // Initialize equipment list
 
         for (int i = 0; i < runTimePlayerData.CharacterEquipment.Count(); i++)
@@ -64,7 +63,6 @@ public class Player : MonoBehaviour
             }
         }
 
-        //runTimePlayerData.EquipmentStats();
         runTimePlayerData.InitializeSpells();
         runTimePlayerData.InitializeEquippedSpells();
     }

@@ -48,10 +48,9 @@ public class EquipmentData : ItemData
     #endregion
 
     #region Bonus stats
-    public void LevelUp()
+    public void LevelUp(EquipmentUpgradeLevel eul)
     {
-        currentLevel++;
-        EquipmentUpgradeLevel eul = UpgradeLevels[currentLevel];
+        currentLevel++;        
 
         AddBonusHp(eul.BonusHp);
         AddBonusAttackDamage(eul.BonusAttackDamage);
