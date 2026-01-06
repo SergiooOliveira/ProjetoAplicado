@@ -161,7 +161,8 @@ public class PlayerController : NetworkBehaviour
     /// <param name="callbackContext"></param>
     public void OnMove(InputAction.CallbackContext callbackContext)
     {
-        //Debug.Log($"Carreguei no {callbackContext.ReadValue<Vector2>()}");
+        if (GameManager.Instance.isUiOpen) return;
+
         horizontal = callbackContext.ReadValue<Vector2>().x;
     }
 
@@ -171,10 +172,8 @@ public class PlayerController : NetworkBehaviour
     /// <param name="callbackContext"></param>
     public void OnJump(InputAction.CallbackContext callbackContext)
     {
-        //if (callbackContext.performed) Debug.Log($"Space Pressed");
-        //if (IsGrounded()) Debug.Log($"Space Pressed");
-
-        // Debug.Log("jump press");
+        if (GameManager.Instance.isUiOpen) return;
+        
         if (callbackContext.performed && IsGrounded())
         {
             //Debug.Log("Jumping");
@@ -188,6 +187,8 @@ public class PlayerController : NetworkBehaviour
     /// <param name="callbackContext"></param>
     public void OnAttack(InputAction.CallbackContext callbackContext)
     {
+        if (GameManager.Instance.isUiOpen) return;
+
         int index = playerData.GetActiveSpellIndex();
         if (index == -1) return;
 
@@ -222,7 +223,7 @@ public class PlayerController : NetworkBehaviour
                 if (playerData.CharacterMana.Current >= spell.RuntimeSpellData.SpellCost)
                 {
                     playerData.CharacterMana.ConsumeMana(spell.RuntimeSpellData.SpellCost);
-                    playerHUDManager.SetManaValues((float)playerData.CharacterMana.Current / playerData.CharacterMana.Max);
+                    playerHUDManager.SetManaBar((float)playerData.CharacterMana.Current / playerData.CharacterMana.Max);
                     spell.RuntimeSpellData.Cast(player, castDirection);
                 }
                 else
@@ -343,7 +344,7 @@ public class PlayerController : NetworkBehaviour
                 {
                     playerData.CharacterMana.ConsumeMana(manaToSpend);
                     manaAccumulator -= manaToSpend;
-                    playerHUDManager.SetManaValues((float)playerData.CharacterMana.Current / playerData.CharacterMana.Max);
+                    playerHUDManager.SetManaBar((float)playerData.CharacterMana.Current / playerData.CharacterMana.Max);
                     //Debug.Log($"Player Mana: <Color=blue>{playerData.CharacterMana.Current}</Color> consuming {manaToSpend}");
                 }
                 else

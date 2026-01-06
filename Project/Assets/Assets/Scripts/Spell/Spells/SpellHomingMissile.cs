@@ -10,7 +10,7 @@ public class SpellHomingMissile : MonoBehaviour
     [SerializeField] private float targetSearchRadious = 10f;
 
     private Transform target;
-    private SpellData spellData;
+    private SpellData runtimeSpellData;
     private Player caster;
     private Rigidbody2D rb;
     private Vector2 initialDirection;
@@ -18,10 +18,13 @@ public class SpellHomingMissile : MonoBehaviour
     private GameObject vfx;
 
     public float TargetSearchRadious => targetSearchRadious;
+    public SpellData RuntimeSpellData => runtimeSpellData;
 
     public void Initialize(SpellData spell, Player caster, Vector2 initialDir, Transform target)
     {
-        this.spellData = spell;
+        this.runtimeSpellData = Instantiate(spell);
+        this.runtimeSpellData.Initialize();
+
         this.caster = caster;        
         this.target = target;
         this.initialDirection = initialDir;
@@ -67,12 +70,7 @@ public class SpellHomingMissile : MonoBehaviour
 
         if (enemy != null) Debug.Log("Enemy not null");
 
-        if (spellData.ImpactVFX != null)
-            vfx = Instantiate(spellData.ImpactVFX, collision.ClosestPoint(transform.position), Quaternion.identity);
-
-        spellData.OnHit(caster, collision);
-
-        Destroy(vfx, 0.5f);
+        runtimeSpellData.OnHit(caster, collision);
         Destroy(gameObject);
     }
 

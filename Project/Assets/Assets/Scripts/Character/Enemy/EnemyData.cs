@@ -33,8 +33,8 @@ public class EnemyData : ScriptableObject, IEnemy
     [Header("Attributes")]
     [Tooltip("What speed does the enemy move")]                 [SerializeField] private float characterMovementSpeed;
     [Tooltip("What speed does the enemy attack")]               [SerializeField] private float characterAttackSpeed;
-    [Tooltip("What is the enemy damage")]                       [SerializeField] private int characterAttackPower;
-    [Tooltip("What is the enemy defense")]                      [SerializeField] private int characterDefense;
+    [Tooltip("What is the enemy damage")]                       [SerializeField] private float characterAttackPower;
+    [Tooltip("What is the enemy defense")]                      [SerializeField] private float characterDefense;
     [Tooltip("Which resistances does the enemy has")]           [SerializeField] private List<Resistance> characterResistances;
 
     [Header("Equipables and Inventory")]
@@ -285,7 +285,7 @@ public class EnemyData : ScriptableObject, IEnemy
     /// Call this method to add the bonus attack from the equipment to the enemy data
     /// </summary>
     /// <param name="amount">Quantity to add</param>
-    public void AddBonusAttack(int amount)
+    public void AddBonusAttack(float amount)
     {
         if (amount == 0) return;
 
@@ -308,7 +308,7 @@ public class EnemyData : ScriptableObject, IEnemy
     /// Call this method to add the bonus defense from the equipment to the enemy data
     /// </summary>
     /// <param name="amount">Quantity to add</param>
-    public void AddBonusDefense(int amount)
+    public void AddBonusDefense(float amount)
     {
         if (amount == 0) return;
 

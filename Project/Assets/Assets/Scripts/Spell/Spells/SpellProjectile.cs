@@ -7,14 +7,18 @@ public class SpellProjectile : MonoBehaviour
     [SerializeField] private float spellSpeed;
     [SerializeField] private float spellRange;
 
-    private SpellData spellData;
+    private SpellData runtimeSpellData;
     private Player caster;
     private Rigidbody2D rb;
     private float lifetime;
 
+    public SpellData RuntimeSpellData => runtimeSpellData;
+
     public void Initialize(SpellData spell, Vector2 dir, Player caster)
     {
-        this.spellData = spell;
+        this.runtimeSpellData = Instantiate(spell);
+        this.runtimeSpellData.Initialize();
+
         this.caster = caster;
 
         rb = GetComponent<Rigidbody2D>();
@@ -37,7 +41,7 @@ public class SpellProjectile : MonoBehaviour
         if (collision.CompareTag(GameManager.Instance.gridTag)) return;
         if (collision.CompareTag(GameManager.Instance.interactableTag)) return;
 
-        spellData.OnHit(caster, collision);
+        runtimeSpellData.OnHit(caster, collision);
         
         Destroy(gameObject);
     }

@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Text;
 
 [CreateAssetMenu(menuName = "Spells/SpellData")]
 public class SpellData : ScriptableObject, ISpell
@@ -25,14 +26,12 @@ public class SpellData : ScriptableObject, ISpell
     [Header("Effects")]
     [SerializeField] private List<ScriptableObject> spellEffects;
 
-    [Header("VFX")]
-    [SerializeField] private GameObject orbVFX;
-    [SerializeField] private GameObject projectileVFX;
-    [SerializeField] private GameObject impactVFX;
-    public Transform SpellSpawnPoint;
+    [Header("Upgrades")]
+    [SerializeField][Min(1)] private int spellLevel;
+    [SerializeField] private List<SpellUpgradeLevel> upgradeLevels;
 
     // Runtime Variables
-    private List<ScriptableObject> runtimeEffects;
+    private List<SpellEffect> runtimeEffects;
     private float currentMultiplier = 1f;
     public float CurrentCostPerSecond => spellCost * currentMultiplier;
     #endregion
@@ -58,22 +57,21 @@ public class SpellData : ScriptableObject, ISpell
     // *----- Effects -----*
     public IReadOnlyList<ScriptableObject> SpellEffects => runtimeEffects;
 
-    // *----- VFX -----*
-    public GameObject OrbVFX => orbVFX;
-    public GameObject ImpactVFX => impactVFX;
+    // *----- Upgrades -----*
+    public int SpellLevel => spellLevel;
+    public List<SpellUpgradeLevel> SpellUpgradeLevels => upgradeLevels;
     #endregion
 
     public void Initialize()
     {
         currentMultiplier = 1f;
-        runtimeEffects = new List<ScriptableObject>();
+        runtimeEffects = new List<SpellEffect>();
 
         foreach (SpellEffect original in spellEffects)
         {
             SpellEffect clone = Instantiate(original);
-
-            if (clone is DamageEffect dmgEffect)
-                dmgEffect.Initialize();
+            
+            clone.Initialize();
 
             runtimeEffects.Add(clone);
         }
@@ -143,7 +141,7 @@ public class SpellData : ScriptableObject, ISpell
 
         foreach (Vector2 dir in compassDir)
         {
-            Vector3 spawnPos = caster.SpellSpawnPoint.position;
+            Vector3 spawnPos = caster.transform.position + (Vector3)dir * 0.5f;
             GameObject instance = Instantiate(SpellPrefab, spawnPos, Quaternion.identity);
 
             if (instance.TryGetComponent<SpellHomingMissile>(out SpellHomingMissile projectile))
@@ -197,7 +195,7 @@ public class SpellData : ScriptableObject, ISpell
 
     public void OnHit(Player caster, Collider2D target)
     {
-        foreach (SpellEffect effect in spellEffects)
+        foreach (SpellEffect effect in runtimeEffects)
         {
             //Debug.Log($"OnHit effect: {effect}");
             if (effect != null)
@@ -225,5 +223,92 @@ public class SpellData : ScriptableObject, ISpell
         return nearest;
     }
 
+    #region LevelUP
+    public void LevelUp(SpellUpgradeLevel sul)
+    {
+        StringBuilder s = new StringBuilder();
+
+        s.AppendLine("<Color=blue>Leveling UP!!</Color>");
+
+        s.Append($"<Color=purple>Level {this.spellLevel} -> </Color>");
+        spellLevel++;
+        s.Append($"<Color=lime>{this.spellLevel}\n</Color>");
+
+        s.Append($"<Color=purple>Cooldown {this.SpellCooldown} -> </Color>");
+        AddCooldown(sul.BonusCooldown);
+        s.Append($"<Color=lime>{this.SpellCooldown}\n</Color>");
+
+        s.Append($"<Color=purple>ManaCost {this.SpellCost} -> </Color>");
+        AddCost(sul.BonusManaCost);
+        s.Append($"<Color=lime>{this.SpellCost}\n</Color>");
+
+        s.Append($"<Color=purple>CastTime {this.SpellCastTime} -> </Color>");
+        AddCastTime(sul.BonusCastTime);
+        s.Append($"<Color=lime>{this.SpellCastTime}\n</Color>");
+
+        s.Append($"<Color=purple>Effects before:\n {EffectsToString(0)}</Color>");
+        AddEffects(sul.BonusEffects);
+        s.Append($"<Color=lime>Effects After:\n{EffectsToString(1)}\n</Color>");
+
+        Debug.Log(s);
+    }
+
+    #region Auxiliary
+    private void AddCooldown(float amount) => spellCooldown = Mathf.Max(spellCooldown + amount, 0f);
+    private void AddCost(int amount) => spellCost = (int)Mathf.Max(spellCost + amount, 0f);
+    private void AddCastTime(float amount) => spellCastTime = Mathf.Max(spellCastTime + amount, 0f);
+    private void AddEffects(List<ScriptableObject> effects)
+    {
+        foreach (SpellEffect original in effects)
+        {            
+            int index = runtimeEffects.FindIndex(e => e.GetEffectID() == original.GetEffectID());
+
+            if (index >= 0)
+            {
+                runtimeEffects[index].Refresh(original);
+
+                continue;
+            }
+
+            Debug.Log($"<Color=lime>Adding {original.GetEffectID()}</Color>");
+
+            SpellEffect clone = Instantiate(original);
+
+            if (clone is DamageEffect dmgEffect)
+                dmgEffect.Initialize();
+
+            runtimeEffects.Add(clone);
+        }
+    }
+
+    private string EffectsToString(int i)
+    {
+        StringBuilder s = new StringBuilder();
+
+        if (i == 0)
+        {
+            foreach (SpellEffect spellEffect in SpellEffects)
+            {
+                s.AppendLine($"<Color=purple>\t{spellEffect.GetEffectID()}</Color>");
+            }
+
+            if (SpellEffects.Count == 0) s.AppendLine($"<Color=red>\tNo Effects</Color>");
+
+            return s.ToString();
+        }
+        else
+        {
+            foreach (SpellEffect spellEffect in SpellEffects)
+            {
+                s.AppendLine($"<Color=lime>\t{spellEffect.GetEffectID()}</Color>");
+            }
+
+            if (SpellEffects.Count == 0) s.AppendLine($"<Color=red>\tNo Effects</Color>");
+
+            return s.ToString();
+        }
+    }
+    #endregion
+    #endregion
     #endregion
 }

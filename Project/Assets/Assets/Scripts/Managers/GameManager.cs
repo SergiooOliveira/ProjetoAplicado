@@ -15,11 +15,13 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private List<Player> players = new();
 
+    public bool isUiOpen {  get; private set; }
+
     public void Awake()
     {
         if (Instance != null) Destroy(gameObject);
         else Instance = this;
-        DontDestroyOnLoad(gameObject);        
+        DontDestroyOnLoad(gameObject);
     }
 
     public void Start()
@@ -34,10 +36,18 @@ public class GameManager : MonoBehaviour
         if (!players.Contains(player))
             players.Add(player);
     }
-}
 
-/*
- * TODO: Define Items
- * TODO: Continue Interface (Maybe change it for 3 Scriptble Object)
- * TODO: Make an enemy interface (Scriptble Object as well)
-*/
+    public void TogglePause(bool isOpen)
+    {
+        isUiOpen = isOpen;
+
+        if (isOpen)
+        {
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            Time.timeScale = 1f;
+        }
+    }
+}

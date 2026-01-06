@@ -48,9 +48,13 @@ public class Player : MonoBehaviour
             item.item.Initialize();
         }
 
+        // TODO: Change the foreach to a for loop
         // Initialize equipment list
-        foreach (EquipmentEntry eq in runTimePlayerData.CharacterEquipment)
+
+        for (int i = 0; i < runTimePlayerData.CharacterEquipment.Count(); i++)
         {
+            EquipmentEntry eq = runTimePlayerData.CharacterEquipment[i];
+
             eq.equipment.Initialize();
 
             // Check if its equipped
@@ -60,12 +64,12 @@ public class Player : MonoBehaviour
                 // if does unequip
                 bool isEquipped = (runTimePlayerData.CharacterEquipedEquipment.Find(e => e.equipment.RunTimeEquipmentData.ItemSlot == eq.equipment.RunTimeEquipmentData.ItemSlot).equipment != null);
 
-                if (isEquipped) eq.Unequip();
+                if (isEquipped) runTimePlayerData.UnequipEquipment(eq);
                 else runTimePlayerData.EquipEquipment(eq);
             }
         }
 
-        runTimePlayerData.EquipmentStats();
+        //runTimePlayerData.EquipmentStats();
         runTimePlayerData.InitializeSpells();
         runTimePlayerData.InitializeEquippedSpells();
     }

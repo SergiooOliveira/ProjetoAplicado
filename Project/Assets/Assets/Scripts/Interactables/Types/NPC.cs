@@ -39,6 +39,7 @@ public class NPC : MonoBehaviour
 
     public void Interact(PlayerData playerData)
     {
+        //Debug.Log("Interacting with NPC");
         this.playerData = playerData;
 
         bool newState = !runtimeData.NPCItemPanel.activeSelf;

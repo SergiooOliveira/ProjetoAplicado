@@ -4,9 +4,10 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class SpellManagerSlot : MonoBehaviour, IPointerClickHandler
+public class SpellManagerSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     [SerializeField] private Image img_slot;
+    [SerializeField] private Transform upgradeSlot;
 
     private PlayerData playerData;
     private Spell spell;
@@ -28,7 +29,7 @@ public class SpellManagerSlot : MonoBehaviour, IPointerClickHandler
     {
         if (s != null)
         {
-            Debug.Log($"Setting slot with spell: {s.RuntimeSpellData.SpellName}");
+            //Debug.Log($"Setting slot with spell: {s.RuntimeSpellData.SpellName}");
             spell = s;
             img_slot.enabled = true;
             img_slot.sprite = spell.RuntimeSpellData.SpellPrefab.GetComponent<SpriteRenderer>().sprite;
@@ -36,7 +37,7 @@ public class SpellManagerSlot : MonoBehaviour, IPointerClickHandler
         }
         else
         {
-            Debug.Log("Spell is empty");
+            //Debug.Log("Spell is empty");
             img_slot.enabled = false;
         }
     }
@@ -55,11 +56,21 @@ public class SpellManagerSlot : MonoBehaviour, IPointerClickHandler
         }
     }
 
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        // Show tooltip
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        // Hide tooltip
+    }
+
     public void OnPointerClick(PointerEventData eventData)
     {
         if (eventData.button == PointerEventData.InputButton.Right)
         {
-            Debug.Log($"Right clicked on: {(spell != null ? spell.RuntimeSpellData.SpellName : entry.spell.RuntimeSpellData.SpellName)}");
+            //Debug.Log($"Right clicked on: {(spell != null ? spell.RuntimeSpellData.SpellName : entry.spell.RuntimeSpellData.SpellName)}");
 
             // Right click
             /*
@@ -80,6 +91,11 @@ public class SpellManagerSlot : MonoBehaviour, IPointerClickHandler
             //SeeAllSpells();
             spellInventoryController.UpdateUI();
             //spellManager.SetAllSlots();
+        }
+        else if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            if (upgradeSlot.TryGetComponent<SpellUpgrade>(out SpellUpgrade su))
+                su.Initialize(spell, playerData);
         }
     }
 
