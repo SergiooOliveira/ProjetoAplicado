@@ -24,7 +24,7 @@ public class GameManager2 : MonoBehaviourPunCallbacks
     // [SerializeField] private GameUI gameUI;
 
 
-    public CustomPrefabPool customPrefabPool;
+    
 
 
 
@@ -45,8 +45,7 @@ public class GameManager2 : MonoBehaviourPunCallbacks
 
     private void Start()
     {
-        // Make sure Photon uses your custom prefab pool
-        PhotonNetwork.PrefabPool = customPrefabPool;
+       
 
 
         

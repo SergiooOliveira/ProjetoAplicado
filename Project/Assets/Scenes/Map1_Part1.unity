@@ -1064,54 +1064,6 @@ MonoBehaviour:
   hasSpawnedOnce: 0
   isActiveSpawnPoint: 0
   onlySpawnOnce: 0
---- !u!1 &243875026
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 243875027}
-  - component: {fileID: 243875028}
-  m_Layer: 0
-  m_Name: test
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &243875027
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 243875026}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.99, y: 6.59, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &243875028
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 243875026}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f90ff6f34637e84428e8127720ed324f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 1262297832921891090, guid: df68d57ed8f82924aa9409dd2b0ab306, type: 3}
-  pBoss_mapa1Prefab: {fileID: 2872877578539829835, guid: e0d63c8852c9de944b0d9f5577622822, type: 3}
-  pM_W_1Prefab: {fileID: 7768565000175433650, guid: 15fdd09b66cb8f747ba57448fca2459d, type: 3}
-  PR_F_1Prefab: {fileID: 7057437063388147542, guid: 119e3f539397c0d449750fbbb247f49a, type: 3}
 --- !u!1 &269156299
 GameObject:
   m_ObjectHideFlags: 0
@@ -105281,7 +105233,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1209469842}
-  - component: {fileID: 1209469844}
   m_Layer: 0
   m_Name: EnemySpawners
   m_TagString: Untagged
@@ -105307,58 +105258,6 @@ Transform:
   - {fileID: 1426254198}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1209469844
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1209469841}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26b716c41e9b56b4baafaf13a523ba2e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <IsNested>k__BackingField: 0
-  WasActiveDuringEdit: 1
-  WasActiveDuringEdit_Set1: 1
-  <ComponentIndex>k__BackingField: 0
-  <PredictedSpawn>k__BackingField: {fileID: 0}
-  <PredictedOwner>k__BackingField: {fileID: 0}
-  NetworkBehaviours: []
-  InitializedParentNetworkBehaviour: {fileID: 0}
-  InitializedNestedNetworkObjects: []
-  RuntimeParentNetworkBehaviour: {fileID: 0}
-  RuntimeChildNetworkBehaviours: []
-  _isNetworked: 1
-  _isSpawnable: 1
-  _isGlobal: 0
-  _initializeOrder: 0
-  _preventDespawnOnDisconnect: 0
-  _defaultDespawnType: 0
-  NetworkObserver: {fileID: 0}
-  _enablePrediction: 0
-  _predictionType: 0
-  _graphicalObject: {fileID: 0}
-  _detachGraphicalObject: 0
-  _enableStateForwarding: 1
-  _networkTransform: {fileID: 0}
-  _ownerInterpolation: 1
-  _ownerSmoothedProperties: 255
-  _adaptiveInterpolation: 3
-  _spectatorSmoothedProperties: 255
-  _spectatorInterpolation: 2
-  _enableTeleport: 0
-  _teleportThreshold: 1
-  <PrefabId>k__BackingField: 65535
-  <SpawnableCollectionId>k__BackingField: 0
-  <AssetPathHash>k__BackingField: 0
-  <SceneId>k__BackingField: 4286381055
-  SerializedTransformProperties:
-    Position: {x: 0, y: 0, z: 0}
-    Rotation: {x: 0, y: 0, z: 0, w: 0}
-    Scale: {x: 0, y: 0, z: 0}
-    IsValid: 0
 --- !u!1 &1260288641
 GameObject:
   m_ObjectHideFlags: 0
@@ -110673,7 +110572,6 @@ MonoBehaviour:
   spawnPoints:
   - {fileID: 1076568211}
   playerPrefab: {fileID: 1262297832921891090, guid: df68d57ed8f82924aa9409dd2b0ab306, type: 3}
-  customPrefabPool: {fileID: 243875028}
 --- !u!1001 &1937458213
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -111176,4 +111074,3 @@ SceneRoots:
   - {fileID: 1515611311}
   - {fileID: 9005137}
   - {fileID: 1614006102}
-  - {fileID: 243875027}

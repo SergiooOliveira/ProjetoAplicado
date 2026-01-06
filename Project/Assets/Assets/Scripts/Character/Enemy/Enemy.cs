@@ -9,6 +9,9 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    private PhotonView photonView;
+
+
     #region Variables / References
     [Header("Data")]
     public EnemyData enemyData;
@@ -57,6 +60,12 @@ public class Enemy : MonoBehaviour
     #region Unity Callbacks
     private void Awake()
     {
+        photonView = GetComponent<PhotonView>();  // Assign the PhotonView component
+        if (photonView == null)
+        {
+            Debug.Log("⏹️⏹️⏹️ PhotonView component missing on this GameObject.");
+        }
+        
         runtimeData = Instantiate(enemyData);
         Initialize();        
         SetupHitboxes();
@@ -520,19 +529,47 @@ public class Enemy : MonoBehaviour
         // Trigger Death Animation
         animator.SetTrigger("Death");
 
+        
+        StartCoroutine(DelayForFrames(12));
+        photonView.RPC("DestroyEnemy", RpcTarget.AllBuffered);
+
         isDead = true;
     }
 
     // Destroy Enemy
     // Animation End
+    [PunRPC]
+    public void DestroyEnemy()
+    {
+        Debug.Log("⏹️⏹️⏹️ DestroyEnemy RPC triggered .");
+        // This will destroy the object on all clients
+        PhotonNetwork.Destroy(gameObject);
+    }
+
+    // Modify the OnDeathAnimationEnd method to call the RPC
     public void OnDeathAnimationEnd()
     {
-        // Apenas o MasterClient spawna os cubos
-        if (PhotonNetwork.IsMasterClient)
-        {
-            PhotonNetwork.Destroy(gameObject);
-        }
-        // PhotonNetwork.Destroy(gameObject);
+        // if (PhotonNetwork.IsMasterClient) // Only master client will trigger the RPC
+        // {
+        //     // Call the RPC to destroy the enemy on all clients
+        //     photonView.RPC("DestroyEnemy", RpcTarget.AllBuffered); 
+            
+        // }
+        Debug.Log("⏹️⏹️⏹️ OnDeathAnimationEnd triggered .");
+        photonView.RPC("DestroyEnemy", RpcTarget.AllBuffered);
+    }
+
+    private IEnumerator DelayForFrames(int frames)
+    {
+        // Calculate the time delay for the given number of frames
+        float timePerFrame = 1f / 60f;  // Assuming 60 frames per second
+        float delayTime = timePerFrame * frames;
+
+        // Wait for the specified delay time
+        yield return new WaitForSeconds(delayTime);
+
+        // After the delay, you can do whatever you need
+        Debug.Log(" ⏹️  Delay of " + frames + " frames has passed. ⏹️");
     }
 
     #region Auxiliary methods
