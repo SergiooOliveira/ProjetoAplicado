@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 public enum EquipmentSlot { Helmet, Chestplate, Leggings, Weapon, Amulet, Ring }
@@ -50,16 +51,47 @@ public class EquipmentData : ItemData
     #region Bonus stats
     public void LevelUp(EquipmentUpgradeLevel eul)
     {
-        currentLevel++;        
+        StringBuilder s = new StringBuilder();
 
+        s.AppendLine("<Color=blue>Leveling UP!!</Color>");
+
+        s.Append($"<Color=purple>Level: </Color><Color=cyan>{CurrentLevel} -> </Color>");
+        currentLevel++;
+        s.Append($"<Color=lime>{CurrentLevel}\n</Color>");
+
+        s.Append($"<Color=purple>HP Bonus: </Color><Color=cyan>{ItemHpBonus} -> </Color>");
         AddBonusHp(eul.BonusHp);
+        s.Append($"<Color=lime>{ItemHpBonus}\n</Color>");
+
+        s.Append($"<Color=purple>Attack Bonus: </Color><Color=cyan>{ItemAttackBonus} -> </Color>");
         AddBonusAttackDamage(eul.BonusAttackDamage);
+        s.Append($"<Color=lime>{ItemAttackBonus}\n</Color>");
+
+        s.Append($"<Color=purple>Attack Speed Bonus: </Color><Color=cyan>{ItemAttackSpeedBonus} -> </Color>");
         AddBonusAttackSpeed(eul.BonusAttackSpeed);
+        s.Append($"<Color=lime>{ItemAttackSpeedBonus}\n</Color>");
+
+        s.Append($"<Color=purple>Defense Bonus: </Color><Color=cyan>{ItemDefenseBonus} -> </Color>");
         AddBonusDefense(eul.BonusDefense);
+        s.Append($"<Color=lime>{ItemDefenseBonus}\n</Color>");
+
+        s.Append($"<Color=purple>Mana Bonus: </Color><Color=cyan>{ItemManaBonus} -> </Color>");
         AddBonusMana(eul.BonusMana);
+        s.Append($"<Color=lime>{ItemManaBonus}\n</Color>");
+
+        s.Append($"<Color=purple>Movement Speed Bonus: </Color><Color=cyan>{ItemMovementSpeedBonus} -> </Color>");
         AddBonusMovementSpeed(eul.BonusMovementSpeed);
+        s.Append($"<Color=lime>{ItemMovementSpeedBonus}\n</Color>");
+
+        s.Append($"<Color=purple>Bonus Resistances before:\n {EffectsToString(0)}</Color>");
         AddResistanceBonus(eul.BonusResistances);
+        s.Append($"<Color=lime>Bonus Resistances After:\n{EffectsToString(1)}\n</Color>");
+
+        s.Append($"<Color=purple>Bonus Damage before:\n {EffectsToString(0)}</Color>");
         AddDamageAffinity(eul.BonusDamageAffinity);
+        s.Append($"<Color=lime>Bonus Damage After:\n{EffectsToString(1)}\n</Color>");
+
+        Debug.Log(s);
     }
 
     #region Flat bonus
@@ -126,22 +158,53 @@ public class EquipmentData : ItemData
     /// <param name="damageAffinity">Affinity damage to add</param>
     public void AddDamageAffinity(List<Resistance> damageAffinity)
     {
+        bool exists = false;
         for (int i = 0; i < damageAffinity.Count; i++)
         {
             for (int j = 0; j < itemDamageAffinity.Count; j++)
             {
-                if (damageAffinity[i] == itemDamageAffinity[j])
+                exists = false;
+                if (damageAffinity[i].SpellAfinity == itemDamageAffinity[j].SpellAfinity)
                 {
                     // This means the resistance already exists
                     itemDamageAffinity[j].AddAmount(damageAffinity[i].Amount);
+                    exists = true;
                     break;
                 }
             }
 
             // Resistance does not exist, add new resistance
-            itemDamageAffinity.Add(damageAffinity[i]);
+            if (!exists)
+                itemDamageAffinity.Add(damageAffinity[i]);
         }
+    }
 
+    private string EffectsToString(int i)
+    {
+        StringBuilder s = new StringBuilder();
+
+        if (i == 0)
+        {
+            foreach(Resistance r in ItemResistanceBonus)
+            {
+                s.AppendLine($"<Color=purple>\t{r.Amount} {r.SpellAfinity}</Color>");
+            }
+
+            if (ItemResistanceBonus.Count == 0) s.AppendLine($"<Color=red>\tNo Effects</Color>");
+
+            return s.ToString();
+        }
+        else
+        {
+            foreach (Resistance r in ItemResistanceBonus)
+            {
+                s.AppendLine($"<Color=lime>\t{r.Amount} {r.SpellAfinity}</Color>");
+            }
+
+            if (ItemResistanceBonus.Count == 0) s.AppendLine($"<Color=red>\tNo Effects</Color>");
+
+            return s.ToString();
+        }
     }
     #endregion
     #endregion

@@ -98,11 +98,12 @@ public class EquipmentUpgrade : MonoBehaviour
 
     public void BtnUpgrade()
     {
+        Debug.Log(eul.ToString());
         equipmentData.LevelUp(eul);
     }
 
     public void BtnClose()
     {
-
+        Destroy(gameObject);
     }
 }

@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
 
     public void Start()
     {
-        //player.Initialize("Player", 6f, 0, 0.5f, 0, 0, 1);
+
     }
 
     public List<Player> Players => players;

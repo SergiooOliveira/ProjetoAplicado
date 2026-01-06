@@ -90,7 +90,7 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     /// </summary>
     /// <param name="eventData"></param>
     public void OnPointerEnter(PointerEventData eventData)
-    {        
+    {
         // If both null, do nothing
         if (item.item == null && equipment.equipment == null) return;
 
