@@ -1,0 +1,533 @@
+fileFormatVersion: 2
+guid: 0d99208e5d44f1d4c8c97ba8362a0fba
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6251950539090281907
+    second: Atk1_Full_Skeleton_96_96_Emission_0
+  - first:
+      213: 8678279750458387667
+    second: Atk1_Full_Skeleton_96_96_Emission_1
+  - first:
+      213: -4968337485450037991
+    second: Atk1_Full_Skeleton_96_96_Emission_2
+  - first:
+      213: -8075381390755898620
+    second: Atk1_Full_Skeleton_96_96_Emission_3
+  - first:
+      213: 3005547380025927073
+    second: Atk1_Full_Skeleton_96_96_Emission_4
+  - first:
+      213: 433796889151701169
+    second: Atk1_Full_Skeleton_96_96_Emission_5
+  - first:
+      213: -5113833364413667474
+    second: Atk1_Full_Skeleton_96_96_Emission_6
+  - first:
+      213: -1967540139325672791
+    second: Atk1_Full_Skeleton_96_96_Emission_7
+  - first:
+      213: 2028952646200476291
+    second: Atk1_Full_Skeleton_96_96_Emission_8
+  - first:
+      213: 2928611493217752578
+    second: Atk1_Full_Skeleton_96_96_Emission_9
+  - first:
+      213: -5757286380641131957
+    second: Atk1_Full_Skeleton_96_96_Emission_10
+  - first:
+      213: -1576232627581915718
+    second: Atk1_Full_Skeleton_96_96_Emission_11
+  - first:
+      213: 793228157011747132
+    second: Atk1_Full_Skeleton_96_96_Emission_12
+  - first:
+      213: -4288502124762320415
+    second: Atk1_Full_Skeleton_96_96_Emission_13
+  - first:
+      213: -526775314006198253
+    second: Atk1_Full_Skeleton_96_96_Emission_14
+  - first:
+      213: 1795156396174827198
+    second: Atk1_Full_Skeleton_96_96_Emission_15
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 0
+  spriteTessellationDetail: -1
+  textureType: 0
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Atk1_Full_Skeleton_96_96_Emission_0
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 288
+        width: 53
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4a3634eb1c9c39a0800000000000000
+      internalID: -6251950539090281907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk1_Full_Skeleton_96_96_Emission_1
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 288
+        width: 47
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3dca98b14717f6870800000000000000
+      internalID: 8678279750458387667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk1_Full_Skeleton_96_96_Emission_2
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 288
+        width: 43
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9153e7f516bec0bb0800000000000000
+      internalID: -4968337485450037991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk1_Full_Skeleton_96_96_Emission_3
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 192
+        width: 96
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40bd13a096b7eef80800000000000000
+      internalID: -8075381390755898620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk1_Full_Skeleton_96_96_Emission_4
+      rect:
+        serializedVersion: 2
+        x: 246
+        y: 261
+        width: 21
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a52d060b69d5b920800000000000000
+      internalID: 3005547380025927073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk1_Full_Skeleton_96_96_Emission_5
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 192
+        width: 50
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b08e8ae8f7250600800000000000000
+      internalID: 433796889151701169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk1_Full_Skeleton_96_96_Emission_6
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 246
+        width: 8
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e67259936a30809b0800000000000000
+      internalID: -5113833364413667474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk1_Full_Skeleton_96_96_Emission_7
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 192
+        width: 72
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a2bb22faa4e1b4e0800000000000000
+      internalID: -1967540139325672791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk1_Full_Skeleton_96_96_Emission_8
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 202
+        width: 6
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3824ede8ea9482c10800000000000000
+      internalID: 2028952646200476291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk1_Full_Skeleton_96_96_Emission_9
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 165
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 206de5af2a484a820800000000000000
+      internalID: 2928611493217752578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk1_Full_Skeleton_96_96_Emission_10
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 146
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b42e0bb4a820a10b0800000000000000
+      internalID: -5757286380641131957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk1_Full_Skeleton_96_96_Emission_11
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 96
+        width: 74
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: abd6995c6c8102ae0800000000000000
+      internalID: -1576232627581915718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk1_Full_Skeleton_96_96_Emission_12
+      rect:
+        serializedVersion: 2
+        x: 117
+        y: 96
+        width: 72
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c31e58c5ecc120b00800000000000000
+      internalID: 793228157011747132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk1_Full_Skeleton_96_96_Emission_13
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 96
+        width: 59
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e1b80bf90e2c74c0800000000000000
+      internalID: -4288502124762320415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk1_Full_Skeleton_96_96_Emission_14
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 0
+        width: 35
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 318373494a480b8f0800000000000000
+      internalID: -526775314006198253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk1_Full_Skeleton_96_96_Emission_15
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 0
+        width: 62
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ebe554e2b3da9e810800000000000000
+      internalID: 1795156396174827198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Atk1_Full_Skeleton_96_96_Emission_0: -6251950539090281907
+      Atk1_Full_Skeleton_96_96_Emission_1: 8678279750458387667
+      Atk1_Full_Skeleton_96_96_Emission_10: -5757286380641131957
+      Atk1_Full_Skeleton_96_96_Emission_11: -1576232627581915718
+      Atk1_Full_Skeleton_96_96_Emission_12: 793228157011747132
+      Atk1_Full_Skeleton_96_96_Emission_13: -4288502124762320415
+      Atk1_Full_Skeleton_96_96_Emission_14: -526775314006198253
+      Atk1_Full_Skeleton_96_96_Emission_15: 1795156396174827198
+      Atk1_Full_Skeleton_96_96_Emission_2: -4968337485450037991
+      Atk1_Full_Skeleton_96_96_Emission_3: -8075381390755898620
+      Atk1_Full_Skeleton_96_96_Emission_4: 3005547380025927073
+      Atk1_Full_Skeleton_96_96_Emission_5: 433796889151701169
+      Atk1_Full_Skeleton_96_96_Emission_6: -5113833364413667474
+      Atk1_Full_Skeleton_96_96_Emission_7: -1967540139325672791
+      Atk1_Full_Skeleton_96_96_Emission_8: 2028952646200476291
+      Atk1_Full_Skeleton_96_96_Emission_9: 2928611493217752578
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

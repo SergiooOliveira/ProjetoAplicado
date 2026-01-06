@@ -1,0 +1,637 @@
+fileFormatVersion: 2
+guid: 8388330ee7b8e224296f707ee97cd62b
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8102732793508165492
+    second: Spell_Boss_140_93_Emission_0
+  - first:
+      213: 5763664450547857420
+    second: Spell_Boss_140_93_Emission_1
+  - first:
+      213: 6430404944593148932
+    second: Spell_Boss_140_93_Emission_2
+  - first:
+      213: 1487288552065980661
+    second: Spell_Boss_140_93_Emission_3
+  - first:
+      213: 7838984098398372752
+    second: Spell_Boss_140_93_Emission_4
+  - first:
+      213: 4803419309949333548
+    second: Spell_Boss_140_93_Emission_5
+  - first:
+      213: -6376693696978632821
+    second: Spell_Boss_140_93_Emission_6
+  - first:
+      213: -8730793778909261017
+    second: Spell_Boss_140_93_Emission_7
+  - first:
+      213: 3198101988498975080
+    second: Spell_Boss_140_93_Emission_8
+  - first:
+      213: 7251621740121592893
+    second: Spell_Boss_140_93_Emission_9
+  - first:
+      213: -773853183687488467
+    second: Spell_Boss_140_93_Emission_10
+  - first:
+      213: -7910888827485229434
+    second: Spell_Boss_140_93_Emission_11
+  - first:
+      213: -825560897979111089
+    second: Spell_Boss_140_93_Emission_12
+  - first:
+      213: 4533876017817804333
+    second: Spell_Boss_140_93_Emission_13
+  - first:
+      213: 7256788190627681967
+    second: Spell_Boss_140_93_Emission_14
+  - first:
+      213: 3475145543433069414
+    second: Spell_Boss_140_93_Emission_15
+  - first:
+      213: 8703678720779800719
+    second: Spell_Boss_140_93_Emission_16
+  - first:
+      213: -2393784463254945259
+    second: Spell_Boss_140_93_Emission_17
+  - first:
+      213: -8233509851274226159
+    second: Spell_Boss_140_93_Emission_18
+  - first:
+      213: -8218785933666208998
+    second: Spell_Boss_140_93_Emission_19
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Spell_Boss_140_93_Emission_0
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 503
+        width: 34
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47776faab80b27070800000000000000
+      internalID: 8102732793508165492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell_Boss_140_93_Emission_1
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 503
+        width: 34
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c08b373d746acff40800000000000000
+      internalID: 5763664450547857420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell_Boss_140_93_Emission_2
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 504
+        width: 37
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40cd3643a336d3950800000000000000
+      internalID: 6430404944593148932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell_Boss_140_93_Emission_3
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 411
+        width: 37
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f8d560ee09e3a410800000000000000
+      internalID: 1487288552065980661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell_Boss_140_93_Emission_4
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 406
+        width: 31
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09388f8318aa9cc60800000000000000
+      internalID: 7838984098398372752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell_Boss_140_93_Emission_5
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 393
+        width: 33
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2038cca96c29a240800000000000000
+      internalID: 4803419309949333548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell_Boss_140_93_Emission_6
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 283
+        width: 33
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8fbd162ede6187a0800000000000000
+      internalID: -6376693696978632821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell_Boss_140_93_Emission_7
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 279
+        width: 33
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7235ce8d05df5d680800000000000000
+      internalID: -8730793778909261017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell_Boss_140_93_Emission_8
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 279
+        width: 35
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 869a3f370d0f16c20800000000000000
+      internalID: 3198101988498975080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell_Boss_140_93_Emission_9
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 186
+        width: 36
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3492794d8fe2a460800000000000000
+      internalID: 7251621740121592893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell_Boss_140_93_Emission_10
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 186
+        width: 37
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2c800621a8b245f0800000000000000
+      internalID: -773853183687488467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell_Boss_140_93_Emission_11
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 222
+        width: 37
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68ee22c6680e63290800000000000000
+      internalID: -7910888827485229434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell_Boss_140_93_Emission_12
+      rect:
+        serializedVersion: 2
+        x: 334
+        y: 216
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f49a08fbcb40b84f0800000000000000
+      internalID: -825560897979111089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell_Boss_140_93_Emission_13
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 186
+        width: 21
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2e51b977309bee30800000000000000
+      internalID: 4533876017817804333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell_Boss_140_93_Emission_14
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 195
+        width: 6
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa6dc98496a45b460800000000000000
+      internalID: 7256788190627681967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell_Boss_140_93_Emission_15
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 116
+        width: 31
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6632c1ba5723a3030800000000000000
+      internalID: 3475145543433069414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell_Boss_140_93_Emission_16
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 132
+        width: 31
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f80d437beada9c870800000000000000
+      internalID: 8703678720779800719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell_Boss_140_93_Emission_17
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 131
+        width: 33
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51207d6a6b197ced0800000000000000
+      internalID: -2393784463254945259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell_Boss_140_93_Emission_18
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 93
+        width: 22
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 116de1cc962bcbd80800000000000000
+      internalID: -8233509851274226159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell_Boss_140_93_Emission_19
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 38
+        width: 33
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1339d20db101fd80800000000000000
+      internalID: -8218785933666208998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Spell_Boss_140_93_Emission_0: 8102732793508165492
+      Spell_Boss_140_93_Emission_1: 5763664450547857420
+      Spell_Boss_140_93_Emission_10: -773853183687488467
+      Spell_Boss_140_93_Emission_11: -7910888827485229434
+      Spell_Boss_140_93_Emission_12: -825560897979111089
+      Spell_Boss_140_93_Emission_13: 4533876017817804333
+      Spell_Boss_140_93_Emission_14: 7256788190627681967
+      Spell_Boss_140_93_Emission_15: 3475145543433069414
+      Spell_Boss_140_93_Emission_16: 8703678720779800719
+      Spell_Boss_140_93_Emission_17: -2393784463254945259
+      Spell_Boss_140_93_Emission_18: -8233509851274226159
+      Spell_Boss_140_93_Emission_19: -8218785933666208998
+      Spell_Boss_140_93_Emission_2: 6430404944593148932
+      Spell_Boss_140_93_Emission_3: 1487288552065980661
+      Spell_Boss_140_93_Emission_4: 7838984098398372752
+      Spell_Boss_140_93_Emission_5: 4803419309949333548
+      Spell_Boss_140_93_Emission_6: -6376693696978632821
+      Spell_Boss_140_93_Emission_7: -8730793778909261017
+      Spell_Boss_140_93_Emission_8: 3198101988498975080
+      Spell_Boss_140_93_Emission_9: 7251621740121592893
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

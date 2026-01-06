@@ -15,6 +15,7 @@ public class SpellHomingMissile : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 initialDirection;
     private float lifetime;
+    private GameObject vfx;
 
     public float TargetSearchRadious => targetSearchRadious;
     public SpellData RuntimeSpellData => runtimeSpellData;

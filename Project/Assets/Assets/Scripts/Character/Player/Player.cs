@@ -12,8 +12,13 @@ public class Player : MonoBehaviour
 
     [SerializeField] private GameObject notificationSlotPrefab;
     [SerializeField] private Transform notificationPanel;
+    [SerializeField] private Transform spellSpawnPoint;
 
     public PlayerHUDManager playerHUDManager;
+
+    #region Property implementation
+    public Transform SpellSpawnPoint => spellSpawnPoint;
+    #endregion
 
     #region Unity Methods
     public void Awake ()

@@ -1,0 +1,1001 @@
+fileFormatVersion: 2
+guid: 5328a2e514b50f54d9aaeaff8a594133
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4858687354730652047
+    second: Atk2_Emission_0
+  - first:
+      213: -683348468833747612
+    second: Atk2_Emission_1
+  - first:
+      213: 408786109061941459
+    second: Atk2_Emission_2
+  - first:
+      213: -843691159236658037
+    second: Atk2_Emission_3
+  - first:
+      213: 8239607379921906652
+    second: Atk2_Emission_4
+  - first:
+      213: -2229498673158186562
+    second: Atk2_Emission_5
+  - first:
+      213: -4855691175100220510
+    second: Atk2_Emission_6
+  - first:
+      213: -2624946146000704059
+    second: Atk2_Emission_7
+  - first:
+      213: -733601523591099329
+    second: Atk2_Emission_8
+  - first:
+      213: 2752642864604118909
+    second: Atk2_Emission_9
+  - first:
+      213: 8021190130562478103
+    second: Atk2_Emission_10
+  - first:
+      213: 714295714393787781
+    second: Atk2_Emission_11
+  - first:
+      213: -4005816304701868127
+    second: Atk2_Emission_12
+  - first:
+      213: 3752708201748226342
+    second: Atk2_Emission_13
+  - first:
+      213: 9048849964388065412
+    second: Atk2_Emission_14
+  - first:
+      213: -6667559198613555921
+    second: Atk2_Emission_15
+  - first:
+      213: -3505508740111153171
+    second: Atk2_Emission_16
+  - first:
+      213: -5726115085911863106
+    second: Atk2_Emission_17
+  - first:
+      213: -7058537547517371870
+    second: Atk2_Emission_18
+  - first:
+      213: -6148882249696419251
+    second: Atk2_Emission_19
+  - first:
+      213: -1080777505046839061
+    second: Atk2_Emission_20
+  - first:
+      213: -3514625206774734589
+    second: Atk2_Emission_21
+  - first:
+      213: -2170690846303591353
+    second: Atk2_Emission_22
+  - first:
+      213: -5991072656562961725
+    second: Atk2_Emission_23
+  - first:
+      213: 7349777129409581115
+    second: Atk2_Emission_24
+  - first:
+      213: -2986624070796511066
+    second: Atk2_Emission_25
+  - first:
+      213: 4653832757902395781
+    second: Atk2_Emission_26
+  - first:
+      213: 5636824996308346947
+    second: Atk2_Emission_27
+  - first:
+      213: -3070276831907135906
+    second: Atk2_Emission_28
+  - first:
+      213: 8546294009124346174
+    second: Atk2_Emission_29
+  - first:
+      213: 1014650597817949730
+    second: Atk2_Emission_30
+  - first:
+      213: -3872982064503858656
+    second: Atk2_Emission_31
+  - first:
+      213: 2622125915055542890
+    second: Atk2_Emission_32
+  - first:
+      213: -7212839765300588020
+    second: Atk2_Emission_33
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 0
+  spriteTessellationDetail: -1
+  textureType: 0
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Atk2_Emission_0
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 384
+        width: 53
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17ed892e799729cb0800000000000000
+      internalID: -4858687354730652047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk2_Emission_1
+      rect:
+        serializedVersion: 2
+        x: 178
+        y: 384
+        width: 47
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46d7b5920324486f0800000000000000
+      internalID: -683348468833747612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk2_Emission_2
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 384
+        width: 43
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d840c3eccc4ca500800000000000000
+      internalID: 408786109061941459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk2_Emission_3
+      rect:
+        serializedVersion: 2
+        x: 473
+        y: 384
+        width: 50
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8cbf895c5b9a44f0800000000000000
+      internalID: -843691159236658037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk2_Emission_4
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 288
+        width: 96
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cdbaee8b147f85270800000000000000
+      internalID: 8239607379921906652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk2_Emission_5
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 357
+        width: 21
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb99337e4ca3f01e0800000000000000
+      internalID: -2229498673158186562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk2_Emission_6
+      rect:
+        serializedVersion: 2
+        x: 381
+        y: 357
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2abf6215a9e1d9cb0800000000000000
+      internalID: -4855691175100220510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk2_Emission_7
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 342
+        width: 8
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5cde8154361529bd0800000000000000
+      internalID: -2624946146000704059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk2_Emission_8
+      rect:
+        serializedVersion: 2
+        x: 397
+        y: 338
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3ccaa31d49b1d5f0800000000000000
+      internalID: -733601523591099329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk2_Emission_9
+      rect:
+        serializedVersion: 2
+        x: 189
+        y: 288
+        width: 72
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7ffd3ae91a533620800000000000000
+      internalID: 2752642864604118909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk2_Emission_10
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 298
+        width: 6
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 710bb08fcedf05f60800000000000000
+      internalID: 8021190130562478103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk2_Emission_11
+      rect:
+        serializedVersion: 2
+        x: 333
+        y: 288
+        width: 74
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58d8601fa20b9e900800000000000000
+      internalID: 714295714393787781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk2_Emission_12
+      rect:
+        serializedVersion: 2
+        x: 485
+        y: 288
+        width: 59
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a7f6ca6b4b7868c0800000000000000
+      internalID: -4005816304701868127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk2_Emission_13
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 192
+        width: 47
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 621e5ee0a3c441430800000000000000
+      internalID: 3752708201748226342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk2_Emission_14
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 192
+        width: 51
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48028298919f39d70800000000000000
+      internalID: 9048849964388065412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk2_Emission_15
+      rect:
+        serializedVersion: 2
+        x: 307
+        y: 204
+        width: 50
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2530cf2c321873a0800000000000000
+      internalID: -6667559198613555921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk2_Emission_16
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 192
+        width: 59
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de7c5a4bf5ee95fc0800000000000000
+      internalID: -3505508740111153171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk2_Emission_17
+      rect:
+        serializedVersion: 2
+        x: 464
+        y: 193
+        width: 43
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb0d739eaa0c880b0800000000000000
+      internalID: -5726115085911863106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk2_Emission_18
+      rect:
+        serializedVersion: 2
+        x: 499
+        y: 192
+        width: 52
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22a587e8f790b0e90800000000000000
+      internalID: -7058537547517371870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk2_Emission_19
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 96
+        width: 55
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d42e32d0c28caaaa0800000000000000
+      internalID: -6148882249696419251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk2_Emission_20
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 133
+        width: 79
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be0437ad59e4001f0800000000000000
+      internalID: -1080777505046839061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk2_Emission_21
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 105
+        width: 25
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 301ee87eefa893fc0800000000000000
+      internalID: -3514625206774734589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk2_Emission_22
+      rect:
+        serializedVersion: 2
+        x: 174
+        y: 96
+        width: 61
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 744e1e41d2820e1e0800000000000000
+      internalID: -2170690846303591353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk2_Emission_23
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 96
+        width: 69
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c24202392f6bdca0800000000000000
+      internalID: -5991072656562961725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk2_Emission_24
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 133
+        width: 24
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b309fb0cb57aff560800000000000000
+      internalID: 7349777129409581115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk2_Emission_25
+      rect:
+        serializedVersion: 2
+        x: 488
+        y: 96
+        width: 45
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a8fa8e3b316d86d0800000000000000
+      internalID: -2986624070796511066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk2_Emission_26
+      rect:
+        serializedVersion: 2
+        x: 495
+        y: 144
+        width: 60
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58949da7c3cb59040800000000000000
+      internalID: 4653832757902395781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk2_Emission_27
+      rect:
+        serializedVersion: 2
+        x: 559
+        y: 125
+        width: 17
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 348600e08760a3e40800000000000000
+      internalID: 5636824996308346947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk2_Emission_28
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 107
+        width: 15
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5e30180d7f2465d0800000000000000
+      internalID: -3070276831907135906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk2_Emission_29
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 111
+        width: 15
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e39d7effe198a9670800000000000000
+      internalID: 8546294009124346174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk2_Emission_30
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 0
+        width: 62
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22e9316c753c41e00800000000000000
+      internalID: 1014650597817949730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk2_Emission_31
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 45
+        width: 35
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02ad9cf0557604ac0800000000000000
+      internalID: -3872982064503858656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk2_Emission_32
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 0
+        width: 63
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a625b3b80a9a36420800000000000000
+      internalID: 2622125915055542890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atk2_Emission_33
+      rect:
+        serializedVersion: 2
+        x: 315
+        y: 0
+        width: 62
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c02527fd278d6eb90800000000000000
+      internalID: -7212839765300588020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Atk2_Emission_0: -4858687354730652047
+      Atk2_Emission_1: -683348468833747612
+      Atk2_Emission_10: 8021190130562478103
+      Atk2_Emission_11: 714295714393787781
+      Atk2_Emission_12: -4005816304701868127
+      Atk2_Emission_13: 3752708201748226342
+      Atk2_Emission_14: 9048849964388065412
+      Atk2_Emission_15: -6667559198613555921
+      Atk2_Emission_16: -3505508740111153171
+      Atk2_Emission_17: -5726115085911863106
+      Atk2_Emission_18: -7058537547517371870
+      Atk2_Emission_19: -6148882249696419251
+      Atk2_Emission_2: 408786109061941459
+      Atk2_Emission_20: -1080777505046839061
+      Atk2_Emission_21: -3514625206774734589
+      Atk2_Emission_22: -2170690846303591353
+      Atk2_Emission_23: -5991072656562961725
+      Atk2_Emission_24: 7349777129409581115
+      Atk2_Emission_25: -2986624070796511066
+      Atk2_Emission_26: 4653832757902395781
+      Atk2_Emission_27: 5636824996308346947
+      Atk2_Emission_28: -3070276831907135906
+      Atk2_Emission_29: 8546294009124346174
+      Atk2_Emission_3: -843691159236658037
+      Atk2_Emission_30: 1014650597817949730
+      Atk2_Emission_31: -3872982064503858656
+      Atk2_Emission_32: 2622125915055542890
+      Atk2_Emission_33: -7212839765300588020
+      Atk2_Emission_4: 8239607379921906652
+      Atk2_Emission_5: -2229498673158186562
+      Atk2_Emission_6: -4855691175100220510
+      Atk2_Emission_7: -2624946146000704059
+      Atk2_Emission_8: -733601523591099329
+      Atk2_Emission_9: 2752642864604118909
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
