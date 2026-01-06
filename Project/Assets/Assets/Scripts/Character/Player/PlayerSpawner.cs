@@ -22,14 +22,14 @@ public class PlayerSpawner : MonoBehaviour
     /// Updates spawnPoints based on the loaded map's SpawnPointMarker.
     /// Must be called after the map scene is loaded.
     /// </summary>
-    public void CaptureSpawnPointsFromScene()
-    {
-        var markers = GameObject.FindObjectsByType<SpawnPointMarker>(FindObjectsSortMode.None);
-        if (markers.Length > 0)
-        {
-            spawnPoints = markers.Select(m => m.transform).ToArray();
-        }
-    }
+    // public void CaptureSpawnPointsFromScene()
+    // {
+    //     var markers = GameObject.FindObjectsByType<SpawnPointMarker>(FindObjectsSortMode.None);
+    //     if (markers.Length > 0)
+    //     {
+    //         spawnPoints = markers.Select(m => m.transform).ToArray();
+    //     }
+    // }
 
     /// <summary>
     /// Spawns a player for the specific connection

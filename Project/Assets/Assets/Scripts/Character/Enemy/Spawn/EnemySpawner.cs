@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
@@ -39,7 +40,12 @@ public class EnemySpawner : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(FindPlayerRoutine());
+        // Apenas o MasterClient spawna os cubos
+        if (PhotonNetwork.IsMasterClient)
+        {
+            StartCoroutine(FindPlayerRoutine());
+        }
+        
     }
 
     #endregion
@@ -152,7 +158,8 @@ public class EnemySpawner : MonoBehaviour
         if (sp.onlySpawnOnce && sp.hasSpawnedOnce)
             return;
 
-        GameObject enemyObj = Instantiate(enemyData.CharacterPrefab, sp.transform.position, Quaternion.identity);
+        // GameObject enemyObj = PhotonNetwork.Instantiate(enemyData.CharacterPrefab.name, sp.transform.position, Quaternion.identity);
+        GameObject enemyObj = PhotonNetwork.Instantiate(enemyData.CharacterPrefab.name, sp.transform.position, Quaternion.identity);
         sp.AssignEnemy(enemyObj);
 
         var enemy = enemyObj.GetComponent<Enemy>();

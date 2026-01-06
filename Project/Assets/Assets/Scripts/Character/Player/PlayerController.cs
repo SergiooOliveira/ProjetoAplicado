@@ -1,10 +1,13 @@
 using System.Linq;
 using TMPro;
-using UnityEditor.Experimental.GraphView;
+// using UnityEditor.Experimental.GraphView;
+using Photon.Pun;
+using Photon.Realtime;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+[RequireComponent(typeof(PhotonView))]
+public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
 {
     #region Global Variables
     private Player player;
@@ -33,6 +36,13 @@ public class PlayerController : MonoBehaviour
     public GameObject inventoryPanel;
     public GameObject spellInventoryPanel;
     private SpellManager spellManager;
+
+
+
+    // Add networking-related variables
+    private Vector3 networkPosition;
+    private float networkRotationZ;
+
     #endregion
 
     #region Unity Methods
@@ -68,21 +78,21 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {       
-        rb.linearVelocity = new Vector2(horizontal * playerData.CharacterMovementSpeed, rb.linearVelocity.y);
+        if (photonView.IsMine)
+        {
+            rb.linearVelocity = new Vector2(horizontal * playerData.CharacterMovementSpeed, rb.linearVelocity.y);
 
-        if (!isFacingRight && horizontal > 0f) Flip();
-        else if (isFacingRight && horizontal < 0f) Flip();
+            if (!isFacingRight && horizontal > 0f) Flip();
+            else if (isFacingRight && horizontal < 0f) Flip();
 
-        // if (!IsOwner)
-        //     return;
+            // Collect input every frame
+            horizontal = Input.GetAxisRaw("Horizontal");
 
-        // Collect input every frame
-        horizontal = Input.GetAxisRaw("Horizontal");
+            // Sets the parameter value in the Animator
+            animator.SetFloat("Speed", Mathf.Abs(horizontal));
 
-        // Sets the parameter value in the Animator
-        animator.SetFloat("Speed", Mathf.Abs(horizontal));
-
-        HandleChanneledMana();
+            HandleChanneledMana();
+        }        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -146,7 +156,7 @@ public class PlayerController : MonoBehaviour
     /// <param name="callbackContext"></param>
     public void OnMove(InputAction.CallbackContext callbackContext)
     {
-        //Debug.Log($"Carreguei no {callbackContext.ReadValue<Vector2>()}");
+        // Debug.Log($"Carreguei no {callbackContext.ReadValue<Vector2>()}");
         horizontal = callbackContext.ReadValue<Vector2>().x;
     }
 
@@ -156,14 +166,19 @@ public class PlayerController : MonoBehaviour
     /// <param name="callbackContext"></param>
     public void OnJump(InputAction.CallbackContext callbackContext)
     {
-        //if (callbackContext.performed) Debug.Log($"Space Pressed");
+        // if (callbackContext.performed) Debug.Log($"Space Pressed");
         //if (IsGrounded()) Debug.Log($"Space Pressed");
 
         // Debug.Log("jump press");
         if (callbackContext.performed && IsGrounded())
         {
-            //Debug.Log("Jumping");
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpingPower);
+            // Debug.Log("Jumping");
+            if (photonView.IsMine)
+            {
+                // Debug.Log("is mine is true 😃");
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpingPower);                
+            }
+
         }
     }
 
@@ -355,4 +370,26 @@ public class PlayerController : MonoBehaviour
         }
     }
     #endregion
+
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            // Send position and rotation to the network
+            stream.SendNext(transform.position);
+            stream.SendNext(transform.rotation.eulerAngles.z);
+             stream.SendNext(rb.linearVelocity.y); // Send y-velocity for syncing
+        }
+        else
+        {
+            // Receive position and rotation from the network
+            networkPosition = (Vector3)stream.ReceiveNext();
+            networkRotationZ = (float)stream.ReceiveNext();
+            float receivedVerticalVelocity = (float)stream.ReceiveNext();
+            
+            // Apply received data
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, receivedVerticalVelocity); // Apply y-velocity
+        }
+    }
 }

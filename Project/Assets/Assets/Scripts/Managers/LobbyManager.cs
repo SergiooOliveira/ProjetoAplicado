@@ -10,7 +10,7 @@ using UnityEngine;
 public class LobbyManager : MonoBehaviourPunCallbacks
 {
     [Header("Configurações")]
-    [SerializeField] private string gameSceneName = "Game";
+    [SerializeField] private string gameSceneName = "Map1_Part1";
     [SerializeField] private byte maxPlayersPerRoom = 4;
 
     [Header("UI")]

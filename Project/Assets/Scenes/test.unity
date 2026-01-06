@@ -1771,7 +1771,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df7858ff519414d4cbb21631a590e4ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameSceneName: Game
+  gameSceneName: Map1_Part1
   maxPlayersPerRoom: 4
   lobbyUI: {fileID: 1973004238}
 --- !u!1 &647464195

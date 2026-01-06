@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using Pathfinding;
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
@@ -526,7 +527,12 @@ public class Enemy : MonoBehaviour
     // Animation End
     public void OnDeathAnimationEnd()
     {
-        Destroy(gameObject);
+        // Apenas o MasterClient spawna os cubos
+        if (PhotonNetwork.IsMasterClient)
+        {
+            PhotonNetwork.Destroy(gameObject);
+        }
+        // PhotonNetwork.Destroy(gameObject);
     }
 
     #region Auxiliary methods

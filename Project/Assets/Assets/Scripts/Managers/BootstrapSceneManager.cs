@@ -131,9 +131,9 @@ public class BootstrapSceneManager : MonoBehaviour
         yield return null;
 
         // Update map spawnpoints
-        spawner.spawnPoints = GameObject.FindObjectsByType<SpawnPointMarker>(FindObjectsSortMode.None)
-                                         .Select(s => s.transform)
-                                         .ToArray();
+        // spawner.spawnPoints = GameObject.FindObjectsByType<SpawnPointMarker>(FindObjectsSortMode.None)
+        //                                  .Select(s => s.transform)
+        //                                  .ToArray();
 
         // foreach (NetworkConnection conn in InstanceFinder.ServerManager.Clients.Values)
         // {

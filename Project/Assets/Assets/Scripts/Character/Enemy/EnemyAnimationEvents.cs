@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
 public class EnemyAnimationEvents : MonoBehaviour
@@ -23,10 +24,17 @@ public class EnemyAnimationEvents : MonoBehaviour
     // Death Animation
     public void OnDeathAnimationEnd()
     {
-        if (enemy != null)
+        if (PhotonNetwork.IsMasterClient)
         {
-            enemy.OnDeathAnimationEnd();
+            if (enemy != null)
+            {
+                enemy.OnDeathAnimationEnd();
+            }
         }
+        // if (enemy != null)
+        // {
+        //     enemy.OnDeathAnimationEnd();
+        // }
     }
 
     // Called by animation with a string parameter = hitbox name
