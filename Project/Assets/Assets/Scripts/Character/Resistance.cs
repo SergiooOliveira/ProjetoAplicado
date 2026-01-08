@@ -4,6 +4,7 @@ using UnityEngine;
 [System.Serializable]
 public class Resistance
 {
+    #region Variables
     public static readonly Dictionary<SpellAffinity, SpellAffinity> weaknessChart = new()
     {
         { SpellAffinity.Fire, SpellAffinity.Ice},
@@ -13,15 +14,17 @@ public class Resistance
         { SpellAffinity.Dark, SpellAffinity.Light }
     };
 
+    private const int MAX_RESISTANCE = 85;
+    #endregion
+
     #region Serialized Fields
     [SerializeField] private SpellAffinity spellAfinity;
-    [SerializeField] private float amount;
-    [SerializeField] private const int MAX_RESISTANCE = 85;
+    [SerializeField] private float amount;    
     #endregion
 
     #region Property implementation
     public SpellAffinity SpellAfinity => spellAfinity;
-    public float Amount => amount;
+    public float Amount => Mathf.Clamp(amount, 0, MAX_RESISTANCE);
     #endregion
 
     public Resistance (SpellAffinity affinity, int amount)
@@ -43,6 +46,5 @@ public class Resistance
     public void AddAmount(float amount)
     {
         this.amount += amount;
-        this.amount = Mathf.Clamp(this.amount, 0, MAX_RESISTANCE);
     }
 }

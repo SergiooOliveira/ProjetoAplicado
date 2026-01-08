@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -15,7 +16,11 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     [Header("Tooltips")]
     [SerializeField] private GameObject itemTooltipObject;
     [SerializeField] private GameObject equipmentTooltipObject;
-    
+
+    [Header("Upgrade")]
+    [SerializeField] private GameObject upgradeObject;
+    private GameObject upgradeInstance;
+
     private PlayerData player;
 
     // Types of Entry
@@ -24,6 +29,7 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     
     private GameObject tooltipInstance;
     private StatManagerUI statManagerUI;
+    private InventoryManagerUI inventoryManagerUI;
 
     // For positioning
     private Canvas canvas;
@@ -36,6 +42,7 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     {
         player = GetComponentInParent<Player>().RunTimePlayerData;
         statManagerUI = GetComponentInParent<StatManagerUI>();
+        inventoryManagerUI = GetComponentInParent<InventoryManagerUI>();
     }
 
     private void Update()
@@ -86,7 +93,7 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     /// </summary>
     /// <param name="eventData"></param>
     public void OnPointerEnter(PointerEventData eventData)
-    {        
+    {
         // If both null, do nothing
         if (item.item == null && equipment.equipment == null) return;
 
@@ -112,13 +119,13 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     {
         // Read the right click
         if (eventData.button == PointerEventData.InputButton.Right)
-        {            
+        {
             /* Check if its an equipment
              * If its an equipment check if that equipment slot is empty
              * Is empty? Cool, just set the Equip tag on
              * Is not empty? Show a little pop up to ask, swap equipment? Then, yes or no 
              */
-            
+
             // Only equipments
             if (item.item != null) return;
 
@@ -141,7 +148,7 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
                 if (equippedEquipment.equipment.RunTimeEquipmentData.ItemName == equipment.equipment.RunTimeEquipmentData.ItemName)
                 {
                     player.UnequipEquipment(equipment);
-                } 
+                }
                 else
                 {
                     // Swap
@@ -151,9 +158,24 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
             // Update UI
             statManagerUI.UpdateEquipedEquipment();
-            statManagerUI.UpdateUI();            
+            statManagerUI.UpdateUI();
         }
-        //else if (eventData.button == PointerEventData.InputButton.Left) { }
+        else if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            if (item.item != null) return;
+
+            if (upgradeInstance != null)
+            {
+                return;
+            }
+
+            upgradeInstance = Instantiate(upgradeObject, canvas.transform);
+            EquipmentUpgrade equipmentUpgrade = upgradeInstance.GetComponent<EquipmentUpgrade>();
+            if (equipmentUpgrade != null)
+            {
+                equipmentUpgrade.Initialize(equipment.equipment.RunTimeEquipmentData, player, statManagerUI, inventoryManagerUI);
+            }
+        }
     }
     #endregion
 
@@ -213,8 +235,8 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     /// </summary>
     private void DisplayEquipmentTooltip()
     {
+        #region Get Components
         EquipmentData ed = equipment.equipment.RunTimeEquipmentData;
-
         canvas = GetComponentInParent<Canvas>();
 
         // Instantiate the tooltip
@@ -257,7 +279,9 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             Debug.LogWarning($"Item prefab for {ed.ItemName} has a null component!");
             return;
         }
+        #endregion
 
+        #region Set values
         // Set the values
         img_sprite.sprite = ed.ItemPrefab.GetComponent<SpriteRenderer>().sprite;
         tb_equipmentType.text = ed.ItemType.ToString();
@@ -268,17 +292,39 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         if (ed.IsItemSellable)
             tb_equipSellValue.text = ed.ItemSellValue.ToString();
         else tb_equipSellValue.text = "Not sellable";
+        #endregion
 
-            // Create the string to show stats
-            string statString = "";
-        statString += AppendStat(ed.ItemHpBonus, "max HP");
-        statString += AppendStat(ed.ItemAttackBonus, "Attack");
-        statString += AppendStat(ed.ItemAttackSpeedBonus, "Attack speed");
-        statString += AppendStat(ed.ItemDefenseBonus, "Defense");
-        statString += AppendStat(ed.ItemManaBonus, "Mana");
-        statString += AppendStat(ed.ItemMovementSpeedBonus, "MovementSpeed");
+        #region Stats string
+        // Create the string to show stats
+        StringBuilder statString = new StringBuilder();
+        if (ed.ItemHpBonus != 0)            statString.AppendLine(AppendStat(ed.ItemHpBonus, "max HP"));
+        if (ed.ItemAttackBonus != 0)        statString.AppendLine(AppendStat(ed.ItemAttackBonus, "Attack"));
+        if (ed.ItemAttackSpeedBonus != 0)   statString.AppendLine(AppendStat(ed.ItemAttackSpeedBonus, "Attack speed"));
+        if (ed.ItemDefenseBonus != 0)       statString.AppendLine(AppendStat(ed.ItemDefenseBonus, "Defense"));
+        if (ed.ItemManaBonus != 0)          statString.AppendLine(AppendStat(ed.ItemManaBonus, "Mana"));
+        if (ed.ItemMovementSpeedBonus != 0) statString.AppendLine(AppendStat(ed.ItemMovementSpeedBonus, "MovementSpeed"));
 
-        tb_equipStats.text = statString;
+        if (ed.ItemResistanceBonus.Count > 0)
+        {
+            statString.AppendLine("<b>Ressistances</b><size=50%>\n</size>");
+            foreach (Resistance res in ed.ItemResistanceBonus)
+            {
+                statString.AppendLine($"\t{AppendStat(res.Amount, res.SpellAfinity.ToString() + " Resistance")}");
+            }
+        }
+
+        if (ed.ItemDamageAffinity.Count > 0)
+        {
+            statString.AppendLine("\n<b>Damage Affinities</b>");
+            foreach (Resistance res in ed.ItemDamageAffinity)
+            {
+                statString.AppendLine($"\t{AppendStat(res.Amount, res.SpellAfinity.ToString() + " Damage Affinity")}");
+            }
+        }
+
+        Debug.Log(statString.ToString());
+        tb_equipStats.text = statString.ToString();
+        #endregion
     }
 
     /// <summary>
@@ -289,11 +335,7 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     /// <returns></returns>
     private string AppendStat(float value, string name)
     {
-        string stat = "";
-        if (value != 0)
-            stat += $"{(value > 0 ? "+ " : "- ")}{Mathf.Abs(value)} {name}\n";
-
-        return stat;
+        return $"{(value > 0 ? "+ " : "- ")}{Mathf.Abs(value)} {name}";
     }
 
     private void DestroyTooltip()

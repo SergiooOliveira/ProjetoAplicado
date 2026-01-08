@@ -54,6 +54,7 @@ MonoBehaviour:
   tb_Amount: {fileID: 68932898438142440}
   itemTooltipObject: {fileID: 7425838267255208170, guid: 809d80b0bb803384bbe2046510496d45, type: 3}
   equipmentTooltipObject: {fileID: 6858775542234781565, guid: 4cfa5b227b38469459d2bbf09a78c4a4, type: 3}
+  upgradeObject: {fileID: 5570785491167895224, guid: 218c3685719316a4e9ca12a3fcd35e25, type: 3}
 --- !u!114 &3372773011202932217
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -379,9 +379,6 @@ public class StatManagerUI : MonoBehaviour
         if (equipment.ItemMovementSpeedBonus != 0)
             stat += $"{(equipment.ItemMovementSpeedBonus > 0 ? "+ " : "- ")}{Mathf.Abs(equipment.ItemMovementSpeedBonus):F0}% Movement Speed\n";
 
-        // Also add the item damage afinities
-        stat += GetItemDamageAffinity(equipment);
-
         return stat;
     }
 

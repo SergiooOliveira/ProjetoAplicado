@@ -1174,8 +1174,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 112.5, y: -242.5}
-  m_SizeDelta: {x: 78.9384, y: 25}
+  m_AnchoredPosition: {x: 175.1034, y: -245}
+  m_SizeDelta: {x: 100, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1908195341384465006
 CanvasRenderer:
@@ -1258,7 +1258,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2652190969002436998}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3185842042653774309}
+        m_TargetAssemblyTypeName: SpellUpgrade, Assembly-CSharp
+        m_MethodName: BtnUpgrade
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1058800776513015736
 GameObject:
   m_ObjectHideFlags: 0
@@ -3383,8 +3395,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -22.7, y: 35}
-  m_SizeDelta: {x: 225, y: 215}
+  m_AnchoredPosition: {x: -22.026817, y: 2.6885986}
+  m_SizeDelta: {x: 350.2068, y: 279.6228}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &9088555753806097171
 MonoBehaviour:
@@ -4079,7 +4091,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 112.5, y: -60}
+  m_AnchoredPosition: {x: 175.1034, y: -60}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3181009299300062512
@@ -5612,9 +5624,9 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8216126634860367661}
-  - {fileID: 4420804370579025534}
   - {fileID: 6284314701726280924}
+  - {fileID: 4420804370579025534}
+  - {fileID: 8216126634860367661}
   - {fileID: 7006418589364227240}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7866,8 +7878,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 112.5, y: -170}
-  m_SizeDelta: {x: 109.1237, y: 100}
+  m_AnchoredPosition: {x: 175.1034, y: -170}
+  m_SizeDelta: {x: 285, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4605423040547806575
 CanvasRenderer:
@@ -7897,13 +7909,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '+ 20 Range
-
-    + 10 Damage
-
-    - 5 Cooldown
-
-    -10 Mana'
+  m_text: Click a spell to upgrade it
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -13912,6 +13918,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3075799055779912319}
     m_Modifications:
+    - target: {fileID: 166782827339667722, guid: 7806dfb6a6852124d92af31f73c3ca8f, type: 3}
+      propertyPath: upgradeObject
+      value: 
+      objectReference: {fileID: 5570785491167895224, guid: 218c3685719316a4e9ca12a3fcd35e25, type: 3}
     - target: {fileID: 1048490401933511338, guid: 7806dfb6a6852124d92af31f73c3ca8f, type: 3}
       propertyPath: m_Name
       value: Slot
