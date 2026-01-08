@@ -33,8 +33,10 @@ MonoBehaviour:
     amount: 10
   currentLevel: 0
   upgradeLevels:
-  - costGold: 0
-    costItem: []
+  - costGold: 10
+    costItem:
+    - item: {fileID: 7362672995192851571, guid: 0c58a3701768c7147a2732ac37b4d9e8, type: 3}
+      quantity: 1
     bonusHp: 100
     bonusAttackDamage: 100
     bonusAttackSpeed: 100

@@ -10,17 +10,25 @@ public class EquipmentUpgrade : MonoBehaviour
     [SerializeField] private TMP_Text tb_stats;
     [SerializeField] private Button btn_upgrade;
 
+    [Header("Upgrade Costs")]
+    [SerializeField] private Transform costTransform;
+    [SerializeField] private GameObject costPrefab;
+
     private EquipmentData equipmentData;
+    private EquipmentEntry equipmentEntry;
     private PlayerData playerData;
+    private StatManagerUI statManagerUI;
+    private InventoryManagerUI inventoryManagerUI;
 
     EquipmentUpgradeLevel eul;
 
-    private bool canUpgrade = false;
-
-    public void Initialize(EquipmentData equipmentData, PlayerData playerData)
+    public void Initialize(EquipmentData equipmentData, PlayerData playerData, StatManagerUI statManagerUI, InventoryManagerUI inventoryManagerUI)
     {
         this.equipmentData = equipmentData;
         this.playerData = playerData;
+        this.equipmentEntry = playerData.CharacterEquipedEquipment.Find(e => e.equipment.RunTimeEquipmentData.ItemName == equipmentData.ItemName);
+        this.statManagerUI = statManagerUI;
+        this.inventoryManagerUI = inventoryManagerUI;
 
         PopulateSlot();
     }
@@ -29,8 +37,8 @@ public class EquipmentUpgrade : MonoBehaviour
     {
         img_sprite.sprite = equipmentData.ItemPrefab.GetComponent<SpriteRenderer>().sprite;
         img_sprite.color = equipmentData.ItemPrefab.GetComponent<SpriteRenderer>().color;
-
         tb_name.text = equipmentData.ItemName;
+        ClearItems();
 
         if (equipmentData.UpgradeLevels.Count == 0)
         {
@@ -48,6 +56,7 @@ public class EquipmentUpgrade : MonoBehaviour
             return;
         }
 
+        #region Stats
         eul = equipmentData.UpgradeLevels[equipmentData.CurrentLevel];
 
         StringBuilder stats = new StringBuilder();
@@ -81,6 +90,21 @@ public class EquipmentUpgrade : MonoBehaviour
             btn_upgrade.enabled = false;
             btn_upgrade.GetComponent<Image>().color = Color.red;
         }
+        #endregion
+
+        if (eul.CostGold > 0)
+        {
+            GameObject costGO = Instantiate(costPrefab, costTransform);
+            ItemCostUI icUI = costGO.GetComponent<ItemCostUI>();
+            icUI.Initialize(eul.CostGold);
+        }
+
+        foreach (ItemCost ic in eul.CostItem)
+        {
+            GameObject costGO = Instantiate(costPrefab, costTransform);
+            ItemCostUI icUI = costGO.GetComponent<ItemCostUI>();
+            icUI.Initialize(ic);
+        }
     }
 
     private bool CanUpgrade()
@@ -96,10 +120,33 @@ public class EquipmentUpgrade : MonoBehaviour
         return true;
     }
 
+    private void ClearItems()
+    {
+        foreach (Transform t in costTransform)
+        {
+            GameObject.Destroy(t.gameObject);
+        }
+    }
+
+    private void CostDeduct()
+    {
+        playerData.AddGold(-eul.CostGold);
+
+        foreach (ItemCost ic in eul.CostItem)
+        {
+            playerData.RemoveItem(ic.item, ic.quantity);
+        }
+    }
+
     public void BtnUpgrade()
     {
-        Debug.Log(eul.ToString());
+        CostDeduct();
+        playerData.UnequipEquipment(equipmentEntry);
         equipmentData.LevelUp(eul);
+        playerData.EquipEquipment(equipmentEntry);
+        PopulateSlot();
+        statManagerUI.UpdateUI();
+        inventoryManagerUI.UpdateList();
     }
 
     public void BtnClose()

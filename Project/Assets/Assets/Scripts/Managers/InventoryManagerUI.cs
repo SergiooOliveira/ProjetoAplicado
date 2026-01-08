@@ -15,8 +15,7 @@ public class InventoryManagerUI : MonoBehaviour
 
     private void OnEnable()
     {
-        DeleteList();
-        SetAllSlots();
+        UpdateList();
     }
 
     public void SetAllSlots()
@@ -47,6 +46,12 @@ public class InventoryManagerUI : MonoBehaviour
         {
             Destroy(i.gameObject);
         }
+    }
+
+    public void UpdateList()
+    {
+        DeleteList();
+        SetAllSlots();
     }
 
     public void ClickedElement(GameObject gameObject)

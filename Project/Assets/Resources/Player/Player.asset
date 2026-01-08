@@ -35,7 +35,10 @@ MonoBehaviour:
   - {fileID: -7447219417858919371, guid: 8ddfd1c2860fad34bbd1fc0cff2a99f7, type: 3}
   - {fileID: 220613211818925742, guid: ea3e5071ab8174c4aaf293ad087d1e00, type: 3}
   characterEquippedSpells: []
-  characterInventory: []
+  characterInventory:
+  - item: {fileID: 7362672995192851571, guid: 0c58a3701768c7147a2732ac37b4d9e8, type: 3}
+    quantity: 50
+    isGuarantee: 0
   characterEquipment:
   - equipment: {fileID: 7051125111809169151, guid: 1f51e9a98c6ebee48b9edbc8d4c5b7a3, type: 3}
     quantity: 1

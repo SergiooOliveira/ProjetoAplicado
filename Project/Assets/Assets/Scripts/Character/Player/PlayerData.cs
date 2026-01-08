@@ -306,6 +306,17 @@ public class PlayerData : ScriptableObject, ICharacter
 
         return item;
     }
+
+    public void RemoveItem(Item item, int amount)
+    {
+        int index = characterInventory.FindIndex(i => i.item.RunTimeItemData.ItemName == item.RunTimeItemData.ItemName);
+
+        ItemEntry entry = characterInventory[index];
+        entry.RemoveQuantity(amount);
+
+        if (entry.quantity <= 0) characterInventory.RemoveAt(index);
+        else characterInventory[index] = entry;
+    }
     #endregion
 
     #region Equipment
@@ -365,7 +376,6 @@ public class PlayerData : ScriptableObject, ICharacter
         //Debug.Log($"Adding {amount} gold to player");
         characterGold += amount;
     }
-
     #endregion
 
     #region Equipment Methods
