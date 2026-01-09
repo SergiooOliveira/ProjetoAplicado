@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -14,10 +15,15 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform notificationPanel;
     [SerializeField] private Transform spellSpawnPoint;
 
-    public PlayerHUDManager playerHUDManager;
+    private PlayerHUDManager playerHUDManager;
+    private SpellManager spellManager;
+
+    private Coroutine manaRegenCoroutine;
 
     #region Property implementation
     public Transform SpellSpawnPoint => spellSpawnPoint;
+    public PlayerHUDManager PlayerHUDManager => playerHUDManager;
+    public SpellManager SpellManager => spellManager;
     #endregion
 
     #region Unity Methods
@@ -26,6 +32,7 @@ public class Player : MonoBehaviour
         runTimePlayerData = Instantiate(playerData);
         Initialize();
         playerHUDManager = GetComponentInChildren<PlayerHUDManager>();
+        spellManager = GetComponentInChildren<SpellManager>();
     }
 
     public void Start()
@@ -70,6 +77,8 @@ public class Player : MonoBehaviour
 
         runTimePlayerData.InitializeSpells();
         runTimePlayerData.InitializeEquippedSpells();
+
+        UpdateManaUI();
     }
 
     /// <summary>
@@ -106,4 +115,49 @@ public class Player : MonoBehaviour
 
         return 1f + (totalBonus / 100f);
     }
+
+    #region Mana Regeneration
+    public void UseMana(float amount)
+    {
+        runTimePlayerData.CharacterMana.ConsumeMana(amount);
+
+        UpdateManaUI();
+
+        if (manaRegenCoroutine != null)
+        {
+            StopCoroutine(manaRegenCoroutine);
+        }
+
+        manaRegenCoroutine = StartCoroutine(RegenManaRoutine());
+    }
+
+    private IEnumerator RegenManaRoutine()
+    {
+        yield return new WaitForSeconds(runTimePlayerData.RegenDelay);
+
+        Stat mana = runTimePlayerData.CharacterMana;
+
+        while (mana.Current < mana.Max)
+        {
+            mana.IncreaseCurrent((int)runTimePlayerData.RegenAmount);
+
+            UpdateManaUI();
+
+            yield return new WaitForSeconds(runTimePlayerData.RegenTickRate);
+        }
+
+        manaRegenCoroutine = null;
+    }
+
+    private void UpdateManaUI()
+    {
+        if (playerHUDManager != null)
+        {
+            float current = runTimePlayerData.CharacterMana.Current;
+            float max = runTimePlayerData.CharacterMana.Max;
+
+            playerHUDManager.SetManaBar(current / max);
+        }
+    }
+    #endregion
 }

@@ -34,6 +34,7 @@ public class PlayerController : NetworkBehaviour
     public GameObject inventoryPanel;
     public GameObject spellInventoryPanel;
     private SpellManager spellManager;
+
     #endregion
 
     #region Unity Methods
@@ -54,8 +55,8 @@ public class PlayerController : NetworkBehaviour
         animator = GetComponent<Animator>();
         player = GetComponent<Player>();
         playerData = player.RunTimePlayerData;
-        spellManager = GetComponentInChildren<SpellManager>();
-        playerHUDManager = GetComponentInChildren<PlayerHUDManager>();
+        spellManager = player.SpellManager;
+        playerHUDManager = player.PlayerHUDManager;
 
         if (playerData == null)
             Debug.Log("Player data is null");
@@ -222,8 +223,8 @@ public class PlayerController : NetworkBehaviour
             {
                 if (playerData.CharacterMana.Current >= spell.RuntimeSpellData.SpellCost)
                 {
-                    playerData.CharacterMana.ConsumeMana(spell.RuntimeSpellData.SpellCost);
-                    playerHUDManager.SetManaBar((float)playerData.CharacterMana.Current / playerData.CharacterMana.Max);
+                    player.UseMana(spell.RuntimeSpellData.SpellCost);
+                    //playerHUDManager.SetManaBar((float)playerData.CharacterMana.Current / playerData.CharacterMana.Max);
                     spell.RuntimeSpellData.Cast(player, castDirection);
                 }
                 else
@@ -342,9 +343,9 @@ public class PlayerController : NetworkBehaviour
                 int manaToSpend = Mathf.FloorToInt(manaAccumulator);
                 if (playerData.CharacterMana.Current >= manaToSpend)
                 {
-                    playerData.CharacterMana.ConsumeMana(manaToSpend);
+                    player.UseMana(manaToSpend);
                     manaAccumulator -= manaToSpend;
-                    playerHUDManager.SetManaBar((float)playerData.CharacterMana.Current / playerData.CharacterMana.Max);
+                    //playerHUDManager.SetManaBar((float)playerData.CharacterMana.Current / playerData.CharacterMana.Max);
                     //Debug.Log($"Player Mana: <Color=blue>{playerData.CharacterMana.Current}</Color> consuming {manaToSpend}");
                 }
                 else
