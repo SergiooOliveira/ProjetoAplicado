@@ -171,6 +171,7 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
             upgradeInstance = Instantiate(upgradeObject, canvas.transform);
             EquipmentUpgrade equipmentUpgrade = upgradeInstance.GetComponent<EquipmentUpgrade>();
+            inventoryManagerUI.UpdateUpgradeInstance(upgradeInstance);
             if (equipmentUpgrade != null)
             {
                 equipmentUpgrade.Initialize(equipment.equipment.RunTimeEquipmentData, player, statManagerUI, inventoryManagerUI);
