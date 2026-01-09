@@ -7,6 +7,7 @@ public class InventoryManagerUI : MonoBehaviour
     [SerializeField] private GameObject slot;
 
     private Player player;
+    private GameObject upgradeInstance;
 
     private void Awake()
     {
@@ -16,6 +17,20 @@ public class InventoryManagerUI : MonoBehaviour
     private void OnEnable()
     {
         UpdateList();
+    }
+
+    public void UpdateUpgradeInstance(GameObject upgradeInstance)
+    {
+        this.upgradeInstance = upgradeInstance;
+    }
+
+    private void OnDisable()
+    {
+        if (upgradeInstance != null)
+        {
+            Destroy(upgradeInstance);
+            upgradeInstance = null;
+        }
     }
 
     public void SetAllSlots()
@@ -32,8 +47,8 @@ public class InventoryManagerUI : MonoBehaviour
         {
             GameObject newSlot = Instantiate(slot, itemListPanel);
 
-            InventorySlot sslotUI = newSlot.GetComponent<InventorySlot>();
-            sslotUI.SetEquipmentSlot(entry);
+            InventorySlot slotUI = newSlot.GetComponent<InventorySlot>();
+            slotUI.SetEquipmentSlot(entry);
         }
     }
 
