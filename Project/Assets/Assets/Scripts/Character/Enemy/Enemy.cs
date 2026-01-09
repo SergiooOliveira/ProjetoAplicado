@@ -383,7 +383,7 @@ public class Enemy : MonoBehaviour
         int totalDamage = Mathf.RoundToInt(runtimeData.CharacterAttackPower * (currentAttack.damage / 100f));
         
         runTimePlayerData.CharacterHp.TakeDamage(totalDamage);
-        player.playerHUDManager.SetHPBar((float)runTimePlayerData.CharacterHp.Current / runTimePlayerData.CharacterHp.Max);
+        player.PlayerHUDManager.SetHPBar((float)runTimePlayerData.CharacterHp.Current / runTimePlayerData.CharacterHp.Max);
     }
 
     #endregion
@@ -520,7 +520,7 @@ public class Enemy : MonoBehaviour
         player.RunTimePlayerData.AddGold(RunTimeData.CharacterGold);
 
         // Add xp to player
-        player.playerHUDManager.SetXPBar((float)RunTimeData.CharacterXp.Max / player.RunTimePlayerData.CharacterXp.Max);
+        player.PlayerHUDManager.SetXPBar((float)RunTimeData.CharacterXp.Max / player.RunTimePlayerData.CharacterXp.Max);
         player.RunTimePlayerData.CharacterXp.AddExperience(player.RunTimePlayerData, RunTimeData.CharacterXp.Max);                
 
         // Destroy EnemyHUD

@@ -17,6 +17,11 @@ public class PlayerData : ScriptableObject, ICharacter
     [SerializeField] private Stat characterXp;                                  // Character Xp
     [SerializeField] private Stat characterMana;                                // Character Mana
 
+    [Header("Mana Regeneration")]
+    [SerializeField] private float regenDelay = 5f;                             // Delay before mana regeneration starts
+    [SerializeField] private float regenTickRate = 0.1f;                        // Mana regeneration rate per second
+    [SerializeField] private float regenAmount = 5f;                            // Amount of mana regenerated per tick
+
     [Header("Attributes")]
     [SerializeField] private float characterMovementSpeed;                      // Character Movement Speed
     [SerializeField] private float characterAttackSpeed;                        // Character Attack Speed
@@ -43,6 +48,11 @@ public class PlayerData : ScriptableObject, ICharacter
     public Stat CharacterHp => characterHp;
     public Stat CharacterXp => characterXp;
     public Stat CharacterMana => characterMana;
+
+    // *----- Mana Regeneration -----*
+    public float RegenDelay => regenDelay;
+    public float RegenTickRate => regenTickRate;
+    public float RegenAmount => regenAmount;
 
     // *----- Attributes -----*
     public float CharacterMovementSpeed => characterMovementSpeed * (1 + totalMovementSpeedBonus / 100f);
