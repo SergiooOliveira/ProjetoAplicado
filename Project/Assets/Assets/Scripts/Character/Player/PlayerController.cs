@@ -93,6 +93,8 @@ public class PlayerController : NetworkBehaviour
             animator.Play("JumpDown");
         }
 
+        animator.speed = playerData.FluidSpeedMultiplier;
+
         animator.SetFloat("Speed", Mathf.Abs(horizontal));
         animator.SetBool("IsGrounded", isGrounded);
         animator.SetFloat("VerticalVelocity", rb.linearVelocity.y);

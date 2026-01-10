@@ -9,7 +9,11 @@ public class Chest : MonoBehaviour
     public List<Spell> spellReward;
     private bool isOpened = false;
     private Animator animator;
+
     [SerializeField] private Light2D chestLight;
+
+    [Header("Audio")]
+    [SerializeField] private AudioSource openSound; // assign no inspector
 
     public string ChestName => chestName;
 
@@ -76,5 +80,10 @@ public class Chest : MonoBehaviour
         isOpened = true;
         animator.SetTrigger("Open");
         Destroy(chestLight.gameObject, 2f);
+
+        if (openSound != null)
+        {
+            openSound.Play();
+        }
     }
 }

@@ -2,6 +2,11 @@ using UnityEngine;
 
 public class BossRoomTrigger : MonoBehaviour
 {
+
+    [SerializeField] private AudioSource doorAudioSource;
+    [SerializeField] private AudioClip doorsCloseSound;
+    [SerializeField] private AudioClip doorsOpenSound;
+
     [SerializeField] private GameObject doorsParent;
     private bool roomLocked;
 
@@ -13,11 +18,12 @@ public class BossRoomTrigger : MonoBehaviour
         {
             roomLocked = true;
 
-            // ativa os colliders das portas
+            if (doorsCloseSound != null)
+                doorAudioSource.PlayOneShot(doorsCloseSound);
+
             foreach (var col in doorsParent.GetComponentsInChildren<Collider2D>())
                 col.enabled = true;
 
-            // toca animação "Close" em todas as portas
             foreach (var anim in doorsParent.GetComponentsInChildren<Animator>())
                 anim.SetTrigger("Close");
         }
@@ -25,6 +31,9 @@ public class BossRoomTrigger : MonoBehaviour
 
     public void OpenDoors()
     {
+        if (doorsOpenSound != null)
+            doorAudioSource.PlayOneShot(doorsOpenSound);
+
         foreach (var anim in doorsParent.GetComponentsInChildren<Animator>())
             anim.SetTrigger("Open");
 
