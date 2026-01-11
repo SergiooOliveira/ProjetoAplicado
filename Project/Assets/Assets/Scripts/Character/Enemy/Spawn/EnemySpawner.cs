@@ -2,6 +2,7 @@ using FishNet.Object;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -231,7 +232,7 @@ public class EnemySpawner : MonoBehaviour
         string bossKey = $"{enemy.RunTimeData.CharacterSpawnLevel}_{enemy.RunTimeData.CharacterName}";
         string bossName = enemy.RunTimeData.CharacterName; // code to change map
 
-        bossRoom.OpenDoors();
+        if (bossRoom != null) bossRoom.OpenDoors();
 
         if (debugMode)
         {
@@ -254,8 +255,34 @@ public class EnemySpawner : MonoBehaviour
     private void TeleportToSelectMap()
     {
         BootstrapSceneManager sm = GameObject.FindFirstObjectByType<BootstrapSceneManager>();
-        // Call the method to load the SelectMap scene
-        //sm.LoadScene("SelectMap");
+        if (sm == null)
+        {
+            Debug.LogError("BootstrapSceneManager não encontrado!");
+            return;
+        }
+        
+        string loadedMap = null;
+
+        // Find out which global map is loaded
+        for (int i = 0; i < SceneManager.sceneCount; i++)
+        {
+            Scene scene = SceneManager.GetSceneAt(i);
+
+            if (scene.isLoaded && scene.name.StartsWith("Map"))
+            {
+                loadedMap = scene.name;
+                break; // we just wait for a loaded map
+            }
+        }
+
+        if (!string.IsNullOrEmpty(loadedMap))
+        {
+            // Unload current map
+            sm.UnloadSceneLocal(loadedMap);
+        }
+
+        // Load SelectMap as local
+        sm.LoadSceneLocal("SelectMap");
     }
 
     #endregion

@@ -9,7 +9,7 @@ public class SpellManager : MonoBehaviour
 
     private PlayerData playerData;
 
-    private void Awake()
+    private void Start()
     {
         playerData = GetComponentInParent<Player>().RunTimePlayerData;
         SetAllSlots();

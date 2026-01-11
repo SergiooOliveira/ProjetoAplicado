@@ -12,6 +12,7 @@ TagManager:
   - Water
   - Concrete
   - Fire
+  - SelectMapCamera
   layers:
   - Default
   - TransparentFX

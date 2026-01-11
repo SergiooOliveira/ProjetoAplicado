@@ -13,12 +13,18 @@ public class MapSelectorUI : MonoBehaviour
     public Button buttonMap4;
     public Button buttonMap5;
 
+    private bool isLoading = false;
+
     #endregion
 
     #region Unity Methods
 
     private void Start()
     {
+
+        PlayerController localPlayer = FindLocalPlayer();
+        if (localPlayer != null) localPlayer.gameObject.SetActive(false);
+
         buttonMap1.onClick.AddListener(() => OnMapSelect("Map1_Part1"));
         buttonMap2.onClick.AddListener(() => OnMapSelect("Map2_cloud"));
         buttonMap3.onClick.AddListener(() => OnMapSelect("Map3_ice"));
@@ -31,16 +37,28 @@ public class MapSelectorUI : MonoBehaviour
 
     private void OnMapSelect(string mapName)
     {
-        if (!InstanceFinder.IsServerStarted)
-        {
-            Debug.LogWarning("Apenas o servidor pode trocar de mapa!");
-            return;
-        }
+        if (isLoading) return;
+        isLoading = true;
 
         BootstrapSceneManager sm = GameObject.FindFirstObjectByType<BootstrapSceneManager>();
 
-        sm.UnloadScene("SelectMap");
+        sm.UnloadSceneLocal("SelectMap");
         sm.LoadLoadingThenMap(mapName);
+    }
+
+    #endregion
+
+    #region Helpers
+
+    private PlayerController FindLocalPlayer()
+    {
+        PlayerController[] players = Object.FindObjectsByType<PlayerController>(FindObjectsSortMode.None);
+        foreach (var p in players)
+        {
+            if (p.IsOwner) // or p.CompareTag("Player") if multiplayer
+                return p;
+        }
+        return null;
     }
 
     #endregion
