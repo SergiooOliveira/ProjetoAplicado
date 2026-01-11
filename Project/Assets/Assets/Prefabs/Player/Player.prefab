@@ -579,7 +579,6 @@ MonoBehaviour:
   notificationSlotPrefab: {fileID: 5633027878506804917, guid: 93d29e773aa9f8948be3989b523c8764, type: 3}
   notificationPanel: {fileID: 3744176797619962874}
   spellSpawnPoint: {fileID: 8146614672172476252}
-  playerHUDManager: {fileID: 0}
 --- !u!114 &4471846361496907415
 MonoBehaviour:
   m_ObjectHideFlags: 0
