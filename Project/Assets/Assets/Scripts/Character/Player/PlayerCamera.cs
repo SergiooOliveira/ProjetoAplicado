@@ -1,19 +1,44 @@
 using FishNet.Object;
 using UnityEngine;
 
-// This script will be a NetworkBehaviour so that we can use the 
-// OnStartClient override.
 public class PlayerCamera : NetworkBehaviour
 {
-    [SerializeField] private Camera cameraPrefab;
+    [Header("Camera Setup")]
+    [SerializeField] private Camera mainCamera;
     [SerializeField] private Transform cameraHolder;
 
-    // This method will run on the client once this object is spawned.
+    private Camera spawnedCamera;
+
     public override void OnStartClient()
     {
-        // Since this will run on all clients that this object spawns for
-        // we need to only instantiate the camera for the object we own.
-        if (IsOwner)
-            Instantiate(cameraPrefab, cameraHolder.position, cameraHolder.rotation, cameraHolder);
+        if (!IsOwner)
+            return;
+
+        // Disable GlobalCamera when player enters
+        var globalCam = FindAnyObjectByType<GlobalCameraBootstrap>();
+        if (globalCam != null)
+            globalCam.gameObject.SetActive(false);
+
+        // Instantiate the MainCamera
+        spawnedCamera = Instantiate(mainCamera);
+
+        // Parent in the player's holder
+        spawnedCamera.transform.SetParent(cameraHolder);
+        spawnedCamera.transform.localPosition = Vector3.zero;
+        spawnedCamera.transform.localRotation = Quaternion.identity;
+
+        // Ensure Active AudioListener
+        var listener = spawnedCamera.GetComponent<AudioListener>();
+        if (listener != null)
+            listener.enabled = true;
+    }
+
+    public override void OnStopClient()
+    {
+        if (!IsOwner)
+            return;
+
+        if (spawnedCamera != null)
+            Destroy(spawnedCamera.gameObject);
     }
 }

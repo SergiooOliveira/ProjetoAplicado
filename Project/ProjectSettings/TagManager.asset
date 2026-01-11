@@ -8,6 +8,11 @@ TagManager:
   - Enemy
   - Interactable
   - Grid
+  - Grass
+  - Water
+  - Concrete
+  - Fire
+  - SelectMapCamera
   layers:
   - Default
   - TransparentFX

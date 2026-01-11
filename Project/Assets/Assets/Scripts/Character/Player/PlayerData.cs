@@ -38,6 +38,10 @@ public class PlayerData : ScriptableObject, ICharacter
     [SerializeField] private int characterGold;                                 // Character Gold
     #endregion
 
+    #region Variables
+    private float fluidSpeedMultiplier = 1f;
+    #endregion
+
     #region Property implementation
     // *----- Identity -----*
     public string CharacterName => characterName;
@@ -55,7 +59,8 @@ public class PlayerData : ScriptableObject, ICharacter
     public float RegenAmount => regenAmount;
 
     // *----- Attributes -----*
-    public float CharacterMovementSpeed => characterMovementSpeed * (1 + totalMovementSpeedBonus / 100f);
+    public float CharacterMovementSpeed => characterMovementSpeed * fluidSpeedMultiplier * (1 + totalMovementSpeedBonus / 100f);
+    public float FluidSpeedMultiplier => fluidSpeedMultiplier;
     public float CharacterAttackSpeed => characterAttackSpeed * (1 + totalAttackSpeedBonus / 100f);
     public float CharacterAttackPower => characterAttackPower;
     public float CharacterDefense => characterDefense;
@@ -570,6 +575,15 @@ public class PlayerData : ScriptableObject, ICharacter
         if (amount == 0) return;
 
         totalMovementSpeedBonus += amount;        
+    }
+
+    /// <summary>
+    /// Call this method to set movement speed fluids
+    /// </summary>
+    /// <param name="multiplier">Quantity to add</param>
+    public void SetFluidSpeedMultiplier(float multiplier)
+    {
+        fluidSpeedMultiplier = Mathf.Clamp(multiplier, 0.05f, 1f);
     }
     #endregion
     #endregion

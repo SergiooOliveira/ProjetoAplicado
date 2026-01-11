@@ -10,72 +10,82 @@ using SceneManager = UnityEngine.SceneManagement.SceneManager;
 public class BootstrapSceneManager : MonoBehaviour
 {
     #region Fields
-
     [Header("Player Spawner")]
-    public PlayerSpawner spawner;
-
+    [SerializeField] private PlayerSpawner spawner;
     #endregion
 
     #region Unity Callbacks
-
     private void Awake()
     {
-        DontDestroyOnLoad(this);
+        DontDestroyOnLoad(gameObject);
+    }
+
+    private void OnEnable()
+    {
+        InstanceFinder.SceneManager.OnLoadEnd += OnScenesLoaded;
+    }
+
+    private void OnDisable()
+    {
+        if (InstanceFinder.SceneManager != null)
+        {
+            InstanceFinder.SceneManager.OnLoadEnd -= OnScenesLoaded;
+        }
     }
 
     private void Start()
     {
         LoadSceneLocal("StartMenu");
 
-        InstanceFinder.SceneManager.OnLoadEnd += OnScenesLoaded;
+        StartCoroutine(WaitAndMoveGlobalCamera());
     }
 
+    private IEnumerator WaitAndMoveGlobalCamera()
+    {
+        yield return new WaitUntil(() =>
+            SceneManager.GetSceneByName("StartMenu").isLoaded
+        );
+
+        var globalCam = FindAnyObjectByType<GlobalCameraBootstrap>();
+        if (globalCam != null)
+        {
+            globalCam.MoveToPersistentScene();
+        }
+    }
     #endregion
 
-    #region Load / Unload Scenes Withou Host / Client
-
+    #region Loacl Scenes (Menu, Lobby)
     public void LoadSceneLocal(string sceneName)
     {
         if (!SceneManager.GetSceneByName(sceneName).isLoaded)
-        {
             SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
-        }
     }
 
     public void UnloadSceneLocal(string sceneName)
     {
         if (SceneManager.GetSceneByName(sceneName).isLoaded)
-        {
             SceneManager.UnloadSceneAsync(sceneName);
-        }
     }
-
     #endregion
 
-    #region Load / Unload With Host / Client
-
-    public void LoadScene(string sceneName)
+    #region Global Scenes (Maps)
+    public void LoadLoadingThenMap(string targetMap)
     {
-        if (!InstanceFinder.IsServerStarted)
-            return;
-
-        SceneLoadData sld = new SceneLoadData(sceneName);
-        InstanceFinder.SceneManager.LoadGlobalScenes(sld);
+        StartCoroutine(LoadLoadingThenMapRoutine(targetMap));
     }
 
-    public void UnloadScene(string sceneName)
+    private IEnumerator LoadLoadingThenMapRoutine(string targetMap)
     {
-        if (!InstanceFinder.IsServerStarted)
-            return;
+        // Load Loading scene
+        InstanceFinder.SceneManager.LoadGlobalScenes(new SceneLoadData("Loading"));
+        yield return new WaitUntil(() => SceneManager.GetSceneByName("Loading").isLoaded);
 
-        SceneUnloadData sld = new SceneUnloadData(sceneName);
-        InstanceFinder.SceneManager.UnloadGlobalScenes(sld);
+        // Load target map
+        InstanceFinder.SceneManager.LoadGlobalScenes(new SceneLoadData(targetMap));
     }
-
     #endregion
 
-    #region On Scene Load
-
+    #region Scene Loaded Callback
     private void OnScenesLoaded(SceneLoadEndEventArgs args)
     {
         if (!InstanceFinder.IsServerStarted)
@@ -87,78 +97,75 @@ public class BootstrapSceneManager : MonoBehaviour
         string sceneName = args.LoadedScenes[0].name;
 
         if (sceneName == "StartMenu" || sceneName == "Loading")
-            return; // does nothing
+            return;
 
-        var newScene = SceneManager.GetSceneByName(sceneName);
-        if (newScene.IsValid())
-        {
-            SceneManager.SetActiveScene(newScene);
-        }
+        Scene mapScene = SceneManager.GetSceneByName(sceneName);
+        if (mapScene.IsValid())
+            SceneManager.SetActiveScene(mapScene);
 
-        // Update spawn points
-        SpawnPointMarker[] markers = GameObject.FindObjectsByType<SpawnPointMarker>(FindObjectsSortMode.None);
-        spawner.spawnPoints = markers.Select(s => s.transform).ToArray();
-
-        // Spawn players
-        StartCoroutine(FinishLoadAndSpawn());
+        // Handle players securely
+        StartCoroutine(HandlePlayersAfterSceneLoad());
     }
-
     #endregion
 
-    #region Load Scenes Using Loading
-
-    public void LoadLoadingThenMap(string targetMap)
-    {
-        StartCoroutine(LoadLoadingThenMapRoutine(targetMap));
-    }
-
-    private IEnumerator LoadLoadingThenMapRoutine(string targetMap)
-    {
-        // 1. Load LOADING scene
-        SceneLoadData loadLoading = new SceneLoadData("Loading");
-        InstanceFinder.SceneManager.LoadGlobalScenes(loadLoading);
-
-        yield return new WaitUntil(() => SceneManager.GetSceneByName("Loading").isLoaded);
-
-        // 2. Load the actual map
-        SceneLoadData loadMap = new SceneLoadData(targetMap);
-        InstanceFinder.SceneManager.LoadGlobalScenes(loadMap);
-    }
-
-    #endregion
-
-    #region Spawn Players
-
-    private IEnumerator FinishLoadAndSpawn()
+    #region Player Spawn / Respawn
+    private IEnumerator HandlePlayersAfterSceneLoad()
     {
         yield return null;
 
-        // Update map spawnpoints
-        spawner.spawnPoints = GameObject.FindObjectsByType<SpawnPointMarker>(FindObjectsSortMode.None)
-                                         .Select(s => s.transform)
-                                         .ToArray();
+        // Update map spawn points
+        spawner.CaptureSpawnPointsFromScene();
 
         foreach (NetworkConnection conn in InstanceFinder.ServerManager.Clients.Values)
         {
-            spawner.CaptureSpawnPointsFromScene();
+            // If the player already exists, direct spawn/respawn
+            if (conn.FirstObject != null)
+            {
+                SpawnOrRespawnPlayer(conn);
+            }
+            else
+            {
+                // Subscribe event to safe spawn when client finishes loading
+                conn.OnLoadedStartScenes += (c, success) =>
+                {
+                    if (!success) return;
+                    SpawnOrRespawnPlayer(c);
+                };
+            }
+        }
+
+        UnloadSceneLocal("Loading");
+    }
+
+    private void SpawnOrRespawnPlayer(NetworkConnection conn)
+    {
+        if (conn.FirstObject == null)
+        {
+            // Initial spawn
             spawner.SpawnPlayer(conn);
         }
-
-        // Remove LOADING
-        yield return new WaitForSeconds(0.1f);
-        UnloadLoading();
-    }
-
-    private void UnloadLoading()
-    {
-        var loadingScene = SceneManager.GetSceneByName("Loading");
-
-        if (loadingScene.isLoaded)
+        else
         {
-            InstanceFinder.SceneManager.UnloadGlobalScenes(new SceneUnloadData("Loading"));
-            SceneManager.UnloadSceneAsync("Loading");
+            // Persistent player
+            var player = conn.FirstObject;
+
+            // Position at map spawn
+            if (spawner.spawnPoints.Length > 0)
+            {
+                var spawn = spawner.spawnPoints[Random.Range(0, spawner.spawnPoints.Length)];
+                player.transform.position = spawn.position;
+                player.transform.rotation = spawn.rotation;
+            }
+
+            // Disable Global Camera
+            var globalCam = Object.FindFirstObjectByType<GlobalCameraBootstrap>(FindObjectsInactive.Include);
+            if (globalCam != null)
+                globalCam.gameObject.SetActive(false);
+
+            // Reactivate Player (if it was in the menu)
+            if (!player.gameObject.activeSelf)
+                player.gameObject.SetActive(true);
         }
     }
-
     #endregion
 }
