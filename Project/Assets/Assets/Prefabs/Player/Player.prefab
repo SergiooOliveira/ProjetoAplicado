@@ -565,6 +565,7 @@ MonoBehaviour:
   _componentIndexCache: 2
   _addedNetworkObject: {fileID: 4718583287289556441}
   _networkObjectCache: {fileID: 4718583287289556441}
+  mainCamera: {fileID: 5006830288965049336, guid: 6bb13ed7804c09c4592769bf88e571f8, type: 3}
   cameraHolder: {fileID: 3931027091314934018}
 --- !u!114 &1294396001767081245
 MonoBehaviour:

@@ -36,6 +36,21 @@ public class BootstrapSceneManager : MonoBehaviour
     private void Start()
     {
         LoadSceneLocal("StartMenu");
+
+        StartCoroutine(WaitAndMoveGlobalCamera());
+    }
+
+    private IEnumerator WaitAndMoveGlobalCamera()
+    {
+        yield return new WaitUntil(() =>
+            SceneManager.GetSceneByName("StartMenu").isLoaded
+        );
+
+        var globalCam = FindAnyObjectByType<GlobalCameraBootstrap>();
+        if (globalCam != null)
+        {
+            globalCam.MoveToPersistentScene();
+        }
     }
     #endregion
 
@@ -126,15 +141,15 @@ public class BootstrapSceneManager : MonoBehaviour
     {
         if (conn.FirstObject == null)
         {
-            // If there is no player, spawn normally
+            // Initial spawn
             spawner.SpawnPlayer(conn);
         }
         else
         {
-            // Player already exists (persistent)
+            // Persistent player
             var player = conn.FirstObject;
 
-            // Position on map spawn
+            // Position at map spawn
             if (spawner.spawnPoints.Length > 0)
             {
                 var spawn = spawner.spawnPoints[Random.Range(0, spawner.spawnPoints.Length)];
@@ -142,8 +157,14 @@ public class BootstrapSceneManager : MonoBehaviour
                 player.transform.rotation = spawn.rotation;
             }
 
-            // Activate the player if it was deactivated
-            player.gameObject.SetActive(true);
+            // Disable Global Camera
+            var globalCam = Object.FindFirstObjectByType<GlobalCameraBootstrap>(FindObjectsInactive.Include);
+            if (globalCam != null)
+                globalCam.gameObject.SetActive(false);
+
+            // Reactivate Player (if it was in the menu)
+            if (!player.gameObject.activeSelf)
+                player.gameObject.SetActive(true);
         }
     }
     #endregion

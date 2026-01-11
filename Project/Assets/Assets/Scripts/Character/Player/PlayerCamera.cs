@@ -3,43 +3,42 @@ using UnityEngine;
 
 public class PlayerCamera : NetworkBehaviour
 {
+    [Header("Camera Setup")]
+    [SerializeField] private Camera mainCamera;
     [SerializeField] private Transform cameraHolder;
-    private Camera mainCamera;
+
+    private Camera spawnedCamera;
 
     public override void OnStartClient()
     {
-        if (!IsOwner) return;
-
-        // Look for the global camera in the Persistent scene
-        mainCamera = Camera.main;
-
-        if (mainCamera == null)
-        {
-            Debug.LogError("Não foi encontrada a câmera global na PersistentScene!");
+        if (!IsOwner)
             return;
-        }
 
-        // Unlink from the original scene
-        mainCamera.transform.SetParent(null);
+        // Disable GlobalCamera when player enters
+        var globalCam = FindAnyObjectByType<GlobalCameraBootstrap>();
+        if (globalCam != null)
+            globalCam.gameObject.SetActive(false);
 
-        // Move into CameraHolder
-        mainCamera.transform.SetParent(cameraHolder);
+        // Instantiate the MainCamera
+        spawnedCamera = Instantiate(mainCamera);
 
-        // Reset localPosition/Rotation if you want it to be at the same offset
-        mainCamera.transform.localPosition = Vector3.zero;
-        mainCamera.transform.localRotation = Quaternion.identity;
+        // Parent in the player's holder
+        spawnedCamera.transform.SetParent(cameraHolder);
+        spawnedCamera.transform.localPosition = Vector3.zero;
+        spawnedCamera.transform.localRotation = Quaternion.identity;
 
-        // AudioListener already exists, just ensure it is active
-        AudioListener listener = mainCamera.GetComponent<AudioListener>();
-        if (listener != null) listener.enabled = true;
+        // Ensure Active AudioListener
+        var listener = spawnedCamera.GetComponent<AudioListener>();
+        if (listener != null)
+            listener.enabled = true;
     }
 
     public override void OnStopClient()
     {
-        if (!IsOwner) return;
+        if (!IsOwner)
+            return;
 
-        // Unlink camera if player exits
-        if (mainCamera != null)
-            mainCamera.transform.SetParent(null);
+        if (spawnedCamera != null)
+            Destroy(spawnedCamera.gameObject);
     }
 }

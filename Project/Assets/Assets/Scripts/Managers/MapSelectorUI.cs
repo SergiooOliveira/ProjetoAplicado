@@ -1,11 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
-using FishNet;
 
 public class MapSelectorUI : MonoBehaviour
 {
     #region Serialized Fields
-
     [Header("Map Buttons")]
     public Button buttonMap1;
     public Button buttonMap2;
@@ -14,27 +12,30 @@ public class MapSelectorUI : MonoBehaviour
     public Button buttonMap5;
 
     private bool isLoading = false;
-
     #endregion
 
     #region Unity Methods
+    private void OnEnable()
+    {
+        PlayerController localPlayer = FindLocalPlayer();
+        if (localPlayer != null)
+            localPlayer.gameObject.SetActive(false);
+
+        var globalCam = Object.FindFirstObjectByType<GlobalCameraBootstrap>(FindObjectsInactive.Include);
+        if (globalCam != null)
+            globalCam.gameObject.SetActive(true);
+    }
 
     private void Start()
     {
-
-        PlayerController localPlayer = FindLocalPlayer();
-        if (localPlayer != null) localPlayer.gameObject.SetActive(false);
-
         buttonMap1.onClick.AddListener(() => OnMapSelect("Map1_Part1"));
         buttonMap2.onClick.AddListener(() => OnMapSelect("Map2_cloud"));
         buttonMap3.onClick.AddListener(() => OnMapSelect("Map3_ice"));
         buttonMap4.onClick.AddListener(() => OnMapSelect("Map4_light"));
     }
-
     #endregion
 
     #region Load Map
-
     private void OnMapSelect(string mapName)
     {
         if (isLoading) return;
@@ -45,11 +46,9 @@ public class MapSelectorUI : MonoBehaviour
         sm.UnloadSceneLocal("SelectMap");
         sm.LoadLoadingThenMap(mapName);
     }
-
     #endregion
 
     #region Helpers
-
     private PlayerController FindLocalPlayer()
     {
         PlayerController[] players = Object.FindObjectsByType<PlayerController>(FindObjectsSortMode.None);
@@ -60,6 +59,5 @@ public class MapSelectorUI : MonoBehaviour
         }
         return null;
     }
-
     #endregion
 }

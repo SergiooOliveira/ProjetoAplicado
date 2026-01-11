@@ -8,7 +8,6 @@ using UnityEngine.SceneManagement;
 public class PlayerSpawner : MonoBehaviour
 {
     #region Serialized Fields
-
     [Header("Player Settings")]
     public NetworkObject playerPrefab;
 
@@ -16,11 +15,9 @@ public class PlayerSpawner : MonoBehaviour
     public Transform[] spawnPoints;
 
     private int lastSpawnIndex = -1;
-
     #endregion
 
     #region Spawn Player
-
     /// <summary>
     /// Updates spawnPoints based on the loaded map's SpawnPointMarker.
     /// Must be called after the map scene is loaded.
@@ -61,6 +58,5 @@ public class PlayerSpawner : MonoBehaviour
         // Spawn on the server
         InstanceFinder.ServerManager.Spawn(playerInstance, conn);
     }
-
     #endregion
 }
