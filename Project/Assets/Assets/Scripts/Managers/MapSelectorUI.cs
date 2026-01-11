@@ -4,13 +4,6 @@ using UnityEngine.UI;
 public class MapSelectorUI : MonoBehaviour
 {
     #region Serialized Fields
-    [Header("Map Buttons")]
-    public Button buttonMap1;
-    public Button buttonMap2;
-    public Button buttonMap3;
-    public Button buttonMap4;
-    public Button buttonMap5;
-
     private bool isLoading = false;
     #endregion
 
@@ -25,24 +18,15 @@ public class MapSelectorUI : MonoBehaviour
         if (globalCam != null)
             globalCam.gameObject.SetActive(true);
     }
-
-    private void Start()
-    {
-        buttonMap1.onClick.AddListener(() => OnMapSelect("Map1_Part1"));
-        buttonMap2.onClick.AddListener(() => OnMapSelect("Map2_cloud"));
-        buttonMap3.onClick.AddListener(() => OnMapSelect("Map3_ice"));
-        buttonMap4.onClick.AddListener(() => OnMapSelect("Map4_light"));
-    }
     #endregion
 
     #region Load Map
-    private void OnMapSelect(string mapName)
+    public void OnMapSelect(string mapName)
     {
         if (isLoading) return;
         isLoading = true;
 
         BootstrapSceneManager sm = GameObject.FindFirstObjectByType<BootstrapSceneManager>();
-
         sm.UnloadSceneLocal("SelectMap");
         sm.LoadLoadingThenMap(mapName);
     }
