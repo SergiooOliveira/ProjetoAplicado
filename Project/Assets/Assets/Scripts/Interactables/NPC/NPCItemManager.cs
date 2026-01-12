@@ -43,7 +43,7 @@ public class NPCItemManager : MonoBehaviour
 
         foreach (ItemEntry entry in npc.RuntimeData.NPCInventory)
         {
-            if (!entry.item.RunTimeItemData.IsItemSellable) continue;
+            // if (!entry.item.RunTimeItemData.IsItemSellable) continue;
             if (entry.quantity <= 0) continue;
 
             //Debug.Log($"Setting buy slot: {entry.item.RunTimeItemData.ItemName}");
@@ -57,7 +57,7 @@ public class NPCItemManager : MonoBehaviour
 
         foreach (EquipmentEntry entry in npc.RuntimeData.NPCEquipment)
         {
-            if (!entry.equipment.RunTimeEquipmentData.IsItemSellable) continue;
+            // if (!entry.equipment.RunTimeEquipmentData.IsItemSellable) continue;
             if (entry.quantity <= 0) continue;
 
             //Debug.Log($"Setting buy slot: {entry.equipment.RunTimeEquipmentData.ItemName}");

@@ -281,7 +281,7 @@ public class StatManagerUI : MonoBehaviour
     {
         img_helmetSprite.sprite = null;
         img_helmetSprite.enabled = false;
-        tb_helmetName.text = "No helmet equipped";
+        tb_helmetName.text = "";
         tb_helmetSetName.text = "";
         tb_helmetStat.text = "";
         tb_helmetResist.text = "";
@@ -291,7 +291,7 @@ public class StatManagerUI : MonoBehaviour
     {
         img_chestplateSprite.sprite = null;
         img_chestplateSprite.enabled = false;
-        tb_chestplateName.text = "No chestplate equipped";
+        tb_chestplateName.text = "";
         tb_chestplateSetName.text = "";
         tb_chestplateStat.text = "";
         tb_chestplateResist.text = "";
@@ -301,7 +301,7 @@ public class StatManagerUI : MonoBehaviour
     {
         img_leggingsSprite.sprite = null;
         img_leggingsSprite.enabled = false;
-        tb_leggingsName.text = "No leggings equipped";
+        tb_leggingsName.text = "";
         tb_leggingsSetName.text = "";
         tb_leggingsStat.text = "";
         tb_leggingsResist.text = "";
@@ -311,7 +311,7 @@ public class StatManagerUI : MonoBehaviour
     {
         img_amuletSprite.sprite = null;
         img_amuletSprite.enabled = false;
-        tb_amuletName.text = "No amulet equipped";
+        tb_amuletName.text = "";
         tb_amuletStat.text = "";
     }
 
@@ -319,7 +319,7 @@ public class StatManagerUI : MonoBehaviour
     {
         img_ringSprite.sprite = null;
         img_ringSprite.enabled = false;
-        tb_ringName.text = "No ring equipped";
+        tb_ringName.text = "";
         tb_ringStat.text = "";
     }
 
@@ -327,7 +327,7 @@ public class StatManagerUI : MonoBehaviour
     {
         img_weaponSprite.sprite = null;
         img_weaponSprite.enabled = false;
-        tb_weaponName.text = "No weapon equipped";
+        tb_weaponName.text = "";
         tb_weaponStat.text = "";
     }
     #endregion
