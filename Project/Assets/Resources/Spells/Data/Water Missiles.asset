@@ -24,6 +24,6 @@ MonoBehaviour:
   spellCastType: 2
   spellImpactType: 0
   spellEffects:
-  - {fileID: 11400000, guid: 483fd8a1ffb273d4daf201b0ade8734e, type: 2}
+  - {fileID: 11400000, guid: fcd3c76d1108f2447a2a9a951070e7c1, type: 2}
   spellLevel: 0
   upgradeLevels: []

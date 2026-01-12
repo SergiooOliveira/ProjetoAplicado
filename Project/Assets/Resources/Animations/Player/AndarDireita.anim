@@ -28,16 +28,6 @@ AnimationClip:
       value: {fileID: -8379821146519360186, guid: c60019acc9d76a14bb1becbaf59d0b40, type: 3}
     - time: 0.25
       value: {fileID: 7382536009077202217, guid: c60019acc9d76a14bb1becbaf59d0b40, type: 3}
-    - time: 0.33333334
-      value: {fileID: -8430558077892384538, guid: c60019acc9d76a14bb1becbaf59d0b40, type: 3}
-    - time: 0.41666666
-      value: {fileID: -8818634763470102717, guid: c60019acc9d76a14bb1becbaf59d0b40, type: 3}
-    - time: 0.5
-      value: {fileID: -1129632366506856012, guid: c60019acc9d76a14bb1becbaf59d0b40, type: 3}
-    - time: 0.5833333
-      value: {fileID: -5683508583673039410, guid: c60019acc9d76a14bb1becbaf59d0b40, type: 3}
-    - time: 0.6666667
-      value: {fileID: -5595695012793727286, guid: c60019acc9d76a14bb1becbaf59d0b40, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -64,17 +54,12 @@ AnimationClip:
     - {fileID: 8417533251982737556, guid: c60019acc9d76a14bb1becbaf59d0b40, type: 3}
     - {fileID: -8379821146519360186, guid: c60019acc9d76a14bb1becbaf59d0b40, type: 3}
     - {fileID: 7382536009077202217, guid: c60019acc9d76a14bb1becbaf59d0b40, type: 3}
-    - {fileID: -8430558077892384538, guid: c60019acc9d76a14bb1becbaf59d0b40, type: 3}
-    - {fileID: -8818634763470102717, guid: c60019acc9d76a14bb1becbaf59d0b40, type: 3}
-    - {fileID: -1129632366506856012, guid: c60019acc9d76a14bb1becbaf59d0b40, type: 3}
-    - {fileID: -5683508583673039410, guid: c60019acc9d76a14bb1becbaf59d0b40, type: 3}
-    - {fileID: -5595695012793727286, guid: c60019acc9d76a14bb1becbaf59d0b40, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.75
+    m_StopTime: 0.33333334
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -93,4 +78,18 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0.083333336
+    functionName: StepRight
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.25
+    functionName: StepLeft
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

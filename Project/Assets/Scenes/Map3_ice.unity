@@ -163,11 +163,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 304b391d38382d44e8fd0b30ef25c931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyTypeData: {fileID: 0}
   hasEnemy: 0
   currentEnemy: {fileID: 0}
   isRespawning: 0
+  hasSpawnedOnce: 0
   isActiveSpawnPoint: 0
-  enemyTypeData: {fileID: 0}
+  onlySpawnOnce: 0
 --- !u!1 &107826145
 GameObject:
   m_ObjectHideFlags: 0
@@ -212,11 +214,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 304b391d38382d44e8fd0b30ef25c931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyTypeData: {fileID: 0}
   hasEnemy: 0
   currentEnemy: {fileID: 0}
   isRespawning: 0
+  hasSpawnedOnce: 0
   isActiveSpawnPoint: 0
-  enemyTypeData: {fileID: 0}
+  onlySpawnOnce: 0
 --- !u!1 &145014419
 GameObject:
   m_ObjectHideFlags: 0
@@ -276,6 +280,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: af503fd4f8384af43a2ef3491b9ba5c2, type: 2}
+  bossRoom: {fileID: 0}
   debugMode: 1
 --- !u!1001 &162582561
 PrefabInstance:
@@ -761,11 +766,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 304b391d38382d44e8fd0b30ef25c931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyTypeData: {fileID: 0}
   hasEnemy: 0
   currentEnemy: {fileID: 0}
   isRespawning: 0
+  hasSpawnedOnce: 0
   isActiveSpawnPoint: 0
-  enemyTypeData: {fileID: 0}
+  onlySpawnOnce: 0
 --- !u!1001 &210599131
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -904,11 +911,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 304b391d38382d44e8fd0b30ef25c931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyTypeData: {fileID: 0}
   hasEnemy: 0
   currentEnemy: {fileID: 0}
   isRespawning: 0
+  hasSpawnedOnce: 0
   isActiveSpawnPoint: 0
-  enemyTypeData: {fileID: 0}
+  onlySpawnOnce: 0
 --- !u!1 &215619901
 GameObject:
   m_ObjectHideFlags: 0
@@ -1005,6 +1014,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 08666081a51a1124ebf50b1db2755704, type: 2}
+  bossRoom: {fileID: 0}
   debugMode: 1
 --- !u!1 &328756147
 GameObject:
@@ -1138,11 +1148,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 304b391d38382d44e8fd0b30ef25c931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyTypeData: {fileID: 0}
   hasEnemy: 0
   currentEnemy: {fileID: 0}
   isRespawning: 0
+  hasSpawnedOnce: 0
   isActiveSpawnPoint: 0
-  enemyTypeData: {fileID: 0}
+  onlySpawnOnce: 0
 --- !u!1 &393636375
 GameObject:
   m_ObjectHideFlags: 0
@@ -1189,6 +1201,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: a5340577969446946b668f45830ee966, type: 2}
+  bossRoom: {fileID: 0}
   debugMode: 1
 --- !u!1 &472285241
 GameObject:
@@ -1234,11 +1247,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 304b391d38382d44e8fd0b30ef25c931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyTypeData: {fileID: 0}
   hasEnemy: 0
   currentEnemy: {fileID: 0}
   isRespawning: 0
+  hasSpawnedOnce: 0
   isActiveSpawnPoint: 0
-  enemyTypeData: {fileID: 0}
+  onlySpawnOnce: 0
 --- !u!1 &486856656
 GameObject:
   m_ObjectHideFlags: 0
@@ -1283,11 +1298,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 304b391d38382d44e8fd0b30ef25c931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyTypeData: {fileID: 0}
   hasEnemy: 0
   currentEnemy: {fileID: 0}
   isRespawning: 0
+  hasSpawnedOnce: 0
   isActiveSpawnPoint: 0
-  enemyTypeData: {fileID: 0}
+  onlySpawnOnce: 0
 --- !u!1 &502213614
 GameObject:
   m_ObjectHideFlags: 0
@@ -1332,11 +1349,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 304b391d38382d44e8fd0b30ef25c931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyTypeData: {fileID: 0}
   hasEnemy: 0
   currentEnemy: {fileID: 0}
   isRespawning: 0
+  hasSpawnedOnce: 0
   isActiveSpawnPoint: 0
-  enemyTypeData: {fileID: 0}
+  onlySpawnOnce: 0
 --- !u!1 &532188434
 GameObject:
   m_ObjectHideFlags: 0
@@ -50167,11 +50186,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 304b391d38382d44e8fd0b30ef25c931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyTypeData: {fileID: 0}
   hasEnemy: 0
   currentEnemy: {fileID: 0}
   isRespawning: 0
+  hasSpawnedOnce: 0
   isActiveSpawnPoint: 0
-  enemyTypeData: {fileID: 0}
+  onlySpawnOnce: 0
 --- !u!1 &699691075
 GameObject:
   m_ObjectHideFlags: 0
@@ -50216,11 +50237,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 304b391d38382d44e8fd0b30ef25c931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyTypeData: {fileID: 0}
   hasEnemy: 0
   currentEnemy: {fileID: 0}
   isRespawning: 0
+  hasSpawnedOnce: 0
   isActiveSpawnPoint: 0
-  enemyTypeData: {fileID: 0}
+  onlySpawnOnce: 0
 --- !u!1 &704108100
 GameObject:
   m_ObjectHideFlags: 0
@@ -50265,11 +50288,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 304b391d38382d44e8fd0b30ef25c931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyTypeData: {fileID: 0}
   hasEnemy: 0
   currentEnemy: {fileID: 0}
   isRespawning: 0
+  hasSpawnedOnce: 0
   isActiveSpawnPoint: 0
-  enemyTypeData: {fileID: 0}
+  onlySpawnOnce: 0
 --- !u!1 &749810240
 GameObject:
   m_ObjectHideFlags: 0
@@ -50402,11 +50427,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 304b391d38382d44e8fd0b30ef25c931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyTypeData: {fileID: 0}
   hasEnemy: 0
   currentEnemy: {fileID: 0}
   isRespawning: 0
+  hasSpawnedOnce: 0
   isActiveSpawnPoint: 0
-  enemyTypeData: {fileID: 0}
+  onlySpawnOnce: 0
 --- !u!1 &860301310
 GameObject:
   m_ObjectHideFlags: 0
@@ -50556,7 +50583,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &924700924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50662,11 +50689,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 304b391d38382d44e8fd0b30ef25c931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyTypeData: {fileID: 0}
   hasEnemy: 0
   currentEnemy: {fileID: 0}
   isRespawning: 0
+  hasSpawnedOnce: 0
   isActiveSpawnPoint: 0
-  enemyTypeData: {fileID: 0}
+  onlySpawnOnce: 0
 --- !u!1001 &961754512
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -50809,11 +50838,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 304b391d38382d44e8fd0b30ef25c931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyTypeData: {fileID: 0}
   hasEnemy: 0
   currentEnemy: {fileID: 0}
   isRespawning: 0
+  hasSpawnedOnce: 0
   isActiveSpawnPoint: 0
-  enemyTypeData: {fileID: 0}
+  onlySpawnOnce: 0
 --- !u!1 &1118198817
 GameObject:
   m_ObjectHideFlags: 0
@@ -50858,11 +50889,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 304b391d38382d44e8fd0b30ef25c931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyTypeData: {fileID: 0}
   hasEnemy: 0
   currentEnemy: {fileID: 0}
   isRespawning: 0
+  hasSpawnedOnce: 0
   isActiveSpawnPoint: 0
-  enemyTypeData: {fileID: 0}
+  onlySpawnOnce: 0
 --- !u!1 &1162848756
 GameObject:
   m_ObjectHideFlags: 0
@@ -50907,11 +50940,132 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 304b391d38382d44e8fd0b30ef25c931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyTypeData: {fileID: 0}
   hasEnemy: 0
   currentEnemy: {fileID: 0}
   isRespawning: 0
+  hasSpawnedOnce: 0
   isActiveSpawnPoint: 0
-  enemyTypeData: {fileID: 0}
+  onlySpawnOnce: 0
+--- !u!1 &1221594350
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1221594352}
+  - component: {fileID: 1221594351}
+  m_Layer: 0
+  m_Name: A* Test
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1221594351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1221594350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78396926cbbfc4ac3b48fc5fc34a87d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  data:
+    dataString: UEsDBBQAAAgIAAAAIewQKmwacAIAACYFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQF1VE1z2jAQ/SuMziVjO3z21gIhPSRhQjq5+CKkNdYgSx5JDpAM/70r2cYunZ4Q7+1b7b5d+YsIZUtgTpu1EfxJcyDfB8SfybdBRz7Cie612opPaGPeBXe5D6Ih5pU6oRGPvczqApwR7IfaSx8cIVgpkWlTrPgeFto6i3BGpQWkjHZerRD6GpAT/gznXnLGUzL1p088zaPBBY8MlAPThY7uJrP5fD5JRo1ieD++G8WNqNZUiklalMB9A500nk4bTZxMQ6DC5poYn4FpKYVtKiPuXIbOt2UOBnzrXFBsNFQT3d37ZDmIfe583X35S5ZZcI0Rhp6XwqBldV7yU9c+FtQe6to+qKxCCcksVFUnffqHH8aBzowuHtt748jf4XLBDq/0zKh1PaP78LKrPQ4WHak80J2E9xzUs14bXSmOpDOVl1YWkmX399raIgd26PC61BuwKjvP27m2U/U9XEL3p4UUxS5YOaqBrdTB8bAMYHA2v7DgsCq2SYGor+K3hTe67+9UQzwIYx1SyEz8fH15O10ZH0pWwTPfTeUW2igw/QwlKCrdeYN53O0Mb7j/qx6ofz6Nxw3XvoobSYC7+Ci6oTb6eJ2WzfXxCWz+UjkpVD+ZZ57RqYVWqt4x2w2ilW0rk1EGHbGvBP97twilyThhkzgZQwazaD5MdsB28WSXxXyW8TGQsHxCYZ9UbupCG3twbKpLrnDR2q/KYG1oGdadG3pci89C9z0XKtNbZgDUS53i2hYYvAVfJl9xgQ5twTmhwsTJV0qkZgfg6fXONLS6OjlD0y5LSkrxoZ1HUrII35GUePi6zRsDHwKO/vI22YVc/gBQSwMEFAAACAgAAAAh7HbaGJ9tAAAAeAAAAAkAJABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGrVipLLSrOzM9TslIw0TPSMzTXUVBKL0osyCgGihiCOKWZKSB2tFJiopGpUbKZoZFpalqqhYGlrlFSanKSoVlSmmGKRVqKaapSLFB9SWVBql9ibipET0BiSUZaZl5KZl66nntRZoo7yGil2FoAUEsBAi0AFAAACAgAAAAh7BAqbBpwAgAAJgUAAAsAJAAAAAAAAAAAAAAAAAAAAGdyYXBoMC5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsBAi0AFAAACAgAAAAh7HbaGJ9tAAAAeAAAAAkAJAAAAAAAAAAAAAAAvQIAAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLBQYAAAAAAgACALgAAAB1AwAAAAA=
+    upgradeData: 
+    file_cachedStartup: {fileID: 0}
+    data_cachedStartup: 
+    cacheStartup: 0
+  showNavGraphs: 1
+  showUnwalkableNodes: 1
+  debugMode: 0
+  debugFloor: 0
+  debugRoof: 1
+  manualDebugFloorRoof: 0
+  showSearchTree: 0
+  unwalkableNodeDebugSize: 0.3
+  logPathResults: 1
+  maxNearestNodeDistance: 100
+  scanOnStartup: 1
+  fullGetNearestSearch: 0
+  prioritizeGraphs: 0
+  prioritizeGraphsLimit: 1
+  colorSettings:
+    _SolidColor: {r: 0.11764706, g: 0.4, b: 0.7882353, a: 0.9}
+    _UnwalkableNode: {r: 1, g: 0, b: 0, a: 0.5}
+    _BoundsHandles: {r: 0.29, g: 0.454, b: 0.741, a: 0.9}
+    _ConnectionLowLerp: {r: 0, g: 1, b: 0, a: 0.5}
+    _ConnectionHighLerp: {r: 1, g: 0, b: 0, a: 0.5}
+    _MeshEdgeColor: {r: 0, g: 0, b: 0, a: 0.5}
+    _AreaColors:
+    - {r: 0, g: 0, b: 0, a: 0}
+  tagNames:
+  - Basic Ground
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10
+  - 11
+  - 12
+  - 13
+  - 14
+  - 15
+  - 16
+  - 17
+  - 18
+  - 19
+  - 20
+  - 21
+  - 22
+  - 23
+  - 24
+  - 25
+  - 26
+  - 27
+  - 28
+  - 29
+  - 30
+  - 31
+  heuristic: 2
+  heuristicScale: 1
+  threadCount: 1
+  maxFrameTime: 10
+  batchGraphUpdates: 0
+  graphUpdateBatchingInterval: 0.2
+  euclideanEmbedding:
+    mode: 0
+    seed: 0
+    pivotPointRoot: {fileID: 0}
+    spreadOutCount: 1
+  showGraphs: 1
+--- !u!4 &1221594352
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1221594350}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1233132287
 GameObject:
   m_ObjectHideFlags: 0
@@ -50956,11 +51110,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 304b391d38382d44e8fd0b30ef25c931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyTypeData: {fileID: 0}
   hasEnemy: 0
   currentEnemy: {fileID: 0}
   isRespawning: 0
+  hasSpawnedOnce: 0
   isActiveSpawnPoint: 0
-  enemyTypeData: {fileID: 0}
+  onlySpawnOnce: 0
 --- !u!1 &1293021744
 GameObject:
   m_ObjectHideFlags: 0
@@ -51005,11 +51161,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 304b391d38382d44e8fd0b30ef25c931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyTypeData: {fileID: 0}
   hasEnemy: 0
   currentEnemy: {fileID: 0}
   isRespawning: 0
+  hasSpawnedOnce: 0
   isActiveSpawnPoint: 0
-  enemyTypeData: {fileID: 0}
+  onlySpawnOnce: 0
 --- !u!1 &1298173632
 GameObject:
   m_ObjectHideFlags: 0
@@ -51054,11 +51212,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 304b391d38382d44e8fd0b30ef25c931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyTypeData: {fileID: 0}
   hasEnemy: 0
   currentEnemy: {fileID: 0}
   isRespawning: 0
+  hasSpawnedOnce: 0
   isActiveSpawnPoint: 0
-  enemyTypeData: {fileID: 0}
+  onlySpawnOnce: 0
 --- !u!1 &1333001777
 GameObject:
   m_ObjectHideFlags: 0
@@ -51103,11 +51263,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 304b391d38382d44e8fd0b30ef25c931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyTypeData: {fileID: 0}
   hasEnemy: 0
   currentEnemy: {fileID: 0}
   isRespawning: 0
+  hasSpawnedOnce: 0
   isActiveSpawnPoint: 0
-  enemyTypeData: {fileID: 0}
+  onlySpawnOnce: 0
 --- !u!1 &1373064194
 GameObject:
   m_ObjectHideFlags: 0
@@ -51531,11 +51693,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 304b391d38382d44e8fd0b30ef25c931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyTypeData: {fileID: 0}
   hasEnemy: 0
   currentEnemy: {fileID: 0}
   isRespawning: 0
+  hasSpawnedOnce: 0
   isActiveSpawnPoint: 0
-  enemyTypeData: {fileID: 0}
+  onlySpawnOnce: 0
 --- !u!1 &1539768432
 GameObject:
   m_ObjectHideFlags: 0
@@ -51625,11 +51789,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 304b391d38382d44e8fd0b30ef25c931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyTypeData: {fileID: 0}
   hasEnemy: 0
   currentEnemy: {fileID: 0}
   isRespawning: 0
+  hasSpawnedOnce: 0
   isActiveSpawnPoint: 0
-  enemyTypeData: {fileID: 0}
+  onlySpawnOnce: 0
 --- !u!1 &1620312544
 GameObject:
   m_ObjectHideFlags: 0
@@ -51674,11 +51840,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 304b391d38382d44e8fd0b30ef25c931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyTypeData: {fileID: 0}
   hasEnemy: 0
   currentEnemy: {fileID: 0}
   isRespawning: 0
+  hasSpawnedOnce: 0
   isActiveSpawnPoint: 0
-  enemyTypeData: {fileID: 0}
+  onlySpawnOnce: 0
 --- !u!1 &1624135971
 GameObject:
   m_ObjectHideFlags: 0
@@ -51723,11 +51891,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 304b391d38382d44e8fd0b30ef25c931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyTypeData: {fileID: 0}
   hasEnemy: 0
   currentEnemy: {fileID: 0}
   isRespawning: 0
+  hasSpawnedOnce: 0
   isActiveSpawnPoint: 0
-  enemyTypeData: {fileID: 0}
+  onlySpawnOnce: 0
 --- !u!1001 &1675260218
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -51878,11 +52048,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 304b391d38382d44e8fd0b30ef25c931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyTypeData: {fileID: 0}
   hasEnemy: 0
   currentEnemy: {fileID: 0}
   isRespawning: 0
+  hasSpawnedOnce: 0
   isActiveSpawnPoint: 0
-  enemyTypeData: {fileID: 0}
+  onlySpawnOnce: 0
 --- !u!1 &1876632256
 GameObject:
   m_ObjectHideFlags: 0
@@ -51927,11 +52099,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 304b391d38382d44e8fd0b30ef25c931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyTypeData: {fileID: 0}
   hasEnemy: 0
   currentEnemy: {fileID: 0}
   isRespawning: 0
+  hasSpawnedOnce: 0
   isActiveSpawnPoint: 0
-  enemyTypeData: {fileID: 0}
+  onlySpawnOnce: 0
 --- !u!1001 &1886391455
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -52177,11 +52351,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 5a1d08243ea71604ebdf79a08104d3e8, type: 2}
+  bossRoom: {fileID: 0}
   debugMode: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1221594352}
   - {fileID: 1539768434}
   - {fileID: 215619902}
   - {fileID: 749810245}
