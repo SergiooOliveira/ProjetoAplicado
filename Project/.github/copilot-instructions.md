@@ -8,7 +8,7 @@
   - Layers:
     - Default, TransparentFX, Ignore Raycast, Player, Water, UI, Spell, Ground, Boss, Buff, Enemy
 - Active game object:
-  - Name: Row1
+  - Name: Details
   - Tag: Untagged
   - Layer: UI
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->
