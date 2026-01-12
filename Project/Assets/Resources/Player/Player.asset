@@ -21,6 +21,9 @@ MonoBehaviour:
     max: 0
   characterMana:
     max: 500
+  regenDelay: 5
+  regenTickRate: 0.1
+  regenAmount: 5
   characterMovementSpeed: 6
   characterAttackSpeed: 6
   characterAttackPower: 6
@@ -44,4 +47,4 @@ MonoBehaviour:
     quantity: 1
     isEquipped: 1
   characterEquipedEquipment: []
-  characterGold: 8000
+  characterGold: 8500
