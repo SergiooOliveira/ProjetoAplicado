@@ -24,12 +24,18 @@ MonoBehaviour:
     damage: 50
     weight: 75
     attackType: 0
+    attackSounds:
+    - {fileID: 8300000, guid: 672cde1fe991b5143b5755245347eedf, type: 3}
   - triggerName: Attack2
     damage: 50
     weight: 25
     attackType: 1
+    attackSounds:
+    - {fileID: 8300000, guid: 014d9693c4fe11340944b7f42574800b, type: 3}
+  deathSound: {fileID: 8300000, guid: e728321962ba94c47ac830c1c2b51c4d, type: 3}
+  idleSound: {fileID: 0}
   spawnCount: 1
-  distanceSpawn: 10
+  distanceSpawn: 12
   respawnTime: 5
   respawnDistance: 1
   characterHp:

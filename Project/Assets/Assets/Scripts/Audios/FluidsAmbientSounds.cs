@@ -13,7 +13,7 @@ public class FluidsAmbientSounds : MonoBehaviour
     public float maxDistance = 6f;       // distância máxima onde o som é 0
 
     [Header("Tilemap Reference")]
-    public Tilemap lavaTilemap;
+    public Tilemap tilemap;
 
     [Header("Volume Curve (opcional)")]
     public AnimationCurve volumeCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
@@ -46,18 +46,18 @@ public class FluidsAmbientSounds : MonoBehaviour
             }
         }
 
-        if (!localPlayer || !lavaTilemap)
+        if (!localPlayer || !tilemap)
             return;
 
         float closestDistance = float.MaxValue;
 
         // percorre todos os tiles de lava
-        foreach (Vector3Int cellPos in lavaTilemap.cellBounds.allPositionsWithin)
+        foreach (Vector3Int cellPos in tilemap.cellBounds.allPositionsWithin)
         {
-            if (!lavaTilemap.HasTile(cellPos))
+            if (!tilemap.HasTile(cellPos))
                 continue;
 
-            Vector3 worldPos = lavaTilemap.GetCellCenterWorld(cellPos);
+            Vector3 worldPos = tilemap.GetCellCenterWorld(cellPos);
             float distance = Vector2.Distance(localPlayer.position, worldPos);
 
             if (distance < closestDistance)

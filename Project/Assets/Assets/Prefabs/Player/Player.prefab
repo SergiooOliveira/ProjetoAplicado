@@ -55,6 +55,7 @@ GameObject:
   - component: {fileID: 5909253806183760391}
   - component: {fileID: 7152980566147607136}
   - component: {fileID: 3397017571171050615}
+  - component: {fileID: 2473058962376539894}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -105,7 +106,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 295743dcf6816744db451d644b31abd8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -583,6 +584,8 @@ MonoBehaviour:
   notificationSlotPrefab: {fileID: 5633027878506804917, guid: 93d29e773aa9f8948be3989b523c8764, type: 3}
   notificationPanel: {fileID: 3744176797619962874}
   spellSpawnPoint: {fileID: 8146614672172476252}
+  effectsSource: {fileID: 7152980566147607136}
+  deathClip: {fileID: 8300000, guid: 4d67677207b955c4f80ba62f288d6cb4, type: 3}
 --- !u!114 &4471846361496907415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -776,6 +779,19 @@ MonoBehaviour:
   - groundTag: Fire
     leftFoot: {fileID: 8300000, guid: a936cd22031a66c4aacf7919f8bf737e, type: 3}
     rightFoot: {fileID: 8300000, guid: f5a248614e9f871479dd18c226338084, type: 3}
+--- !u!114 &2473058962376539894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1262297832921891090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c992806e80d2af46b7bce1e996fd7ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dissolveTime: 0.75
 --- !u!1 &1292100370923140359
 GameObject:
   m_ObjectHideFlags: 0

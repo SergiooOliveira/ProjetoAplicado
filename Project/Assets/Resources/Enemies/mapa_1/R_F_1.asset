@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Cyclope Bat
   characterLevel: 2
-  characterPrefab: {fileID: 7057437063388147542, guid: b4f115b0e6ac9a84ca0ac442aafa1a23, type: 3}
+  characterPrefab: {fileID: 7057437063388147542, guid: 119e3f539397c0d449750fbbb247f49a, type: 3}
   characterDescription: A mighty warrior destined to walk the land for all eternity
   characterType: 1
   characterSpawnLevel: 0
@@ -24,8 +24,12 @@ MonoBehaviour:
     damage: 5
     weight: 100
     attackType: 1
+    attackSounds:
+    - {fileID: 8300000, guid: 82f89165b9e5ee44fa4d2095e0b104dc, type: 3}
+  deathSound: {fileID: 8300000, guid: 5fbafacf00764c04bb41ccd33d80d756, type: 3}
+  idleSound: {fileID: 8300000, guid: ec5208522ffd0b645b23853038acbcc3, type: 3}
   spawnCount: 100
-  distanceSpawn: 5
+  distanceSpawn: 20
   respawnTime: 5
   respawnDistance: 10
   characterHp:

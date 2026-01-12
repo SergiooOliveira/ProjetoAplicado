@@ -12,6 +12,7 @@ public class BootstrapSceneManager : MonoBehaviour
     #region Fields
     [Header("Player Spawner")]
     [SerializeField] private PlayerSpawner spawner;
+    private string currentMap;
     #endregion
 
     #region Unity Callbacks
@@ -71,6 +72,7 @@ public class BootstrapSceneManager : MonoBehaviour
     #region Global Scenes (Maps)
     public void LoadLoadingThenMap(string targetMap)
     {
+        currentMap = targetMap;
         StartCoroutine(LoadLoadingThenMapRoutine(targetMap));
     }
 
@@ -157,6 +159,12 @@ public class BootstrapSceneManager : MonoBehaviour
                 player.transform.rotation = spawn.rotation;
             }
 
+            var playerComponent = player.GetComponent<Player>();
+            if (playerComponent != null && playerComponent.IsDead)
+            {
+                playerComponent.Revive();
+            }
+
             // Disable Global Camera
             var globalCam = Object.FindFirstObjectByType<GlobalCameraBootstrap>(FindObjectsInactive.Include);
             if (globalCam != null)
@@ -166,6 +174,14 @@ public class BootstrapSceneManager : MonoBehaviour
             if (!player.gameObject.activeSelf)
                 player.gameObject.SetActive(true);
         }
+    }
+    #endregion
+
+    #region Reload Map
+    public void ReloadCurrentMap()
+    {
+        UnloadSceneLocal(currentMap);
+        LoadLoadingThenMap(currentMap);
     }
     #endregion
 }

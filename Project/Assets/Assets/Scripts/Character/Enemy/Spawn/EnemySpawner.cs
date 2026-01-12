@@ -239,8 +239,6 @@ public class EnemySpawner : MonoBehaviour
             // Just blocks in session
             sessionDeadBosses.Add(bossKey);
             Debug.Log($"[DEBUG] Boss {enemy.RunTimeData.CharacterName} morto (somente na sessão).");
-
-            TeleportToSelectMap();
         }
         else
         {
@@ -252,7 +250,7 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    private void TeleportToSelectMap()
+    public void TeleportToSelectMap()
     {
         BootstrapSceneManager sm = GameObject.FindFirstObjectByType<BootstrapSceneManager>();
         if (sm == null)

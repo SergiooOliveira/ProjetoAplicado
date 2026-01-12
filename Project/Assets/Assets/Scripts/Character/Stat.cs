@@ -23,6 +23,16 @@ public class Stat
         current = max;
     }
 
+    public void Reset()
+    {
+        current = max;
+    }
+
+    public void ResetToZero()
+    {
+        current = 0;
+    }
+
     #region Methods
     /// <summary>
     /// Call this method to set a new Max value to a Stat

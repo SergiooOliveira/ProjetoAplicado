@@ -1,9 +1,12 @@
+using FishNet;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -20,10 +23,17 @@ public class Player : MonoBehaviour
 
     private Coroutine manaRegenCoroutine;
 
+    private Dissolve dissolve;
+    private bool isDead;
+
+    [SerializeField] private AudioSource effectsSource;
+    [SerializeField] private AudioClip deathClip;
+
     #region Property implementation
     public Transform SpellSpawnPoint => spellSpawnPoint;
     public PlayerHUDManager PlayerHUDManager => playerHUDManager;
     public SpellManager SpellManager => spellManager;
+    public bool IsDead => isDead;
     #endregion
 
     #region Unity Methods
@@ -33,6 +43,7 @@ public class Player : MonoBehaviour
         Initialize();
         playerHUDManager = GetComponentInChildren<PlayerHUDManager>();
         spellManager = GetComponentInChildren<SpellManager>();
+        dissolve = GetComponent<Dissolve>();
     }
 
     public void Start()
@@ -158,6 +169,74 @@ public class Player : MonoBehaviour
 
             playerHUDManager.SetManaBar(current / max);
         }
+    }
+    #endregion
+
+    #region Die
+    public void OnDamageTaken()
+    {
+        if (isDead) return;
+
+        if (runTimePlayerData.CharacterHp.Current <= 0)
+        {
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        isDead = true;
+
+        if (dissolve != null)
+            dissolve.StartDissolve();
+
+        if (effectsSource != null && deathClip != null)
+        {
+            StartCoroutine(PlayDeathAndReload());
+        }
+        else
+        {
+            if (InstanceFinder.IsServerStarted)
+                StartCoroutine(RequestMapReload());
+        }
+    }
+
+    public void Revive()
+    {
+        isDead = false;
+
+        RunTimePlayerData.CharacterHp.Reset();
+        RunTimePlayerData.CharacterMana.Reset();
+        RunTimePlayerData.ResetProgression();
+
+        PlayerHUDManager.SetHPBar(1f);
+        PlayerHUDManager.SetManaBar(1f);
+        PlayerHUDManager.ResetXPBar(0f);
+
+        dissolve?.ResetDissolve();
+    }
+
+    private IEnumerator PlayDeathAndReload()
+    {
+        effectsSource.volume = 1f;
+        effectsSource.PlayOneShot(deathClip, 1f);
+
+        yield return new WaitForSeconds(deathClip.length);
+
+        effectsSource.volume = 0.1f;
+
+        if (InstanceFinder.IsServerStarted)
+            StartCoroutine(RequestMapReload());
+    }
+
+    private IEnumerator RequestMapReload()
+    {
+        yield return new WaitForSeconds(0.8f);
+
+        BootstrapSceneManager bootstrap = FindFirstObjectByType<BootstrapSceneManager>();
+
+        if (bootstrap != null)
+            bootstrap.ReloadCurrentMap();
     }
     #endregion
 }
