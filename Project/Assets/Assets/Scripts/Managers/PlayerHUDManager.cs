@@ -46,6 +46,11 @@ public class PlayerHUDManager : MonoBehaviour
         //Debug.Log($"<Color=Lime>targetXPFill: {targetXPFill}</Color>");
     }
 
+    public void ResetXPBar(float amount)
+    {
+        targetXPFill = amount;
+    }
+
     private void FixedUpdate()
     {
         if (playerHPForeground != null) playerHPForeground.fillAmount = Mathf.Lerp(playerHPForeground.fillAmount, targetHPFill, Time.deltaTime * smoothSpeed);

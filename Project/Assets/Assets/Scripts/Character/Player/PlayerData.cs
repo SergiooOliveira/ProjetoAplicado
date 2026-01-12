@@ -16,6 +16,7 @@ public class PlayerData : ScriptableObject, ICharacter
     [SerializeField] private Stat characterHp;                                  // Character Hp
     [SerializeField] private Stat characterXp;                                  // Character Xp
     [SerializeField] private Stat characterMana;                                // Character Mana
+    [SerializeField] private int startingLevel = 1;                             // Starting Level
 
     [Header("Mana Regeneration")]
     [SerializeField] private float regenDelay = 5f;                             // Delay before mana regeneration starts
@@ -24,6 +25,7 @@ public class PlayerData : ScriptableObject, ICharacter
 
     [Header("Attributes")]
     [SerializeField] private float characterMovementSpeed;                      // Character Movement Speed
+    [SerializeField] private float fluidSpeedMultiplier = 1f;                   // Character Movement Speed Fluid
     [SerializeField] private float characterAttackSpeed;                        // Character Attack Speed
     [SerializeField] private float characterAttackPower;                        // Character Attack Power
     [SerializeField] private float characterDefense;                            // Character Defense
@@ -36,10 +38,6 @@ public class PlayerData : ScriptableObject, ICharacter
     [SerializeField] private List<EquipmentEntry> characterEquipment;           // Character Equipment (Also, drop table for enemies)
     [SerializeField] private List<EquipmentEntry> characterEquipedEquipment;    // Character Equiped Equipment
     [SerializeField] private int characterGold;                                 // Character Gold
-    #endregion
-
-    #region Variables
-    private float fluidSpeedMultiplier = 1f;
     #endregion
 
     #region Property implementation
@@ -208,6 +206,14 @@ public class PlayerData : ScriptableObject, ICharacter
     public void ClearSpellList()
     {
         characterSpells = new List<Spell>();
+    }
+
+    public void ResetProgression()
+    {
+        characterLevel = startingLevel;
+
+        CharacterXp.ResetToZero();
+        CharacterXp.NewXpMax(characterLevel);
     }
 
     #region Auxiliary methods

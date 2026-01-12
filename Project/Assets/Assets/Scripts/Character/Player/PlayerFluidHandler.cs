@@ -59,6 +59,7 @@ public class PlayerFluidHandler : MonoBehaviour
                 int dmg = Mathf.RoundToInt(fluid.damagePerSecond);
                 playerData.CharacterHp.TakeDamage(dmg);
                 player.PlayerHUDManager.SetHPBar((float)playerData.CharacterHp.Current / playerData.CharacterHp.Max);
+                player.OnDamageTaken();
                 damageTimer = 0f;
             }
         }

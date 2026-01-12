@@ -37,6 +37,9 @@ public class Enemy : MonoBehaviour
     private GameObject hudInstance;
     Rigidbody2D rb;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource effectsSource;
+
     [Header("Spawn")]
     public EnemySpawnPoint spawnPoint;
     public EnemySpawner spawner;
@@ -51,9 +54,14 @@ public class Enemy : MonoBehaviour
 
     private bool isDead = false;
     private bool isAttacking = false;
-
+    private float originalGravityScale;
     private bool isFrozen = false;
     private float freezeTimer = 0f;
+    #endregion
+
+    #region Property implementation
+    public AudioSource EffectsSource => effectsSource;
+    public EnemyAttack CurrentAttack => currentAttack;
     #endregion
 
     #region Unity Callbacks
@@ -64,6 +72,7 @@ public class Enemy : MonoBehaviour
         SetupHitboxes();
 
         rb = GetComponent<Rigidbody2D>();
+        if (rb != null) originalGravityScale = rb.gravityScale;
         if (animator == null) animator = GetComponentInChildren<Animator>();
         if (spriteRenderer == null) spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         if (movement == null) movement = GetComponent<EnemyMovementBase>();
@@ -384,6 +393,7 @@ public class Enemy : MonoBehaviour
         
         runTimePlayerData.CharacterHp.TakeDamage(totalDamage);
         player.PlayerHUDManager.SetHPBar((float)runTimePlayerData.CharacterHp.Current / runTimePlayerData.CharacterHp.Max);
+        player.OnDamageTaken();
     }
 
     #endregion
@@ -537,8 +547,21 @@ public class Enemy : MonoBehaviour
             spawner.OnEnemyDeath(spawnPoint, this);
         }
 
+        if (movement != null)
+            movement.enabled = false;
+
         // Stop Movimentaion
-        rb.linearVelocity = Vector2.zero;
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector2.zero;
+            rb.angularVelocity = 0f;
+            rb.gravityScale = originalGravityScale > 0 ? originalGravityScale : 1f;
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        }
+
+        Collider2D col = GetComponent<Collider2D>();
+        if (col != null)
+            col.enabled = false;
 
         // Trigger Death Animation
         animator.SetTrigger("Death");
@@ -546,11 +569,28 @@ public class Enemy : MonoBehaviour
         isDead = true;
     }
 
+    public void PlayDeathSound()
+    {
+        if (effectsSource == null || runtimeData == null || runtimeData.DeathSound == null)
+            return;
+
+        effectsSource.PlayOneShot(runtimeData.DeathSound, 1f);
+    }
+
     // Destroy Enemy
     // Animation End
     public void OnDeathAnimationEnd()
     {
-        Destroy(gameObject);
+        if (effectsSource != null && runtimeData != null && runtimeData.DeathSound != null)
+        {
+            Destroy(gameObject, runtimeData.DeathSound.length);
+            if (runtimeData.CharacterCategory == EnemyCategory.Boss) spawner.TeleportToSelectMap();
+        }
+        else
+        {
+            Destroy(gameObject);
+            if (runtimeData.CharacterCategory == EnemyCategory.Boss) spawner.TeleportToSelectMap();
+        }
     }
 
     public void ApplyFreeze(float duration)
@@ -650,6 +690,14 @@ public class Enemy : MonoBehaviour
     private void UpdateAnimator()
     {
         if (animator == null || rb == null) return;
+        
+        if (isDead)
+        {
+            if (HasAnimatorParameter("Speed", AnimatorControllerParameterType.Float))
+                animator.SetFloat("Speed", 0f);
+            return;
+        }
+
         float speed = Mathf.Abs(rb.linearVelocity.x);
 
         // Update animator parameters
@@ -685,6 +733,22 @@ public class Enemy : MonoBehaviour
             if (param.name == paramName && param.type == type) return true;
         }
         return false;
+    }
+
+    public void PlayIdleSound(bool loop = true)
+    {
+        if (effectsSource == null || runtimeData == null || runtimeData.IdleSound == null)
+            return;
+
+        effectsSource.clip = runtimeData.IdleSound;
+        effectsSource.loop = loop;
+        effectsSource.Play();
+    }
+
+    public void StopIdleSound()
+    {
+        if (effectsSource != null && effectsSource.isPlaying)
+            effectsSource.Stop();
     }
 
     #endregion

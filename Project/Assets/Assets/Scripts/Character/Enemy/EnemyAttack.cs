@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
@@ -14,4 +15,8 @@ public class EnemyAttack
 
     [Tooltip("Attack Type")]
     public AttackType attackType;
+
+    [Header("Attack Sound")]
+    [Tooltip("Sound that plays when this attack is executed.")]
+    public List<AudioClip> attackSounds;
 }

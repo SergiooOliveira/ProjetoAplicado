@@ -18,7 +18,11 @@ public class EnemyData : ScriptableObject, IEnemy
     
     [Header("Attacks")]
     [Tooltip("Enemy attacks")]                                  [SerializeField] private List<EnemyAttack> attacks;
-    
+
+    [Header("Audio")]
+    [Tooltip("Sound that plays when the enemy dies")]           [SerializeField] private AudioClip deathSound;
+    [Tooltip("Idle sound (looping or one-shot)")]               [SerializeField] private AudioClip idleSound;
+
     [Header("Spawn Settings")]
     [Tooltip("Max enemies alive")]                              [SerializeField] private int spawnCount;
     [Tooltip("Player must be inside this radius to spawn")]     [SerializeField] private float distanceSpawn;
@@ -56,6 +60,10 @@ public class EnemyData : ScriptableObject, IEnemy
 
     // *----- Attacks -----*  
     public List<EnemyAttack> Attacks => attacks;
+
+    // *----- Audios -----* 
+    public AudioClip DeathSound => deathSound;
+    public AudioClip IdleSound => idleSound;
 
     // *----- Spawn Settings -----*
     public int SpawnCount => spawnCount;
