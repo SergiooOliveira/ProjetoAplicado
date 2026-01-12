@@ -137,10 +137,11 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
             // Get the playerData from parent
             EquipmentEntry equippedEquipment = player.CharacterEquipedEquipment.SingleOrDefault(e => e.equipment.RunTimeEquipmentData.ItemSlot == equipment.equipment.RunTimeEquipmentData.ItemSlot);
-
+            Debug.Log($"Equipped equipment in that slot: {equippedEquipment.equipment?.RunTimeEquipmentData.ItemName}");
             if (equippedEquipment.equipment == null)
             {
                 Debug.Log("equippedEquipment is null");
+                
                 player.EquipEquipment(equipment);
             }
             else
