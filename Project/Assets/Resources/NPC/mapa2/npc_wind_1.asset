@@ -31,4 +31,7 @@ MonoBehaviour:
   - equipment: {fileID: 4916843006010227509, guid: 14733560f3f0b764a961e978971e09fd, type: 3}
     quantity: 1
     isEquipped: 0
+  - equipment: {fileID: 8165464185908129205, guid: a038c1ac49d44094a9d92d0150183c51, type: 3}
+    quantity: 1
+    isEquipped: 0
   npcItemPanel: {fileID: 3919678629286285478, guid: 40f5da4586da0224a8466e617a8fa714, type: 3}

@@ -31,3 +31,15 @@ MonoBehaviour:
   itemDamageAffinity:
   - spellAfinity: 1
     amount: 30
+  currentLevel: 0
+  upgradeLevels:
+  - costGold: 1000
+    costItem: []
+    bonusHp: 100
+    bonusAttackDamage: 25
+    bonusAttackSpeed: 5
+    bonusDefense: 0
+    bonusMana: 0
+    bonusMovementSpeed: 0
+    bonusResistances: []
+    bonusDamageAffinity: []

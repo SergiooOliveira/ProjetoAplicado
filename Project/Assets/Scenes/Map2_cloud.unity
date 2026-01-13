@@ -324,11 +324,11 @@ PrefabInstance:
     - target: {fileID: 3288258466330080081, guid: ba83de55d5070f44a8c63fd7a72775eb, type: 3}
       propertyPath: 'spellReward.Array.data[0]'
       value: 
-      objectReference: {fileID: 11400000, guid: 5ed735296dbac314191361786c391688, type: 2}
+      objectReference: {fileID: 220613211818925742, guid: ea3e5071ab8174c4aaf293ad087d1e00, type: 3}
     - target: {fileID: 3288258466330080081, guid: ba83de55d5070f44a8c63fd7a72775eb, type: 3}
       propertyPath: 'spellReward.Array.data[1]'
       value: 
-      objectReference: {fileID: 11400000, guid: 4c4bd98d78c44a149935435ced6b7300, type: 2}
+      objectReference: {fileID: 1785471668261009206, guid: 93f57672454b57840b5f0e1d0638ea91, type: 3}
     - target: {fileID: 7783078003308098956, guid: ba83de55d5070f44a8c63fd7a72775eb, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
